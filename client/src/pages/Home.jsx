@@ -126,26 +126,14 @@ export default function Home() {
           </div>
         </div>
         <div className="lp-about-content">
-          <h2 className="lp-section-title">About Our Company</h2>
+          <h2 className="lp-section-title">About VisionX</h2>
           <p className="lp-section-desc">
-            We are dedicated to transforming how school students learn Spoken English. 
-            By integrating our dynamic curriculum with advanced technology, we help 
-            students build confidence, expand their vocabulary, and master grammar intuitively.
+            We started VisionX with one belief: children engage when learning feels designed for them, not delivered at them.
+            We work alongside schools to bring that idea into the classroom through practical, easy-to-use tools that help teachers teach better and students learn with confidence.
           </p>
-          <div className="lp-highlights">
-            <div className="lp-highlight-card">
-              <div className="lp-highlight-icon">👨‍🏫</div>
-              <div className="lp-highlight-text">Experienced Trainers</div>
-            </div>
-            <div className="lp-highlight-card">
-              <div className="lp-highlight-icon">🎮</div>
-              <div className="lp-highlight-text">Interactive Learning</div>
-            </div>
-            <div className="lp-highlight-card">
-              <div className="lp-highlight-icon">🤝</div>
-              <div className="lp-highlight-text">Trusted by Schools</div>
-            </div>
-          </div>
+          <p className="lp-section-desc">
+            Every feature is built around one question: does this make a lesson easier to teach, or easier to learn? From classroom delivery to teacher support and learner progress, we focus on experiences that are engaging, measurable, and genuinely useful in real school environments.
+          </p>
         </div>
       </section>
 
@@ -199,32 +187,23 @@ export default function Home() {
 
       {/* Clients Section */}
       <section className="lp-clients" id="clients">
-        <h2 className="lp-section-title lp-text-center">Our Trusted Schools</h2>
-        <div className="lp-clients-grid">
-          <div className="lp-client-logo">
-            <span className="lp-client-icon">🏫</span>
-            <span className="lp-client-name">Sunshine Public</span>
-          </div>
-          <div className="lp-client-logo">
-            <span className="lp-client-icon">🎓</span>
-            <span className="lp-client-name">Green Valley</span>
-          </div>
-          <div className="lp-client-logo">
-            <span className="lp-client-icon">🎒</span>
-            <span className="lp-client-name">Royal Heritage</span>
-          </div>
-          <div className="lp-client-logo">
-            <span className="lp-client-icon">🏛️</span>
-            <span className="lp-client-name">Elite International</span>
-          </div>
-          <div className="lp-client-logo">
-            <span className="lp-client-icon">🚌</span>
-            <span className="lp-client-name">Bright Future</span>
-          </div>
-          <div className="lp-client-logo">
-            <span className="lp-client-icon">🏢</span>
-            <span className="lp-client-name">Modern Academy</span>
-          </div>
+        <div className="lp-clients-header">
+          <p className="lp-clients-kicker">What Schools Get With VisionX</p>
+          <h2 className="lp-section-title lp-text-center">More Than English Lessons</h2>
+          <p className="lp-section-subtitle lp-text-center">A complete learning experience designed for students, teachers, and school leadership.</p>
+        </div>
+
+        <div className="lp-flow-map">
+          <p className="lp-flow-student">Student:</p>
+          <ol className="lp-student-flow" aria-label="Student spoken English learning flow map">
+            <li className="lp-flow-node">Learn English</li>
+            <li className="lp-flow-node">Listen and Understand</li>
+            <li className="lp-flow-node">Speak and Practice</li>
+            <li className="lp-flow-node">Build Vocabulary</li>
+            <li className="lp-flow-node">Improve Pronunciation</li>
+            <li className="lp-flow-node">Use English in Real-Life Situations</li>
+            <li className="lp-flow-node lp-flow-node-final">Speak with Confidence</li>
+          </ol>
         </div>
       </section>
 

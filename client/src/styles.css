@@ -2561,7 +2561,7 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  padding: 7.5rem 2rem 4rem;
+  padding: 5.5rem 2rem 2.5rem;
   width: 100vw;
   max-width: none;
   margin-left: calc(50% - 50vw);
@@ -2794,51 +2794,51 @@ input, select, textarea {
 .lp-about {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 4rem;
-  padding: 5rem 2rem 4.5rem;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
+  justify-content: flex-start;
+  gap: 3rem;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0;
+  min-height: 70vh;
+  position: relative;
+  background-image: linear-gradient(90deg, rgba(9, 14, 26, 0.78), rgba(9, 14, 26, 0.38)),
+                    url('/about-section.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .lp-about-visual {
-  flex: 1;
-  position: relative;
+  display: none;
 }
 
 .lp-about-illustration {
-  width: 100%;
-  height: 420px;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.12), rgba(91, 125, 255, 0.08), rgba(255, 255, 255, 0.9));
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 24px 46px rgba(91, 125, 255, 0.1);
-  border: 1px solid rgba(91, 125, 255, 0.08);
+  display: none;
 }
 
 .lp-about-content {
-  flex: 1.1;
+  width: min(100%, 680px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  padding: 3.5rem 2rem 3.5rem 7rem;
+  color: #ffffff;
 }
 
 .lp-section-title {
   font-size: clamp(2.1rem, 3vw, 3rem);
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: var(--text);
+  color: #F97316;
   margin-bottom: 1rem;
   text-align: left;
 }
 
 .lp-section-desc {
   font-size: 1.08rem;
-  color: var(--text-light);
+  color: rgba(255, 255, 255, 0.88);
   line-height: 1.9;
   margin-bottom: 2.1rem;
   max-width: 620px;
@@ -2860,10 +2860,10 @@ input, select, textarea {
   align-items: center;
   text-align: center;
   padding: 1.8rem 1.2rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 22px;
-  box-shadow: 0 8px 24px rgba(91, 125, 255, 0.08);
-  border: 1px solid rgba(91, 125, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   transition: var(--transition);
 }
 
@@ -2897,7 +2897,7 @@ input, select, textarea {
    ============================================ */
 
 .lp-reviews {
-  padding: 3rem 2rem 5rem;
+  padding: 2rem 2rem 3rem;
   background: linear-gradient(180deg, rgba(91, 125, 255, 0.03), rgba(62, 207, 142, 0.03));
   max-width: 1400px;
   width: 100%;
@@ -3002,50 +3002,136 @@ input, select, textarea {
    ============================================ */
 
 .lp-clients {
-  padding: 5rem 2rem;
-  max-width: 1400px;
+  padding: 3rem 2rem 2.5rem;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
 
-.lp-clients-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem;
+.lp-clients-header {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  text-align: center;
 }
 
-.lp-client-logo {
+.lp-clients-kicker {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  color: #F97316;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lp-clients .lp-section-title {
+  color: var(--text);
+}
+
+.lp-section-subtitle {
+  color: var(--text-light);
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
+.lp-flow-map {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.8rem 1.6rem;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,250,255,0.95));
+  border: 1px solid rgba(91,125,255,0.08);
+  box-shadow: 0 16px 36px rgba(91,125,255,0.1);
+}
+
+.lp-flow-student {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  color: #F97316;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lp-student-flow {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
+  gap: 0.9rem;
+  position: relative;
+  counter-reset: student-journey;
+}
+
+.lp-student-flow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(180deg, rgba(249,115,22,0.45), rgba(91,125,255,0.3));
+}
+
+.lp-flow-node {
+  width: calc(50% - 1.2rem);
+  text-align: left;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #f7f9ff);
+  border: 1px solid rgba(91,125,255,0.12);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 20px rgba(91,125,255,0.08);
+  position: relative;
+}
+
+.lp-flow-node::before {
+  counter-increment: student-journey;
+  content: counter(student-journey);
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 2px solid rgba(249,115,22,0.7);
+  color: #F97316;
+  font-size: 0.82rem;
+  font-weight: 900;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 16px rgba(91, 125, 255, 0.08);
-  border: 2px solid var(--border);
-  transition: var(--transition);
-  cursor: pointer;
-  filter: grayscale(100%);
+  transform: translateY(-50%);
+  box-shadow: 0 6px 14px rgba(249,115,22,0.2);
 }
 
-.lp-client-logo:hover {
-  filter: grayscale(0%);
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 32px rgba(91, 125, 255, 0.18);
-  border-color: var(--secondary);
+.lp-flow-node:nth-child(odd) {
+  margin-right: auto;
 }
 
-.lp-client-icon {
-  font-size: 3rem;
-  margin-bottom: 0.75rem;
+.lp-flow-node:nth-child(odd)::before {
+  right: -1.95rem;
 }
 
-.lp-client-name {
-  font-weight: 600;
-  color: var(--text);
-  text-align: center;
-  font-size: 0.95rem;
+.lp-flow-node:nth-child(even) {
+  margin-left: auto;
+}
+
+.lp-flow-node:nth-child(even)::before {
+  left: -1.95rem;
+}
+
+.lp-flow-node-final {
+  background: linear-gradient(135deg, rgba(249,115,22,0.2), rgba(255,255,255,0.98));
+  border-color: rgba(249,115,22,0.45);
+  box-shadow: 0 12px 26px rgba(249,115,22,0.18);
 }
 
 /* ============================================
@@ -3500,9 +3586,14 @@ input, select, textarea {
     padding: 3rem 1.5rem;
   }
 
-  .lp-clients-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+  .lp-flow-map {
+    max-width: 760px;
+    padding: 1.2rem;
+  }
+
+  .lp-flow-node {
+    width: calc(50% - 0.95rem);
+    padding: 0.9rem 1rem;
   }
 
   .lp-demo {
@@ -3635,7 +3726,31 @@ input, select, textarea {
     font-size: 16px;
   }
 
-  .lp-clients-grid {
-    grid-template-columns: 1fr;
+  .lp-student-flow::before {
+    left: 18px;
+    transform: none;
+  }
+
+  .lp-flow-node {
+    width: 100%;
+    margin: 0;
+    padding: 0.9rem 0.9rem 0.9rem 2.6rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+
+  .lp-flow-node:nth-child(odd),
+  .lp-flow-node:nth-child(even) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .lp-flow-node:nth-child(odd)::before,
+  .lp-flow-node:nth-child(even)::before {
+    left: 3px;
+    right: auto;
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
   }
 }
