@@ -2573,7 +2573,7 @@ input, select, textarea {
   background-image: linear-gradient(90deg, rgba(111, 122, 132, 0.62), rgba(111, 122, 132, 0.35)),
                     url('/hero-section.png');
   background-size: cover;
-  background-position: center center;
+  background-position: 28% center;
   background-repeat: no-repeat;
   background-attachment: scroll;
 }
@@ -2591,7 +2591,9 @@ input, select, textarea {
   max-width: 620px;
   position: relative;
   z-index: 1;
-  padding-left: 3rem;
+  padding-left: 0;
+  margin-left: 1rem;
+  margin-right: auto;
 }
 
 .lp-badge {
