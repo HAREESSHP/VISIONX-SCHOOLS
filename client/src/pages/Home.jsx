@@ -264,38 +264,39 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="lp-footer">
+        <div className="lp-footer-tagline">
+          Making English Learning Fun for Every Student
+        </div>
         <div className="lp-footer-content">
           <div className="lp-footer-col">
             <div className="lp-footer-logo">
-              <img src="/visionx-logo.png" alt="VISIONX Logo" className="lp-logo-icon" /> VISIONX
+              <img src="/visionx-logo.png" alt="VISIONX Logo" className="lp-footer-logo-img" />
             </div>
             <p className="lp-footer-desc">
-              The premier Spoken English platform empowering students to communicate confidently.
+              Helping schools empower students with confidence,
+              communication, and interactive spoken English learning.
             </p>
           </div>
           <div className="lp-footer-col">
             <h4 className="lp-footer-heading">Quick Links</h4>
             <div className="lp-footer-links">
-              <a href="#about">About</a>
-              <a href="#reviews">Reviews</a>
-              <a href="#clients">Clients</a>
-              <a href="#book-demo">Book Demo</a>
-              <Link to="/login">Student Login</Link>
-              <Link to="/login">Admin Login</Link>
+              <a href="#about">About Us</a>
+              <a href="#book-demo">Book a Demo</a>
+              <a href="#clients">Partner Schools</a>
             </div>
           </div>
           <div className="lp-footer-col">
-            <h4 className="lp-footer-heading">Contact Us</h4>
+            <h4 className="lp-footer-heading">Contact</h4>
             <div className="lp-footer-contact">
-              <p>Email: contact@visionx.edu</p>
-              <p>Phone: +91 98765 43210</p>
-              <p>Address: Education Park, Tech City, IN</p>
+              <p>📞 +91 93813 04491</p>
+              <p>📧 visionxgni@gmail.com</p>
+              <p>📍 Hyderabad, India</p>
             </div>
           </div>
         </div>
         <div className="lp-footer-bottom">
-          <p>Designed & Developed by Hareesh</p>
-          <p>© 2026 VisionX. All Rights Reserved.</p>
+          <p>© 2026 Vision English Platform</p>
+          <p>Designed & Developed by <a href="https://linkedin.com/in/hareesh-ai-dev" target="_blank" rel="noopener noreferrer" className="lp-footer-credit-link">Hareesh</a></p>
         </div>
       </footer>
     </div>
