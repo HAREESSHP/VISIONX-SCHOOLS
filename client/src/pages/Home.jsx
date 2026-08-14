@@ -105,9 +105,15 @@ export default function Home() {
             Deliver structured spoken English programs that improve communication skills, confidence,
             pronunciation, and classroom participation from Nursery to Grade 10.
           </p>
-          <div className="lp-hero-actions">
-            <a href="#about" className="lp-btn lp-btn-primary lp-btn-lg">Learn More</a>
-            <a href="#book-demo" className="lp-btn lp-btn-secondary lp-btn-lg">Book Demo</a>
+          <div className="lp-hero-bottom-row">
+            <div className="lp-hero-actions">
+              <a href="#about" className="lp-btn lp-btn-primary lp-btn-lg">Learn More</a>
+              <a href="#book-demo" className="lp-btn lp-btn-secondary lp-btn-lg">Book Demo</a>
+            </div>
+
+            <div className="lp-scroll-mouse" aria-label="Scroll down">
+              <span className="lp-scroll-wheel"></span>
+            </div>
           </div>
         </div>
       </section>
