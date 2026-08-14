@@ -53,55 +53,61 @@ export default function Home() {
     <div className="lp-container">
       {/* Navbar */}
       <nav className={`lp-navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="lp-nav-left">
-          <span className="lp-logo-icon">🎓</span>
-          <span className="lp-logo-text">VISIONX</span>
-        </div>
-        <div className="lp-nav-center">
-          <a href="#about" className="lp-nav-link">About</a>
-          <a href="#reviews" className="lp-nav-link">Reviews</a>
-          <a href="#clients" className="lp-nav-link">Clients</a>
-        </div>
-        <div className="lp-nav-right">
-          <a href="#book-demo" className="lp-btn lp-btn-outline lp-btn-sm">Book Demo</a>
-          {user ? (
-            <Link to={user.role === 'ADMIN' ? '/admin' : '/class-selection'} className="lp-btn lp-btn-primary lp-btn-sm">
-              Dashboard
-            </Link>
-          ) : (
-            <>
-              <Link to="/login" className="lp-btn lp-btn-ghost lp-btn-sm">Student Login</Link>
-              <Link to="/login" className="lp-btn lp-btn-primary lp-btn-sm">Admin Login</Link>
-            </>
-          )}
+        <div className="lp-navbar-inner">
+          <div className="lp-nav-left">
+            <span className="lp-logo-icon">🎓</span>
+            <span className="lp-logo-text">VISIONX</span>
+          </div>
+
+          <div className="lp-nav-center">
+            <a href="#about" className="lp-nav-link">About</a>
+            <a href="#reviews" className="lp-nav-link">Reviews</a>
+            <a href="#clients" className="lp-nav-link">Clients</a>
+          </div>
+
+          <div className="lp-nav-right">
+            <a href="#book-demo" className="lp-btn lp-btn-outline lp-btn-sm">Book Demo</a>
+            {user ? (
+              <Link to={user.role === 'ADMIN' ? '/admin' : '/class-selection'} className="lp-btn lp-btn-primary lp-btn-sm">
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" className="lp-btn lp-btn-ghost lp-btn-sm">Student Login</Link>
+                <Link to="/login" className="lp-btn lp-btn-primary lp-btn-sm">Admin Login</Link>
+              </>
+            )}
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="lp-hero" id="home">
-        <div className="lp-hero-content">
-          <div className="lp-badge">Premium Spoken English Platform</div>
-          <h1 className="lp-hero-title">
-            Making English Learning <span className="lp-highlight">Fun</span> for Every Student
-          </h1>
-          <p className="lp-hero-desc">
-            Empower your school's curriculum with world-class interactive spoken English training.
-          </p>
-          <div className="lp-hero-actions">
-            <a href="#book-demo" className="lp-btn lp-btn-primary lp-btn-lg">Book Demo</a>
-            <a href="#about" className="lp-btn lp-btn-secondary lp-btn-lg">Learn More</a>
-          </div>
-        </div>
         <div className="lp-hero-visual">
           <div className="lp-image-card">
-            <div className="lp-floating-element lp-float-1">🗣️ Speak</div>
-            <div className="lp-floating-element lp-float-2">📖 Read</div>
             <div className="lp-hero-illustration">
               <div className="lp-illustration-inner">
-                 <span className="lp-emoji-large">👩‍🏫</span>
+                <span className="lp-emoji-large">👦</span>
+                <div className="lp-magnifier">
+                  <div className="lp-magnifier-ring"></div>
+                </div>
               </div>
             </div>
-            <div className="lp-image-shadow"></div>
+          </div>
+        </div>
+
+        <div className="lp-hero-content">
+          <div className="lp-badge">Spoken English Excellence for Schools</div>
+          <h1 className="lp-hero-title">
+            Empowering Students with <span className="lp-highlight">Confident English Communication</span>
+          </h1>
+          <p className="lp-hero-desc">
+            Deliver structured spoken English programs that improve communication skills, confidence,
+            pronunciation, and classroom participation from Nursery to Grade 10.
+          </p>
+          <div className="lp-hero-actions">
+            <a href="#about" className="lp-btn lp-btn-primary lp-btn-lg">Learn More</a>
+            <a href="#book-demo" className="lp-btn lp-btn-secondary lp-btn-lg">Book Demo</a>
           </div>
         </div>
       </section>
