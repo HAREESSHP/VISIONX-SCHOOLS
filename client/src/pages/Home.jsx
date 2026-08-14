@@ -55,8 +55,7 @@ export default function Home() {
       <nav className={`lp-navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="lp-navbar-inner">
           <div className="lp-nav-left">
-            <span className="lp-logo-icon">🎓</span>
-            <span className="lp-logo-text">VISIONX</span>
+            <img src="/visionx-logo.png" alt="VISIONX Logo" className="lp-logo-icon" />
           </div>
 
           <div className="lp-nav-center">
@@ -259,7 +258,7 @@ export default function Home() {
         <div className="lp-footer-content">
           <div className="lp-footer-col">
             <div className="lp-footer-logo">
-              <span className="lp-logo-icon">🎓</span> VISIONX
+              <img src="/visionx-logo.png" alt="VISIONX Logo" className="lp-logo-icon" /> VISIONX
             </div>
             <p className="lp-footer-desc">
               The premier Spoken English platform empowering students to communicate confidently.

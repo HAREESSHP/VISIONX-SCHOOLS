@@ -19,8 +19,7 @@ export default function Layout({ children }) {
       {!isHome && user && (
         <nav className="top-nav">
           <div className="nav-brand" onClick={() => navigate(user.role === 'ADMIN' ? '/admin' : '/dashboard')}>
-            <span className="nav-logo">🎓</span>
-            <span className="nav-title">VISIONX English</span>
+            <img src="/visionx-logo.png" alt="VISIONX Logo" className="nav-logo" />
           </div>
 
           <div className="nav-links">

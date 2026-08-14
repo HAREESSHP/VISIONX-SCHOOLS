@@ -143,7 +143,9 @@ input, select, textarea {
 }
 
 .nav-logo {
-  font-size: 1.5rem;
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
 }
 
 .nav-title {
@@ -844,7 +846,9 @@ input, select, textarea {
 }
 
 .login-logo {
-  font-size: 3rem;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
   margin-bottom: 0.5rem;
 }
 
@@ -2381,9 +2385,10 @@ input, select, textarea {
 }
 
 .lp-logo-icon {
-  font-size: 1.7rem;
-  font-weight: 700;
-  line-height: 1;
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  margin-left: 40px;
 }
 
 .lp-logo-text {

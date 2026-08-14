@@ -61,7 +61,7 @@ export default function Login() {
 
       <div className="login-card">
         <div className="login-header">
-          <div className="login-logo">🎓</div>
+          <img src="/visionx-logo.png" alt="VISIONX Logo" className="login-logo" />
           <h1 className="login-title">Welcome! 👋</h1>
           <p className="login-subtitle">
             {isAdmin ? 'Admin Login' : 'Enter your Login ID to start learning'}
