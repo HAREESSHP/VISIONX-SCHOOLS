@@ -3687,6 +3687,52 @@ input, select, textarea {
 }
 
 @media (max-width: 480px) {
+  .dashboard-page {
+    padding: 1rem;
+  }
+
+  .welcome-section {
+    gap: 0.75rem;
+  }
+
+  .stats-badges {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .stat-badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .continue-card {
+    padding: 1.25rem;
+  }
+
+  .continue-info h2 {
+    font-size: 1.25rem;
+  }
+
+  .challenge-card {
+    padding: 1.25rem;
+  }
+
+  .skill-card {
+    padding: 1rem;
+  }
+
+  .skill-header {
+    gap: 0.5rem;
+  }
+
+  .area-card {
+    padding: 1.25rem;
+  }
+
+  .area-lesson-item {
+    padding: 0.6rem;
+  }
+
   .hero-title {
     font-size: 1.75rem;
   }
