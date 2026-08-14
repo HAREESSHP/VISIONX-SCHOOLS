@@ -143,8 +143,8 @@ input, select, textarea {
 }
 
 .nav-logo {
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 
@@ -2385,8 +2385,8 @@ input, select, textarea {
 }
 
 .lp-logo-icon {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   margin-left: 40px;
 }
@@ -2566,7 +2566,7 @@ input, select, textarea {
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  padding: 5.5rem 2rem 2.5rem;
+  padding: 7rem 2rem 2.5rem;
   width: 100vw;
   max-width: none;
   margin-left: calc(50% - 50vw);
@@ -3144,11 +3144,15 @@ input, select, textarea {
    ============================================ */
 
 .lp-demo {
-  padding: 5rem 2rem;
+  padding: 3rem 2rem;
   background: linear-gradient(135deg, rgba(91, 125, 255, 0.06), rgba(62, 207, 142, 0.06));
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+}
+
+.lp-demo .lp-section-title {
+  color: #000000;
 }
 
 .lp-demo-container {
@@ -3159,7 +3163,7 @@ input, select, textarea {
 .lp-demo-card {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 3.5rem 3rem;
+  padding: 2.5rem 2rem;
   box-shadow: 0 10px 32px rgba(91, 125, 255, 0.12);
   border: 2px solid var(--border);
 }

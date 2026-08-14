@@ -34,19 +34,28 @@ export default function Home() {
     });
   };
 
-  const handleDemoSubmit = async (e) => {
+  const handleDemoSubmit = (e) => {
     e.preventDefault();
     setSubmitting(true);
-    setDemoStatus(null);
-    try {
-      await api.post('/demo', demoForm);
-      setDemoStatus({ type: 'success', message: 'Demo request submitted successfully! Our team will contact you soon.' });
-      setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
-    } catch (error) {
-      setDemoStatus({ type: 'error', message: error.message || 'Failed to submit demo request.' });
-    } finally {
-      setSubmitting(false);
-    }
+
+    // Build WhatsApp message with form details
+    const whatsappNumber = '919381304491';
+    const message = [
+      'Hello VISIONX! I would like to book a free demo.',
+      '',
+      `School Name: ${demoForm.schoolName}`,
+      `Contact Person: ${demoForm.name}`,
+      `Phone: ${demoForm.phone}`,
+      `Email: ${demoForm.email}`,
+      demoForm.message ? `Message: ${demoForm.message}` : ''
+    ].filter(Boolean).join('\n');
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    setDemoStatus({ type: 'success', message: 'Opening WhatsApp to send your demo request...' });
+    setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
+    setSubmitting(false);
   };
 
   return (
@@ -61,7 +70,7 @@ export default function Home() {
           <div className="lp-nav-center">
             <a href="#about" className="lp-nav-link">About</a>
             <a href="#reviews" className="lp-nav-link">Reviews</a>
-            <a href="#clients" className="lp-nav-link">Clients</a>
+            <a href="#clients" className="lp-nav-link">Benefits</a>
           </div>
 
           <div className="lp-nav-right">
