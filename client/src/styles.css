@@ -3849,3 +3849,159 @@ input, select, textarea {
     font-size: 0.75rem;
   }
 }
+
+/* ============================================
+   TV / Large Screen Responsive (1920px+)
+   ============================================ */
+
+@media (min-width: 1920px) {
+  .main-content {
+    max-width: 1600px;
+    padding: 3rem;
+  }
+
+  .dashboard-page {
+    max-width: 1600px;
+  }
+
+  .page-title {
+    font-size: 2.75rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .section-heading {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .stat-badge {
+    padding: 1rem 1.75rem;
+    gap: 1rem;
+  }
+
+  .stat-badge-icon {
+    font-size: 2rem;
+  }
+
+  .stat-badge strong {
+    font-size: 1.75rem;
+  }
+
+  .stat-badge small {
+    font-size: 1rem;
+  }
+
+  .welcome-section {
+    margin-bottom: 3rem;
+    gap: 1.5rem;
+  }
+
+  .continue-card {
+    padding: 2rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .continue-icon {
+    font-size: 4rem;
+  }
+
+  .continue-info h2 {
+    font-size: 2rem;
+  }
+
+  .continue-info p {
+    font-size: 1.15rem;
+  }
+
+  .continue-label {
+    font-size: 1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    padding: 1.75rem;
+  }
+
+  .skill-icon {
+    font-size: 1.75rem;
+  }
+
+  .skill-name {
+    font-size: 1.15rem;
+  }
+
+  .skill-percentage {
+    font-size: 1.15rem;
+  }
+
+  .skill-bar {
+    height: 12px;
+  }
+
+  .challenge-card {
+    padding: 2rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .challenge-title {
+    font-size: 1.75rem;
+  }
+
+  .challenge-text {
+    font-size: 1.15rem;
+  }
+
+  .areas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2rem;
+  }
+
+  .area-card {
+    padding: 2rem;
+  }
+
+  .area-icon {
+    font-size: 2.25rem;
+  }
+
+  .area-card-header h3 {
+    font-size: 1.35rem;
+  }
+
+  .area-description {
+    font-size: 1.05rem;
+  }
+
+  .lesson-item-icon {
+    font-size: 1.5rem;
+  }
+
+  .lesson-item-info strong {
+    font-size: 1.1rem;
+  }
+
+  .lesson-item-info small {
+    font-size: 0.95rem;
+  }
+
+  .area-lesson-item {
+    padding: 1rem 1.25rem;
+  }
+
+  .btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 1.1rem;
+  }
+
+  .btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.25rem;
+  }
+}
