@@ -38,22 +38,24 @@ export default function Home() {
     e.preventDefault();
     setSubmitting(true);
 
-    // Build WhatsApp message with form details
-    const whatsappNumber = '919381304491';
-    const message = [
-      'Hello VISIONX! I would like to book a free demo.',
-      '',
-      `School Name: ${demoForm.schoolName}`,
-      `Contact Person: ${demoForm.name}`,
-      `Phone: ${demoForm.phone}`,
-      `Email: ${demoForm.email}`,
-      demoForm.message ? `Message: ${demoForm.message}` : ''
-    ].filter(Boolean).join('\n');
+    // Build email message with form details
+    const subject = encodeURIComponent(`Demo Request - ${demoForm.schoolName}`);
+    const body = encodeURIComponent(
+      [
+        'Hello VISIONX! I would like to book a free demo.',
+        '',
+        `School Name: ${demoForm.schoolName}`,
+        `Contact Person: ${demoForm.name}`,
+        `Phone: ${demoForm.phone}`,
+        `Email: ${demoForm.email}`,
+        demoForm.message ? `Message: ${demoForm.message}` : ''
+      ].join('\n')
+    );
 
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+    const mailtoUrl = `mailto:visionx236@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoUrl;
 
-    setDemoStatus({ type: 'success', message: 'Opening WhatsApp to send your demo request...' });
+    setDemoStatus({ type: 'success', message: 'Opening email to send your demo request...' });
     setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
     setSubmitting(false);
   };
@@ -71,6 +73,7 @@ export default function Home() {
             <a href="#about" className="lp-nav-link">About</a>
             <a href="#reviews" className="lp-nav-link">Reviews</a>
             <a href="#clients" className="lp-nav-link">Benefits</a>
+            <a href="#contact" className="lp-nav-link">Contact Us</a>
           </div>
 
           <div className="lp-nav-right">
@@ -263,7 +266,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="lp-footer">
+      <footer className="lp-footer" id="contact">
         <div className="lp-footer-tagline">
           Making English Learning Fun for Every Student
         </div>
@@ -289,7 +292,7 @@ export default function Home() {
             <h4 className="lp-footer-heading">Contact</h4>
             <div className="lp-footer-contact">
               <p>📞 +91 93813 04491</p>
-              <p>📧 visionxgni@gmail.com</p>
+              <p>📧 visionx236@gmail.com</p>
               <p>📍 Hyderabad, India</p>
             </div>
           </div>
