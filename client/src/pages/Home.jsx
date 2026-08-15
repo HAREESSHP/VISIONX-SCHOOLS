@@ -34,30 +34,40 @@ export default function Home() {
     });
   };
 
-  const handleDemoSubmit = (e) => {
+  const handleDemoSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
-    // Build email message with form details
-    const subject = encodeURIComponent(`Demo Request - ${demoForm.schoolName}`);
-    const body = encodeURIComponent(
-      [
-        'Hello VISIONX! I would like to book a free demo.',
-        '',
-        `School Name: ${demoForm.schoolName}`,
-        `Contact Person: ${demoForm.name}`,
-        `Phone: ${demoForm.phone}`,
-        `Email: ${demoForm.email}`,
-        demoForm.message ? `Message: ${demoForm.message}` : ''
-      ].join('\n')
-    );
+    try {
+      // Using FormSubmit.co for free, backend-less email sending
+      const response = await fetch("https://formsubmit.co/ajax/visionx236@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `Demo Request - ${demoForm.schoolName}`,
+          School_Name: demoForm.schoolName,
+          Contact_Person: demoForm.name,
+          Phone: demoForm.phone,
+          Email: demoForm.email,
+          Message: demoForm.message || "No message provided",
+          _template: "table" // Formats the email nicely as a table
+        })
+      });
 
-    const mailtoUrl = `mailto:visionx236@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoUrl;
-
-    setDemoStatus({ type: 'success', message: 'Opening email to send your demo request...' });
-    setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
-    setSubmitting(false);
+      if (response.ok) {
+        setDemoStatus({ type: 'success', message: 'Thank you! Your demo request has been sent successfully.' });
+        setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
+      } else {
+        setDemoStatus({ type: 'error', message: 'Something went wrong. Please try again.' });
+      }
+    } catch (error) {
+      setDemoStatus({ type: 'error', message: 'Failed to send request. Please check your connection.' });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -204,17 +214,36 @@ export default function Home() {
           <p className="lp-section-subtitle lp-text-center">A complete learning experience designed for students, teachers, and school leadership.</p>
         </div>
 
-        <div className="lp-flow-map">
-          <p className="lp-flow-student">Student:</p>
-          <ol className="lp-student-flow" aria-label="Student spoken English learning flow map">
-            <li className="lp-flow-node">Learn English</li>
-            <li className="lp-flow-node">Listen and Understand</li>
-            <li className="lp-flow-node">Speak and Practice</li>
-            <li className="lp-flow-node">Build Vocabulary</li>
-            <li className="lp-flow-node">Improve Pronunciation</li>
-            <li className="lp-flow-node">Use English in Real-Life Situations</li>
-            <li className="lp-flow-node lp-flow-node-final">Speak with Confidence</li>
-          </ol>
+        <div className="lp-interactive-timeline-wrapper">
+          <div className="lp-interactive-timeline">
+            <h3 className="lp-timeline-title">Student Journey</h3>
+            <div className="lp-timeline-container">
+              {[
+                { title: "Learn English", desc: "Start the journey with a structured and engaging curriculum." },
+                { title: "Listen and Understand", desc: "Immerse in audio exercises to grasp context and nuances." },
+                { title: "Speak and Practice", desc: "Engage in guided speaking sessions for active learning." },
+                { title: "Build Vocabulary", desc: "Expand word bank contextually through real-world topics." },
+                { title: "Improve Pronunciation", desc: "Refine speech clarity with targeted feedback." },
+                { title: "Real-Life Situations", desc: "Apply skills in practical, everyday scenarios." },
+                { title: "Speak with Confidence", desc: "Achieve fluency and participate actively in any conversation." }
+              ].map((step, index) => {
+                return (
+                  <div key={index} className="lp-timeline-step">
+                    <div className="lp-timeline-marker">
+                      <span className="lp-timeline-dot">{index + 1}</span>
+                      <div className="lp-timeline-line"></div>
+                    </div>
+                    <div className="lp-timeline-content">
+                      <h4 className="lp-step-title">{step.title}</h4>
+                      <div className="lp-step-desc">
+                        <p>{step.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
