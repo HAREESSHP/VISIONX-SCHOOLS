@@ -89,12 +89,12 @@ export default function Home() {
           <div className="lp-nav-right">
             <a href="#book-demo" className="lp-btn lp-btn-outline lp-btn-sm">Book Demo</a>
             {user ? (
-              <Link to={user.role === 'ADMIN' ? '/admin' : '/class-selection'} className="lp-btn lp-btn-primary lp-btn-sm">
+              <Link to={user.role === 'ADMIN' ? '/admin' : user.className ? '/dashboard' : '/class-selection'} className="lp-btn lp-btn-primary lp-btn-sm">
                 Dashboard
               </Link>
             ) : (
               <>
-                <Link to="/login" className="lp-btn lp-btn-ghost lp-btn-sm">Student Login</Link>
+                <Link to="/login" className="lp-btn lp-btn-ghost lp-btn-sm">Student/Teacher Login</Link>
               </>
             )}
           </div>
