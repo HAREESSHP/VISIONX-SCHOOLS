@@ -319,28 +319,7 @@ async function seedDatabase() {
       console.log('✅ Seeded admin account');
     }
 
-    // Seed students
-    const studentSeeds = [
-      { name: 'Rahul Kumar', loginId: 'RAHUL001', className: 'Class 5', group: 'Intermediate' },
-      { name: 'Priya Sharma', loginId: 'PRIYA001', className: 'Class 2', group: 'Foundation' },
-      { name: 'Arjun Singh', loginId: 'ARJUN001', className: 'Class 8', group: 'Advanced' }
-    ];
-
-    for (const seed of studentSeeds) {
-      const exists = await User.findOne({ loginId: seed.loginId });
-      if (!exists) {
-        const hashedPassword = await bcrypt.hash('student123', 10);
-        await User.create({
-          name: seed.name,
-          loginId: seed.loginId,
-          password: hashedPassword,
-          role: 'STUDENT',
-          className: seed.className,
-          group: seed.group
-        });
-      }
-    }
-    console.log('✅ Seeded student accounts');
+    // Seed students logic removed
 
     // Seed lessons
     const lessonCount = await Lesson.countDocuments();
