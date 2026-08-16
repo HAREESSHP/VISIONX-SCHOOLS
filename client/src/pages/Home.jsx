@@ -95,7 +95,6 @@ export default function Home() {
             ) : (
               <>
                 <Link to="/login" className="lp-btn lp-btn-ghost lp-btn-sm">Student Login</Link>
-                <Link to="/admin-login" className="lp-btn lp-btn-primary lp-btn-sm">Admin Login</Link>
               </>
             )}
           </div>
@@ -315,6 +314,7 @@ export default function Home() {
               <a href="#about">About Us</a>
               <a href="#book-demo">Book a Demo</a>
               <a href="#clients">Partner Schools</a>
+              <Link to="/admin-login">Admin Login</Link>
             </div>
           </div>
           <div className="lp-footer-col">

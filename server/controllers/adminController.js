@@ -159,14 +159,28 @@ exports.getAnalytics = async (req, res) => {
     const expiredUsers = await User.countDocuments({ role: { $ne: 'ADMIN' }, status: 'Expired' });
     const revokedUsers = await User.countDocuments({ role: { $ne: 'ADMIN' }, status: 'Revoked' });
     
-    // Future expansion: active users by class etc.
+    // Aggregate by School
+    const usersBySchoolRaw = await User.aggregate([
+      { $match: { role: { $ne: 'ADMIN' }, schoolName: { $exists: true, $ne: null, $ne: '' } } },
+      { $group: { _id: "$schoolName", count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ]);
+    
+    // Aggregate by Class (Students only)
+    const usersByClassRaw = await User.aggregate([
+      { $match: { role: 'STUDENT', className: { $exists: true, $ne: null, $ne: '' } } },
+      { $group: { _id: "$className", count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ]);
     
     res.json({
       totalStudents,
       totalTeachers,
       activeUsers,
       expiredUsers,
-      revokedUsers
+      revokedUsers,
+      usersBySchool: usersBySchoolRaw.map(s => ({ name: s._id, count: s.count })),
+      usersByClass: usersByClassRaw.map(c => ({ name: c._id, count: c.count }))
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
