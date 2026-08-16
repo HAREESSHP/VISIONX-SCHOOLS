@@ -44,7 +44,7 @@ const AdminLayout = () => {
       {/* Sidebar */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-header">
-          <h2>Vision<span>X</span></h2>
+          <img src="/visionx-logo.png" alt="VISIONX Logo" style={{ height: '36px', objectFit: 'contain' }} />
           <button className="admin-close-btn" onClick={() => setIsSidebarOpen(false)}>
             <X size={24} />
           </button>

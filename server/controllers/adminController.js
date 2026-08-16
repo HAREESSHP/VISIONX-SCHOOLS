@@ -84,7 +84,11 @@ exports.getUsers = async (req, res) => {
     if (search) {
       query.$or = [
         { name: { $regex: search, $options: 'i' } },
-        { loginId: { $regex: search, $options: 'i' } }
+        { loginId: { $regex: search, $options: 'i' } },
+        { schoolName: { $regex: search, $options: 'i' } },
+        { className: { $regex: search, $options: 'i' } },
+        { admissionNumber: { $regex: search, $options: 'i' } },
+        { employeeId: { $regex: search, $options: 'i' } }
       ];
     }
 

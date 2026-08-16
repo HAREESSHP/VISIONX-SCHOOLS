@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { UserPlus, Copy, CheckCircle2, ShieldCheck, GraduationCap, Briefcase } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 
 const GenerateId = () => {
   const { token } = useAuth();
@@ -69,190 +69,307 @@ const GenerateId = () => {
     }
   };
 
+  // Minimalist Styles
+  const styles = {
+    container: {
+      maxWidth: '900px',
+      margin: '0 auto',
+      padding: '1rem',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+    },
+    header: {
+      marginBottom: '0.75rem',
+      textAlign: 'center'
+    },
+    title: {
+      fontSize: '2rem',
+      fontWeight: '600',
+      letterSpacing: '-0.03em',
+      color: '#000000',
+      margin: '0'
+    },
+    subtitle: {
+      fontSize: '1rem',
+      color: '#86868B',
+      fontWeight: '400',
+      margin: 0
+    },
+    segmentedControl: {
+      display: 'flex',
+      background: '#F5F5F7',
+      borderRadius: '8px',
+      padding: '4px',
+      width: 'fit-content',
+      margin: '0 auto 1rem auto'
+    },
+    segmentButton: (isActive) => ({
+      padding: '0.4rem 1.5rem',
+      border: 'none',
+      background: isActive ? '#FFFFFF' : 'transparent',
+      color: isActive ? '#000000' : '#86868B',
+      borderRadius: '6px',
+      fontWeight: isActive ? '600' : '400',
+      fontSize: '0.9rem',
+      cursor: 'pointer',
+      boxShadow: isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+      transition: 'all 0.2s ease'
+    }),
+    formSection: {
+      background: '#FFFFFF',
+      borderRadius: '12px',
+      padding: '1.5rem',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.04)'
+    },
+    inputGroup: {
+      marginBottom: '0.75rem'
+    },
+    label: {
+      display: 'block',
+      fontSize: '0.85rem',
+      fontWeight: '500',
+      color: '#1D1D1F',
+      marginBottom: '0.25rem'
+    },
+    input: {
+      width: '100%',
+      padding: '0.5rem 0',
+      fontSize: '0.95rem',
+      color: '#1D1D1F',
+      background: 'transparent',
+      border: 'none',
+      borderBottom: '1px solid #D2D2D7',
+      outline: 'none',
+      transition: 'border-color 0.2s ease',
+      boxSizing: 'border-box'
+    },
+    grid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+      gap: '0.75rem'
+    },
+    submitButton: {
+      background: '#000000',
+      color: '#FFFFFF',
+      border: 'none',
+      padding: '0.75rem 1.5rem',
+      borderRadius: '6px',
+      fontSize: '0.95rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      width: '100%',
+      marginTop: '1rem',
+      transition: 'background 0.2s ease'
+    },
+    successCard: {
+      marginTop: '1.5rem',
+      background: '#FAFAFC',
+      border: '1px solid #E5E5EA',
+      borderRadius: '12px',
+      padding: '1.5rem',
+      textAlign: 'center'
+    },
+    dataRow: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      padding: '0.5rem 0',
+      borderBottom: '1px solid #E5E5EA'
+    },
+    dataLabel: {
+      fontSize: '0.85rem',
+      color: '#86868B',
+      fontWeight: '400'
+    },
+    dataValue: {
+      fontSize: '1rem',
+      color: '#1D1D1F',
+      fontWeight: '500',
+      fontFamily: 'monospace'
+    },
+    copyBtn: (isCopied) => ({
+      marginTop: '1.25rem',
+      background: isCopied ? '#34C759' : 'transparent',
+      color: isCopied ? '#FFFFFF' : '#007AFF',
+      border: isCopied ? 'none' : '1px solid #007AFF',
+      padding: '0.6rem 1.5rem',
+      borderRadius: '6px',
+      fontSize: '0.9rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.4rem',
+      transition: 'all 0.2s ease'
+    })
+  };
+
   return (
-    <div className="admin-generate-id">
-      <div className="admin-page-header">
-        <div>
-          <h2>Generate Credentials</h2>
-          <p>Create new, secure login accounts for students and teachers.</p>
-        </div>
+    <div style={styles.container}>
+      
+      <div style={styles.header}>
+        <img src="/visionx-logo.png" alt="VisionX" style={{ height: '32px', marginBottom: '0.25rem' }} />
+        <h2 style={styles.title}>Provision Identity</h2>
+        <p style={styles.subtitle}>Create secure access credentials for the platform.</p>
       </div>
 
-      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-        {/* Form Column */}
-        <div className="admin-card" style={{ flex: '1 1 500px' }}>
+      <div style={styles.segmentedControl}>
+        <button 
+          style={styles.segmentButton(roleType === 'STUDENT')} 
+          onClick={() => { setRoleType('STUDENT'); setSuccessData(null); }}
+        >
+          Student
+        </button>
+        <button 
+          style={styles.segmentButton(roleType === 'TEACHER')} 
+          onClick={() => { setRoleType('TEACHER'); setSuccessData(null); }}
+        >
+          Teacher
+        </button>
+      </div>
+
+      <div style={styles.formSection}>
+        <form onSubmit={handleSubmit}>
           
-          {/* Segmented Control for Role Selection */}
-          <div style={{ 
-            display: 'flex', 
-            background: 'var(--admin-bg)', 
-            padding: '0.35rem', 
-            borderRadius: 'var(--admin-radius-md)', 
-            marginBottom: '2rem',
-            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)'
-          }}>
-            <button 
-              onClick={() => setRoleType('STUDENT')}
-              style={{
-                flex: 1, padding: '0.75rem', borderRadius: 'var(--admin-radius-sm)', border: 'none',
-                background: roleType === 'STUDENT' ? 'var(--admin-surface)' : 'transparent',
-                color: roleType === 'STUDENT' ? 'var(--admin-text)' : 'var(--admin-text-light)',
-                boxShadow: roleType === 'STUDENT' ? 'var(--admin-shadow-sm)' : 'none',
-                fontWeight: 600, cursor: 'pointer', transition: 'var(--admin-transition)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
-              }}
-            >
-              <GraduationCap size={18} color={roleType === 'STUDENT' ? 'var(--admin-primary)' : 'currentColor'} />
-              Student ID
-            </button>
-            <button 
-              onClick={() => setRoleType('TEACHER')}
-              style={{
-                flex: 1, padding: '0.75rem', borderRadius: 'var(--admin-radius-sm)', border: 'none',
-                background: roleType === 'TEACHER' ? 'var(--admin-surface)' : 'transparent',
-                color: roleType === 'TEACHER' ? 'var(--admin-text)' : 'var(--admin-text-light)',
-                boxShadow: roleType === 'TEACHER' ? 'var(--admin-shadow-sm)' : 'none',
-                fontWeight: 600, cursor: 'pointer', transition: 'var(--admin-transition)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
-              }}
-            >
-              <Briefcase size={18} color={roleType === 'TEACHER' ? 'var(--admin-primary)' : 'currentColor'} />
-              Teacher ID
-            </button>
+          <div style={styles.grid}>
+            <div style={styles.inputGroup}>
+              <label style={styles.label}>Full Name</label>
+              <input 
+                type="text" name="name" required 
+                value={formData.name} onChange={handleChange} 
+                style={styles.input} 
+                placeholder="e.g. Jane Doe"
+                onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+              />
+            </div>
+            <div style={styles.inputGroup}>
+              <label style={styles.label}>Institution</label>
+              <input 
+                type="text" name="schoolName" required 
+                value={formData.schoolName} onChange={handleChange} 
+                style={styles.input} 
+                placeholder="VisionX Academy"
+                onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+              />
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <div className="admin-form-grid">
-              <div className="admin-form-group">
-                <label>Full Name *</label>
-                <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="e.g. John Doe" />
+          {roleType === 'STUDENT' ? (
+            <div style={styles.grid}>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Class</label>
+                <select 
+                  name="className" required 
+                  value={formData.className} onChange={handleChange} 
+                  style={{...styles.input, appearance: 'none', background: 'transparent'}}
+                  onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                  onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+                >
+                  <option value="" disabled>Select Grade Level</option>
+                  <option value="Nursery">Nursery</option>
+                  <option value="LKG">LKG</option>
+                  <option value="UKG">UKG</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 10">Class 10</option>
+                </select>
               </div>
-              <div className="admin-form-group">
-                <label>School Name *</label>
-                <input type="text" name="schoolName" required value={formData.schoolName} onChange={handleChange} placeholder="e.g. VisionX Academy" />
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Section (Optional)</label>
+                <input 
+                  type="text" name="section" 
+                  value={formData.section} onChange={handleChange} 
+                  style={styles.input} placeholder="e.g. A"
+                  onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                  onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+                />
               </div>
-            </div>
-
-            {roleType === 'STUDENT' ? (
-              <div className="admin-form-grid">
-                <div className="admin-form-group">
-                  <label>Class *</label>
-                  <select name="className" required value={formData.className} onChange={handleChange}>
-                    <option value="">Select Class</option>
-                    <option value="Nursery">Nursery</option>
-                    <option value="LKG">LKG</option>
-                    <option value="UKG">UKG</option>
-                    <option value="Class 1">Class 1</option>
-                    <option value="Class 2">Class 2</option>
-                    <option value="Class 3">Class 3</option>
-                    <option value="Class 4">Class 4</option>
-                    <option value="Class 5">Class 5</option>
-                    <option value="Class 6">Class 6</option>
-                    <option value="Class 7">Class 7</option>
-                    <option value="Class 8">Class 8</option>
-                    <option value="Class 9">Class 9</option>
-                    <option value="Class 10">Class 10</option>
-                  </select>
-                </div>
-                <div className="admin-form-group">
-                  <label>Section</label>
-                  <input type="text" name="section" value={formData.section} onChange={handleChange} placeholder="e.g. A" />
-                </div>
-                <div className="admin-form-group">
-                  <label>Admission Number</label>
-                  <input type="text" name="admissionNumber" value={formData.admissionNumber} onChange={handleChange} placeholder="e.g. ADM1029" />
-                </div>
-              </div>
-            ) : (
-              <div className="admin-form-grid">
-                <div className="admin-form-group">
-                  <label>Subject *</label>
-                  <input type="text" name="subject" required value={formData.subject} onChange={handleChange} placeholder="e.g. English" />
-                </div>
-                <div className="admin-form-group">
-                  <label>Employee ID</label>
-                  <input type="text" name="employeeId" value={formData.employeeId} onChange={handleChange} placeholder="e.g. EMP405" />
-                </div>
-              </div>
-            )}
-
-            <div className="admin-form-group" style={{ marginBottom: '2.5rem', maxWidth: '300px' }}>
-              <label>Validity Duration</label>
-              <select name="validityMonths" value={formData.validityMonths} onChange={handleChange}>
-                <option value="3">3 Months (Trial)</option>
-                <option value="6">6 Months (Half Year)</option>
-                <option value="12">1 Year (Full Session)</option>
-              </select>
-            </div>
-
-            <button type="submit" className="admin-btn admin-btn-primary" disabled={loading} style={{ width: '100%', padding: '1rem', fontSize: '1rem' }}>
-              <UserPlus size={20} />
-              {loading ? 'Generating...' : `Generate ${roleType === 'STUDENT' ? 'Student' : 'Teacher'} ID`}
-            </button>
-          </form>
-        </div>
-
-        {/* Premium Result Column */}
-        {successData && (
-          <div className="admin-card" style={{ flex: '1 1 350px', background: 'linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%)', border: '1px solid #C7D2FE', boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.15)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid #E0E7FF', paddingBottom: '1rem' }}>
-              <div style={{ width: '40px', height: '40px', background: 'var(--admin-primary)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <ShieldCheck size={24} />
-              </div>
-              <div>
-                <h3 style={{ margin: 0, color: 'var(--admin-text)', fontSize: '1.25rem' }}>Access Granted</h3>
-                <p style={{ margin: 0, color: 'var(--admin-primary)', fontSize: '0.85rem', fontWeight: 600 }}>Credentials Generated Successfully</p>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Admission Number</label>
+                <input 
+                  type="text" name="admissionNumber" 
+                  value={formData.admissionNumber} onChange={handleChange} 
+                  style={styles.input} placeholder="e.g. ADM1029"
+                  onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                  onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+                />
               </div>
             </div>
-            
-            <div style={{ background: '#FFF', padding: '1.5rem', borderRadius: 'var(--admin-radius-md)', border: '1px dashed #A5B4FC', position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%)', background: '#EEF2FF', padding: '0 0.5rem', color: '#4F46E5', fontSize: '0.75rem', fontWeight: 700, borderRadius: '12px' }}>
-                CONFIDENTIAL
+          ) : (
+            <div style={styles.grid}>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Subject</label>
+                <input 
+                  type="text" name="subject" required 
+                  value={formData.subject} onChange={handleChange} 
+                  style={styles.input} placeholder="e.g. Mathematics"
+                  onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                  onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+                />
               </div>
-
-              <div style={{ marginBottom: '1.25rem' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Login ID</span>
-                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--admin-text)', letterSpacing: '0.02em', background: 'var(--admin-bg)', padding: '0.5rem', borderRadius: 'var(--admin-radius-sm)', marginTop: '0.25rem', userSelect: 'all' }}>
-                  {successData.loginId}
-                </div>
-              </div>
-              
-              <div style={{ marginBottom: '1.5rem' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Temporary Password</span>
-                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--admin-text)', letterSpacing: '0.02em', background: 'var(--admin-bg)', padding: '0.5rem', borderRadius: 'var(--admin-radius-sm)', marginTop: '0.25rem', userSelect: 'all' }}>
-                  {successData.password}
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', borderTop: '1px solid var(--admin-border)', paddingTop: '1rem' }}>
-                <div>
-                  <span style={{ fontSize: '0.7rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase' }}>Role</span>
-                  <div style={{ fontWeight: 600, color: 'var(--admin-text)' }}>{successData.role}</div>
-                </div>
-                <div>
-                  <span style={{ fontSize: '0.7rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase' }}>Valid Until</span>
-                  <div style={{ fontWeight: 600, color: 'var(--admin-danger)' }}>{new Date(successData.expiryDate).toLocaleDateString()}</div>
-                </div>
+              <div style={styles.inputGroup}>
+                <label style={styles.label}>Employee ID</label>
+                <input 
+                  type="text" name="employeeId" 
+                  value={formData.employeeId} onChange={handleChange} 
+                  style={styles.input} placeholder="e.g. EMP405"
+                  onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+                  onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
+                />
               </div>
             </div>
+          )}
 
-            <button 
-              onClick={handleCopy}
-              className="admin-btn"
-              style={{ 
-                width: '100%', marginTop: '1.5rem', 
-                background: copied ? 'var(--admin-success)' : 'white', 
-                color: copied ? 'white' : 'var(--admin-primary)',
-                border: copied ? 'none' : '1px solid var(--admin-primary)',
-                boxShadow: 'var(--admin-shadow-sm)'
-              }}
+          <div style={{...styles.inputGroup, maxWidth: '280px'}}>
+            <label style={styles.label}>Validity Duration</label>
+            <select 
+              name="validityMonths" 
+              value={formData.validityMonths} onChange={handleChange} 
+              style={{...styles.input, appearance: 'none', background: 'transparent'}}
+              onFocus={(e) => e.target.style.borderColor = '#007AFF'}
+              onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
             >
-              {copied ? <CheckCircle2 size={18} /> : <Copy size={18} />}
-              {copied ? 'Copied to Clipboard!' : 'Copy Credentials'}
-            </button>
+              <option value="3">3 Months</option>
+              <option value="6">6 Months</option>
+              <option value="12">12 Months</option>
+            </select>
           </div>
-        )}
+
+          <button type="submit" style={styles.submitButton} disabled={loading}>
+            {loading ? 'Processing...' : 'Generate Credentials'}
+          </button>
+        </form>
       </div>
+
+      {successData && (
+        <div style={styles.successCard}>
+          <div style={{ marginBottom: '1.5rem' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '500', color: '#1D1D1F', margin: '0 0 0.25rem 0' }}>Success</h3>
+            <p style={{ color: '#86868B', margin: 0, fontSize: '0.9rem' }}>Credentials are ready for {successData.role.toLowerCase()}.</p>
+          </div>
+
+          <div style={{ maxWidth: '400px', margin: '0 auto', textAlign: 'left' }}>
+            <div style={styles.dataRow}>
+              <span style={styles.dataLabel}>Login ID</span>
+              <span style={styles.dataValue}>{successData.loginId}</span>
+            </div>
+            <div style={styles.dataRow}>
+              <span style={styles.dataLabel}>Password</span>
+              <span style={styles.dataValue}>{successData.password}</span>
+            </div>
+            <div style={{...styles.dataRow, borderBottom: 'none'}}>
+              <span style={styles.dataLabel}>Valid Until</span>
+              <span style={{...styles.dataValue, color: '#FF3B30'}}>{new Date(successData.expiryDate).toLocaleDateString()}</span>
+            </div>
+          </div>
+
+          <button onClick={handleCopy} style={styles.copyBtn(copied)}>
+            {copied ? <Check size={18} /> : <Copy size={18} />}
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };
