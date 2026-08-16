@@ -285,11 +285,11 @@ const GenerateId = () => {
                 />
               </div>
               <div style={styles.inputGroup}>
-                <label style={styles.label}>Admission Number</label>
+                <label style={styles.label}>Admission Number <span style={{ color: '#FF3B30' }}>*</span></label>
                 <input 
-                  type="text" name="admissionNumber" 
+                  type="text" name="admissionNumber" required
                   value={formData.admissionNumber} onChange={handleChange} 
-                  style={styles.input} placeholder="e.g. ADM1029"
+                  style={styles.input} placeholder="e.g. 1029"
                   onFocus={(e) => e.target.style.borderColor = '#007AFF'}
                   onBlur={(e) => e.target.style.borderColor = '#D2D2D7'}
                 />
@@ -308,9 +308,9 @@ const GenerateId = () => {
                 />
               </div>
               <div style={styles.inputGroup}>
-                <label style={styles.label}>Employee ID</label>
+                <label style={styles.label}>Employee ID <span style={{ color: '#FF3B30' }}>*</span></label>
                 <input 
-                  type="text" name="employeeId" 
+                  type="text" name="employeeId" required
                   value={formData.employeeId} onChange={handleChange} 
                   style={styles.input} placeholder="e.g. EMP405"
                   onFocus={(e) => e.target.style.borderColor = '#007AFF'}

@@ -7,7 +7,8 @@ import {
   KeyRound, 
   Ban,
   AlertTriangle,
-  ChevronDown
+  ChevronDown,
+  Download
 } from 'lucide-react';
 
 const UserList = ({ role }) => {
@@ -19,6 +20,9 @@ const UserList = ({ role }) => {
   const [filterStatus, setFilterStatus] = useState('');
   const [filterClass, setFilterClass] = useState('');
   
+  const [schools, setSchools] = useState([]);
+  const [filterSchool, setFilterSchool] = useState('');
+  
   const [actionMenuOpen, setActionMenuOpen] = useState(null);
   const [confirmModal, setConfirmModal] = useState({ isOpen: false, type: '', user: null });
 
@@ -28,6 +32,7 @@ const UserList = ({ role }) => {
       const params = new URLSearchParams({ role });
       if (filterStatus) params.append('status', filterStatus);
       if (filterClass) params.append('className', filterClass);
+      if (filterSchool) params.append('schoolName', filterSchool);
       if (searchTerm) params.append('search', searchTerm);
 
       const response = await fetch(`http://localhost:5000/api/admin/users?${params}`, {
@@ -42,14 +47,32 @@ const UserList = ({ role }) => {
     } finally {
       setLoading(false);
     }
-  }, [role, filterStatus, filterClass, searchTerm, token]);
+  }, [role, filterStatus, filterClass, filterSchool, searchTerm, token]);
+
+  useEffect(() => {
+    // Fetch unique schools for filter dropdown
+    const fetchSchools = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/admin/schools', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setSchools(data);
+        }
+      } catch (err) {
+        console.error('Error fetching schools:', err);
+      }
+    };
+    fetchSchools();
+  }, [token]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       fetchUsers();
     }, 500);
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm, filterStatus, filterClass, fetchUsers]);
+  }, [searchTerm, filterStatus, filterClass, filterSchool, fetchUsers]);
 
   const handleAction = async (type, userId) => {
     setActionMenuOpen(null);
@@ -88,6 +111,51 @@ const UserList = ({ role }) => {
     setConfirmModal({ isOpen: false, type: '', user: null });
   };
 
+  const handleExport = () => {
+    if (users.length === 0) {
+      alert('No users to export');
+      return;
+    }
+
+    let csvContent = "data:text/csv;charset=utf-8,";
+    
+    // Header Row
+    if (role === 'STUDENT') {
+      csvContent += "Name,School,Class,Section,Admission Number,Login ID,Password\n";
+    } else {
+      csvContent += "Name,School,Subject,Employee ID,Login ID,Password\n";
+    }
+
+    // Data Rows
+    users.forEach(user => {
+      const name = `"${user.name || ''}"`;
+      const school = `"${user.schoolName || ''}"`;
+      const loginId = `"${user.loginId || ''}"`;
+      
+      let password = '';
+      if (role === 'STUDENT') {
+        const cls = `"${user.className || ''}"`;
+        const sec = `"${user.section || ''}"`;
+        const adm = `"${user.admissionNumber || ''}"`;
+        password = user.admissionNumber ? `"vx@${user.admissionNumber}"` : '""';
+        csvContent += `${name},${school},${cls},${sec},${adm},${loginId},${password}\n`;
+      } else {
+        const sub = `"${user.subject || ''}"`;
+        const emp = `"${user.employeeId || ''}"`;
+        password = user.employeeId ? `"vx@${user.employeeId}"` : '""';
+        csvContent += `${name},${school},${sub},${emp},${loginId},${password}\n`;
+      }
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `${role.toLowerCase()}s_export_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   // Ultra-Minimalist Styles
   const styles = {
     container: {
@@ -114,6 +182,20 @@ const UserList = ({ role }) => {
       color: '#86868B',
       fontWeight: '400',
       margin: 0
+    },
+    exportBtn: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.5rem',
+      background: '#000000',
+      color: '#FFFFFF',
+      border: 'none',
+      padding: '0.65rem 1.25rem',
+      borderRadius: '8px',
+      fontSize: '0.9rem',
+      fontWeight: '500',
+      cursor: 'pointer',
+      transition: 'background 0.2s ease'
     },
     filtersContainer: {
       display: 'flex',
@@ -318,6 +400,14 @@ const UserList = ({ role }) => {
           <h2 style={styles.title}>{role === 'STUDENT' ? 'Students' : 'Teachers'} Directory</h2>
           <p style={styles.subtitle}>Manage accounts, access, and security settings.</p>
         </div>
+        <button 
+          style={styles.exportBtn}
+          onClick={handleExport}
+          onMouseOver={(e) => e.currentTarget.style.background = '#333333'}
+          onMouseOut={(e) => e.currentTarget.style.background = '#000000'}
+        >
+          <Download size={16} /> Export to CSV
+        </button>
       </div>
 
       <div style={styles.filtersContainer}>
@@ -332,6 +422,16 @@ const UserList = ({ role }) => {
           />
         </div>
         
+        <div style={styles.selectWrapper}>
+          <select value={filterSchool} onChange={(e) => setFilterSchool(e.target.value)} style={styles.select}>
+            <option value="">All Schools</option>
+            {schools.map(s => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+          <ChevronDown size={14} style={styles.selectIcon} />
+        </div>
+
         <div style={styles.selectWrapper}>
           <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} style={styles.select}>
             <option value="">All Statuses</option>

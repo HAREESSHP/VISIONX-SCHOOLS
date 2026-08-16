@@ -9,28 +9,25 @@ exports.generateId = async (req, res) => {
       admissionNumber, employeeId, subject, validityMonths 
     } = req.body;
 
-    // Generate unique prefix based on role
-    const prefix = role === 'STUDENT' ? 'VIX-STU-' : 'VIX-TCH-';
-    
-    // Find highest ID number to increment
-    const latestUser = await User.findOne({ loginId: new RegExp(`^${prefix}`) })
-                                 .sort({ createdAt: -1 });
-    
-    let nextNum = 1000; // Starting number
-    if (latestUser && latestUser.loginId) {
-      const match = latestUser.loginId.match(/\d+$/);
-      if (match) {
-        nextNum = parseInt(match[0], 10) + 1;
-      }
-    }
-    
-    const loginId = `${prefix}${nextNum}`;
-
-    // Generate random 6-character password
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let loginId = '';
     let password = '';
-    for (let i = 0; i < 6; i++) {
-      password += chars.charAt(Math.floor(Math.random() * chars.length));
+
+    if (role === 'STUDENT') {
+      if (!admissionNumber) return res.status(400).json({ message: 'Admission number is required' });
+      loginId = `vx-${admissionNumber}`;
+      password = `vx@${admissionNumber}`;
+    } else if (role === 'TEACHER') {
+      if (!employeeId) return res.status(400).json({ message: 'Employee ID is required' });
+      loginId = `vx-${employeeId}`;
+      password = `vx@${employeeId}`;
+    } else {
+      return res.status(400).json({ message: 'Invalid role' });
+    }
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ loginId: new RegExp(`^${loginId}$`, 'i') });
+    if (existingUser) {
+      return res.status(400).json({ message: `ID ${loginId} already exists in the system` });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -171,6 +168,16 @@ exports.getAnalytics = async (req, res) => {
       expiredUsers,
       revokedUsers
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get distinct schools
+exports.getSchools = async (req, res) => {
+  try {
+    const schools = await User.distinct('schoolName');
+    res.json(schools.filter(Boolean)); // filter out null/empty
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

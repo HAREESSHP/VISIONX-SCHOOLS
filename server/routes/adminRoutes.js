@@ -10,6 +10,7 @@ router.use(adminOnly);
 router.post('/generate-id', adminController.generateId);
 router.get('/users', adminController.getUsers);
 router.get('/analytics', adminController.getAnalytics);
+router.get('/schools', adminController.getSchools);
 
 router.put('/users/:id/revoke', adminController.revokeAccess);
 router.put('/users/:id/reset-password', adminController.resetPassword);
