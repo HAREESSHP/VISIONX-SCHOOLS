@@ -21,8 +21,18 @@ const protect = async (req, res, next) => {
       return res.status(401).json({ message: 'Not authorized, user not found' });
     }
 
-    if (!user.isActive) {
-      return res.status(403).json({ message: 'Account has been disabled. Please contact your administrator.' });
+    if (!user.isActive || user.status === 'Revoked') {
+      return res.status(403).json({ message: 'Your account has been disabled or revoked.' });
+    }
+
+    if (user.status === 'Expired') {
+      return res.status(403).json({ message: 'Your account has expired.' });
+    }
+
+    if (user.expiryDate && new Date() > new Date(user.expiryDate)) {
+      user.status = 'Expired';
+      await user.save();
+      return res.status(403).json({ message: 'Your account has expired.' });
     }
 
     req.user = user;

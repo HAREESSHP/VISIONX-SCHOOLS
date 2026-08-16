@@ -7,11 +7,17 @@ import Loader from './components/Loader';
 // Lazy-loaded pages
 const Home = lazy(() => import('./pages/Home.jsx'));
 const Login = lazy(() => import('./pages/Login.jsx'));
+const AdminLogin = lazy(() => import('./pages/AdminLogin.jsx'));
 const ClassSelection = lazy(() => import('./pages/ClassSelection.jsx'));
 const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
 const Lesson = lazy(() => import('./pages/Lesson.jsx'));
 const Profile = lazy(() => import('./pages/Profile.jsx'));
-const Admin = lazy(() => import('./pages/Admin.jsx'));
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout.jsx'));
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard.jsx'));
+const GenerateId = lazy(() => import('./pages/admin/GenerateId.jsx'));
+const UserList = lazy(() => import('./pages/admin/UserList.jsx'));
+const Analytics = lazy(() => import('./pages/admin/Analytics.jsx'));
+const Settings = lazy(() => import('./pages/admin/Settings.jsx'));
 
 // Protected route wrapper
 const ProtectedRoute = ({ children, adminOnly }) => {
@@ -41,6 +47,7 @@ function AppRoutes() {
         {/* Public pages */}
         <Route path="/" element={<Layout><Home /></Layout>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
 
         {/* Protected student pages */}
         <Route
@@ -81,10 +88,17 @@ function AppRoutes() {
           path="/admin"
           element={
             <ProtectedRoute adminOnly>
-              <Layout><Admin /></Layout>
+              <AdminLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="generate" element={<GenerateId />} />
+          <Route path="students" element={<UserList role="STUDENT" />} />
+          <Route path="teachers" element={<UserList role="TEACHER" />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
 
         {/* Redirect based on auth state */}
         <Route path="*" element={<Navigate to={user ? (user.role === 'ADMIN' ? '/admin' : '/class-selection') : '/'} replace />} />

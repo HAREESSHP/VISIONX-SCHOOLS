@@ -35,6 +35,7 @@ app.use('/api/classes', require('./routes/classRoutes'));
 app.use('/api/lessons', require('./routes/lessonRoutes'));
 app.use('/api/progress', require('./routes/progressRoutes'));
 app.use('/api/demo', require('./routes/demoRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -305,12 +306,12 @@ async function seedDatabase() {
     }
 
     // Seed admin
-    const adminExists = await User.findOne({ loginId: 'admin' });
+    const adminExists = await User.findOne({ loginId: 'rohan' });
     if (!adminExists) {
-      const hashedPassword = await bcrypt.hash('admin123', 10);
+      const hashedPassword = await bcrypt.hash('rohan123', 10);
       await User.create({
         name: 'Administrator',
-        loginId: 'admin',
+        loginId: 'rohan',
         password: hashedPassword,
         role: 'ADMIN',
         className: 'Administrator'
@@ -333,7 +334,7 @@ async function seedDatabase() {
           name: seed.name,
           loginId: seed.loginId,
           password: hashedPassword,
-          role: 'USER',
+          role: 'STUDENT',
           className: seed.className,
           group: seed.group
         });

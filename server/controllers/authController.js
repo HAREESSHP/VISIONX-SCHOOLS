@@ -32,8 +32,18 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid login ID or password' });
     }
 
-    if (!user.isActive) {
-      return res.status(403).json({ message: 'This account has been disabled. Please contact your administrator.' });
+    if (!user.isActive || user.status === 'Revoked') {
+      return res.status(403).json({ message: 'This account has been disabled or revoked. Please contact your administrator.' });
+    }
+
+    if (user.status === 'Expired') {
+      return res.status(403).json({ message: 'Your account has expired.' });
+    }
+
+    if (user.expiryDate && new Date() > new Date(user.expiryDate)) {
+      user.status = 'Expired';
+      await user.save();
+      return res.status(403).json({ message: 'Your account has expired.' });
     }
 
     // Update last login

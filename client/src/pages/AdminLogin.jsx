@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function Login() {
-  const { login, user } = useAuth();
+export default function AdminLogin() {
+  const { adminLogin, user } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -32,12 +32,8 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const loggedInUser = await login(formData.loginId, formData.password);
-      if (loggedInUser.className) {
-        navigate('/dashboard');
-      } else {
-        navigate('/class-selection');
-      }
+      await adminLogin(formData.loginId, formData.password);
+      navigate('/admin');
     } catch (err) {
       setError(err.message || 'Login failed. Please try again.');
     } finally {
@@ -56,22 +52,22 @@ export default function Login() {
       <div className="login-card">
         <div className="login-header">
           <img src="/visionx-logo.png" alt="VISIONX Logo" className="login-logo" />
-          <h1 className="login-title">Welcome! 👋</h1>
+          <h1 className="login-title">Admin Access</h1>
           <p className="login-subtitle">
-            Enter your Login ID to start learning
+            Enter your admin credentials to continue
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="loginId">Login ID</label>
+            <label htmlFor="loginId">Admin ID</label>
             <input
               id="loginId"
               type="text"
               name="loginId"
               value={formData.loginId}
               onChange={handleChange}
-              placeholder="Enter your Login ID"
+              placeholder="Enter your Admin ID"
               autoComplete="username"
               required
             />
@@ -102,7 +98,7 @@ export default function Login() {
             className="btn btn-primary btn-block btn-large"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Start Learning 🚀'}
+            {loading ? 'Logging in...' : 'Login as Admin'}
           </button>
         </form>
 
@@ -110,9 +106,6 @@ export default function Login() {
 
         <div className="login-footer">
           <Link to="/">← Back to Home</Link>
-          <div className="demo-accounts">
-            <small>Demo: RAHUL001 / student123</small>
-          </div>
         </div>
       </div>
     </div>

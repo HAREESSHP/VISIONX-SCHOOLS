@@ -23,9 +23,39 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['ADMIN', 'USER'],
-      default: 'USER'
+      enum: ['ADMIN', 'STUDENT', 'TEACHER'],
+      default: 'STUDENT'
     },
+    status: {
+      type: String,
+      enum: ['Active', 'Expired', 'Revoked'],
+      default: 'Active'
+    },
+    startDate: {
+      type: Date,
+      default: Date.now
+    },
+    expiryDate: {
+      type: Date
+    },
+    schoolName: {
+      type: String
+    },
+    // Student specific
+    admissionNumber: {
+      type: String
+    },
+    section: {
+      type: String
+    },
+    // Teacher specific
+    employeeId: {
+      type: String
+    },
+    subject: {
+      type: String
+    },
+    // Common fields
     className: {
       type: String,
       default: null

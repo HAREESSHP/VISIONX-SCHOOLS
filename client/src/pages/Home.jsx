@@ -95,7 +95,7 @@ export default function Home() {
             ) : (
               <>
                 <Link to="/login" className="lp-btn lp-btn-ghost lp-btn-sm">Student Login</Link>
-                <Link to="/login" className="lp-btn lp-btn-primary lp-btn-sm">Admin Login</Link>
+                <Link to="/admin-login" className="lp-btn lp-btn-primary lp-btn-sm">Admin Login</Link>
               </>
             )}
           </div>
