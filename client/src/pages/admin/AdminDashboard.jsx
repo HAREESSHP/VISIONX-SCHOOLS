@@ -5,7 +5,11 @@ import {
   GraduationCap, 
   KeyRound, 
   AlertCircle,
-  Activity
+  Activity,
+  ArrowUpRight,
+  Clock,
+  UserPlus,
+  CheckCircle
 } from 'lucide-react';
 
 const AdminDashboard = () => {
@@ -43,14 +47,45 @@ const AdminDashboard = () => {
   }, [token]);
 
   const statCards = [
-    { title: 'Total Students', value: stats.totalStudents, icon: <GraduationCap size={24} />, color: 'var(--admin-primary)' },
-    { title: 'Total Teachers', value: stats.totalTeachers, icon: <Users size={24} />, color: '#8B5CF6' },
-    { title: 'Active IDs', value: stats.activeUsers, icon: <KeyRound size={24} />, color: 'var(--admin-success)' },
-    { title: 'Revoked IDs', value: stats.revokedUsers, icon: <AlertCircle size={24} />, color: 'var(--admin-danger)' },
+    { 
+      title: 'Total Students', 
+      value: stats.totalStudents, 
+      icon: <GraduationCap size={28} />, 
+      color: '#4F46E5', // Indigo
+      bg: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)'
+    },
+    { 
+      title: 'Total Teachers', 
+      value: stats.totalTeachers, 
+      icon: <Users size={28} />, 
+      color: '#8B5CF6', // Purple
+      bg: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%)'
+    },
+    { 
+      title: 'Active IDs', 
+      value: stats.activeUsers, 
+      icon: <KeyRound size={28} />, 
+      color: '#10B981', // Emerald
+      bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)'
+    },
+    { 
+      title: 'Revoked IDs', 
+      value: stats.revokedUsers, 
+      icon: <AlertCircle size={28} />, 
+      color: '#EF4444', // Red
+      bg: 'linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%)'
+    },
   ];
 
   if (loading) {
-    return <div className="admin-loading">Loading dashboard...</div>;
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh', color: 'var(--admin-text-light)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+          <Activity size={32} className="animate-spin" />
+          <p style={{ fontWeight: 500 }}>Loading Dashboard Data...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -58,48 +93,96 @@ const AdminDashboard = () => {
       <div className="admin-page-header">
         <div>
           <h2>Dashboard Overview</h2>
-          <p>Welcome back! Here's what's happening today.</p>
+          <p>Welcome back! Here's a quick summary of your platform's activity.</p>
         </div>
+        <button className="admin-btn admin-btn-primary">
+          <UserPlus size={18} />
+          Generate New ID
+        </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+        gap: '1.5rem', 
+        marginBottom: '2.5rem' 
+      }}>
         {statCards.map((stat, index) => (
-          <div key={index} className="admin-card" style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-            <div style={{ 
-              width: '50px', height: '50px', borderRadius: 'var(--admin-radius-md)', 
-              background: `${stat.color}15`, color: stat.color, 
-              display: 'flex', alignItems: 'center', justifyContent: 'center' 
-            }}>
-              {stat.icon}
+          <div key={index} className="admin-card" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <div style={{ 
+                width: '56px', height: '56px', borderRadius: '16px', 
+                background: stat.bg, color: stat.color, 
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
+              }}>
+                {stat.icon}
+              </div>
+              <div style={{ background: '#F3F4F6', padding: '0.25rem 0.5rem', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--admin-text-light)' }}>
+                <ArrowUpRight size={14} /> 12%
+              </div>
             </div>
             <div>
-              <h3 style={{ margin: 0, fontSize: '1.8rem', fontWeight: 800 }}>{stat.value}</h3>
-              <p style={{ margin: 0, color: 'var(--admin-text-light)', fontSize: '0.9rem', fontWeight: 500 }}>{stat.title}</p>
+              <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '2.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--admin-text)' }}>
+                {stat.value}
+              </h3>
+              <p style={{ margin: 0, color: 'var(--admin-text-light)', fontSize: '0.95rem', fontWeight: 600 }}>{stat.title}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '1.5rem' }}>
         <div className="admin-card">
-          <h3 style={{ marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Activity size={20} color="var(--admin-primary)" />
-            Recent Activity
-          </h3>
-          <div style={{ color: 'var(--admin-text-light)', fontStyle: 'italic', padding: '2rem', textAlign: 'center' }}>
-            Activity tracking will appear here as users log in.
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.25rem' }}>
+              <Activity size={20} color="var(--admin-primary)" />
+              Recent Activity
+            </h3>
+            <button className="admin-btn" style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem', background: 'var(--admin-bg)', color: 'var(--admin-text)' }}>View All</button>
+          </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {/* Mock Activity Items */}
+            {[1, 2, 3].map((_, i) => (
+              <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', paddingBottom: '1rem', borderBottom: i !== 2 ? '1px solid var(--admin-border)' : 'none' }}>
+                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--admin-primary-light)', color: 'var(--admin-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <UserPlus size={18} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ margin: '0 0 0.25rem 0', fontSize: '0.95rem', fontWeight: 500, color: 'var(--admin-text)' }}>New student ID generated for <strong>Rahul Sharma</strong></p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.8rem', color: 'var(--admin-text-lighter)' }}>
+                    <Clock size={12} /> {i + 1} hour{i > 0 ? 's' : ''} ago
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="admin-card">
-          <h3 style={{ marginTop: 0 }}>System Alerts</h3>
-          {stats.expiredUsers > 0 ? (
-            <div style={{ padding: '1rem', background: 'var(--admin-warning-light)', color: 'var(--admin-warning)', borderRadius: 'var(--admin-radius-sm)', fontWeight: 500 }}>
-              {stats.expiredUsers} accounts have expired.
-            </div>
-          ) : (
-            <p style={{ color: 'var(--admin-text-light)' }}>All systems normal. No pending alerts.</p>
-          )}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <h3 style={{ margin: 0, fontSize: '1.25rem' }}>System Alerts</h3>
+            <span className="admin-badge Active">All Systems Operational</span>
+          </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {stats.expiredUsers > 0 ? (
+              <div style={{ display: 'flex', gap: '1rem', padding: '1rem', background: 'var(--admin-warning-light)', border: '1px solid #FDE68A', borderRadius: 'var(--admin-radius-md)' }}>
+                <AlertCircle color="#D97706" size={24} style={{ flexShrink: 0 }} />
+                <div>
+                  <h4 style={{ margin: '0 0 0.25rem 0', color: '#92400E', fontSize: '0.95rem' }}>Action Required</h4>
+                  <p style={{ margin: 0, color: '#B45309', fontSize: '0.85rem' }}>{stats.expiredUsers} user accounts have expired and require renewal or deletion.</p>
+                </div>
+              </div>
+            ) : (
+              <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--admin-text-light)', background: 'var(--admin-bg)', borderRadius: 'var(--admin-radius-md)' }}>
+                <CheckCircle size={32} style={{ color: 'var(--admin-success)', opacity: 0.5, marginBottom: '0.5rem', display: 'inline-block' }} />
+                <p style={{ margin: 0, fontWeight: 500 }}>No pending alerts</p>
+                <p style={{ margin: 0, fontSize: '0.85rem' }}>Everything is running smoothly.</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

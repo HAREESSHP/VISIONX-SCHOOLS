@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { UserPlus, Copy, CheckCircle2 } from 'lucide-react';
+import { UserPlus, Copy, CheckCircle2, ShieldCheck, GraduationCap, Briefcase } from 'lucide-react';
 
 const GenerateId = () => {
   const { token } = useAuth();
@@ -74,26 +74,49 @@ const GenerateId = () => {
       <div className="admin-page-header">
         <div>
           <h2>Generate Credentials</h2>
-          <p>Create new login accounts for students and teachers.</p>
+          <p>Create new, secure login accounts for students and teachers.</p>
         </div>
       </div>
 
       <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap', alignItems: 'flex-start' }}>
         {/* Form Column */}
         <div className="admin-card" style={{ flex: '1 1 500px' }}>
-          <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+          
+          {/* Segmented Control for Role Selection */}
+          <div style={{ 
+            display: 'flex', 
+            background: 'var(--admin-bg)', 
+            padding: '0.35rem', 
+            borderRadius: 'var(--admin-radius-md)', 
+            marginBottom: '2rem',
+            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)'
+          }}>
             <button 
-              className={`admin-btn ${roleType === 'STUDENT' ? 'admin-btn-primary' : ''}`}
-              style={roleType !== 'STUDENT' ? { border: '1px solid var(--admin-border)' } : {}}
               onClick={() => setRoleType('STUDENT')}
+              style={{
+                flex: 1, padding: '0.75rem', borderRadius: 'var(--admin-radius-sm)', border: 'none',
+                background: roleType === 'STUDENT' ? 'var(--admin-surface)' : 'transparent',
+                color: roleType === 'STUDENT' ? 'var(--admin-text)' : 'var(--admin-text-light)',
+                boxShadow: roleType === 'STUDENT' ? 'var(--admin-shadow-sm)' : 'none',
+                fontWeight: 600, cursor: 'pointer', transition: 'var(--admin-transition)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
+              }}
             >
+              <GraduationCap size={18} color={roleType === 'STUDENT' ? 'var(--admin-primary)' : 'currentColor'} />
               Student ID
             </button>
             <button 
-              className={`admin-btn ${roleType === 'TEACHER' ? 'admin-btn-primary' : ''}`}
-              style={roleType !== 'TEACHER' ? { border: '1px solid var(--admin-border)' } : {}}
               onClick={() => setRoleType('TEACHER')}
+              style={{
+                flex: 1, padding: '0.75rem', borderRadius: 'var(--admin-radius-sm)', border: 'none',
+                background: roleType === 'TEACHER' ? 'var(--admin-surface)' : 'transparent',
+                color: roleType === 'TEACHER' ? 'var(--admin-text)' : 'var(--admin-text-light)',
+                boxShadow: roleType === 'TEACHER' ? 'var(--admin-shadow-sm)' : 'none',
+                fontWeight: 600, cursor: 'pointer', transition: 'var(--admin-transition)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
+              }}
             >
+              <Briefcase size={18} color={roleType === 'TEACHER' ? 'var(--admin-primary)' : 'currentColor'} />
               Teacher ID
             </button>
           </div>
@@ -106,7 +129,7 @@ const GenerateId = () => {
               </div>
               <div className="admin-form-group">
                 <label>School Name *</label>
-                <input type="text" name="schoolName" required value={formData.schoolName} onChange={handleChange} placeholder="VisionX Academy" />
+                <input type="text" name="schoolName" required value={formData.schoolName} onChange={handleChange} placeholder="e.g. VisionX Academy" />
               </div>
             </div>
 
@@ -153,53 +176,62 @@ const GenerateId = () => {
               </div>
             )}
 
-            <div className="admin-form-group" style={{ marginBottom: '2rem', maxWidth: '240px' }}>
+            <div className="admin-form-group" style={{ marginBottom: '2.5rem', maxWidth: '300px' }}>
               <label>Validity Duration</label>
               <select name="validityMonths" value={formData.validityMonths} onChange={handleChange}>
-                <option value="3">3 Months</option>
-                <option value="6">6 Months</option>
-                <option value="12">1 Year</option>
+                <option value="3">3 Months (Trial)</option>
+                <option value="6">6 Months (Half Year)</option>
+                <option value="12">1 Year (Full Session)</option>
               </select>
             </div>
 
-            <button type="submit" className="admin-btn admin-btn-primary" disabled={loading} style={{ width: '100%', padding: '0.8rem' }}>
-              <UserPlus size={18} />
+            <button type="submit" className="admin-btn admin-btn-primary" disabled={loading} style={{ width: '100%', padding: '1rem', fontSize: '1rem' }}>
+              <UserPlus size={20} />
               {loading ? 'Generating...' : `Generate ${roleType === 'STUDENT' ? 'Student' : 'Teacher'} ID`}
             </button>
           </form>
         </div>
 
-        {/* Result Column */}
+        {/* Premium Result Column */}
         {successData && (
-          <div className="admin-card" style={{ flex: '1 1 350px', background: 'var(--admin-primary-light)', borderColor: '#BFDBFE' }}>
-            <h3 style={{ marginTop: 0, color: 'var(--admin-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <CheckCircle2 size={24} />
-              Credentials Generated!
-            </h3>
+          <div className="admin-card" style={{ flex: '1 1 350px', background: 'linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 100%)', border: '1px solid #C7D2FE', boxShadow: '0 10px 25px -5px rgba(79, 70, 229, 0.15)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid #E0E7FF', paddingBottom: '1rem' }}>
+              <div style={{ width: '40px', height: '40px', background: 'var(--admin-primary)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <ShieldCheck size={24} />
+              </div>
+              <div>
+                <h3 style={{ margin: 0, color: 'var(--admin-text)', fontSize: '1.25rem' }}>Access Granted</h3>
+                <p style={{ margin: 0, color: 'var(--admin-primary)', fontSize: '0.85rem', fontWeight: 600 }}>Credentials Generated Successfully</p>
+              </div>
+            </div>
             
-            <div style={{ background: '#FFF', padding: '1.5rem', borderRadius: 'var(--admin-radius-sm)', border: '1px solid #BFDBFE', marginTop: '1.5rem' }}>
-              <div style={{ marginBottom: '1rem' }}>
-                <span style={{ fontSize: '0.85rem', color: 'var(--admin-text-light)', fontWeight: 600, textTransform: 'uppercase' }}>Username</span>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--admin-text)', letterSpacing: '0.05em' }}>
+            <div style={{ background: '#FFF', padding: '1.5rem', borderRadius: 'var(--admin-radius-md)', border: '1px dashed #A5B4FC', position: 'relative' }}>
+              <div style={{ position: 'absolute', top: '-10px', left: '50%', transform: 'translateX(-50%)', background: '#EEF2FF', padding: '0 0.5rem', color: '#4F46E5', fontSize: '0.75rem', fontWeight: 700, borderRadius: '12px' }}>
+                CONFIDENTIAL
+              </div>
+
+              <div style={{ marginBottom: '1.25rem' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Login ID</span>
+                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--admin-text)', letterSpacing: '0.02em', background: 'var(--admin-bg)', padding: '0.5rem', borderRadius: 'var(--admin-radius-sm)', marginTop: '0.25rem', userSelect: 'all' }}>
                   {successData.loginId}
                 </div>
               </div>
               
-              <div style={{ marginBottom: '1rem' }}>
-                <span style={{ fontSize: '0.85rem', color: 'var(--admin-text-light)', fontWeight: 600, textTransform: 'uppercase' }}>Password</span>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--admin-text)', letterSpacing: '0.05em' }}>
+              <div style={{ marginBottom: '1.5rem' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Temporary Password</span>
+                <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--admin-text)', letterSpacing: '0.02em', background: 'var(--admin-bg)', padding: '0.5rem', borderRadius: 'var(--admin-radius-sm)', marginTop: '0.25rem', userSelect: 'all' }}>
                   {successData.password}
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '2rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', borderTop: '1px solid var(--admin-border)', paddingTop: '1rem' }}>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--admin-text-light)', fontWeight: 600, textTransform: 'uppercase' }}>Role</span>
-                  <div style={{ fontWeight: 600 }}>{successData.role}</div>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase' }}>Role</span>
+                  <div style={{ fontWeight: 600, color: 'var(--admin-text)' }}>{successData.role}</div>
                 </div>
                 <div>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--admin-text-light)', fontWeight: 600, textTransform: 'uppercase' }}>Valid Until</span>
-                  <div style={{ fontWeight: 600 }}>{new Date(successData.expiryDate).toLocaleDateString()}</div>
+                  <span style={{ fontSize: '0.7rem', color: 'var(--admin-text-lighter)', fontWeight: 600, textTransform: 'uppercase' }}>Valid Until</span>
+                  <div style={{ fontWeight: 600, color: 'var(--admin-danger)' }}>{new Date(successData.expiryDate).toLocaleDateString()}</div>
                 </div>
               </div>
             </div>
@@ -207,10 +239,16 @@ const GenerateId = () => {
             <button 
               onClick={handleCopy}
               className="admin-btn"
-              style={{ width: '100%', marginTop: '1rem', background: '#FFF', border: '1px solid #BFDBFE', color: 'var(--admin-primary)' }}
+              style={{ 
+                width: '100%', marginTop: '1.5rem', 
+                background: copied ? 'var(--admin-success)' : 'white', 
+                color: copied ? 'white' : 'var(--admin-primary)',
+                border: copied ? 'none' : '1px solid var(--admin-primary)',
+                boxShadow: 'var(--admin-shadow-sm)'
+              }}
             >
               {copied ? <CheckCircle2 size={18} /> : <Copy size={18} />}
-              {copied ? 'Copied to Clipboard' : 'Copy Credentials'}
+              {copied ? 'Copied to Clipboard!' : 'Copy Credentials'}
             </button>
           </div>
         )}

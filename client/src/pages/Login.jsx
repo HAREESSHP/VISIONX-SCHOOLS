@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Eye, EyeOff, User, Lock } from 'lucide-react';
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -12,6 +13,7 @@ export default function Login() {
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // If already logged in, redirect
   if (user) {
@@ -65,30 +67,44 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="loginId">Login ID</label>
-            <input
-              id="loginId"
-              type="text"
-              name="loginId"
-              value={formData.loginId}
-              onChange={handleChange}
-              placeholder="Enter your Login ID"
-              autoComplete="username"
-              required
-            />
+            <div className="input-wrapper">
+              <User className="input-icon-left" size={20} />
+              <input
+                id="loginId"
+                type="text"
+                name="loginId"
+                value={formData.loginId}
+                onChange={handleChange}
+                placeholder="Enter your Login ID"
+                autoComplete="username"
+                required
+              />
+            </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-              autoComplete="current-password"
-              required
-            />
+            <div className="input-wrapper">
+              <Lock className="input-icon-left" size={20} />
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Enter your password"
+                autoComplete="current-password"
+                required
+              />
+              <button 
+                type="button" 
+                className="input-icon-right" 
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           {error && (

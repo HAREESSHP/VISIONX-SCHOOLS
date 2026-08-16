@@ -355,6 +355,46 @@ input, select, textarea {
   cursor: not-allowed;
 }
 
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  padding-left: 2.75rem;
+}
+
+.input-wrapper input[type="password"],
+.input-wrapper input[type="text"] {
+  padding-right: 2.75rem;
+}
+
+.input-icon-left {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-lighter);
+  pointer-events: none;
+}
+
+.input-icon-right {
+  position: absolute;
+  right: 1rem;
+  color: var(--text-lighter);
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.input-icon-right:hover {
+  color: var(--primary);
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4068,3 +4108,63 @@ input, select, textarea {
     font-size: 1.25rem;
   }
 }
+
+/* ============================================
+   Admin Login Page (Split Layout)
+   ============================================ */
+
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 2rem;
+}
+
+.admin-login-container {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.admin-login-image-side {
+  flex: 1;
+  display: none;
+  background: var(--primary-bg);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.admin-login-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.admin-login-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+}
+
+.admin-card {
+  width: 100%;
+  max-width: 400px;
+  box-shadow: none;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .admin-login-image-side {
+    display: flex;
+  }
+}
+

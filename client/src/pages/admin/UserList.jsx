@@ -152,14 +152,14 @@ const UserList = ({ role }) => {
               placeholder="Search by name, ID, or school..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ width: '100%', padding: '0.6rem 1rem 0.6rem 2.5rem', border: '1px solid var(--admin-border)', borderRadius: 'var(--admin-radius-sm)' }}
+              style={{ width: '100%', padding: '0.75rem 1rem 0.75rem 2.5rem', border: '1px solid var(--admin-border)', borderRadius: 'var(--admin-radius-md)', fontSize: '0.95rem' }}
             />
           </div>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <select 
               value={filterStatus} 
               onChange={(e) => setFilterStatus(e.target.value)}
-              style={{ padding: '0.6rem 1rem', border: '1px solid var(--admin-border)', borderRadius: 'var(--admin-radius-sm)', background: '#FFF' }}
+              style={{ padding: '0.75rem 1rem', border: '1px solid var(--admin-border)', borderRadius: 'var(--admin-radius-md)', background: 'var(--admin-surface)', fontSize: '0.95rem' }}
             >
               <option value="">All Statuses</option>
               <option value="Active">Active</option>
@@ -170,7 +170,7 @@ const UserList = ({ role }) => {
               <select 
                 value={filterClass} 
                 onChange={(e) => setFilterClass(e.target.value)}
-                style={{ padding: '0.6rem 1rem', border: '1px solid var(--admin-border)', borderRadius: 'var(--admin-radius-sm)', background: '#FFF' }}
+                style={{ padding: '0.75rem 1rem', border: '1px solid var(--admin-border)', borderRadius: 'var(--admin-radius-md)', background: 'var(--admin-surface)', fontSize: '0.95rem' }}
               >
                 <option value="">All Classes</option>
                 <option value="Nursery">Nursery</option>
@@ -185,17 +185,17 @@ const UserList = ({ role }) => {
         </div>
       </div>
 
-      <div className="admin-card" style={{ padding: 0, overflow: 'hidden' }}>
+      <div className="admin-table-container">
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <thead style={{ background: 'var(--admin-bg)', borderBottom: '1px solid var(--admin-border)' }}>
+          <table className="admin-table">
+            <thead>
               <tr>
-                <th style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--admin-text-light)', fontSize: '0.85rem', textTransform: 'uppercase' }}>User details</th>
-                <th style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--admin-text-light)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Login Info</th>
-                <th style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--admin-text-light)', fontSize: '0.85rem', textTransform: 'uppercase' }}>{role === 'STUDENT' ? 'Class/Section' : 'Subject'}</th>
-                <th style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--admin-text-light)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Status</th>
-                <th style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--admin-text-light)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Valid Until</th>
-                <th style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--admin-text-light)', fontSize: '0.85rem', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
+                <th>User details</th>
+                <th>Login Info</th>
+                <th>{role === 'STUDENT' ? 'Class/Section' : 'Subject'}</th>
+                <th>Status</th>
+                <th>Valid Until</th>
+                <th style={{ textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -213,40 +213,40 @@ const UserList = ({ role }) => {
                 </tr>
               ) : (
                 users.map((user) => (
-                  <tr key={user._id} style={{ borderBottom: '1px solid var(--admin-border)', transition: 'background 0.2s', ':hover': { background: 'var(--admin-bg)' } }}>
-                    <td style={{ padding: '1rem 1.5rem' }}>
-                      <div style={{ fontWeight: 600 }}>{user.name}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--admin-text-light)' }}>
+                  <tr key={user._id}>
+                    <td>
+                      <div style={{ fontWeight: 700, color: 'var(--admin-text)' }}>{user.name}</div>
+                      <div style={{ fontSize: '0.85rem', color: 'var(--admin-text-lighter)', marginTop: '0.2rem' }}>
                         {user.schoolName || 'N/A'} {user.admissionNumber ? `• ${user.admissionNumber}` : ''}
                       </div>
                     </td>
-                    <td style={{ padding: '1rem 1.5rem' }}>
-                      <div style={{ fontFamily: 'monospace', background: 'var(--admin-bg)', padding: '0.2rem 0.5rem', borderRadius: '4px', display: 'inline-block' }}>
+                    <td>
+                      <div style={{ fontFamily: 'monospace', background: 'var(--admin-bg)', padding: '0.35rem 0.6rem', borderRadius: 'var(--admin-radius-sm)', display: 'inline-block', fontWeight: 600, letterSpacing: '0.05em' }}>
                         {user.loginId}
                       </div>
                     </td>
-                    <td style={{ padding: '1rem 1.5rem' }}>
+                    <td>
                       {role === 'STUDENT' ? (
                         <div>
-                          <div>{user.className || 'N/A'}</div>
-                          {user.section && <div style={{ fontSize: '0.8rem', color: 'var(--admin-text-light)' }}>Sec: {user.section}</div>}
+                          <div style={{ fontWeight: 600 }}>{user.className || 'N/A'}</div>
+                          {user.section && <div style={{ fontSize: '0.85rem', color: 'var(--admin-text-lighter)' }}>Sec: {user.section}</div>}
                         </div>
                       ) : (
-                        user.subject || 'N/A'
+                        <div style={{ fontWeight: 600 }}>{user.subject || 'N/A'}</div>
                       )}
                     </td>
-                    <td style={{ padding: '1rem 1.5rem' }}>
+                    <td>
                       <span className={`admin-badge ${user.status}`}>
                         {user.status}
                       </span>
                     </td>
-                    <td style={{ padding: '1rem 1.5rem', fontSize: '0.9rem' }}>
+                    <td style={{ fontSize: '0.95rem', fontWeight: 600 }}>
                       {user.expiryDate ? new Date(user.expiryDate).toLocaleDateString() : 'Lifetime'}
                     </td>
-                    <td style={{ padding: '1rem 1.5rem', textAlign: 'right', position: 'relative' }}>
+                    <td style={{ textAlign: 'right', position: 'relative' }}>
                       <button 
+                        className="admin-icon-btn"
                         onClick={() => setActionMenuOpen(actionMenuOpen === user._id ? null : user._id)}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--admin-text-light)' }}
                       >
                         <MoreVertical size={18} />
                       </button>

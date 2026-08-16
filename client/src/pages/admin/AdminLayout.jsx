@@ -10,7 +10,8 @@ import {
   Settings, 
   LogOut,
   Menu,
-  X
+  X,
+  Bell
 } from 'lucide-react';
 import './Admin.css';
 
@@ -21,7 +22,7 @@ const AdminLayout = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate('/admin-login');
   };
 
   const navItems = [
@@ -60,6 +61,9 @@ const AdminLayout = () => {
         </div>
 
         <nav className="admin-nav">
+          <div style={{ padding: '0 1rem', marginBottom: '0.5rem', fontSize: '0.75rem', fontWeight: 700, color: 'var(--admin-text-lighter)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Main Menu
+          </div>
           <ul>
             {navItems.map((item) => (
               <li key={item.name}>
@@ -88,14 +92,24 @@ const AdminLayout = () => {
       {/* Main Content */}
       <main className="admin-main">
         <header className="admin-topbar">
-          <button className="admin-menu-btn" onClick={() => setIsSidebarOpen(true)}>
-            <Menu size={24} />
-          </button>
-          <div className="admin-topbar-title">
-            <h1>Admin Panel</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button className="admin-menu-btn" onClick={() => setIsSidebarOpen(true)}>
+              <Menu size={24} />
+            </button>
+            <div className="admin-topbar-title">
+              <h1>Admin Portal</h1>
+            </div>
           </div>
-          <div className="admin-topbar-actions">
-            <span className="admin-status-badge">🟢 Active System</span>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <span className="admin-status-badge">System Active</span>
+            <div style={{ position: 'relative', cursor: 'pointer', color: 'var(--admin-text-light)' }}>
+              <Bell size={20} />
+              <span style={{ position: 'absolute', top: '-4px', right: '-4px', width: '8px', height: '8px', background: 'var(--admin-danger)', borderRadius: '50%' }}></span>
+            </div>
+            <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'var(--admin-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, color: 'var(--admin-text)' }}>
+              {user?.name?.charAt(0) || 'A'}
+            </div>
           </div>
         </header>
 
