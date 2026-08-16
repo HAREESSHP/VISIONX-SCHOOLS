@@ -245,13 +245,18 @@ input, select, textarea {
 }
 
 .btn-primary {
-  background: var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: var(--white);
+  border: none;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: var(--primary-dark);
+  background: linear-gradient(135deg, var(--primary-dark), #C2410C);
   color: var(--white);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35);
+  transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -363,6 +368,10 @@ input, select, textarea {
 
 .input-wrapper input {
   padding-left: 2.75rem;
+}
+
+.input-wrapper input.no-icon-left {
+  padding-left: 1rem;
 }
 
 .input-wrapper input[type="password"],
@@ -878,6 +887,123 @@ input, select, textarea {
   width: 100%;
   max-width: 420px;
   box-shadow: var(--shadow-lg);
+}
+
+.login-card.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.login-tabs-container {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.login-tabs {
+  position: relative;
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 0.35rem;
+  border-radius: var(--radius-full);
+  gap: 0.25rem;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.login-tab {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-tab.active {
+  color: var(--primary-dark);
+}
+
+.login-tab:hover:not(.active) {
+  color: var(--text);
+}
+
+.login-tab-indicator {
+  position: absolute;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: calc(50% - 0.35rem);
+  background: var(--white);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+.login-tab-indicator.left {
+  transform: translateX(0);
+}
+
+.login-tab-indicator.right {
+  transform: translateX(calc(100% + 0.25rem));
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-input:focus {
+  background: var(--white) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15) !important;
+}
+
+.login-submit-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.25);
+}
+
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .login-header {

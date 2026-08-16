@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Eye, EyeOff, User, Lock } from 'lucide-react';
+import { Eye, EyeOff, User, Lock, GraduationCap, BookOpen } from 'lucide-react';
 
 export default function Login() {
   const { login, user } = useAuth();
   const navigate = useNavigate();
 
+  const [activeTab, setActiveTab] = useState('student'); // 'student' or 'teacher'
+  
   const [formData, setFormData] = useState({
     loginId: '',
     password: ''
@@ -55,29 +57,53 @@ export default function Login() {
         <div className="login-blob blob-3"></div>
       </div>
 
-      <div className="login-card">
+      <div className="login-card glass-panel">
         <div className="login-header">
           <img src="/visionx-logo.png" alt="VISIONX Logo" className="login-logo" />
-          <h1 className="login-title">Welcome! 👋</h1>
-          <p className="login-subtitle">
-            Enter your Login ID to start learning
+          <h1 className="login-title animate-slide-up">
+            {activeTab === 'student' ? 'Welcome to VisionX' : 'Educator Portal'}
+          </h1>
+          <p className="login-subtitle animate-slide-up delay-1">
+            {activeTab === 'student' 
+              ? 'Sign in to access your personalized learning journey.' 
+              : 'Sign in to manage your classes and student progress.'}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <div className="login-tabs-container animate-slide-up delay-1">
+          <div className="login-tabs">
+            <button 
+              className={`login-tab ${activeTab === 'student' ? 'active' : ''}`}
+              onClick={() => setActiveTab('student')}
+              type="button"
+            >
+              Student
+            </button>
+            <button 
+              className={`login-tab ${activeTab === 'teacher' ? 'active' : ''}`}
+              onClick={() => setActiveTab('teacher')}
+              type="button"
+            >
+              Teacher
+            </button>
+            <div className={`login-tab-indicator ${activeTab === 'teacher' ? 'right' : 'left'}`}></div>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="animate-slide-up delay-2">
           <div className="form-group">
-            <label htmlFor="loginId">Login ID</label>
+            <label htmlFor="loginId">{activeTab === 'student' ? 'Student ID' : 'Teacher ID'}</label>
             <div className="input-wrapper">
-              <User className="input-icon-left" size={20} />
               <input
                 id="loginId"
                 type="text"
                 name="loginId"
                 value={formData.loginId}
                 onChange={handleChange}
-                placeholder="Enter your Login ID"
+                placeholder={activeTab === 'student' ? "e.g., vx-1234" : "e.g., vx-t987"}
                 autoComplete="username"
                 required
+                className="glass-input no-icon-left"
               />
             </div>
           </div>
@@ -85,7 +111,6 @@ export default function Login() {
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <div className="input-wrapper">
-              <Lock className="input-icon-left" size={20} />
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -95,6 +120,7 @@ export default function Login() {
                 placeholder="Enter your password"
                 autoComplete="current-password"
                 required
+                className="glass-input no-icon-left"
               />
               <button 
                 type="button" 
@@ -108,27 +134,22 @@ export default function Login() {
           </div>
 
           {error && (
-            <div className="alert alert-error">
+            <div className="alert alert-error animate-fade-in">
               {error}
             </div>
           )}
 
           <button
             type="submit"
-            className="btn btn-primary btn-block btn-large"
+            className="btn btn-primary btn-block btn-large login-submit-btn"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Start Learning 🚀'}
+            {loading ? 'Authenticating...' : (activeTab === 'student' ? 'Access Account' : 'Sign In')}
           </button>
         </form>
 
-
-
-        <div className="login-footer">
-          <Link to="/">← Back to Home</Link>
-          <div className="demo-accounts">
-            <small>Demo: RAHUL001 / student123</small>
-          </div>
+        <div className="login-footer animate-slide-up delay-3">
+          <Link to="/" className="back-link">← Back to Home</Link>
         </div>
       </div>
     </div>
