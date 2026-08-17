@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Eye, EyeOff, User, Lock, GraduationCap, BookOpen } from 'lucide-react';
+import { Eye, EyeOff, Building, Users } from 'lucide-react';
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -50,106 +50,124 @@ export default function Login() {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-background">
-        <div className="login-blob blob-1"></div>
-        <div className="login-blob blob-2"></div>
-        <div className="login-blob blob-3"></div>
-      </div>
-
-      <div className="login-card glass-panel">
-        <div className="login-header">
-          <img src="/visionx-logo.png" alt="VISIONX Logo" className="login-logo" />
-          <h1 className="login-title animate-slide-up">
-            {activeTab === 'student' ? 'Welcome to VisionX' : 'Educator Portal'}
-          </h1>
-          <p className="login-subtitle animate-slide-up delay-1">
-            {activeTab === 'student' 
-              ? 'Sign in to access your personalized learning journey.' 
-              : 'Sign in to manage your classes and student progress.'}
+    <div className="pro-login-layout">
+      <div className="pro-login-side presentation-side">
+        <div className="presentation-content animate-slide-up">
+          <Link to="/" className="presentation-logo-link">
+            <img src="/visionx-logo.png" alt="VISIONX Logo" className="presentation-logo" />
+            <span className="presentation-brand">VISIONX</span>
+          </Link>
+          <h2 className="presentation-title">Empowering Next-Generation Education</h2>
+          <p className="presentation-subtitle">
+            Welcome to the VisionX platform. Access your personalized learning environment and manage your academic progress with advanced tools.
           </p>
-        </div>
-
-        <div className="login-tabs-container animate-slide-up delay-1">
-          <div className="login-tabs">
-            <button 
-              className={`login-tab ${activeTab === 'student' ? 'active' : ''}`}
-              onClick={() => setActiveTab('student')}
-              type="button"
-            >
-              Student
-            </button>
-            <button 
-              className={`login-tab ${activeTab === 'teacher' ? 'active' : ''}`}
-              onClick={() => setActiveTab('teacher')}
-              type="button"
-            >
-              Teacher
-            </button>
-            <div className={`login-tab-indicator ${activeTab === 'teacher' ? 'right' : 'left'}`}></div>
-          </div>
-        </div>
-
-        <form onSubmit={handleSubmit} className="animate-slide-up delay-2">
-          <div className="form-group">
-            <label htmlFor="loginId">{activeTab === 'student' ? 'Student ID' : 'Teacher ID'}</label>
-            <div className="input-wrapper">
-              <input
-                id="loginId"
-                type="text"
-                name="loginId"
-                value={formData.loginId}
-                onChange={handleChange}
-                placeholder={activeTab === 'student' ? "e.g., vx-1234" : "e.g., vx-t987"}
-                autoComplete="username"
-                required
-                className="glass-input no-icon-left"
-              />
+          <div className="presentation-features">
+            <div className="pro-feature">
+              <div className="pro-feature-icon">✨</div>
+              <span>Interactive Learning</span>
+            </div>
+            <div className="pro-feature">
+              <div className="pro-feature-icon">📊</div>
+              <span>Real-time Progress</span>
             </div>
           </div>
+        </div>
+        <div className="presentation-overlay"></div>
+      </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="input-wrapper">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Enter your password"
-                autoComplete="current-password"
-                required
-                className="glass-input no-icon-left"
-              />
+      <div className="pro-login-side form-side">
+        <div className="pro-login-card animate-fade-in">
+          <div className="pro-login-header">
+            <h1 className="pro-login-title">
+              {activeTab === 'student' ? 'Student Portal' : 'Educator Portal'}
+            </h1>
+            <p className="pro-login-subtitle">
+              Please enter your credentials to proceed
+            </p>
+          </div>
+
+          <div className="pro-login-tabs-container">
+            <div className="pro-login-tabs">
               <button 
-                type="button" 
-                className="input-icon-right" 
-                onClick={() => setShowPassword(!showPassword)}
-                aria-label={showPassword ? "Hide password" : "Show password"}
+                className={`pro-login-tab ${activeTab === 'student' ? 'active' : ''}`}
+                onClick={() => setActiveTab('student')}
+                type="button"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                <Users size={18} />
+                Student
+              </button>
+              <button 
+                className={`pro-login-tab ${activeTab === 'teacher' ? 'active' : ''}`}
+                onClick={() => setActiveTab('teacher')}
+                type="button"
+              >
+                <Building size={18} />
+                Teacher
               </button>
             </div>
           </div>
 
-          {error && (
-            <div className="alert alert-error animate-fade-in">
-              {error}
+          <form onSubmit={handleSubmit} className="pro-login-form">
+            <div className="pro-form-group">
+              <label htmlFor="loginId">Identifier</label>
+              <div className="pro-input-wrapper">
+                <input
+                  id="loginId"
+                  type="text"
+                  name="loginId"
+                  value={formData.loginId}
+                  onChange={handleChange}
+                  placeholder={activeTab === 'student' ? "e.g., vx-1234" : "e.g., vx-t987"}
+                  autoComplete="username"
+                  required
+                  className="pro-input"
+                />
+              </div>
             </div>
-          )}
 
-          <button
-            type="submit"
-            className="btn btn-primary btn-block btn-large login-submit-btn"
-            disabled={loading}
-          >
-            {loading ? 'Authenticating...' : (activeTab === 'student' ? 'Access Account' : 'Sign In')}
-          </button>
-        </form>
+            <div className="pro-form-group">
+              <label htmlFor="password">Security Key</label>
+              <div className="pro-input-wrapper">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  autoComplete="current-password"
+                  required
+                  className="pro-input"
+                />
+                <button 
+                  type="button" 
+                  className="pro-input-icon-right" 
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </div>
 
-        <div className="login-footer animate-slide-up delay-3">
-          <Link to="/" className="back-link">← Back to Home</Link>
+            {error && (
+              <div className="alert alert-error">
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="pro-btn-submit"
+              disabled={loading}
+            >
+              {loading ? 'Authenticating...' : 'Secure Sign In'}
+            </button>
+          </form>
+
+          <div className="pro-login-footer">
+            <Link to="/" className="pro-back-link">← Return to Homepage</Link>
+          </div>
         </div>
       </div>
     </div>
