@@ -4397,6 +4397,7 @@ input, select, textarea {
   letter-spacing: 2px;
   background: linear-gradient(to right, #fff, #a5b4fc);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -4407,6 +4408,7 @@ input, select, textarea {
   margin-bottom: 1.5rem;
   background: linear-gradient(to right, #ffffff, #c7d2fe);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fadeUp 0.8s ease-out forwards;
 }
