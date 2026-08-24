@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { getClasses, getClassLessons } from '../services/classService';
 import { getUserSummary } from '../services/progressService';
 import Loader from '../components/Loader';
+import TiltCard from '../components/TiltCard';
+import { Flame, Star, Award, ArrowRight, Play, Compass, CheckCircle } from 'lucide-react';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -13,11 +16,11 @@ export default function Dashboard() {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedAreas, setExpandedAreas] = useState({});
 
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        // Get all classes to find current user's class
         const { classes } = await getClasses();
         const userClass = classes.find(c => c.name === user?.className);
 
@@ -27,11 +30,9 @@ export default function Dashboard() {
           return;
         }
 
-        // Get lessons for the class
         const lessonsData = await getClassLessons(userClass.id);
         setClassData(lessonsData);
 
-        // Get user summary
         try {
           const summaryData = await getUserSummary(user.id);
           setSummary(summaryData);
@@ -48,8 +49,15 @@ export default function Dashboard() {
     fetchDashboard();
   }, [user, navigate]);
 
+  const toggleAreaExpand = (areaName) => {
+    setExpandedAreas(prev => ({
+      ...prev,
+      [areaName]: !prev[areaName]
+    }));
+  };
+
   if (loading) {
-    return <Loader text="Loading your dashboard... 🚀" />;
+    return <Loader text="Assembling your personalized learning desk... 🚀" />;
   }
 
   if (error) {
@@ -67,155 +75,189 @@ export default function Dashboard() {
 
   const skillPercentages = summary?.summary?.skillPercentages || {};
   const skillsDisplay = [
-    { name: 'Speaking', key: 'Spoken English', icon: '🗣', total: 2 },
-    { name: 'Reading', key: 'Reading', icon: '📖', total: 1 },
-    { name: 'Listening', key: 'Listening', icon: '🎧', total: 1 },
-    { name: 'Grammar', key: 'Grammar', icon: '✍', total: 2 }
+    { name: 'Speaking', key: 'Spoken English', icon: '🗣️', color: 'var(--terracotta)' },
+    { name: 'Reading', key: 'Reading', icon: '📖', color: 'var(--espresso)' },
+    { name: 'Listening', key: 'Listening', icon: '🎧', color: 'var(--golden-tan)' },
+    { name: 'Grammar', key: 'Grammar', icon: '✍️', color: 'var(--sage-green)' }
   ];
 
   const continueLesson = classData?.areas?.[0]?.lessons?.[0];
 
   return (
-    <div className="dashboard-page">
-      {/* Welcome Section */}
-      <section className="welcome-section">
-        <div>
-          <h1 className="page-title">Hi {user.name?.split(' ')[0]}! 👋</h1>
-          <p className="page-subtitle">
-            Ready to improve your English? You're learning <strong>{user.className}</strong>!
+    <div className="student-dashboard-wrapper">
+      {/* 1. Welcome & 3D Stats Header */}
+      <section className="dashboard-hero-header">
+        <motion.div 
+          className="dashboard-welcome-info"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className="dashboard-class-badge">
+            <Compass size={16} />
+            <span>Enrolled in {user.className || 'Standard Grade'}</span>
+          </div>
+          <h1 className="dashboard-title">Welcome back, {user.name?.split(' ')[0]}! 👋</h1>
+          <p className="dashboard-subtitle">
+            Ready to speak with confidence today? Let's pick up your spoken English milestones.
           </p>
-        </div>
-        <div className="stats-badges">
-          <div className="stat-badge">
-            <span className="stat-badge-icon">🔥</span>
-            <div>
-              <strong>{summary?.summary?.streak || user.streak || 0}</strong>
-              <small>Day Streak</small>
+        </motion.div>
+
+        <motion.div 
+          className="dashboard-stats-row"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+        >
+          <TiltCard maxAngle={10} scale={1.04} borderRadius="20px" className="dashboard-stat-chip">
+            <div className="stat-icon-wrapper streak-bg">
+              <Flame size={24} />
             </div>
-          </div>
-          <div className="stat-badge">
-            <span className="stat-badge-icon">⭐</span>
             <div>
-              <strong>{summary?.summary?.totalXp || user.xp || 0}</strong>
-              <small>XP</small>
+              <strong className="stat-value">{summary?.summary?.streak || user.streak || 0}</strong>
+              <span className="stat-label">Day Streak</span>
             </div>
-          </div>
-        </div>
+          </TiltCard>
+
+          <TiltCard maxAngle={10} scale={1.04} borderRadius="20px" className="dashboard-stat-chip">
+            <div className="stat-icon-wrapper xp-bg">
+              <Star size={24} />
+            </div>
+            <div>
+              <strong className="stat-value">{summary?.summary?.totalXp || user.xp || 0}</strong>
+              <span className="stat-label">Total XP</span>
+            </div>
+          </TiltCard>
+        </motion.div>
       </section>
 
-      {/* Continue Learning */}
+      {/* 2. Continue Learning Spotlight Card */}
       {continueLesson && (
-        <section className="continue-learning">
-          <div className="continue-card">
-            <div className="continue-icon">{continueLesson.icon}</div>
-            <div className="continue-info">
-              <span className="continue-label">Continue Learning</span>
-              <h2>{continueLesson.area}</h2>
-              <p>"{continueLesson.title}"</p>
+        <motion.section 
+          className="continue-spotlight-section"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+        >
+          <TiltCard maxAngle={6} scale={1.01} borderRadius="24px" className="continue-3d-banner">
+            <div className="continue-banner-content">
+              <div className="continue-tag">
+                <span className="live-pulse-dot" />
+                <span>Next Milestone</span>
+              </div>
+              <h2 className="continue-heading">{continueLesson.title}</h2>
+              <p className="continue-subinfo">Area: {continueLesson.area} • Estimated time: {continueLesson.duration || '10 mins'}</p>
             </div>
-            <Link to={`/lesson/${continueLesson._id}`} className="btn btn-primary">
-              Continue →
+
+            <Link to={`/lesson/${continueLesson._id}`} className="continue-play-btn">
+              <span>Resume Lesson</span>
+              <div className="play-icon-circle">
+                <Play size={18} fill="currentColor" />
+              </div>
             </Link>
-          </div>
-        </section>
+          </TiltCard>
+        </motion.section>
       )}
 
-      {/* Skills Section */}
-      <section className="skills-section">
-        <h2 className="section-heading">Your English Skills</h2>
-        <div className="skills-grid">
-          {skillsDisplay.map((skill) => {
+      {/* 3. Skills Progress Section (4 3D Cards) */}
+      <section className="skills-dashboard-section">
+        <div className="section-title-row">
+          <h2 className="dashboard-section-heading">Your English Competency Profile</h2>
+          <span className="sub-tag">Automated CEFR Evaluation</span>
+        </div>
+
+        <div className="skills-3d-grid">
+          {skillsDisplay.map((skill, index) => {
             const pct = skillPercentages[skill.key] || 0;
             return (
-              <div key={skill.key} className="skill-card">
-                <div className="skill-header">
-                  <span className="skill-icon">{skill.icon}</span>
-                  <span className="skill-name">{skill.name}</span>
-                  <span className="skill-percentage">{pct}%</span>
-                </div>
-                <div className="skill-bar">
-                  <div
-                    className={`skill-bar-fill ${pct >= 70 ? 'fill-green' : pct >= 40 ? 'fill-yellow' : 'fill-red'}`}
-                    style={{ width: `${pct}%` }}
-                  />
-                </div>
-              </div>
+              <motion.div
+                key={skill.key}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
+              >
+                <TiltCard maxAngle={8} scale={1.03} borderRadius="20px" className="skill-3d-card">
+                  <div className="skill-card-top">
+                    <span className="skill-emoji">{skill.icon}</span>
+                    <span className="skill-pct-badge">{pct}%</span>
+                  </div>
+                  <h3 className="skill-title">{skill.name}</h3>
+                  <div className="skill-3d-track">
+                    <motion.div
+                      className="skill-3d-fill"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${pct}%` }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                      style={{ background: skill.color }}
+                    />
+                  </div>
+                </TiltCard>
+              </motion.div>
             );
           })}
         </div>
       </section>
 
-      {/* Today's Challenge */}
-      <section className="challenge-section">
-        <div className="challenge-card">
-          <div className="challenge-title">Today's Challenge 🎯</div>
-          <p className="challenge-text">{continueLesson ? `Speak about "${continueLesson.title}"` : 'Complete your first lesson to start earning XP!'}</p>
-          {continueLesson && (
-            <Link to={`/lesson/${continueLesson._id}`} className="btn btn-white">
-              Start Challenge
-            </Link>
-          )}
+      {/* 4. Explore Learning Modules */}
+      <section className="learning-areas-section">
+        <div className="section-title-row">
+          <h2 className="dashboard-section-heading">Grade Curriculum & Modules</h2>
+          <span className="sub-tag">{classData?.areas?.length || 0} Core Strands</span>
         </div>
-      </section>
 
-      {/* Learning Areas */}
-      <section className="areas-section">
-        <h2 className="section-heading">Explore Learning Areas</h2>
-        <div className="areas-grid">
-          {classData?.areas?.map((area) => (
-            <div key={area.name} className="area-card">
-              <div className="area-card-header">
-                <span className="area-icon">{area.icon}</span>
-                <h3>{area.name}</h3>
-              </div>
-              <p className="area-description">{area.description}</p>
-              <div className="area-lessons">
-                {area.lessons.slice(0, 3).map((lesson) => (
-                  <Link
-                    to={`/lesson/${lesson._id}`}
-                    key={lesson._id}
-                    className="area-lesson-item"
-                  >
-                    <span className="lesson-item-icon">{lesson.icon}</span>
-                    <div className="lesson-item-info">
-                      <strong>{lesson.title}</strong>
-                      <small>{lesson.duration}</small>
+        <div className="areas-3d-grid">
+          {classData?.areas?.map((area, areaIdx) => {
+            const isExpanded = expandedAreas[area.name];
+            const visibleLessons = isExpanded ? area.lessons : area.lessons.slice(0, 3);
+
+            return (
+              <motion.div
+                key={area.name}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.2 + areaIdx * 0.08 }}
+              >
+                <TiltCard maxAngle={6} scale={1.02} borderRadius="24px" className="area-3d-card">
+                  <div className="area-header-block">
+                    <div className="area-icon-badge">{area.icon || '📚'}</div>
+                    <div>
+                      <h3 className="area-name-text">{area.name}</h3>
+                      <p className="area-desc-text">{area.description}</p>
                     </div>
-                    <span className="lesson-item-arrow">→</span>
-                  </Link>
-                ))}
-              </div>
-              {area.lessons.length > 3 && (
-                <button
-                  className="btn btn-ghost btn-small"
-                  onClick={() => {
-                    const lessons = document.getElementById(`area-more-${area.name}`);
-                    if (lessons) {
-                      lessons.style.display = lessons.style.display === 'none' ? 'block' : 'none';
-                    }
-                  }}
-                >
-                  Show all {area.lessons.length} lessons ▾
-                </button>
-              )}
-              <div id={`area-more-${area.name}`} className="area-lessons area-lessons-more" style={{ display: 'none' }}>
-                {area.lessons.slice(3).map((lesson) => (
-                  <Link
-                    to={`/lesson/${lesson._id}`}
-                    key={lesson._id}
-                    className="area-lesson-item"
-                  >
-                    <span className="lesson-item-icon">{lesson.icon}</span>
-                    <div className="lesson-item-info">
-                      <strong>{lesson.title}</strong>
-                      <small>{lesson.duration}</small>
-                    </div>
-                    <span className="lesson-item-arrow">→</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
+                  </div>
+
+                  <div className="area-lessons-list">
+                    {visibleLessons.map((lesson) => (
+                      <Link
+                        to={`/lesson/${lesson._id}`}
+                        key={lesson._id}
+                        className="area-lesson-row-3d"
+                      >
+                        <span className="lesson-badge-emoji">{lesson.icon || '📝'}</span>
+                        <div className="lesson-row-meta">
+                          <strong className="lesson-row-title">{lesson.title}</strong>
+                          <small className="lesson-row-time">{lesson.duration || '8 mins'}</small>
+                        </div>
+                        <div className="lesson-arrow-pill">
+                          <ArrowRight size={16} />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  {area.lessons.length > 3 && (
+                    <button
+                      className="area-expand-btn"
+                      onClick={() => toggleAreaExpand(area.name)}
+                      type="button"
+                    >
+                      {isExpanded ? 'Collapse List ▲' : `View All ${area.lessons.length} Lessons (${area.lessons.length - 3} more) ▼`}
+                    </button>
+                  )}
+                </TiltCard>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
     </div>

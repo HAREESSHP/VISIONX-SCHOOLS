@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { getClasses } from '../services/classService';
 import { updateUserClass } from '../services/authService';
 import Loader from '../components/Loader';
+import TiltCard from '../components/TiltCard';
+import { CheckCircle2, Sparkles, BookOpen, Layers } from 'lucide-react';
 
-const GROUP_COLORS = {
-  'Early Learners': 'group-early',
-  'Foundation': 'group-foundation',
-  'Intermediate': 'group-intermediate',
-  'Advanced': 'group-advanced'
+const GROUP_META = {
+  'Early Learners': { icon: '🧸', color: '#B5602E', bg: 'rgba(181, 96, 46, 0.12)' },
+  'Foundation': { icon: '📘', color: '#4A6B3D', bg: 'rgba(74, 107, 61, 0.15)' },
+  'Intermediate': { icon: '📗', color: '#C4A369', bg: 'rgba(196, 163, 105, 0.2)' },
+  'Advanced': { icon: '📙', color: '#3D2B1F', bg: 'rgba(61, 43, 31, 0.12)' }
 };
 
 export default function ClassSelection() {
@@ -43,7 +46,7 @@ export default function ClassSelection() {
 
   const handleContinue = async () => {
     if (!selectedClass) {
-      setError('Please select your class first!');
+      setError('Please choose a class to continue.');
       return;
     }
 
@@ -51,20 +54,19 @@ export default function ClassSelection() {
     setError(null);
 
     try {
-      // Find the group for the selected class
       const cls = classesData.classes.find(c => c.name === selectedClass);
       const data = await updateUserClass(selectedClass, cls?.group);
       updateUser(data.user);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'Failed to save your class. Please try again.');
+      setError(err.message || 'Failed to save your class choice. Please try again.');
     } finally {
       setSaving(false);
     }
   };
 
   if (loading) {
-    return <Loader text="Loading classes... 🎒" />;
+    return <Loader text="Preparing your curriculum stages... 🎒" />;
   }
 
   if (error && !classesData) {
@@ -83,53 +85,125 @@ export default function ClassSelection() {
   const groups = classesData?.grouped || {};
 
   return (
-    <div className="class-selection-page">
-      <div className="page-header">
-        <h1 className="page-title">What are you learning today? 🎯</h1>
-        <p className="page-subtitle">Choose your class to get started</p>
-      </div>
-
-      {Object.entries(groups).map(([group, classes]) => (
-        <div key={group} className="class-group-section">
-          <div className="class-group-header">
-            <span className={`group-tag ${GROUP_COLORS[group] || ''}`}>{group}</span>
-          </div>
-          <div className="class-grid">
-            {classes.map((cls) => (
-              <button
-                key={cls.id}
-                className={`class-card ${selectedClass === cls.name ? 'selected' : ''}`}
-                onClick={() => handleSelect(cls)}
-              >
-                <div className="class-card-icon">
-                  {group === 'Early Learners' ? '🧸' :
-                   group === 'Foundation' ? '📘' :
-                   group === 'Intermediate' ? '📗' : '📙'}
-                </div>
-                <div className="class-card-name">{cls.name}</div>
-                <div className="class-card-age">Age {cls.minAge}-{cls.maxAge}</div>
-                {selectedClass === cls.name && (
-                  <div className="class-check">✓</div>
-                )}
-              </button>
-            ))}
-          </div>
+    <div className="class-selection-page-pro">
+      {/* Header */}
+      <motion.div 
+        className="page-header-center"
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <div className="class-select-badge">
+          <Sparkles size={16} />
+          <span>Curriculum Pathway</span>
         </div>
-      ))}
+        <h1 className="page-title mt-2">Select Your Academic Grade 🎯</h1>
+        <p className="page-subtitle">
+          Pick your assigned class level to enter customized speaking modules, vocabulary lists, and practice quizzes.
+        </p>
+      </motion.div>
+
+      {/* Grade Groups Grid */}
+      <div className="class-selection-groups">
+        {Object.entries(groups).map(([group, classes], groupIndex) => {
+          const meta = GROUP_META[group] || { icon: '📚', color: '#3D2B1F', bg: 'rgba(61, 43, 31, 0.1)' };
+
+          return (
+            <motion.div 
+              key={group} 
+              className="class-group-box"
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: groupIndex * 0.1 }}
+            >
+              <div className="class-group-header-row">
+                <span className="group-pill-badge" style={{ color: meta.color, background: meta.bg, borderColor: meta.color }}>
+                  <span style={{ marginRight: '6px' }}>{meta.icon}</span>
+                  {group}
+                </span>
+                <span className="group-count-text">{classes.length} Levels Available</span>
+              </div>
+
+              <div className="class-cards-3d-grid">
+                {classes.map((cls) => {
+                  const isSelected = selectedClass === cls.name;
+
+                  return (
+                    <TiltCard
+                      key={cls.id}
+                      maxAngle={8}
+                      scale={1.03}
+                      borderRadius="20px"
+                      className={`class-selection-card-3d ${isSelected ? 'is-selected' : ''}`}
+                      onClick={() => handleSelect(cls)}
+                    >
+                      <div className="card-top-icon-row">
+                        <span className="class-card-emoji">{meta.icon}</span>
+                        {isSelected && (
+                          <motion.div 
+                            className="selected-check-pill"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                          >
+                            <CheckCircle2 size={18} />
+                          </motion.div>
+                        )}
+                      </div>
+
+                      <h3 className="class-card-heading">{cls.name}</h3>
+                      <p className="class-card-age-tag">Ages {cls.minAge} – {cls.maxAge}</p>
+                      
+                      <div className="class-card-footer-indicator">
+                        <span className={`status-dot ${isSelected ? 'active' : ''}`} />
+                        <span>{isSelected ? 'Selected Grade' : 'Click to Select'}</span>
+                      </div>
+                    </TiltCard>
+                  );
+                })}
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
 
       {error && (
-        <div className="alert alert-error">{error}</div>
+        <motion.div 
+          className="alert alert-error max-w-md mx-auto mt-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          {error}
+        </motion.div>
       )}
 
-      <div className="fixed-action-bar">
-        <button
-          className="btn btn-primary btn-large"
-          onClick={handleContinue}
-          disabled={saving || !selectedClass}
-        >
-          {saving ? 'Saving...' : 'Continue →'}
-        </button>
-      </div>
+      {/* Floating Action Bar */}
+      <motion.div 
+        className="fixed-3d-action-bar"
+        initial={{ y: 80 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      >
+        <div className="action-bar-inner">
+          <div className="action-bar-info">
+            <Layers size={20} className="action-bar-icon" />
+            <div>
+              <strong>{selectedClass ? `Selected: ${selectedClass}` : 'No Class Selected'}</strong>
+              <span>{selectedClass ? 'Ready to load your personalized syllabus' : 'Select a card above to continue'}</span>
+            </div>
+          </div>
+
+          <motion.button
+            className="btn btn-primary btn-large action-continue-btn"
+            onClick={handleContinue}
+            disabled={saving || !selectedClass}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {saving ? 'Loading Dashboard...' : 'Continue to Learning →'}
+          </motion.button>
+        </div>
+      </motion.div>
     </div>
   );
 }

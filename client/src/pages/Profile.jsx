@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { getUserProgress } from '../services/progressService';
 import { getClasses } from '../services/classService';
 import { updateUserClass } from '../services/authService';
 import Loader from '../components/Loader';
+import TiltCard from '../components/TiltCard';
+import { User, Flame, Star, CheckCircle, Clock, BookOpen, Sparkles, ShieldCheck } from 'lucide-react';
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
@@ -48,7 +51,7 @@ export default function Profile() {
       const cls = classesData.classes.find(c => c.name === className);
       const data = await updateUserClass(className, cls?.group);
       updateUser(data.user);
-      setMessage(`Class updated to ${className}!`);
+      setMessage(`Class successfully switched to ${className}!`);
     } catch (err) {
       setError(err.message || 'Failed to update class');
     } finally {
@@ -57,7 +60,7 @@ export default function Profile() {
   };
 
   if (loading) {
-    return <Loader text="Loading profile... 👤" />;
+    return <Loader text="Loading your learner profile... 👤" />;
   }
 
   const skillLevels = progressData?.skillLevels || {};
@@ -65,171 +68,187 @@ export default function Profile() {
   const inProgressLessons = progressData?.progress?.filter(p => p.status === 'started') || [];
 
   const skillsDisplay = [
-    { name: 'Spoken English', icon: '🗣', key: 'Spoken English' },
-    { name: 'Vocabulary', icon: '📚', key: 'Vocabulary' },
-    { name: 'Grammar', icon: '✍', key: 'Grammar' },
-    { name: 'Listening', icon: '🎧', key: 'Listening' },
-    { name: 'Reading', icon: '📖', key: 'Reading' }
+    { name: 'Spoken English', icon: '🗣️', key: 'Spoken English', color: 'var(--terracotta)' },
+    { name: 'Vocabulary', icon: '📚', key: 'Vocabulary', color: 'var(--espresso)' },
+    { name: 'Grammar', icon: '✍️', key: 'Grammar', color: 'var(--sage-green)' },
+    { name: 'Listening', icon: '🎧', key: 'Listening', color: 'var(--golden-tan)' },
+    { name: 'Reading', icon: '📖', key: 'Reading', color: '#4F46E5' }
   ];
 
   return (
-    <div className="profile-page">
-      <div className="page-header">
-        <h1 className="page-title">My Profile 👤</h1>
-        <p className="page-subtitle">Track your learning journey</p>
+    <div className="profile-page-wrapper">
+      {/* Header */}
+      <div className="page-header-center">
+        <div className="class-select-badge">
+          <User size={16} />
+          <span>Learner Dossier</span>
+        </div>
+        <h1 className="page-title mt-2">Student Profile 👤</h1>
+        <p className="page-subtitle">Track your achievements, skill competencies, and lesson history.</p>
       </div>
 
-      {message && <div className="alert alert-success">{message}</div>}
-      {error && <div className="alert alert-error">{error}</div>}
+      {message && (
+        <motion.div 
+          className="alert alert-success max-w-md mx-auto mb-4"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          {message}
+        </motion.div>
+      )}
+      {error && (
+        <motion.div 
+          className="alert alert-error max-w-md mx-auto mb-4"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          {error}
+        </motion.div>
+      )}
 
-      {/* Profile Card */}
-      <section className="profile-card-section">
-        <div className="profile-card">
-          <div className="profile-avatar-large">
-            {user.name?.charAt(0) || 'U'}
-          </div>
-          <div className="profile-info">
-            <h2>{user.name}</h2>
-            <div className="profile-meta">
-              <span className="profile-meta-item">🆔 {user.loginId}</span>
-              <span className="profile-meta-item">📚 {user.className || 'No class selected'}</span>
-              <span className="profile-meta-item">🎯 {user.group || '—'}</span>
+      {/* Main Profile Hero Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <TiltCard maxAngle={5} scale={1.01} borderRadius="26px" className="profile-hero-card-3d">
+          <div className="profile-hero-inner">
+            <div className="profile-avatar-giant">
+              {user.name?.charAt(0) || 'U'}
             </div>
-            <div className="profile-stats">
-              <div className="profile-stat">
-                <span className="profile-stat-icon">🔥</span>
+
+            <div className="profile-hero-meta">
+              <h2 className="profile-hero-name">{user.name}</h2>
+              <div className="profile-tag-list">
+                <span className="profile-pill-tag">🆔 {user.loginId}</span>
+                <span className="profile-pill-tag">🏫 {user.className || 'Unassigned Grade'}</span>
+                <span className="profile-pill-tag">🎯 {user.group || 'General'}</span>
+              </div>
+            </div>
+
+            <div className="profile-stats-quad">
+              <div className="quad-stat-item">
+                <Flame size={20} className="text-terracotta" />
                 <strong>{user.streak || 0}</strong>
-                <small>Day Streak</small>
+                <span>Day Streak</span>
               </div>
-              <div className="profile-stat">
-                <span className="profile-stat-icon">⭐</span>
+              <div className="quad-stat-item">
+                <Star size={20} className="text-gold" />
                 <strong>{user.xp || 0}</strong>
-                <small>Total XP</small>
+                <span>XP Earned</span>
               </div>
-              <div className="profile-stat">
-                <span className="profile-stat-icon">✅</span>
+              <div className="quad-stat-item">
+                <CheckCircle size={20} className="text-sage" />
                 <strong>{completedLessons.length}</strong>
-                <small>Completed</small>
+                <span>Mastered</span>
               </div>
-              <div className="profile-stat">
-                <span className="profile-stat-icon">🔄</span>
+              <div className="quad-stat-item">
+                <Clock size={20} className="text-espresso" />
                 <strong>{inProgressLessons.length}</strong>
-                <small>In Progress</small>
+                <span>In Progress</span>
               </div>
             </div>
           </div>
-        </div>
+        </TiltCard>
+      </motion.div>
+
+      {/* Grade Switcher Section */}
+      <section className="profile-block-section">
+        <TiltCard maxAngle={4} scale={1.01} borderRadius="20px" className="profile-action-card">
+          <div className="block-header-row">
+            <BookOpen size={20} className="text-terracotta" />
+            <div>
+              <h3 className="block-card-title">Adjust Assigned Grade</h3>
+              <p className="block-card-subtitle">Select your active classroom level to switch syllabus tracks.</p>
+            </div>
+          </div>
+
+          <div className="change-class-row mt-3">
+            <select
+              className="form-select profile-class-dropdown"
+              value={user.className || ''}
+              onChange={handleClassChange}
+              disabled={saving}
+            >
+              <option value="">Choose a class...</option>
+              {classesData?.classes?.map((cls) => (
+                <option key={cls.id} value={cls.name}>
+                  {cls.name} — {cls.group} (Ages {cls.minAge}-{cls.maxAge})
+                </option>
+              ))}
+            </select>
+            {saving && <span className="saving-text">Updating...</span>}
+          </div>
+        </TiltCard>
       </section>
 
-      {/* Change Class */}
-      <section className="profile-section">
-        <h2 className="section-heading">Change Class</h2>
-        <div className="change-class-card">
-          <p>Select your class to update your learning level:</p>
-          <select
-            className="form-select"
-            value={user.className || ''}
-            onChange={handleClassChange}
-            disabled={saving}
-          >
-            <option value="">Select your class...</option>
-            {classesData?.classes?.map((cls) => (
-              <option key={cls.id} value={cls.name}>
-                {cls.name} — {cls.group}
-              </option>
-            ))}
-          </select>
-          {saving && <p className="saving-text">Saving...</p>}
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section className="profile-section">
-        <h2 className="section-heading">Skill Levels</h2>
-        <div className="profile-skills">
+      {/* Skill Levels Breakdown */}
+      <section className="profile-block-section">
+        <h3 className="profile-section-title">Verified Skill Proficiency</h3>
+        <div className="profile-skills-grid">
           {skillsDisplay.map((skill) => {
             const pct = skillLevels[skill.key]?.percentage || 0;
             return (
-              <div key={skill.key} className="profile-skill">
-                <div className="skill-header">
-                  <span className="skill-icon">{skill.icon}</span>
-                  <span className="skill-name">{skill.name}</span>
-                  <span className="skill-percentage">{pct}%</span>
+              <TiltCard key={skill.key} maxAngle={8} scale={1.03} borderRadius="20px" className="skill-level-card">
+                <div className="skill-level-top">
+                  <span className="skill-level-emoji">{skill.icon}</span>
+                  <span className="skill-level-pct">{pct}%</span>
                 </div>
-                <div className="skill-bar">
+                <strong className="skill-level-name">{skill.name}</strong>
+                <div className="skill-3d-track mt-2">
                   <div
-                    className={`skill-bar-fill ${pct >= 70 ? 'fill-green' : pct >= 40 ? 'fill-yellow' : 'fill-red'}`}
-                    style={{ width: `${pct}%` }}
+                    className="skill-3d-fill"
+                    style={{ width: `${pct}%`, background: skill.color }}
                   />
                 </div>
-              </div>
+              </TiltCard>
             );
           })}
         </div>
       </section>
 
-      {/* Completed Lessons */}
-      <section className="profile-section">
-        <h2 className="section-heading">Completed Lessons</h2>
+      {/* Completed History */}
+      <section className="profile-block-section">
+        <h3 className="profile-section-title">Completed Modules</h3>
         {completedLessons.length === 0 ? (
-          <div className="empty-mini">
-            <p>No lessons completed yet. Start learning today!</p>
-            <Link to="/dashboard" className="btn btn-primary">Go to Dashboard</Link>
-          </div>
+          <TiltCard maxAngle={4} scale={1.01} borderRadius="20px" className="empty-history-card">
+            <p>No modules completed yet. Explore your learning dashboard to begin!</p>
+            <Link to="/dashboard" className="btn btn-primary mt-2">Go to Dashboard →</Link>
+          </TiltCard>
         ) : (
-          <div className="completed-lessons-list">
+          <div className="completed-cards-grid">
             {completedLessons.map((p) => (
-              <div key={p._id} className="completed-lesson-item">
-                <span className="lesson-item-icon">{p.lessonId?.icon || '📘'}</span>
-                <div className="lesson-item-info">
+              <TiltCard key={p._id} maxAngle={6} scale={1.02} borderRadius="16px" className="completed-lesson-card">
+                <span className="completed-lesson-icon">{p.lessonId?.icon || '📘'}</span>
+                <div className="completed-lesson-meta">
                   <strong>{p.lessonId?.title || 'Lesson'}</strong>
                   <small>{p.area} • Score: {p.score}%</small>
                 </div>
-                <span className="completed-badge">✓ Completed</span>
-              </div>
+                <span className="completed-status-pill">✓ Done</span>
+              </TiltCard>
             ))}
           </div>
         )}
       </section>
 
-      {/* In Progress Lessons */}
-      {inProgressLessons.length > 0 && (
-        <section className="profile-section">
-          <h2 className="section-heading">In Progress</h2>
-          <div className="completed-lessons-list">
-            {inProgressLessons.map((p) => (
-              <div key={p._id} className="completed-lesson-item">
-                <span className="lesson-item-icon">{p.lessonId?.icon || '📘'}</span>
-                <div className="lesson-item-info">
-                  <strong>{p.lessonId?.title || 'Lesson'}</strong>
-                  <small>{p.area}</small>
-                </div>
-                <Link to={`/lesson/${p.lessonId?._id}`} className="btn btn-small btn-primary">
-                  Continue
-                </Link>
-              </div>
-            ))}
+      {/* Account Info Card */}
+      <section className="profile-block-section">
+        <h3 className="profile-section-title">Security & Account Summary</h3>
+        <TiltCard maxAngle={4} scale={1.01} borderRadius="20px" className="account-summary-card">
+          <div className="summary-row">
+            <span>Account Role:</span>
+            <strong>{user.role === 'ADMIN' ? 'Authorized Administrator' : 'Enrolled Student'}</strong>
           </div>
-        </section>
-      )}
-
-      {/* Account Info */}
-      <section className="profile-section">
-        <h2 className="section-heading">Account Information</h2>
-        <div className="account-info-card">
-          <div className="account-info-row">
-            <span>Account Type</span>
-            <strong>{user.role === 'ADMIN' ? 'Administrator' : 'Student'}</strong>
-          </div>
-          <div className="account-info-row">
-            <span>Login ID</span>
+          <div className="summary-row">
+            <span>Student Login ID:</span>
             <strong>{user.loginId}</strong>
           </div>
-          <div className="account-info-row">
-            <span>Member Since</span>
-            <strong>{new Date(user.createdAt || Date.now()).toLocaleDateString()}</strong>
+          <div className="summary-row">
+            <span>Registration Date:</span>
+            <strong>{new Date(user.createdAt || Date.now()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</strong>
           </div>
-        </div>
+        </TiltCard>
       </section>
     </div>
   );

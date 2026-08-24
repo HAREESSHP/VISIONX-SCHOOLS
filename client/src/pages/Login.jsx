@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { Eye, EyeOff, Building, Users } from 'lucide-react';
+import { Eye, EyeOff, GraduationCap, Users } from 'lucide-react';
+import TiltCard from '../components/TiltCard';
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -43,132 +45,172 @@ export default function Login() {
         navigate('/class-selection');
       }
     } catch (err) {
-      setError(err.message || 'Login failed. Please try again.');
+      setError(err.message || 'Login failed. Please verify your credentials.');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="pro-login-layout">
-      <div className="pro-login-side presentation-side">
-        <div className="presentation-content animate-slide-up">
-          <Link to="/" className="presentation-logo-link">
-            <img src="/visionx-logo.png" alt="VISIONX Logo" className="presentation-logo" />
-            <span className="presentation-brand">VISIONX</span>
+    <div className="login-portal-wrapper">
+      <div className="login-portal-container">
+        {/* Left Presentation Side */}
+        <motion.div 
+          className="login-presentation-side"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <Link to="/" className="presentation-brand-header">
+            <img src="/visionx-logo.png" alt="VISIONX Logo" className="presentation-brand-logo" />
+            <span className="presentation-brand-text">VISIONX</span>
           </Link>
-          <h2 className="presentation-title">Empowering Next-Generation Education</h2>
-          <p className="presentation-subtitle">
-            Welcome to the VisionX platform. Access your personalized learning environment and manage your academic progress with advanced tools.
+          <h1 className="presentation-headline">
+            Where English Learning Comes to Life.
+          </h1>
+          <p className="presentation-subtext">
+            Experience our joyful, structured spoken English curriculum crafted for young learners, educators, and schools.
           </p>
-          <div className="presentation-features">
-            <div className="pro-feature">
-              <div className="pro-feature-icon">✨</div>
-              <span>Interactive Learning</span>
-            </div>
-            <div className="pro-feature">
-              <div className="pro-feature-icon">📊</div>
-              <span>Real-time Progress</span>
-            </div>
-          </div>
-        </div>
-        <div className="presentation-overlay"></div>
-      </div>
 
-      <div className="pro-login-side form-side">
-        <div className="pro-login-card animate-fade-in">
-          <div className="pro-login-header">
-            <h1 className="pro-login-title">
-              {activeTab === 'student' ? 'Student Portal' : 'Educator Portal'}
-            </h1>
-            <p className="pro-login-subtitle">
-              Please enter your credentials to proceed
-            </p>
-          </div>
-
-          <div className="pro-login-tabs-container">
-            <div className="pro-login-tabs">
-              <button 
-                className={`pro-login-tab ${activeTab === 'student' ? 'active' : ''}`}
-                onClick={() => setActiveTab('student')}
-                type="button"
-              >
-                <Users size={18} />
-                Student
-              </button>
-              <button 
-                className={`pro-login-tab ${activeTab === 'teacher' ? 'active' : ''}`}
-                onClick={() => setActiveTab('teacher')}
-                type="button"
-              >
-                <Building size={18} />
-                Teacher
-              </button>
-            </div>
-          </div>
-
-          <form onSubmit={handleSubmit} className="pro-login-form">
-            <div className="pro-form-group">
-              <label htmlFor="loginId">Identifier</label>
-              <div className="pro-input-wrapper">
-                <input
-                  id="loginId"
-                  type="text"
-                  name="loginId"
-                  value={formData.loginId}
-                  onChange={handleChange}
-                  placeholder={activeTab === 'student' ? "e.g., vx-1234" : "e.g., vx-t987"}
-                  autoComplete="username"
-                  required
-                  className="pro-input"
-                />
+          <div className="presentation-feature-list">
+            <motion.div 
+              className="presentation-feature-item"
+              whileHover={{ x: 6 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="feature-icon-badge">🗣️</span>
+              <div>
+                <strong>Spoken Fluency First</strong>
+                <p>Guided pronunciation and real-time interactive practice.</p>
               </div>
-            </div>
+            </motion.div>
+            <motion.div 
+              className="presentation-feature-item"
+              whileHover={{ x: 6 }}
+              transition={{ duration: 0.2 }}
+            >
+              <span className="feature-icon-badge">✨</span>
+              <div>
+                <strong>Gamified Milestones</strong>
+                <p>Track streaks, collect XP rewards, and master skills step-by-step.</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
 
-            <div className="pro-form-group">
-              <label htmlFor="password">Security Key</label>
-              <div className="pro-input-wrapper">
-                <input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="••••••••"
-                  autoComplete="current-password"
-                  required
-                  className="pro-input"
-                />
+        {/* Right Form Card Side with 3D Tilt */}
+        <motion.div 
+          className="login-card-side"
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <TiltCard
+            maxAngle={7}
+            scale={1.01}
+            borderRadius="24px"
+            className="auth-tilt-card"
+          >
+            <div className="auth-card-inner">
+              <div className="auth-card-header">
+                <h2 className="auth-card-title">
+                  {activeTab === 'student' ? 'Student Portal' : 'Teacher Portal'}
+                </h2>
+                <p className="auth-card-subtitle">
+                  Enter your credentials to enter your learning journey.
+                </p>
+              </div>
+
+              {/* Role Toggle Tabs */}
+              <div className="auth-role-tabs">
                 <button 
-                  type="button" 
-                  className="pro-input-icon-right" 
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  className={`auth-role-tab ${activeTab === 'student' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('student')}
+                  type="button"
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  <GraduationCap size={18} />
+                  <span>Student</span>
+                </button>
+                <button 
+                  className={`auth-role-tab ${activeTab === 'teacher' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('teacher')}
+                  type="button"
+                >
+                  <Users size={18} />
+                  <span>Teacher</span>
                 </button>
               </div>
-            </div>
 
-            {error && (
-              <div className="alert alert-error">
-                {error}
+              <form onSubmit={handleSubmit} className="auth-form">
+                <div className="form-group">
+                  <label htmlFor="loginId">User Identifier</label>
+                  <div className="input-wrapper">
+                    <input
+                      id="loginId"
+                      type="text"
+                      name="loginId"
+                      value={formData.loginId}
+                      onChange={handleChange}
+                      placeholder={activeTab === 'student' ? "e.g., vx-1024" : "e.g., vx-t402"}
+                      autoComplete="username"
+                      required
+                      className="no-icon-left"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="password">Security Password</label>
+                  <div className="input-wrapper">
+                    <input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      placeholder="••••••••"
+                      autoComplete="current-password"
+                      required
+                      className="no-icon-left"
+                    />
+                    <button 
+                      type="button" 
+                      className="input-icon-right" 
+                      onClick={() => setShowPassword(!showPassword)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                </div>
+
+                {error && (
+                  <motion.div 
+                    className="alert alert-error"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    {error}
+                  </motion.div>
+                )}
+
+                <motion.button
+                  type="submit"
+                  className="btn btn-primary btn-block btn-large auth-submit-btn"
+                  disabled={loading}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ y: 0 }}
+                >
+                  {loading ? 'Authenticating...' : 'Sign In Now →'}
+                </motion.button>
+              </form>
+
+              <div className="auth-card-footer">
+                <Link to="/" className="auth-back-link">← Return to Homepage</Link>
               </div>
-            )}
-
-            <button
-              type="submit"
-              className="pro-btn-submit"
-              disabled={loading}
-            >
-              {loading ? 'Authenticating...' : 'Secure Sign In'}
-            </button>
-          </form>
-
-          <div className="pro-login-footer">
-            <Link to="/" className="pro-back-link">← Return to Homepage</Link>
-          </div>
-        </div>
+            </div>
+          </TiltCard>
+        </motion.div>
       </div>
     </div>
   );

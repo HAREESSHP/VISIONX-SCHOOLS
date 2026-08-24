@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 
 export default function Layout({ children }) {
@@ -17,10 +18,21 @@ export default function Layout({ children }) {
   return (
     <div className="app-layout">
       {!isHome && user && (
-        <nav className="top-nav">
-          <div className="nav-brand" onClick={() => navigate(user.role === 'ADMIN' ? '/admin' : '/dashboard')}>
+        <motion.nav 
+          className="top-nav"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <motion.div 
+            className="nav-brand" 
+            onClick={() => navigate(user.role === 'ADMIN' ? '/admin' : '/dashboard')}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
             <img src="/visionx-logo.png" alt="VISIONX Logo" className="nav-logo" />
-          </div>
+            <span className="nav-brand-text">VISIONX</span>
+          </motion.div>
 
           <div className="nav-links">
             {user.role === 'ADMIN' ? (
@@ -28,9 +40,14 @@ export default function Layout({ children }) {
                 <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}>
                   Dashboard
                 </Link>
-                <button className="btn btn-small btn-outline" onClick={handleLogout}>
+                <motion.button 
+                  className="btn btn-small btn-outline" 
+                  onClick={handleLogout}
+                  whileHover={{ y: -2, boxShadow: 'var(--shadow-sm)' }}
+                  whileTap={{ y: 0 }}
+                >
                   Logout
-                </button>
+                </motion.button>
               </>
             ) : (
               <>
@@ -47,26 +64,43 @@ export default function Layout({ children }) {
                 <Link to="/profile" className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`}>
                   My Profile
                 </Link>
-                <div className="nav-user">
+                <motion.div 
+                  className="nav-user"
+                  whileHover={{ y: -1, boxShadow: 'var(--shadow-sm)' }}
+                >
                   <span className="nav-avatar">{user.name?.charAt(0) || 'U'}</span>
                   <span className="nav-username">{user.name?.split(' ')[0]}</span>
-                </div>
-                <button className="btn btn-small btn-outline" onClick={handleLogout}>
+                </motion.div>
+                <motion.button 
+                  className="btn btn-small btn-outline" 
+                  onClick={handleLogout}
+                  whileHover={{ y: -2, boxShadow: 'var(--shadow-sm)' }}
+                  whileTap={{ y: 0 }}
+                >
                   Logout
-                </button>
+                </motion.button>
               </>
             )}
           </div>
-        </nav>
+        </motion.nav>
       )}
 
-      <main className={`main-content ${!user || isHome ? 'main-content-center' : ''}`}>
-        {children}
-      </main>
+      <AnimatePresence mode="wait">
+        <motion.main 
+          key={location.pathname}
+          className={`main-content ${!user || isHome ? 'main-content-center' : ''}`}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -14 }}
+          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          {children}
+        </motion.main>
+      </AnimatePresence>
 
       {!isHome && (
         <footer className="app-footer">
-          <p>© 2026 VISIONX English Learning Platform. Made with 💜 for young learners.</p>
+          <p>© 2026 VISIONX English Learning Platform. Crafted for empowered young learners.</p>
         </footer>
       )}
     </div>
