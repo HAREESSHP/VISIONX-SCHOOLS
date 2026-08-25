@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout';
 import Loader from './components/Loader';
+import Global3DBackground from './components/Global3DBackground';
 
 // Lazy-loaded pages
 const Home = lazy(() => import('./pages/Home.jsx'));
@@ -110,6 +111,7 @@ function AppRoutes() {
 function App() {
   return (
     <AuthProvider>
+      <Global3DBackground />
       <AppRoutes />
     </AuthProvider>
   );

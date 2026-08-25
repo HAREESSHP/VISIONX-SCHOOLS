@@ -6917,6 +6917,179 @@ input, select, textarea {
   border: 1px solid rgba(185, 28, 28, 0.3);
 }
 
+/* ============================================================
+   THREE.JS FULL-SITE 3D STYLING & DEPTH ENHANCEMENTS
+   ============================================================ */
+
+/* Global Background Canvas */
+.global-3d-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.85;
+  transition: opacity 0.5s ease;
+}
+
+.global-3d-canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Ensure foreground content stacks gracefully above 3D ambient canvas */
+.app-layout,
+.login-portal-wrapper,
+.student-dashboard-wrapper,
+.lesson-page-container,
+.class-selection-container,
+.profile-page-container,
+.admin-layout {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glassmorphism backing on key layout surfaces for 3D depth */
+.top-nav {
+  background: rgba(245, 237, 224, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(61, 43, 31, 0.1) !important;
+}
+
+.auth-tilt-card,
+.card,
+.dashboard-stat-chip,
+.continue-spotlight-card,
+.area-section-card,
+.lesson-content-card,
+.class-card {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* 1. Login 3D Presentation Showcase */
+.login-presentation-3d-showcase {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-3d-visual-container {
+  width: 100%;
+  max-width: 320px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.login-3d-canvas {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-3d-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: var(--radius-md);
+  filter: drop-shadow(0 14px 28px rgba(61, 43, 31, 0.18));
+}
+
+/* Admin Login 3D Embed */
+.admin-3d-visual-embed {
+  width: 100%;
+  height: 160px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-3d-visual-embed .login-3d-visual-container {
+  max-width: 260px;
+  height: 160px;
+}
+
+/* 2. Dashboard 3D Header Crest */
+.dashboard-3d-header-crest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-3d-visual-wrapper {
+  width: 220px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-3d-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.dashboard-3d-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  filter: drop-shadow(0 8px 20px rgba(196, 163, 105, 0.25));
+}
+
+/* 3. Lesson 3D Voice & Audio Orb */
+.listen-3d-visual-wrapper,
+.speak-3d-visual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.lesson-3d-audio-orb-container {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.lesson-3d-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.lesson-3d-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+  filter: drop-shadow(0 10px 24px rgba(181, 96, 46, 0.25));
+}
+
+@media (max-width: 900px) {
+  .login-presentation-3d-showcase {
+    display: none;
+  }
+  .dashboard-3d-header-crest {
+    display: none;
+  }
+  .lesson-3d-audio-orb-container {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
 
 
 

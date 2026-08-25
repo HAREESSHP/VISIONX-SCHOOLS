@@ -6,6 +6,7 @@ import { getClasses, getClassLessons } from '../services/classService';
 import { getUserSummary } from '../services/progressService';
 import Loader from '../components/Loader';
 import TiltCard from '../components/TiltCard';
+import Dashboard3DVisual from '../components/Dashboard3DVisual';
 import { Flame, Star, Award, ArrowRight, Play, Compass, CheckCircle } from 'lucide-react';
 
 export default function Dashboard() {
@@ -102,6 +103,13 @@ export default function Dashboard() {
             Ready to speak with confidence today? Let's pick up your spoken English milestones.
           </p>
         </motion.div>
+
+        <div className="dashboard-3d-header-crest">
+          <Dashboard3DVisual 
+            streak={summary?.summary?.streak || user.streak || 0} 
+            xp={summary?.summary?.totalXp || user.xp || 0} 
+          />
+        </div>
 
         <motion.div 
           className="dashboard-stats-row"

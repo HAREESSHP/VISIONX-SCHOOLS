@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { Eye, EyeOff, GraduationCap, Users } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
+import Login3DVisual from '../components/Login3DVisual';
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -95,6 +96,10 @@ export default function Login() {
                 <p>Track streaks, collect XP rewards, and master skills step-by-step.</p>
               </div>
             </motion.div>
+          </div>
+
+          <div className="login-presentation-3d-showcase">
+            <Login3DVisual isAdmin={false} />
           </div>
         </motion.div>
 

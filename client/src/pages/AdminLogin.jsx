@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { Eye, EyeOff, ShieldCheck, Lock, ArrowLeft } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
+import Login3DVisual from '../components/Login3DVisual';
 
 export default function AdminLogin() {
   const { adminLogin, user } = useAuth();
@@ -65,6 +66,9 @@ export default function AdminLogin() {
                 <Link to="/" className="inline-block mb-3">
                   <img src="/visionx-logo.png" alt="VISIONX Logo" className="admin-logo-badge" />
                 </Link>
+                <div className="admin-3d-visual-embed">
+                  <Login3DVisual isAdmin={true} />
+                </div>
                 <div className="admin-access-badge">
                   <ShieldCheck size={16} />
                   <span>Secure Administrator Portal</span>

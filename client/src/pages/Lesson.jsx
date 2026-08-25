@@ -6,6 +6,7 @@ import { getLesson } from '../services/lessonService';
 import { saveProgress } from '../services/progressService';
 import Loader from '../components/Loader';
 import TiltCard from '../components/TiltCard';
+import Lesson3DVisual from '../components/Lesson3DVisual';
 import { 
   Volume2, Mic, CheckCircle, ArrowLeft, ArrowRight, 
   Sparkles, Award, Star, Flame, RotateCcw, Play, Check 
@@ -326,12 +327,8 @@ export default function Lesson() {
                 <p className="step-topic-name">Listen attentively to the audio track below and follow the pronunciation.</p>
 
                 <div className="listen-audio-stage">
-                  <div className="audio-wave-bars">
-                    <span className="bar bar-1"></span>
-                    <span className="bar bar-2"></span>
-                    <span className="bar bar-3"></span>
-                    <span className="bar bar-4"></span>
-                    <span className="bar bar-5"></span>
+                  <div className="listen-3d-visual-wrapper">
+                    <Lesson3DVisual isSpeaking={true} isRecording={false} />
                   </div>
 
                   <p className="listen-dialogue-text">"{lesson.content?.listen?.text}"</p>
@@ -410,6 +407,10 @@ export default function Lesson() {
                 <p className="step-topic-name">Click the microphone below and speak clearly into your device.</p>
 
                 <div className="speaking-challenge-card">
+                  <div className="speak-3d-visual-container">
+                    <Lesson3DVisual isRecording={isRecording} isSpeaking={false} />
+                  </div>
+
                   <p className="speaking-prompt-target">"{lesson.content?.speak}"</p>
 
                   <div className="mic-interactive-center">
