@@ -6943,6 +6943,7 @@ input, select, textarea {
 
 /* Ensure foreground content stacks gracefully above 3D ambient canvas */
 .app-layout,
+.lp-container,
 .login-portal-wrapper,
 .student-dashboard-wrapper,
 .lesson-page-container,
