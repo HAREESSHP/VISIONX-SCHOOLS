@@ -18,8 +18,6 @@ export default function Global3DBackground() {
 
     // --- 1. Scene & Camera Setup ---
     const scene = new THREE.Scene();
-    // Add soft atmospheric fog for depth
-    scene.fog = new THREE.FogExp2(0x8B7B72, 0.035);
 
     const width = window.innerWidth;
     const height = window.innerHeight;
