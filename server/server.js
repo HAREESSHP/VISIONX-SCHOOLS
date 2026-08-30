@@ -30,7 +30,6 @@ app.use('/api', apiLimiter);
 
 // ===== Routes =====
 app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/classes', require('./routes/classRoutes'));
 app.use('/api/lessons', require('./routes/lessonRoutes'));
 app.use('/api/progress', require('./routes/progressRoutes'));
@@ -318,8 +317,6 @@ async function seedDatabase() {
       });
       console.log('✅ Seeded admin account');
     }
-
-    // Seed students logic removed
 
     // Seed lessons
     const lessonCount = await Lesson.countDocuments();
