@@ -234,7 +234,7 @@ export default function Home() {
                 </motion.div>
                 <motion.div
                   animate={{ y: [0, 25, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
                   style={{ width: '100%', display: 'flex' }}
                 >
                   <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
@@ -250,8 +250,8 @@ export default function Home() {
                   </TiltCard>
                 </motion.div>
                 <motion.div
-                  animate={{ y: [0, -25, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  animate={{ y: [0, 25, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
                   style={{ width: '100%', display: 'flex' }}
                 >
                   <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
@@ -333,7 +333,7 @@ export default function Home() {
               Ready to Transform Your School's English Standards?
             </h2>
             <p className="lp-section-desc" style={{ color: 'var(--surface-cream)' }}>
-              Book a live walkthrough tailored for principals, directors, and department heads. We'll show you how VisionX integrates seamlessly into your timetable.
+              Book a live walkthrough tailored for principals, directors, and department heads. We'll show you how VisionX integrates seamlessly into your timetable. See how our AI-powered platform reduces teacher workload through automated assessments, real-time analytics, and personalized learning pathways. Discover flexible scheduling options that fit your curriculum, from 2-3 minute daily drills to comprehensive speaking modules. Our experienced team will guide you through implementation, ensuring minimal disruption while maximizing student engagement and measurable results.
             </p>
 
           </motion.div>
@@ -436,7 +436,7 @@ export default function Home() {
                 <img src="/visionx-logo.png" alt="VISIONX Logo" className="footer-brand-logo" />
                 <span className="footer-brand-name" style={{ color: '#ffffff' }}>VISIONX</span>
               </div>
-              <p className="lp-footer-desc">
+              <p className="lp-footer-desc" style={{ textAlign: 'center' }}>
                 Pioneering joyful, active, and structured spoken English learning for schools across India.
               </p>
               <div className="footer-pill-badges">
@@ -498,7 +498,7 @@ export default function Home() {
             <p className="developer-credit">
               Crafted with <span className="heart-pulse">❤️</span> by{' '}
               <a 
-                href="https://linkedin.com/in/hareesh-ai-dev" 
+                href="https://www.linkedin.com/in/hareesh-ai-dev?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="dev-gradient-link"
