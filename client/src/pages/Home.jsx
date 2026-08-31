@@ -215,39 +215,57 @@ export default function Home() {
           <div className="lp-carousel-track">
             {[1, 2].map((loop) => (
               <React.Fragment key={loop}>
-                <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
-                  <div className="lp-review-header">
-                    <div className="lp-review-avatar">S</div>
-                    <div className="lp-review-info">
-                      <h4>Sunshine Public School</h4>
-                      <span>Mrs. Sharma, Principal</span>
+                <motion.div
+                  animate={{ y: [0, -25, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: '100%', display: 'flex' }}
+                >
+                  <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
+                    <div className="lp-review-header">
+                      <div className="lp-review-avatar">S</div>
+                      <div className="lp-review-info">
+                        <h4>Sunshine Public School</h4>
+                        <span>Mrs. Sharma, Principal</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="lp-stars">⭐⭐⭐⭐⭐</div>
-                  <p className="lp-review-text">"The improvement in our students' English fluency is remarkable. Our teachers love the structured delivery!"</p>
-                </TiltCard>
-                <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
-                  <div className="lp-review-header">
-                    <div className="lp-review-avatar" style={{ background: 'linear-gradient(180deg, #4A6B3D 0%, #35502A 100%)' }}>G</div>
-                    <div className="lp-review-info">
-                      <h4>Green Valley Academy</h4>
-                      <span>Mr. Patel, Director</span>
+                    <div className="lp-stars">⭐⭐⭐⭐⭐</div>
+                    <p className="lp-review-text">"The improvement in our students' English fluency is remarkable. Our teachers love the structured delivery!"</p>
+                  </TiltCard>
+                </motion.div>
+                <motion.div
+                  animate={{ y: [0, 25, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: '100%', display: 'flex' }}
+                >
+                  <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
+                    <div className="lp-review-header">
+                      <div className="lp-review-avatar" style={{ background: 'linear-gradient(180deg, #4A6B3D 0%, #35502A 100%)' }}>G</div>
+                      <div className="lp-review-info">
+                        <h4>Green Valley Academy</h4>
+                        <span>Mr. Patel, Director</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="lp-stars">⭐⭐⭐⭐⭐</div>
-                  <p className="lp-review-text">"Interactive, engaging, and exactly what our curriculum needed to build lifelong speaking confidence."</p>
-                </TiltCard>
-                <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
-                  <div className="lp-review-header">
-                    <div className="lp-review-avatar" style={{ background: 'linear-gradient(180deg, #C4A369 0%, #9D7E45 100%)' }}>R</div>
-                    <div className="lp-review-info">
-                      <h4>Royal Heritage School</h4>
-                      <span>Dr. Verma, Principal</span>
+                    <div className="lp-stars">⭐⭐⭐⭐⭐</div>
+                    <p className="lp-review-text">"Interactive, engaging, and exactly what our curriculum needed to build lifelong speaking confidence."</p>
+                  </TiltCard>
+                </motion.div>
+                <motion.div
+                  animate={{ y: [0, -25, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ width: '100%', display: 'flex' }}
+                >
+                  <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
+                    <div className="lp-review-header">
+                      <div className="lp-review-avatar" style={{ background: 'linear-gradient(180deg, #C4A369 0%, #9D7E45 100%)' }}>R</div>
+                      <div className="lp-review-info">
+                        <h4>Royal Heritage School</h4>
+                        <span>Dr. Verma, Principal</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="lp-stars">⭐⭐⭐⭐⭐</div>
-                  <p className="lp-review-text">"Students genuinely look forward to their Spoken English classes. A complete game changer for our school!"</p>
-                </TiltCard>
+                    <div className="lp-stars">⭐⭐⭐⭐⭐</div>
+                    <p className="lp-review-text">"Students genuinely look forward to their Spoken English classes. A complete game changer for our school!"</p>
+                  </TiltCard>
+                </motion.div>
               </React.Fragment>
             ))}
           </div>
