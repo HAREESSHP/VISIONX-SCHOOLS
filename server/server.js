@@ -318,29 +318,41 @@ async function seedDatabase() {
       console.log('✅ Seeded admin account');
     }
 
-    // Seed lessons
+    // Seed lessons for all classes
+    const { CURRICULUM } = require('./data/curriculumData');
+    
+    // Check if we need to seed or enrich lessons with grade-specific curriculum
     const lessonCount = await Lesson.countDocuments();
-    if (lessonCount === 0) {
+    if (lessonCount < 30) {
+      await Lesson.deleteMany({}); // Refresh lessons to populate full 10-grade curriculum
       const lessonsToInsert = [];
-      for (const className of CLASSES.map(c => c.name)) {
-        const classObj = await Class.findOne({ name: className });
+
+      for (const classMeta of CLASSES) {
+        const classObj = await Class.findOne({ name: classMeta.name });
         if (!classObj) continue;
 
-        for (const [area, lessons] of Object.entries(LESSONS)) {
+        const classCurriculum = CURRICULUM[classMeta.name]?.lessons || LESSONS;
+
+        for (const [area, lessons] of Object.entries(classCurriculum)) {
           const areaObj = LEARNING_AREAS.find(a => a.name === area);
-          for (const lesson of lessons) {
+          for (let i = 0; i < lessons.length; i++) {
+            const lesson = lessons[i];
             lessonsToInsert.push({
               classId: classObj._id,
-              className,
+              className: classMeta.name,
               area: area,
               areaIcon: areaObj ? areaObj.icon : '📘',
+              order: i + 1,
               ...lesson
             });
           }
         }
       }
-      await Lesson.insertMany(lessonsToInsert);
-      console.log(`✅ Seeded ${lessonsToInsert.length} lessons`);
+      
+      if (lessonsToInsert.length > 0) {
+        await Lesson.insertMany(lessonsToInsert);
+        console.log(`✅ Seeded ${lessonsToInsert.length} grade-specific lessons across all 10 classes!`);
+      }
     }
   } catch (error) {
     console.error('❌ Seeding error:', error.message);

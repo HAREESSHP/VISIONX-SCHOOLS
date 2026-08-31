@@ -26,6 +26,12 @@ export default function ClassSelection() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // If user is a student and already has an assigned grade, bypass selection and go straight to their dashboard
+    if (user?.role === 'STUDENT' && user?.className) {
+      navigate('/dashboard', { replace: true });
+      return;
+    }
+
     const fetchClasses = async () => {
       try {
         const data = await getClasses();
@@ -38,7 +44,7 @@ export default function ClassSelection() {
     };
 
     fetchClasses();
-  }, []);
+  }, [user, navigate]);
 
   const handleSelect = (cls) => {
     setSelectedClass(cls.name);
