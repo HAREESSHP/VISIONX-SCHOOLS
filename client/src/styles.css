@@ -2947,7 +2947,7 @@ textarea {
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  padding: 8rem 2rem 4rem;
+  padding: 5rem 2rem 2rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -3105,7 +3105,7 @@ textarea {
   justify-content: center;
   width: 100%;
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 0.5rem auto;
   padding: 0 2rem;
 }
 
@@ -3141,10 +3141,10 @@ textarea {
    ============================================ */
 
 .lp-reviews {
-  padding: 5rem 2rem;
+  padding: 2.5rem 2rem;
   background: rgba(43, 39, 36, 0.1);
   width: 100%;
-  margin: 3rem 0;
+  margin: 1rem 0;
 }
 
 .lp-text-center {
@@ -3154,7 +3154,7 @@ textarea {
 .lp-section-subtitle {
   color: var(--surface-cream);
   font-size: 1.1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   text-shadow: 0 1px 4px rgba(43, 39, 36, 0.2);
 }
 
@@ -3243,7 +3243,7 @@ textarea {
    ============================================ */
 
 .lp-clients {
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
@@ -7115,7 +7115,7 @@ textarea {
   position: relative;
   width: 100%;
   max-width: 1200px;
-  margin: 5rem auto 6rem;
+  margin: 3rem auto 3rem;
   padding: 0 1.5rem;
   z-index: 2;
 }
