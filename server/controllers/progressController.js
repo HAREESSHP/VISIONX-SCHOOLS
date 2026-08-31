@@ -2,65 +2,19 @@ const Progress = require('../models/Progress');
 const Lesson = require('../models/Lesson');
 const User = require('../models/User');
 
-// @desc    Save/update progress for a lesson
+// @desc    Save/update progress for a lesson (Stateless - DB storage tracking disabled)
 // @route   POST /api/progress
 // @access  Private
 const saveProgress = async (req, res) => {
   try {
-    const { lessonId, status, score, quizResults, timeSpent } = req.body;
-
-    if (!lessonId) {
-      return res.status(400).json({ message: 'Lesson ID is required' });
-    }
-
-    const lesson = await Lesson.findById(lessonId);
-    if (!lesson) {
-      return res.status(404).json({ message: 'Lesson not found' });
-    }
-
-    // Find existing progress or create new
-    let progress = await Progress.findOne({
-      userId: req.user._id,
-      lessonId
-    });
-
-    if (progress) {
-      progress.status = status || progress.status;
-      if (score !== undefined) progress.score = score;
-      if (quizResults) progress.quizResults = quizResults;
-      if (timeSpent !== undefined) progress.timeSpent = timeSpent;
-      if (status === 'completed') {
-        progress.completedAt = new Date();
-      }
-      await progress.save();
-    } else {
-      progress = await Progress.create({
-        userId: req.user._id,
-        lessonId,
-        className: lesson.className,
-        area: lesson.area,
-        status: status || 'started',
-        score: score || 0,
-        quizResults: quizResults || [],
-        timeSpent: timeSpent || 0,
-        completedAt: status === 'completed' ? new Date() : null
-      });
-    }
-
-    // If completed, award XP
-    if (status === 'completed') {
-      await User.findByIdAndUpdate(req.user._id, {
-        $inc: { xp: 50 }
-      });
-    }
-
+    // Disabled DB progress writes to save storage overhead
     res.json({
-      message: 'Progress saved successfully',
-      progress
+      message: 'Stateless progress acknowledged (DB tracking disabled)',
+      success: true
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server error while saving progress' });
+    res.status(500).json({ message: 'Server error while processing progress' });
   }
 };
 

@@ -151,7 +151,10 @@ export default function Home() {
             </motion.a>
             {user ? (
               <motion.div whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
-                <Link to={user.role === 'ADMIN' ? '/admin' : user.className ? '/dashboard' : '/class-selection'} className="lp-btn lp-btn-primary lp-btn-sm">
+                <Link 
+                  to={user.role === 'ADMIN' ? '/admin' : user.role === 'TEACHER' ? '/dashboard' : `/class/${user.className ? user.className.toLowerCase().replace(' ', '-') : 'class-1'}`} 
+                  className="lp-btn lp-btn-primary lp-btn-sm"
+                >
                   Dashboard
                 </Link>
               </motion.div>
@@ -498,12 +501,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <TiltCard
-              maxAngle={5}
-              scale={1.01}
-              borderRadius="24px"
-              className="lp-demo-card"
-            >
+            <div className="lp-demo-card">
               <div className="demo-card-top-tag">
                 <Sparkles className="tag-sparkle-icon" />
                 <span>Live Interactive Demo</span>
@@ -627,7 +625,7 @@ export default function Home() {
                   )}
                 </button>
               </form>
-            </TiltCard>
+            </div>
           </motion.div>
         </div>
       </section>

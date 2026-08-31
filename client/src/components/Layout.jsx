@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { LogOut } from 'lucide-react';
 
 export default function Layout({ children }) {
   const { user, logout } = useAuth();
@@ -18,19 +19,21 @@ export default function Layout({ children }) {
   return (
     <div className="app-layout">
       {!isHome && user && (
-        <motion.nav
+        <motion.nav 
           className="top-nav"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <motion.div
-            className="nav-brand"
+          <motion.div 
+            className="nav-brand" 
             onClick={() => navigate(user.role === 'ADMIN' ? '/admin' : '/dashboard')}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <img src="/visionx-logo.png" alt="VISIONX Logo" className="nav-logo" />
+            <div className="nav-logo-badge">
+              <img src="/visionx-logo.png" alt="VISIONX Logo" className="nav-logo" />
+            </div>
             <span className="nav-brand-text">VISIONX</span>
           </motion.div>
 
@@ -40,44 +43,75 @@ export default function Layout({ children }) {
                 <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}>
                   Dashboard
                 </Link>
-                <motion.button
-                  className="btn btn-small btn-outline"
+                <motion.button 
+                  className="btn-nav-logout" 
                   onClick={handleLogout}
-                  whileHover={{ y: -2, boxShadow: 'var(--shadow-sm)' }}
-                  whileTap={{ y: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Logout
+                  <LogOut size={14} className="logout-icon" />
+                  <span>Logout</span>
+                </motion.button>
+              </>
+            ) : user.role === 'TEACHER' ? (
+              <>
+                <Link to="/dashboard" className={`nav-link ${location.pathname === '/dashboard' || location.pathname === '/classes' ? 'active' : ''}`}>
+                  Dashboard
+                </Link>
+                <motion.div 
+                  className="nav-user-pill"
+                  whileHover={{ y: -1 }}
+                >
+                  <span className="nav-user-avatar-circle">
+                    {user.name ? user.name.charAt(0).toUpperCase() : 'T'}
+                  </span>
+                  <div className="nav-user-details-col">
+                    <span className="nav-user-fullname">
+                      {user.name ? user.name.charAt(0).toUpperCase() + user.name.slice(1) : 'Teacher'}
+                    </span>
+                    <span className="nav-user-role-label">Teacher</span>
+                  </div>
+                </motion.div>
+                <motion.button 
+                  className="btn-nav-logout" 
+                  onClick={handleLogout}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <LogOut size={14} className="logout-icon" />
+                  <span>Logout</span>
                 </motion.button>
               </>
             ) : (
               <>
-                {user.className && (
-                  <Link to="/dashboard" className={`nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`}>
-                    My Learning
-                  </Link>
-                )}
-                {!user.className && (
-                  <Link to="/class-selection" className={`nav-link ${location.pathname === '/class-selection' ? 'active' : ''}`}>
-                    Choose Class
-                  </Link>
-                )}
-                <Link to="/profile" className={`nav-link ${location.pathname === '/profile' ? 'active' : ''}`}>
-                  My Profile
+                <Link 
+                  to={`/class/${user.className ? user.className.toLowerCase().replace(' ', '-') : 'class-1'}`} 
+                  className={`nav-link ${location.pathname.startsWith('/class/') ? 'active' : ''}`}
+                >
+                  My Learning
                 </Link>
-                <motion.div
-                  className="nav-user"
-                  whileHover={{ y: -1, boxShadow: 'var(--shadow-sm)' }}
+                <motion.div 
+                  className="nav-user-pill"
+                  whileHover={{ y: -1 }}
                 >
-                  <span className="nav-avatar">{user.name?.charAt(0) || 'U'}</span>
-                  <span className="nav-username">{user.name?.split(' ')[0]}</span>
+                  <span className="nav-user-avatar-circle">
+                    {user.name ? user.name.charAt(0).toUpperCase() : 'S'}
+                  </span>
+                  <div className="nav-user-details-col">
+                    <span className="nav-user-fullname">
+                      {user.name ? user.name.charAt(0).toUpperCase() + user.name.slice(1) : 'Student'}
+                    </span>
+                    <span className="nav-user-role-label">{user.className || 'Student'}</span>
+                  </div>
                 </motion.div>
-                <motion.button
-                  className="btn btn-small btn-outline"
+                <motion.button 
+                  className="btn-nav-logout" 
                   onClick={handleLogout}
-                  whileHover={{ y: -2, boxShadow: 'var(--shadow-sm)' }}
-                  whileTap={{ y: 0 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  Logout
+                  <LogOut size={14} className="logout-icon" />
+                  <span>Logout</span>
                 </motion.button>
               </>
             )}

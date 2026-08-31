@@ -11,6 +11,8 @@ const Login = lazy(() => import('./pages/Login.jsx'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin.jsx'));
 const ClassSelection = lazy(() => import('./pages/ClassSelection.jsx'));
 const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
+const TeacherDashboard = lazy(() => import('./pages/TeacherDashboard.jsx'));
+const ClassPortal = lazy(() => import('./pages/ClassPortal.jsx'));
 const Lesson = lazy(() => import('./pages/Lesson.jsx'));
 const Profile = lazy(() => import('./pages/Profile.jsx'));
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout.jsx'));
@@ -42,6 +44,13 @@ const ProtectedRoute = ({ children, adminOnly }) => {
 function AppRoutes() {
   const { user } = useAuth();
 
+  const getStudentClassSlug = () => {
+    if (!user) return 'class-1';
+    if (user.role === 'TEACHER') return 'class-1';
+    if (user.className) return user.className.toLowerCase().replace(' ', '-');
+    return 'class-1';
+  };
+
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
@@ -50,20 +59,42 @@ function AppRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin-login" element={<AdminLogin />} />
 
-        {/* Protected student pages */}
+        {/* 10 Dedicated Class Pages */}
         <Route
-          path="/class-selection"
+          path="/class/:grade"
           element={
             <ProtectedRoute>
-              <Layout><ClassSelection /></Layout>
+              <Layout><ClassPortal /></Layout>
             </ProtectedRoute>
           }
         />
+
+        {/* Teacher Dashboard & Classes Hub */}
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Layout><Dashboard /></Layout>
+              {user?.role === 'TEACHER' ? (
+                <Layout><TeacherDashboard /></Layout>
+              ) : (
+                <Navigate to={`/class/${getStudentClassSlug()}`} replace />
+              )}
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/classes"
+          element={
+            <ProtectedRoute>
+              <Layout><TeacherDashboard /></Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/class-selection"
+          element={
+            <ProtectedRoute>
+              <Navigate to={`/class/${getStudentClassSlug()}`} replace />
             </ProtectedRoute>
           }
         />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
@@ -8,8 +8,6 @@ import TiltCard from '../components/TiltCard';
 export default function Login() {
   const { login, user } = useAuth();
   const navigate = useNavigate();
-
-  const [activeTab, setActiveTab] = useState('student'); // 'student' or 'teacher'
   
   const [formData, setFormData] = useState({
     loginId: '',
@@ -20,9 +18,19 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   // If already logged in, redirect
-  if (user) {
-    navigate(user.role === 'ADMIN' ? '/admin' : user.className ? '/dashboard' : '/class-selection');
-  }
+  useEffect(() => {
+    if (user) {
+      if (user.role === 'ADMIN') {
+        navigate('/admin', { replace: true });
+      } else if (user.role === 'TEACHER') {
+        navigate('/dashboard', { replace: true });
+      } else if (user.className) {
+        navigate(`/class/${user.className.toLowerCase().replace(' ', '-')}`, { replace: true });
+      } else {
+        navigate('/class/class-1', { replace: true });
+      }
+    }
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     setFormData({
@@ -39,10 +47,14 @@ export default function Login() {
 
     try {
       const loggedInUser = await login(formData.loginId, formData.password);
-      if (loggedInUser.className) {
+      if (loggedInUser.role === 'ADMIN') {
+        navigate('/admin');
+      } else if (loggedInUser.role === 'TEACHER') {
         navigate('/dashboard');
+      } else if (loggedInUser.className) {
+        navigate(`/class/${loggedInUser.className.toLowerCase().replace(' ', '-')}`);
       } else {
-        navigate('/class-selection');
+        navigate('/class/class-1');
       }
     } catch (err) {
       setError(err.message || 'Login failed. Please verify your credentials.');
@@ -131,36 +143,16 @@ export default function Login() {
             <div className="auth-card-inner">
               <div className="auth-card-header">
                 <h2 className="auth-card-title">
-                  {activeTab === 'student' ? 'Student Portal' : 'Teacher Portal'}
+                  Learning Portal
                 </h2>
                 <p className="auth-card-subtitle">
                   Enter your credentials to enter your learning journey.
                 </p>
               </div>
 
-              {/* Role Toggle Tabs */}
-              <div className="auth-role-tabs">
-                <button 
-                  className={`auth-role-tab ${activeTab === 'student' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('student')}
-                  type="button"
-                >
-                  <GraduationCap size={18} />
-                  <span>Student</span>
-                </button>
-                <button 
-                  className={`auth-role-tab ${activeTab === 'teacher' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('teacher')}
-                  type="button"
-                >
-                  <Users size={18} />
-                  <span>Teacher</span>
-                </button>
-              </div>
-
               <form onSubmit={handleSubmit} className="auth-form">
                 <div className="form-group">
-                  <label htmlFor="loginId">User Identifier</label>
+                  <label htmlFor="loginId">User Identifier / Login ID</label>
                   <div className="input-icon-wrapper">
                     <User size={18} className="input-lead-icon" />
                     <input
@@ -169,7 +161,7 @@ export default function Login() {
                       name="loginId"
                       value={formData.loginId}
                       onChange={handleChange}
-                      placeholder={activeTab === 'student' ? "rohan" : "teacher_id"}
+                      placeholder="Enter ID given by VISIONX"
                       autoComplete="username"
                       required
                     />
@@ -186,7 +178,7 @@ export default function Login() {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      placeholder="••••••••"
+                      placeholder="Enter your password"
                       autoComplete="current-password"
                       required
                     />
