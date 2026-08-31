@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import TiltCard from '../components/TiltCard';
-import Hero3DThreeScene from '../components/Hero3DThreeScene';
+import Hero3DScene from '../components/Hero3DScene';
 import About3DVisual from '../components/About3DVisual';
 
 export default function Home() {
@@ -166,7 +166,7 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Hero3DThreeScene />
+          <Hero3DScene />
         </motion.div>
       </section>
 
@@ -187,39 +187,8 @@ export default function Home() {
               Learning Designed <em>For</em> Children, Not Delivered <em>At</em> Them.
             </h2>
             <p className="lp-section-desc" style={{ color: 'var(--surface-cream)' }}>
-              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators.
+              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators. From interactive speaking drills to real-time pronunciation feedback, VisionX empowers students to communicate with confidence and clarity. Our adaptive learning paths are tailored to individual needs, making every lesson engaging and effective. Teachers gain powerful insights through detailed progress analytics, enabling them to support each student's unique journey.
             </p>
-
-            <div className="about-3d-highlights">
-              <TiltCard maxAngle={10} scale={1.03} borderRadius="18px" className="about-highlight-box">
-                <span className="highlight-emoji">🎯</span>
-                <div>
-                  <strong>Active Speech Training</strong>
-                  <p>Guided oral drills that eliminate hesitation.</p>
-                </div>
-              </TiltCard>
-              <TiltCard maxAngle={10} scale={1.03} borderRadius="18px" className="about-highlight-box">
-                <span className="highlight-emoji">📊</span>
-                <div>
-                  <strong>Measurable Outcomes</strong>
-                  <p>Granular progress tracking for each student.</p>
-                </div>
-              </TiltCard>
-              <TiltCard maxAngle={10} scale={1.03} borderRadius="18px" className="about-highlight-box">
-                <span className="highlight-emoji">🎓</span>
-                <div>
-                  <strong>98.4% Speech Clarity Gain</strong>
-                  <p>Proven improvement in student fluency.</p>
-                </div>
-              </TiltCard>
-              <TiltCard maxAngle={10} scale={1.03} borderRadius="18px" className="about-highlight-box">
-                <span className="highlight-emoji">🏫</span>
-                <div>
-                  <strong>100+ Schools Nationwide</strong>
-                  <p>Empowering classrooms across the nation.</p>
-                </div>
-              </TiltCard>
-            </div>
           </motion.div>
 
           <motion.div 
