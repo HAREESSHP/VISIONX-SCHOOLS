@@ -3187,6 +3187,7 @@ textarea {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -4916,9 +4917,11 @@ textarea {
   0% {
     transform: rotateX(14deg) rotateY(-18deg) rotateZ(-8deg) scale(1);
   }
+
   50% {
     transform: rotateX(18deg) rotateY(-4deg) rotateZ(8deg) scale(1.02);
   }
+
   100% {
     transform: rotateX(12deg) rotateY(14deg) rotateZ(12deg) scale(1.03);
   }
@@ -7798,6 +7801,7 @@ textarea {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -8123,4 +8127,4 @@ textarea {
   border-radius: 9999px;
   font-size: 0.82rem;
   font-weight: 600;
-}
+}
