@@ -5,47 +5,47 @@ import { User, Lock, Building, Save } from 'lucide-react';
 const Settings = () => {
   const { user } = useAuth();
 
-  // Ultra-Minimalist Styles
+  // Luxury Dark Admin Theme Styles
   const styles = {
     container: {
-      maxWidth: '900px',
+      maxWidth: '920px',
       margin: '0 auto',
-      padding: '2rem 1rem',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
+      padding: '1rem 0'
     },
     header: {
-      marginBottom: '3rem'
+      marginBottom: '2.5rem'
     },
     title: {
-      fontSize: '2rem',
-      fontWeight: '600',
-      letterSpacing: '-0.03em',
-      color: '#000000',
-      margin: '0 0 0.25rem 0'
+      fontSize: '2.2rem',
+      fontWeight: '800',
+      fontFamily: 'var(--font-serif)',
+      color: '#FFFFFF',
+      margin: '0 0 0.4rem 0'
     },
     subtitle: {
       fontSize: '1rem',
-      color: '#86868B',
-      fontWeight: '400',
+      color: 'var(--admin-text-light)',
       margin: 0
     },
     section: {
-      background: '#FFFFFF',
-      borderRadius: '12px',
-      padding: '2rem',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.04)',
+      background: '#271A12',
+      border: '1.5px solid rgba(222, 203, 181, 0.14)',
+      borderRadius: '20px',
+      padding: '2.25rem',
+      boxShadow: '0 16px 36px rgba(0,0,0,0.4)',
       marginBottom: '2rem'
     },
     sectionTitle: {
       display: 'flex',
       alignItems: 'center',
       gap: '0.75rem',
-      fontSize: '1.25rem',
-      fontWeight: '600',
-      color: '#1D1D1F',
+      fontSize: '1.3rem',
+      fontWeight: '800',
+      fontFamily: 'var(--font-serif)',
+      color: '#FFFFFF',
       margin: '0 0 1.5rem 0',
       paddingBottom: '1rem',
-      borderBottom: '1px solid #F5F5F7'
+      borderBottom: '1px solid rgba(222, 203, 181, 0.12)'
     },
     grid: {
       display: 'grid',
@@ -53,35 +53,36 @@ const Settings = () => {
       gap: '1.5rem'
     },
     inputGroup: {
-      marginBottom: '1rem'
+      marginBottom: '1.15rem'
     },
     label: {
       display: 'block',
-      fontSize: '0.85rem',
-      fontWeight: '500',
-      color: '#1D1D1F',
-      marginBottom: '0.25rem'
+      fontSize: '0.86rem',
+      fontWeight: '700',
+      color: 'var(--admin-gold)',
+      marginBottom: '0.4rem',
+      letterSpacing: '0.01em'
     },
     input: {
       width: '100%',
-      padding: '0.65rem 0',
+      padding: '0.85rem 1rem',
       fontSize: '0.95rem',
-      color: '#1D1D1F',
-      background: 'transparent',
-      border: 'none',
-      borderBottom: '1px solid #D2D2D7',
+      color: '#FFFFFF',
+      background: '#1A120C',
+      border: '1.5px solid rgba(222, 203, 181, 0.18)',
+      borderRadius: '10px',
       outline: 'none',
-      transition: 'border-color 0.2s ease',
+      transition: 'all 0.2s ease',
       boxSizing: 'border-box'
     },
     disabledInput: {
       width: '100%',
-      padding: '0.65rem 0',
+      padding: '0.85rem 1rem',
       fontSize: '0.95rem',
-      color: '#86868B',
-      background: 'transparent',
-      border: 'none',
-      borderBottom: '1px solid #F5F5F7',
+      color: 'var(--admin-text-lighter)',
+      background: 'rgba(0,0,0,0.25)',
+      border: '1.5px solid rgba(222, 203, 181, 0.08)',
+      borderRadius: '10px',
       outline: 'none',
       boxSizing: 'border-box',
       cursor: 'not-allowed'
@@ -89,26 +90,29 @@ const Settings = () => {
     submitButton: {
       display: 'inline-flex',
       alignItems: 'center',
-      gap: '0.5rem',
-      background: '#000000',
+      gap: '0.6rem',
+      background: 'linear-gradient(135deg, #B5602E 0%, #8A431B 100%)',
       color: '#FFFFFF',
-      border: 'none',
-      padding: '0.75rem 1.5rem',
-      borderRadius: '8px',
+      border: '1px solid rgba(255, 255, 255, 0.15)',
+      padding: '0.85rem 1.75rem',
+      borderRadius: '9999px',
       fontSize: '0.95rem',
-      fontWeight: '500',
+      fontWeight: '700',
       cursor: 'pointer',
       marginTop: '1rem',
-      transition: 'background 0.2s ease'
+      boxShadow: '0 4px 14px rgba(181, 96, 46, 0.35)',
+      transition: 'all 0.2s ease'
     }
   };
 
   const handleFocus = (e) => {
-    e.target.style.borderColor = '#007AFF';
+    e.target.style.borderColor = 'var(--admin-primary)';
+    e.target.style.boxShadow = '0 0 0 3px rgba(217, 119, 54, 0.2)';
   };
   
   const handleBlur = (e) => {
-    e.target.style.borderColor = '#D2D2D7';
+    e.target.style.borderColor = 'rgba(222, 203, 181, 0.18)';
+    e.target.style.boxShadow = 'none';
   };
 
   return (

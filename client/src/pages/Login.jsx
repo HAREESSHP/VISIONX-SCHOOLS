@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { Eye, EyeOff, GraduationCap, Users } from 'lucide-react';
+import { Eye, EyeOff, GraduationCap, Users, User, Lock, ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
-import Login3DVisual from '../components/Login3DVisual';
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -55,7 +54,8 @@ export default function Login() {
   return (
     <div className="login-portal-wrapper">
       <div className="login-portal-container">
-        {/* Left Presentation Side */}
+        
+        {/* Left Presentation Side with 3D Visual & Feature Cards */}
         <motion.div 
           className="login-presentation-side"
           initial={{ opacity: 0, x: -30 }}
@@ -66,56 +66,68 @@ export default function Login() {
             <img src="/visionx-logo.png" alt="VISIONX Logo" className="presentation-brand-logo" />
             <span className="presentation-brand-text">VISIONX</span>
           </Link>
+
           <h1 className="presentation-headline">
-            Where English Learning Comes to Life.
+            Where English<br />Learning Comes to<br />
+            <span className="highlight-caramel">Life.</span>
           </h1>
+
           <p className="presentation-subtext">
             Experience our joyful, structured spoken English curriculum crafted for young learners, educators, and schools.
           </p>
 
-          <div className="presentation-feature-list">
-            <motion.div 
-              className="presentation-feature-item"
-              whileHover={{ x: 6 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="feature-icon-badge">🗣️</span>
-              <div>
-                <strong>Spoken Fluency First</strong>
-                <p>Guided pronunciation and real-time interactive practice.</p>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="presentation-feature-item"
-              whileHover={{ x: 6 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="feature-icon-badge">✨</span>
-              <div>
-                <strong>Gamified Milestones</strong>
-                <p>Track streaks, collect XP rewards, and master skills step-by-step.</p>
-              </div>
-            </motion.div>
-          </div>
+          <div className="presentation-visual-row">
+            {/* Floating Glassmorphic Feature Cards */}
+            <div className="presentation-feature-list">
+              <motion.div 
+                className="presentation-feature-item"
+                whileHover={{ x: 6, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="feature-icon-clay purple-clay">
+                  <MessageCircle size={22} className="clay-svg-icon" />
+                </div>
+                <div className="feature-item-text">
+                  <strong>Spoken Fluency First</strong>
+                  <p>Guided pronunciation and real-time interactive practice.</p>
+                </div>
+              </motion.div>
 
-          <div className="login-presentation-3d-showcase">
-            <Login3DVisual isAdmin={false} />
+              <motion.div 
+                className="presentation-feature-item"
+                whileHover={{ x: 6, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="feature-icon-clay gold-clay">
+                  <Sparkles size={22} className="clay-svg-icon" />
+                </div>
+                <div className="feature-item-text">
+                  <strong>Gamified Milestones</strong>
+                  <p>Track streaks, collect XP rewards, and master skills step-by-step.</p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* 3D Character Illustration Backdrop */}
+            <div className="login-character-showcase">
+              <div className="character-arch-glow"></div>
+              <img 
+                src="/login-character.jpg" 
+                alt="3D Boy Reading English" 
+                className="login-character-img" 
+              />
+            </div>
           </div>
         </motion.div>
 
-        {/* Right Form Card Side with 3D Tilt */}
+        {/* Right Form Card Side with 3D Claymorphism Tablet */}
         <motion.div 
           className="login-card-side"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <TiltCard
-            maxAngle={7}
-            scale={1.01}
-            borderRadius="24px"
-            className="auth-tilt-card"
-          >
+          <div className="auth-tablet-card">
             <div className="auth-card-inner">
               <div className="auth-card-header">
                 <h2 className="auth-card-title">
@@ -149,24 +161,25 @@ export default function Login() {
               <form onSubmit={handleSubmit} className="auth-form">
                 <div className="form-group">
                   <label htmlFor="loginId">User Identifier</label>
-                  <div className="input-wrapper">
+                  <div className="input-icon-wrapper">
+                    <User size={18} className="input-lead-icon" />
                     <input
                       id="loginId"
                       type="text"
                       name="loginId"
                       value={formData.loginId}
                       onChange={handleChange}
-                      placeholder={activeTab === 'student' ? "e.g., vx-1024" : "e.g., vx-t402"}
+                      placeholder={activeTab === 'student' ? "rohan" : "teacher_id"}
                       autoComplete="username"
                       required
-                      className="no-icon-left"
                     />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="password">Security Password</label>
-                  <div className="input-wrapper">
+                  <div className="input-icon-wrapper">
+                    <Lock size={18} className="input-lead-icon" />
                     <input
                       id="password"
                       type={showPassword ? "text" : "password"}
@@ -176,11 +189,10 @@ export default function Login() {
                       placeholder="••••••••"
                       autoComplete="current-password"
                       required
-                      className="no-icon-left"
                     />
                     <button 
                       type="button" 
-                      className="input-icon-right" 
+                      className="input-eye-btn" 
                       onClick={() => setShowPassword(!showPassword)}
                       aria-label={showPassword ? "Hide password" : "Show password"}
                     >
@@ -199,23 +211,22 @@ export default function Login() {
                   </motion.div>
                 )}
 
-                <motion.button
+                <button
                   type="submit"
-                  className="btn btn-primary btn-block btn-large auth-submit-btn"
+                  className="auth-submit-btn-pro"
                   disabled={loading}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ y: 0 }}
                 >
                   {loading ? 'Authenticating...' : 'Sign In Now →'}
-                </motion.button>
+                </button>
               </form>
 
               <div className="auth-card-footer">
                 <Link to="/" className="auth-back-link">← Return to Homepage</Link>
               </div>
             </div>
-          </TiltCard>
+          </div>
         </motion.div>
+
       </div>
     </div>
   );

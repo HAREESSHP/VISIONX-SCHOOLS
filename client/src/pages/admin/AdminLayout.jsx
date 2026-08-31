@@ -44,7 +44,10 @@ const AdminLayout = () => {
       {/* Sidebar */}
       <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <div className="admin-sidebar-header">
-          <img src="/visionx-logo.png" alt="VISIONX Logo" style={{ height: '36px', objectFit: 'contain' }} />
+          <NavLink to="/admin" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+            <img src="/visionx-logo.png" alt="VISIONX Logo" style={{ height: '38px', width: '38px', objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+            <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '0.04em' }}>VISIONX</span>
+          </NavLink>
           <button className="admin-close-btn" onClick={() => setIsSidebarOpen(false)}>
             <X size={24} />
           </button>

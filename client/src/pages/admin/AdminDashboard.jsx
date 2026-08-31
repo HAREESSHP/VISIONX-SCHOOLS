@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Users, 
@@ -26,7 +27,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/admin/analytics', {
+        const response = await fetch('/api/admin/analytics', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -51,29 +52,33 @@ const AdminDashboard = () => {
       title: 'Total Students', 
       value: stats.totalStudents, 
       icon: <GraduationCap size={28} />, 
-      color: '#4F46E5', // Indigo
-      bg: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)'
+      color: '#C4A369', // Golden Tan
+      bg: 'linear-gradient(135deg, rgba(196, 163, 105, 0.2) 0%, rgba(181, 96, 46, 0.25) 100%)',
+      border: '1px solid rgba(196, 163, 105, 0.35)'
     },
     { 
       title: 'Total Teachers', 
       value: stats.totalTeachers, 
       icon: <Users size={28} />, 
-      color: '#8B5CF6', // Purple
-      bg: 'linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%)'
+      color: '#A78BFA', // Purple
+      bg: 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(109, 40, 217, 0.25) 100%)',
+      border: '1px solid rgba(139, 92, 246, 0.35)'
     },
     { 
       title: 'Active IDs', 
       value: stats.activeUsers, 
       icon: <KeyRound size={28} />, 
-      color: '#10B981', // Emerald
-      bg: 'linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%)'
+      color: '#34D399', // Emerald
+      bg: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.25) 100%)',
+      border: '1px solid rgba(16, 185, 129, 0.35)'
     },
     { 
       title: 'Revoked IDs', 
       value: stats.revokedUsers, 
       icon: <AlertCircle size={28} />, 
-      color: '#EF4444', // Red
-      bg: 'linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%)'
+      color: '#F87171', // Red
+      bg: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(220, 38, 38, 0.25) 100%)',
+      border: '1px solid rgba(239, 68, 68, 0.35)'
     },
   ];
 
@@ -81,8 +86,8 @@ const AdminDashboard = () => {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh', color: 'var(--admin-text-light)' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-          <Activity size={32} className="animate-spin" />
-          <p style={{ fontWeight: 500 }}>Loading Dashboard Data...</p>
+          <Activity size={32} className="animate-spin" style={{ color: 'var(--admin-primary)' }} />
+          <p style={{ fontWeight: 600, color: 'var(--admin-text-light)' }}>Loading Dashboard Data...</p>
         </div>
       </div>
     );
@@ -95,10 +100,10 @@ const AdminDashboard = () => {
           <h2>Dashboard Overview</h2>
           <p>Welcome back! Here's a quick summary of your platform's activity.</p>
         </div>
-        <button className="admin-btn admin-btn-primary">
+        <Link to="/admin/generate" className="admin-btn admin-btn-primary" style={{ textDecoration: 'none' }}>
           <UserPlus size={18} />
           Generate New ID
-        </button>
+        </Link>
       </div>
 
       <div style={{ 
@@ -113,17 +118,18 @@ const AdminDashboard = () => {
               <div style={{ 
                 width: '56px', height: '56px', borderRadius: '16px', 
                 background: stat.bg, color: stat.color, 
+                border: stat.border,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)'
+                boxShadow: '0 4px 14px rgba(0,0,0,0.2)'
               }}>
                 {stat.icon}
               </div>
-              <div style={{ background: '#F3F4F6', padding: '0.25rem 0.5rem', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', fontWeight: 600, color: 'var(--admin-text-light)' }}>
-                <ArrowUpRight size={14} /> 12%
+              <div style={{ background: 'rgba(245, 237, 224, 0.08)', padding: '0.3rem 0.65rem', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.78rem', fontWeight: 700, color: '#34D399', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
+                <ArrowUpRight size={14} /> +12%
               </div>
             </div>
             <div>
-              <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '2.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--admin-text)' }}>
+              <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '2.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: '#FFFFFF' }}>
                 {stat.value}
               </h3>
               <p style={{ margin: 0, color: 'var(--admin-text-light)', fontSize: '0.95rem', fontWeight: 600 }}>{stat.title}</p>
@@ -135,11 +141,11 @@ const AdminDashboard = () => {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
         <div className="admin-card">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.25rem' }}>
+            <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.25rem', color: '#FFFFFF' }}>
               <Activity size={20} color="var(--admin-primary)" />
               Recent Activity
             </h3>
-            <button className="admin-btn" style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem', background: 'var(--admin-bg)', color: 'var(--admin-text)' }}>View All</button>
+            <button className="admin-btn" style={{ fontSize: '0.8rem', padding: '0.4rem 0.8rem', background: 'rgba(245, 237, 224, 0.08)', color: '#FFFFFF', border: '1px solid var(--admin-border)' }}>View All</button>
           </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
