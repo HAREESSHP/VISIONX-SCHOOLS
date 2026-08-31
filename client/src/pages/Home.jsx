@@ -434,7 +434,7 @@ export default function Home() {
             <div className="lp-footer-col brand-col">
               <div className="footer-brand-title">
                 <img src="/visionx-logo.png" alt="VISIONX Logo" className="footer-brand-logo" />
-                <span className="footer-brand-name">VISIONX</span>
+                <span className="footer-brand-name" style={{ color: '#ffffff' }}>VISIONX</span>
               </div>
               <p className="lp-footer-desc">
                 Pioneering joyful, active, and structured spoken English learning for schools across India.
