@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import TiltCard from '../components/TiltCard';
-import Hero3DScene from '../components/Hero3DScene';
+import Hero3DThreeScene from '../components/Hero3DThreeScene';
 import About3DVisual from '../components/About3DVisual';
 
 export default function Home() {
@@ -166,7 +166,7 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Hero3DScene />
+          <Hero3DThreeScene />
         </motion.div>
       </section>
 
@@ -187,8 +187,7 @@ export default function Home() {
               Learning Designed <em>For</em> Children, Not Delivered <em>At</em> Them.
             </h2>
             <p className="lp-section-desc" style={{ color: 'var(--surface-cream)' }}>
-              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. 
-              Our platform blends guided AI speech training with structured lesson delivery that supports educators.
+              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators.
             </p>
 
             <div className="about-3d-highlights">
@@ -204,6 +203,20 @@ export default function Home() {
                 <div>
                   <strong>Measurable Outcomes</strong>
                   <p>Granular progress tracking for each student.</p>
+                </div>
+              </TiltCard>
+              <TiltCard maxAngle={10} scale={1.03} borderRadius="18px" className="about-highlight-box">
+                <span className="highlight-emoji">🎓</span>
+                <div>
+                  <strong>98.4% Speech Clarity Gain</strong>
+                  <p>Proven improvement in student fluency.</p>
+                </div>
+              </TiltCard>
+              <TiltCard maxAngle={10} scale={1.03} borderRadius="18px" className="about-highlight-box">
+                <span className="highlight-emoji">🏫</span>
+                <div>
+                  <strong>100+ Schools Nationwide</strong>
+                  <p>Empowering classrooms across the nation.</p>
                 </div>
               </TiltCard>
             </div>
@@ -336,29 +349,6 @@ export default function Home() {
               Book a live walkthrough tailored for principals, directors, and department heads. We'll show you how VisionX integrates seamlessly into your timetable.
             </p>
 
-            <div className="demo-3d-badges">
-              <TiltCard maxAngle={8} scale={1.03} borderRadius="16px" className="demo-perk-card">
-                <span className="perk-3d-icon">⚡</span>
-                <div>
-                  <strong>Turnkey School Setup</strong>
-                  <p>Full student & teacher IDs generated in under 24 hours.</p>
-                </div>
-              </TiltCard>
-              <TiltCard maxAngle={8} scale={1.03} borderRadius="16px" className="demo-perk-card">
-                <span className="perk-3d-icon">🔒</span>
-                <div>
-                  <strong>Protected Student Data</strong>
-                  <p>Role-based access security built specifically for schools.</p>
-                </div>
-              </TiltCard>
-              <TiltCard maxAngle={8} scale={1.03} borderRadius="16px" className="demo-perk-card">
-                <span className="perk-3d-icon">📈</span>
-                <div>
-                  <strong>Principal Analytics</strong>
-                  <p>Live visibility into class-by-class student learning pace.</p>
-                </div>
-              </TiltCard>
-            </div>
           </motion.div>
 
           {/* Right 3D Form Card */}

@@ -1,0 +1,21 @@
+<svg width="220" height="72" viewBox="0 0 220 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vxGradient" x1="12" y1="12" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9D06B"/>
+      <stop offset="0.55" stop-color="#F2A93B"/>
+      <stop offset="1" stop-color="#D96B23"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="72" fill="transparent"/>
+  <g>
+    <path d="M20 20L36 42L52 20H63L42 50L21 20H20Z" fill="url(#vxGradient)"/>
+    <path d="M45 10L50 24L65 29L50 35L45 49L40 35L25 29L40 24L45 10Z" fill="url(#vxGradient)"/>
+    <path d="M59 21L64.5 36L82 42L64.5 48L59 63L53.5 48L36 42L53.5 36L59 21Z" fill="url(#vxGradient)" opacity="0.9"/>
+  </g>
+  <g fill="#F3F0EA">
+    <path d="M88 27V47H97.2L106.3 32.7L115.5 47H124.8V27H116.4V38.8L109 28.3H103.6L96.3 38.8V27H88Z"/>
+    <path d="M132 27H140.2L148.5 41.5L156.8 27H165V47H156.9V33.1L150.7 44.8H146.3L140.2 33.1V47H132V27Z"/>
+    <path d="M170 27H178.4V38.1H191V47H170V27Z"/>
+    <path d="M177.5 25.2H190.8V17.9H177.5V25.2Z" fill="#F4B45C"/>
+  </g>
+</svg>
