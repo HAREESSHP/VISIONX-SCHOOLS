@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { API_URL } from '../../services/api';
 import { 
   Search, 
   MoreVertical, 
@@ -35,7 +36,7 @@ const UserList = ({ role }) => {
       if (filterSchool) params.append('schoolName', filterSchool);
       if (searchTerm) params.append('search', searchTerm);
 
-      const response = await fetch(`http://localhost:5000/api/admin/users?${params}`, {
+      const response = await fetch(`${API_URL}/admin/users?${params}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -53,7 +54,7 @@ const UserList = ({ role }) => {
     // Fetch unique schools for filter dropdown
     const fetchSchools = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/admin/schools', {
+        const response = await fetch(`${API_URL}/admin/schools`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();
@@ -79,15 +80,15 @@ const UserList = ({ role }) => {
     let url = '';
     let method = 'PUT';
 
-    if (type === 'revoke') url = `/api/admin/users/${userId}/revoke`;
-    if (type === 'reset') url = `/api/admin/users/${userId}/reset-password`;
+    if (type === 'revoke') url = `/admin/users/${userId}/revoke`;
+    if (type === 'reset') url = `/admin/users/${userId}/reset-password`;
     if (type === 'delete') {
-      url = `/api/admin/users/${userId}`;
+      url = `/admin/users/${userId}`;
       method = 'DELETE';
     }
 
     try {
-      const response = await fetch(`http://localhost:5000${url}`, {
+      const response = await fetch(`${API_URL}${url}`, {
         method,
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -18,6 +18,7 @@ import {
   AlertCircle 
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../services/api';
 import TiltCard from '../components/TiltCard';
 import Hero3DScene from '../components/Hero3DScene';
 import About3DVisual from '../components/About3DVisual';
@@ -60,7 +61,7 @@ export default function Home() {
 
     try {
       // 1. Submit to backend API (/api/demo -> MongoDB)
-      const res = await fetch("/api/demo", {
+      const res = await fetch(`${API_URL}/demo`, {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'

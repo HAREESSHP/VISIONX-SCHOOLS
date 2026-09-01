@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Download } from 'lucide-react';
+import { API_URL } from '../../services/api';
 
 const Analytics = () => {
   const { token } = useAuth();
@@ -9,7 +10,7 @@ const Analytics = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/admin/analytics', {
+        const response = await fetch(`${API_URL}/admin/analytics`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();

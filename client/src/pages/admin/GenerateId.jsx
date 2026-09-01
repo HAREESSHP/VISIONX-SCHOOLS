@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { API_URL } from '../../services/api';
 import { Check, Copy, AlertCircle } from 'lucide-react';
 
 const GenerateId = () => {
@@ -34,7 +35,7 @@ const GenerateId = () => {
     setCopied(false);
 
     try {
-      const response = await fetch('/api/admin/generate-id', {
+      const response = await fetch(`${API_URL}/admin/generate-id`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
