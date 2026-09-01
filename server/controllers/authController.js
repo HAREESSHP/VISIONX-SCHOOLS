@@ -46,6 +46,13 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid login ID or password' });
     }
 
+    // STRICT CHECK: Top navbar portal (/login) is strictly for Students and Teachers
+    if (user.role === 'ADMIN') {
+      return res.status(403).json({ 
+        message: 'This portal is for Students and Teachers only. Administrators must log in through the Admin Access link in the footer.' 
+      });
+    }
+
     // Check password: match standard, lowercase, or auto-prefix variations
     let isPasswordCorrect = await bcrypt.compare(password, user.password);
     
@@ -123,9 +130,10 @@ const loginAdmin = async (req, res) => {
       return res.status(401).json({ message: 'Invalid admin credentials' });
     }
 
+    // STRICT CHECK: Footer portal (/admin-login) is strictly for Admins (Rohan)
     if (user.role !== 'ADMIN') {
-      return res.status(401).json({ 
-        message: 'This portal is for Administrators only. Please log in using the Student/Teacher Login page.' 
+      return res.status(403).json({ 
+        message: 'This portal is for Administrators only. Please log in using the Student/Teacher Login page in the navbar.' 
       });
     }
 

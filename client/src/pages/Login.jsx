@@ -47,9 +47,7 @@ export default function Login() {
 
     try {
       const loggedInUser = await login(formData.loginId, formData.password);
-      if (loggedInUser.role === 'ADMIN') {
-        navigate('/admin');
-      } else if (loggedInUser.role === 'TEACHER') {
+      if (loggedInUser.role === 'TEACHER') {
         navigate('/dashboard');
       } else if (loggedInUser.className) {
         navigate(`/class/${loggedInUser.className.toLowerCase().replace(' ', '-')}`);
