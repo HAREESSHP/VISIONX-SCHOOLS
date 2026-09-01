@@ -15,7 +15,9 @@ import {
   BarChart3, 
   CalendarCheck, 
   Loader2, 
-  AlertCircle 
+  AlertCircle,
+  Menu,
+  X 
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { API_URL } from '../services/api';
@@ -38,6 +40,7 @@ export default function Home() {
   const [submitting, setSubmitting] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [highlightDemo, setHighlightDemo] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Smooth scroll and focus to the Book Demo section
   const scrollToDemo = (e) => {
@@ -45,6 +48,7 @@ export default function Home() {
       if (typeof e.preventDefault === 'function') e.preventDefault();
       if (typeof e.stopPropagation === 'function') e.stopPropagation();
     }
+    setMobileMenuOpen(false);
     const demoSection = document.getElementById('book-demo');
     if (demoSection) {
       const yOffset = -80;
@@ -67,6 +71,7 @@ export default function Home() {
   // Generic smooth scroll helper for page sections
   const scrollToSection = (id, e) => {
     if (e) e.preventDefault();
+    setMobileMenuOpen(false);
     if (id === 'book-demo') {
       scrollToDemo(e);
       return;
@@ -181,31 +186,87 @@ export default function Home() {
           </div>
 
           <div className="lp-nav-right">
-            <motion.button 
+            <div className="lp-desktop-actions">
+              <motion.button 
+                type="button"
+                onClick={scrollToDemo} 
+                className="lp-btn lp-btn-outline lp-btn-sm"
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+              >
+                Book Demo
+              </motion.button>
+              {user ? (
+                <motion.div whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+                  <Link 
+                    to={user.role === 'ADMIN' ? '/admin' : user.role === 'TEACHER' ? '/dashboard' : `/class/${user.className ? user.className.toLowerCase().replace(' ', '-') : 'class-1'}`} 
+                    className="lp-btn lp-btn-primary lp-btn-sm"
+                  >
+                    Dashboard
+                  </Link>
+                </motion.div>
+              ) : (
+                <motion.div whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
+                  <Link to="/login" className="lp-btn lp-btn-secondary lp-btn-sm">Student/Teacher Login</Link>
+                </motion.div>
+              )}
+            </div>
+
+            {/* Mobile Navigation Menu Toggle Button */}
+            <button 
               type="button"
-              onClick={scrollToDemo} 
-              className="lp-btn lp-btn-outline lp-btn-sm"
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
+              className="lp-mobile-toggle"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
             >
-              Book Demo
-            </motion.button>
-            {user ? (
-              <motion.div whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
-                <Link 
-                  to={user.role === 'ADMIN' ? '/admin' : user.role === 'TEACHER' ? '/dashboard' : `/class/${user.className ? user.className.toLowerCase().replace(' ', '-') : 'class-1'}`} 
-                  className="lp-btn lp-btn-primary lp-btn-sm"
-                >
-                  Dashboard
-                </Link>
-              </motion.div>
-            ) : (
-              <motion.div whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
-                <Link to="/login" className="lp-btn lp-btn-secondary lp-btn-sm">Student/Teacher Login</Link>
-              </motion.div>
-            )}
+              {mobileMenuOpen ? <X size={24} strokeWidth={2.5} /> : <Menu size={24} strokeWidth={2.5} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Backdrop & Drawer */}
+        {mobileMenuOpen && (
+          <>
+            <div 
+              className="lp-mobile-backdrop" 
+              onClick={() => setMobileMenuOpen(false)} 
+              aria-hidden="true"
+            />
+            <div className="lp-mobile-menu">
+              <a href="#about" onClick={(e) => scrollToSection('about', e)}>About VisionX</a>
+              <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)}>School Reviews</a>
+              <a href="#clients" onClick={(e) => scrollToSection('clients', e)}>Fluency Journey</a>
+              <a href="#contact" onClick={(e) => scrollToSection('contact', e)}>Contact Us</a>
+              <div className="lp-mobile-actions">
+                <button 
+                  type="button" 
+                  onClick={scrollToDemo} 
+                  className="lp-btn lp-btn-primary"
+                >
+                  Book Live Demo
+                </button>
+                {user ? (
+                  <Link 
+                    to={user.role === 'ADMIN' ? '/admin' : user.role === 'TEACHER' ? '/dashboard' : `/class/${user.className ? user.className.toLowerCase().replace(' ', '-') : 'class-1'}`}
+                    className="lp-btn lp-btn-secondary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Go to Dashboard
+                  </Link>
+                ) : (
+                  <Link 
+                    to="/login" 
+                    className="lp-btn lp-btn-secondary"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Student / Teacher Login
+                  </Link>
+                )}
+              </div>
+            </div>
+          </>
+        )}
       </motion.nav>
 
       {/* 2. Hero Section with Real WebGL 3D Scene */}
@@ -246,6 +307,13 @@ export default function Home() {
               </motion.button>
             </div>
 
+            {/* Quick Mobile Trust Metric Strip */}
+            <div className="lp-hero-trust-strip">
+              <span className="trust-pill"><Sparkles size={14} className="trust-pill-icon" /> 100+ Partner Schools</span>
+              <span className="trust-pill"><ShieldCheck size={14} className="trust-pill-icon" /> CEFR Aligned</span>
+              <span className="trust-pill"><BarChart3 size={14} className="trust-pill-icon" /> AI Speech Scoring</span>
+            </div>
+
             <div className="lp-scroll-mouse" aria-label="Scroll down">
               <span className="lp-scroll-wheel"></span>
             </div>
@@ -279,8 +347,40 @@ export default function Home() {
               Learning Designed <em>For</em> Children, Not Delivered <em>At</em> Them.
             </h2>
             <p className="lp-section-desc" style={{ color: 'var(--surface-cream)' }}>
-              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators. From interactive speaking drills to real-time pronunciation feedback, VisionX empowers students to communicate with confidence and clarity. Our adaptive learning paths are tailored to individual needs, making every lesson engaging and effective. Teachers gain powerful insights through detailed progress analytics, enabling them to support each student's unique journey.
+              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators.
             </p>
+
+            {/* 4 Feature Highlight Chips for quick mobile scanning */}
+            <div className="about-feature-chips">
+              <div className="feature-chip">
+                <span className="feature-chip-icon">🗣️</span>
+                <div className="feature-chip-text">
+                  <strong>Active Speaking Drills</strong>
+                  <p>Daily classroom voice practice</p>
+                </div>
+              </div>
+              <div className="feature-chip">
+                <span className="feature-chip-icon">🎯</span>
+                <div className="feature-chip-text">
+                  <strong>AI Speech & Pronunciation</strong>
+                  <p>Real-time phonetic feedback</p>
+                </div>
+              </div>
+              <div className="feature-chip">
+                <span className="feature-chip-icon">📊</span>
+                <div className="feature-chip-text">
+                  <strong>Teacher Analytics Hub</strong>
+                  <p>Automated classroom diagnosis</p>
+                </div>
+              </div>
+              <div className="feature-chip">
+                <span className="feature-chip-icon">🏫</span>
+                <div className="feature-chip-text">
+                  <strong>Nursery to Grade 10</strong>
+                  <p>Structured curriculum growth</p>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div 
