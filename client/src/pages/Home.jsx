@@ -37,6 +37,45 @@ export default function Home() {
   const [demoStatus, setDemoStatus] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [highlightDemo, setHighlightDemo] = useState(false);
+
+  // Smooth scroll and focus to the Book Demo section
+  const scrollToDemo = (e) => {
+    if (e) {
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+      if (typeof e.stopPropagation === 'function') e.stopPropagation();
+    }
+    const demoSection = document.getElementById('book-demo');
+    if (demoSection) {
+      const yOffset = -80;
+      const y = demoSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+
+      setHighlightDemo(true);
+      setTimeout(() => {
+        const input = demoSection.querySelector('input[name="schoolName"]');
+        if (input) {
+          input.focus({ preventScroll: true });
+        }
+      }, 500);
+      setTimeout(() => {
+        setHighlightDemo(false);
+      }, 2500);
+    }
+  };
+
+  // Generic smooth scroll helper for page sections
+  const scrollToSection = (id, e) => {
+    if (e) e.preventDefault();
+    if (id === 'book-demo') {
+      scrollToDemo(e);
+      return;
+    }
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   // Handle navbar scroll effect
   useEffect(() => {
@@ -135,21 +174,22 @@ export default function Home() {
           </div>
 
           <div className="lp-nav-center">
-            <a href="#about" className="lp-nav-link">About</a>
-            <a href="#reviews" className="lp-nav-link">Reviews</a>
-            <a href="#clients" className="lp-nav-link">Student Path</a>
-            <a href="#contact" className="lp-nav-link">Contact</a>
+            <a href="#about" onClick={(e) => scrollToSection('about', e)} className="lp-nav-link">About</a>
+            <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)} className="lp-nav-link">Reviews</a>
+            <a href="#clients" onClick={(e) => scrollToSection('clients', e)} className="lp-nav-link">Student Path</a>
+            <a href="#contact" onClick={(e) => scrollToSection('contact', e)} className="lp-nav-link">Contact</a>
           </div>
 
           <div className="lp-nav-right">
-            <motion.a 
-              href="#book-demo" 
+            <motion.button 
+              type="button"
+              onClick={scrollToDemo} 
               className="lp-btn lp-btn-outline lp-btn-sm"
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
               Book Demo
-            </motion.a>
+            </motion.button>
             {user ? (
               <motion.div whileHover={{ y: -2 }} whileTap={{ y: 0 }}>
                 <Link 
@@ -188,20 +228,22 @@ export default function Home() {
             <div className="lp-hero-actions">
               <motion.a 
                 href="#about" 
+                onClick={(e) => scrollToSection('about', e)}
                 className="lp-btn lp-btn-primary lp-btn-lg"
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
                 Explore Platform
               </motion.a>
-              <motion.a 
-                href="#book-demo" 
+              <motion.button 
+                type="button"
+                onClick={scrollToDemo} 
                 className="lp-btn lp-btn-secondary lp-btn-lg"
                 whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
                 Book Live Demo
-              </motion.a>
+              </motion.button>
             </div>
 
             <div className="lp-scroll-mouse" aria-label="Scroll down">
@@ -502,7 +544,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <div className="lp-demo-card">
+            <div className={`lp-demo-card ${highlightDemo ? 'highlight-pulse' : ''}`}>
               <div className="demo-card-top-tag">
                 <Sparkles className="tag-sparkle-icon" />
                 <span>Live Interactive Demo</span>
@@ -639,18 +681,25 @@ export default function Home() {
 
         {/* Floating Top CTA Ribbon Card */}
         <div className="lp-footer-cta-container">
-          <TiltCard maxAngle={5} scale={1.01} borderRadius="24px" className="lp-footer-cta-card">
+          <div className="lp-footer-cta-card">
             <div className="cta-card-left">
               <span className="cta-sparkle-pill">✨ Empower Your Classroom</span>
               <h3 className="cta-card-heading">Ready to revolutionize English speaking at your school?</h3>
               <p className="cta-card-sub">Join over 100+ partner schools and watch your students speak with confidence.</p>
             </div>
             <div className="cta-card-right">
-              <a href="#book-demo" className="lp-btn lp-btn-vibrant">
+              <motion.button 
+                type="button"
+                onClick={scrollToDemo} 
+                className="lp-btn lp-btn-vibrant"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ border: 'none', cursor: 'pointer' }}
+              >
                 <span>Book a Live Demo →</span>
-              </a>
+              </motion.button>
             </div>
-          </TiltCard>
+          </div>
         </div>
 
         <div className="lp-footer-main">
@@ -675,11 +724,11 @@ export default function Home() {
             <div className="lp-footer-col">
               <h4 className="lp-footer-heading">Navigation</h4>
               <ul className="footer-nav-links">
-                <li><a href="#home" className="footer-link"><span className="link-bullet bullet-coral"></span>Home</a></li>
-                <li><a href="#about" className="footer-link"><span className="link-bullet bullet-gold"></span>About VisionX</a></li>
-                <li><a href="#reviews" className="footer-link"><span className="link-bullet bullet-sage"></span>School Reviews</a></li>
-                <li><a href="#clients" className="footer-link"><span className="link-bullet bullet-indigo"></span>Fluency Journey</a></li>
-                <li><a href="#book-demo" className="footer-link"><span className="link-bullet bullet-teal"></span>Request Demo</a></li>
+                <li><a href="#home" onClick={(e) => scrollToSection('home', e)} className="footer-link"><span className="link-bullet bullet-coral"></span>Home</a></li>
+                <li><a href="#about" onClick={(e) => scrollToSection('about', e)} className="footer-link"><span className="link-bullet bullet-gold"></span>About VisionX</a></li>
+                <li><a href="#reviews" onClick={(e) => scrollToSection('reviews', e)} className="footer-link"><span className="link-bullet bullet-sage"></span>School Reviews</a></li>
+                <li><a href="#clients" onClick={(e) => scrollToSection('clients', e)} className="footer-link"><span className="link-bullet bullet-indigo"></span>Fluency Journey</a></li>
+                <li><a href="#book-demo" onClick={scrollToDemo} className="footer-link"><span className="link-bullet bullet-teal"></span>Request Demo</a></li>
                 <li><Link to="/login" className="footer-link"><span className="link-bullet bullet-amber"></span>Student/Teacher Portal</Link></li>
                 <li><Link to="/admin-login" className="footer-link"><span className="link-bullet bullet-purple"></span>Admin Access</Link></li>
               </ul>
