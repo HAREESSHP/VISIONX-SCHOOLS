@@ -11,23 +11,37 @@ exports.generateId = async (req, res) => {
 
     let loginId = '';
     let password = '';
+    let cleanAdm = '';
+    let cleanEmp = '';
 
     if (role === 'STUDENT') {
       if (!admissionNumber) return res.status(400).json({ message: 'Admission number is required' });
-      loginId = `vx-${admissionNumber}`;
-      password = `vx@${admissionNumber}`;
+      cleanAdm = admissionNumber.toString().trim().replace(/^vx[-_]?/i, '');
+      if (!cleanAdm) return res.status(400).json({ message: 'Please provide a valid admission number' });
+      loginId = `VX-${cleanAdm}`.toUpperCase();
+      password = `vx@${cleanAdm}`;
     } else if (role === 'TEACHER') {
       if (!employeeId) return res.status(400).json({ message: 'Employee ID is required' });
-      loginId = `vx-${employeeId}`;
-      password = `vx@${employeeId}`;
+      cleanEmp = employeeId.toString().trim().replace(/^vx[-_]?/i, '');
+      if (!cleanEmp) return res.status(400).json({ message: 'Please provide a valid employee ID' });
+      loginId = `VX-${cleanEmp}`.toUpperCase();
+      password = `vx@${cleanEmp}`;
     } else {
       return res.status(400).json({ message: 'Invalid role' });
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ loginId: new RegExp(`^${loginId}$`, 'i') });
+    const existingUser = await User.findOne({
+      $or: [
+        { loginId: loginId },
+        { loginId: `vx-${role === 'STUDENT' ? cleanAdm : cleanEmp}` },
+        ...(role === 'STUDENT' ? [{ admissionNumber: cleanAdm }, { admissionNumber: admissionNumber.toString().trim() }] : []),
+        ...(role === 'TEACHER' ? [{ employeeId: cleanEmp }, { employeeId: employeeId.toString().trim() }] : [])
+      ]
+    });
+
     if (existingUser) {
-      return res.status(400).json({ message: `ID ${loginId} already exists in the system` });
+      return res.status(400).json({ message: `A user with this ID (${loginId}) already exists in the system` });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -38,22 +52,22 @@ exports.generateId = async (req, res) => {
     expiryDate.setMonth(expiryDate.getMonth() + parseInt(validityMonths || 6));
 
     const newUser = await User.create({
-      name,
+      name: name.trim(),
       loginId,
       password: hashedPassword,
       role,
-      schoolName,
+      schoolName: schoolName ? schoolName.trim() : undefined,
       status: 'Active',
       startDate,
       expiryDate,
-      ...(role === 'STUDENT' ? { className, section, admissionNumber } : {}),
-      ...(role === 'TEACHER' ? { employeeId, subject } : {})
+      ...(role === 'STUDENT' ? { className, section: section ? section.trim() : '', admissionNumber: cleanAdm } : {}),
+      ...(role === 'TEACHER' ? { employeeId: cleanEmp, subject: subject ? subject.trim() : '' } : {})
     });
 
     res.status(201).json({
       message: `${role} ID generated successfully`,
       credentials: {
-        loginId,
+        loginId: newUser.loginId || loginId,
         password,
         role: newUser.role,
         expiryDate: newUser.expiryDate

@@ -14,19 +14,50 @@ const generateToken = (id) => {
 // @access  Public
 const loginUser = async (req, res) => {
   try {
-    const { loginId, password } = req.body;
+    let { loginId, password } = req.body;
 
     if (!loginId || !password) {
       return res.status(400).json({ message: 'Login ID and password are required' });
     }
 
-    const user = await User.findOne({ loginId: loginId.toUpperCase().trim() });
+    loginId = loginId.toString().trim();
+    password = password.toString().trim();
+
+    const upperId = loginId.toUpperCase();
+    const withPrefix = upperId.startsWith('VX-') ? upperId : `VX-${upperId}`;
+    const cleanId = upperId.replace(/^VX[-_]?/, '');
+
+    // Match by loginId (with or without prefix) or admissionNumber or employeeId
+    const user = await User.findOne({
+      $or: [
+        { loginId: upperId },
+        { loginId: withPrefix },
+        { loginId: cleanId },
+        { admissionNumber: loginId },
+        { admissionNumber: upperId },
+        { admissionNumber: cleanId },
+        { employeeId: loginId },
+        { employeeId: upperId },
+        { employeeId: cleanId }
+      ]
+    });
 
     if (!user) {
       return res.status(401).json({ message: 'Invalid login ID or password' });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    // Check password: match standard, lowercase, or auto-prefix variations
+    let isPasswordCorrect = await bcrypt.compare(password, user.password);
+    
+    if (!isPasswordCorrect) {
+      // Try lowercase password (e.g. if user typed VX@... instead of vx@...)
+      isPasswordCorrect = await bcrypt.compare(password.toLowerCase(), user.password);
+    }
+    
+    if (!isPasswordCorrect && !password.toLowerCase().startsWith('vx@')) {
+      // If student only typed admission number as password instead of vx@admissionNumber
+      isPasswordCorrect = await bcrypt.compare(`vx@${password}`, user.password);
+    }
 
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: 'Invalid login ID or password' });
@@ -76,19 +107,32 @@ const loginUser = async (req, res) => {
 // @access  Public
 const loginAdmin = async (req, res) => {
   try {
-    const { loginId, password } = req.body;
+    let { loginId, password } = req.body;
 
     if (!loginId || !password) {
       return res.status(400).json({ message: 'Login ID and password are required' });
     }
 
-    const user = await User.findOne({ loginId: loginId.toUpperCase().trim() });
+    loginId = loginId.toString().trim();
+    password = password.toString().trim();
 
-    if (!user || user.role !== 'ADMIN') {
+    const upperId = loginId.toUpperCase();
+    const user = await User.findOne({ loginId: upperId });
+
+    if (!user) {
       return res.status(401).json({ message: 'Invalid admin credentials' });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (user.role !== 'ADMIN') {
+      return res.status(401).json({ 
+        message: 'This portal is for Administrators only. Please log in using the Student/Teacher Login page.' 
+      });
+    }
+
+    let isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      isPasswordCorrect = await bcrypt.compare(password.toLowerCase(), user.password);
+    }
 
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: 'Invalid admin credentials' });
