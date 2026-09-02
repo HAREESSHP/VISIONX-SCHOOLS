@@ -24,6 +24,7 @@ import { API_URL } from '../services/api';
 import TiltCard from '../components/TiltCard';
 import Hero3DScene from '../components/Hero3DScene';
 import About3DVisual from '../components/About3DVisual';
+import ScrollProgressButton from '../components/ScrollProgressButton';
 
 export default function Home() {
   const { user } = useAuth();
@@ -892,6 +893,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Floating Interactive Scroll Progress & Back-to-Top Button */}
+      <ScrollProgressButton />
     </div>
   );
 }
