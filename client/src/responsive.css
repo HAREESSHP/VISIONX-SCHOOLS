@@ -254,9 +254,14 @@ img, svg, video, canvas {
 }
 
 /* --------------------------------------------------------------------------
-   4. DESKTOP SCREENS (> 991px)
+   4. DESKTOP SCREENS & ULTRA-WIDE (> 991px)
    -------------------------------------------------------------------------- */
 @media screen and (min-width: 992px) {
+  :root {
+    --site-max-width: min(92vw, 1920px);
+    --nav-height-desktop: 76px;
+  }
+
   .lp-desktop-actions {
     display: flex !important;
   }
@@ -272,6 +277,322 @@ img, svg, video, canvas {
   .lp-mobile-menu,
   .lp-mobile-backdrop {
     display: none !important;
+  }
+
+  /* Compact, Balanced 2-Column & 3-Column Layouts for all Desktop/Big Screens */
+  .lp-navbar-inner {
+    max-width: var(--site-max-width) !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* 1. Hero Section: Fluid 92% width, no giant left/right empty gaps */
+  .lp-hero {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    max-width: var(--site-max-width) !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: calc(var(--nav-height-desktop) + 1.75rem) clamp(1.5rem, 3vw, 3rem) 2.25rem !important;
+    min-height: auto !important;
+    gap: clamp(2rem, 4vw, 4.5rem) !important;
+  }
+
+  .lp-hero-content {
+    flex: 1.15 !important;
+    max-width: 52% !important;
+    margin: 0 !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .lp-badge {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .lp-hero-title {
+    font-size: clamp(2.5rem, 3.6vw, 4.25rem) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .lp-hero-desc {
+    font-size: clamp(1.05rem, 1.2vw, 1.35rem) !important;
+    line-height: 1.7 !important;
+    max-width: 720px !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .lp-hero-bottom-row {
+    margin-top: 0 !important;
+    gap: 1.25rem !important;
+  }
+
+  .lp-hero-actions {
+    gap: 1rem !important;
+  }
+
+  .lp-hero-trust-strip {
+    margin-top: 1rem !important;
+    gap: 0.65rem !important;
+  }
+
+  .lp-hero-visual {
+    flex: 1 !important;
+    max-width: 45% !important;
+    min-height: auto !important;
+    height: clamp(460px, 30vw, 620px) !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-3d-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+
+  .hero-3d-photo-stack {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* 2. About Section: Fluid 92% width side-by-side */
+  .lp-about-grid-section {
+    max-width: var(--site-max-width) !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 3rem clamp(1.5rem, 3vw, 3rem) !important;
+  }
+
+  .lp-about-split {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    gap: clamp(2rem, 4vw, 4.5rem) !important;
+  }
+
+  .lp-about-text-col {
+    flex: 1.15 !important;
+    max-width: 52% !important;
+    margin: 0 !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .lp-about-grid-section .lp-section-title {
+    font-size: clamp(2.2rem, 3vw, 3.5rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .lp-about-grid-section .lp-section-desc {
+    font-size: clamp(1rem, 1.15vw, 1.25rem) !important;
+    line-height: 1.75 !important;
+    max-width: 720px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .about-feature-chips {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    margin-top: 1.25rem !important;
+  }
+
+  .feature-chip {
+    padding: 0.95rem 1.15rem !important;
+  }
+
+  .lp-about-visual-col {
+    flex: 1 !important;
+    max-width: 45% !important;
+    margin: 0 !important;
+    height: clamp(420px, 28vw, 580px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .about-3d-visual-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+  }
+
+  .about-3d-image-container {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* 3. Reviews Section */
+  .lp-reviews {
+    padding: 3.25rem clamp(1.5rem, 3vw, 3rem) !important;
+    margin: 1rem 0 !important;
+  }
+
+  .lp-reviews .lp-section-title {
+    font-size: clamp(2.2rem, 3vw, 3.25rem) !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .lp-section-subtitle {
+    font-size: 1.05rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .lp-carousel-wrapper {
+    padding: 1.25rem 0 !important;
+  }
+
+  .lp-review-card {
+    width: 380px !important;
+    padding: 2.25rem !important;
+  }
+
+  /* 4. Student Journey (7 Pillars): Fluid 92% width */
+  .lp-clients {
+    max-width: var(--site-max-width) !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 3.5rem clamp(1.5rem, 3vw, 3rem) !important;
+  }
+
+  .lp-clients-header {
+    margin: 0 auto 2.25rem !important;
+  }
+
+  .lp-clients .lp-section-title {
+    font-size: clamp(2.2rem, 3vw, 3.25rem) !important;
+  }
+
+  .journey-pillars-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1.35rem !important;
+    margin-top: 2rem !important;
+  }
+
+  .pillar-grid-item.capstone-item {
+    grid-column: 1 / -1 !important;
+  }
+
+  .pillar-card-pro {
+    padding: 1.75rem 1.5rem !important;
+  }
+
+  /* 5. Book Demo Section: Fluid 92% width */
+  .lp-demo {
+    max-width: var(--site-max-width) !important;
+    width: 100% !important;
+    margin: 1rem auto 2.5rem !important;
+    padding: 2.5rem clamp(1.5rem, 3vw, 3rem) !important;
+  }
+
+  .lp-demo-split-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    gap: clamp(2rem, 4vw, 4.5rem) !important;
+  }
+
+  .demo-perks-side {
+    flex: 1 !important;
+    max-width: 48% !important;
+    margin: 0 !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .demo-perks-side .lp-section-title {
+    font-size: clamp(2rem, 2.7vw, 2.85rem) !important;
+  }
+
+  .demo-perks-list {
+    margin: 1.5rem 0 1.25rem !important;
+    gap: 0.95rem !important;
+  }
+
+  .demo-perk-item {
+    padding: 0.9rem 1.15rem !important;
+  }
+
+  .demo-form-side {
+    flex: 1 !important;
+    max-width: 48% !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .lp-demo-card {
+    padding: 2.5rem 2.25rem !important;
+  }
+
+  /* 6. Footer Section */
+  .lp-footer-main {
+    max-width: var(--site-max-width) !important;
+    margin: 0 auto !important;
+    padding: 2.5rem clamp(1.5rem, 3vw, 3rem) 1.5rem !important;
+  }
+
+  .lp-footer-cta-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    padding: 2rem 2.5rem !important;
+  }
+
+  .cta-card-left {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .lp-footer-grid {
+    display: grid !important;
+    grid-template-columns: 1.5fr 1fr 1.5fr !important;
+    text-align: left !important;
+    gap: 2.5rem !important;
+    margin-top: 2rem !important;
+  }
+
+  .brand-col,
+  .lp-footer-col,
+  .contact-col {
+    text-align: left !important;
+  }
+
+  .footer-brand-title {
+    justify-content: flex-start !important;
+  }
+
+  .footer-pill-badges {
+    justify-content: flex-start !important;
+  }
+
+  .footer-nav-links {
+    align-items: flex-start !important;
+  }
+
+  .footer-link {
+    justify-content: flex-start !important;
+  }
+
+  .lp-footer-bottom-bar {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    text-align: left !important;
+    margin-top: 2.5rem !important;
   }
 }
 
