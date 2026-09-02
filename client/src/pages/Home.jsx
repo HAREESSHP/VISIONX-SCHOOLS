@@ -25,6 +25,7 @@ import TiltCard from '../components/TiltCard';
 import Hero3DScene from '../components/Hero3DScene';
 import About3DVisual from '../components/About3DVisual';
 import ScrollProgressButton from '../components/ScrollProgressButton';
+import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 
 export default function Home() {
   const { user } = useAuth();
@@ -893,6 +894,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Sticky Floating WhatsApp Chat Button */}
+      <WhatsAppFloatingButton />
 
       {/* Floating Interactive Scroll Progress & Back-to-Top Button */}
       <ScrollProgressButton />

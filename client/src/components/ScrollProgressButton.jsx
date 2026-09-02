@@ -57,7 +57,7 @@ export default function ScrollProgressButton() {
           transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: 'fixed',
-            bottom: 'clamp(1.25rem, 3vw, 2rem)',
+            bottom: 'clamp(5.2rem, 7.5vw, 6.2rem)',
             right: 'clamp(1.25rem, 3vw, 2rem)',
             zIndex: 999,
             display: 'flex',
