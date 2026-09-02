@@ -2830,18 +2830,24 @@ textarea {
 .lp-nav-left {
   display: flex;
   align-items: center;
-  justify-self: start;
-  gap: 0.7rem;
+  justify-content: flex-start;
+  gap: 0;
   cursor: pointer;
-  min-width: 170px;
   flex-shrink: 0;
 }
 
 .lp-logo-icon {
-  width: 60px;
-  height: 60px;
+  height: 52px;
+  width: auto;
+  max-width: 170px;
   object-fit: contain;
-  margin-left: 40px;
+  margin: 0;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.lp-logo-icon:hover {
+  transform: scale(1.04);
 }
 
 .lp-logo-text {
@@ -4527,10 +4533,17 @@ textarea {
 }
 
 .presentation-brand-logo {
-  width: 48px;
-  height: 48px;
+  height: clamp(60px, 5.5vw, 78px);
+  width: auto;
+  max-width: 250px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+  transition: transform 0.25s ease;
+  margin-bottom: 0.35rem;
+}
+
+.presentation-brand-header:hover .presentation-brand-logo {
+  transform: scale(1.05);
 }
 
 .presentation-brand-text {
@@ -7563,18 +7576,21 @@ textarea {
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(181, 96, 46, 0.2), rgba(196, 163, 105, 0.2));
-  border: 1px solid rgba(181, 96, 46, 0.35);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--golden-tan);
+  color: #000000 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .demo-perk-icon {
   width: 20px;
   height: 20px;
+  color: #000000 !important;
+  stroke: #000000 !important;
 }
 
 .demo-perk-text strong {

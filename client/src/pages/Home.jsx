@@ -175,9 +175,8 @@ export default function Home() {
         transition={{ duration: 0.4 }}
       >
         <div className="lp-navbar-inner">
-          <div className="lp-nav-left">
-            <img src="/visionx-logo.png" alt="VISIONX Logo" className="lp-logo-icon" />
-            <span className="lp-logo-text">VISIONX</span>
+          <div className="lp-nav-left" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <img src="/visionx-logo.png" alt="VisionX" className="lp-logo-icon" />
           </div>
 
           <div className="lp-nav-center">

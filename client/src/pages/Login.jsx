@@ -73,8 +73,7 @@ export default function Login() {
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <Link to="/" className="presentation-brand-header">
-            <img src="/visionx-logo.png" alt="VISIONX Logo" className="presentation-brand-logo" />
-            <span className="presentation-brand-text">VISIONX</span>
+            <img src="/secound logo.png" alt="VisionX Logo" className="presentation-brand-logo" />
           </Link>
 
           <h1 className="presentation-headline">

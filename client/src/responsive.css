@@ -287,7 +287,14 @@ img, svg, video, canvas {
     -webkit-backdrop-filter: blur(20px) !important;
     border-bottom: 1.5px solid rgba(196, 163, 105, 0.35) !important;
     box-shadow: 0 4px 20px rgba(43, 39, 36, 0.08) !important;
-    padding: 0.95rem clamp(2rem, 4vw, 5.5rem) !important;
+    padding: 0.9rem clamp(1.5rem, 3vw, 4rem) !important;
+  }
+
+  .lp-nav-left {
+    margin-left: clamp(4rem, 7vw, 10rem) !important;
+    padding-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .lp-navbar-inner {
@@ -729,9 +736,11 @@ img, svg, video, canvas {
   }
 
   .lp-logo-icon {
-    width: 44px !important;
-    height: 44px !important;
-    margin-left: 0 !important;
+    height: 46px !important;
+    width: auto !important;
+    max-width: 150px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
   }
 
   .lp-logo-text {
@@ -996,8 +1005,11 @@ img, svg, video, canvas {
   }
 
   .lp-logo-icon {
-    width: 38px !important;
-    height: 38px !important;
+    height: 40px !important;
+    width: auto !important;
+    max-width: 130px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
   }
 
   .lp-logo-text {
@@ -1018,11 +1030,11 @@ img, svg, video, canvas {
   .lp-hero-title {
     font-size: clamp(1.7rem, 7.5vw, 2.2rem);
     line-height: 1.22;
+    margin-bottom: 1rem;
   }
 
   .lp-hero-desc {
-    font-size: 0.92rem;
-    line-height: 1.52;
+    font-size: 0.95rem;
     margin-bottom: 1.25rem;
   }
 
