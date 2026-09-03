@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Building2, 
   User, 
@@ -17,7 +17,9 @@ import {
   Loader2, 
   AlertCircle,
   Menu,
-  X 
+  X,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { API_URL } from '../services/api';
@@ -43,6 +45,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [highlightDemo, setHighlightDemo] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
 
   // Smooth scroll and focus to the Book Demo section
   const scrollToDemo = (e) => {
@@ -235,6 +238,21 @@ export default function Home() {
               aria-hidden="true"
             />
             <div className="lp-mobile-menu">
+              <div className="lp-mobile-menu-header">
+                <div className="lp-mobile-menu-brand">
+                  <img src="/visionx-logo.png" alt="VisionX" className="lp-mobile-menu-logo" />
+                  <span className="lp-mobile-menu-title">VISIONX</span>
+                </div>
+                <button 
+                  type="button" 
+                  className="lp-mobile-close-btn"
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Close navigation menu"
+                >
+                  <X size={20} strokeWidth={2.5} />
+                </button>
+              </div>
+
               <a href="#about" onClick={(e) => scrollToSection('about', e)}>About VisionX</a>
               <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)}>School Reviews</a>
               <a href="#clients" onClick={(e) => scrollToSection('clients', e)}>Fluency Journey</a>
@@ -341,7 +359,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="lp-badge" style={{ background: 'rgba(196, 163, 105, 0.2)', color: 'var(--golden-tan)', borderColor: 'rgba(196, 163, 105, 0.4)' }}>
+            <div className="lp-badge" style={{ background: '#FAF4EB', color: '#3D2B1F', borderColor: '#C4A369', fontWeight: '800', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>
               Our Educational Mission
             </div>
             <h2 className="lp-section-title" style={{ color: 'var(--surface-offwhite)' }}>
@@ -354,28 +372,24 @@ export default function Home() {
             {/* 4 Feature Highlight Chips for quick mobile scanning */}
             <div className="about-feature-chips">
               <div className="feature-chip">
-                <span className="feature-chip-icon">🗣️</span>
                 <div className="feature-chip-text">
                   <strong>Active Speaking Drills</strong>
                   <p>Daily classroom voice practice</p>
                 </div>
               </div>
               <div className="feature-chip">
-                <span className="feature-chip-icon">🎯</span>
                 <div className="feature-chip-text">
                   <strong>AI Speech & Pronunciation</strong>
                   <p>Real-time phonetic feedback</p>
                 </div>
               </div>
               <div className="feature-chip">
-                <span className="feature-chip-icon">📊</span>
                 <div className="feature-chip-text">
                   <strong>Teacher Analytics Hub</strong>
                   <p>Automated classroom diagnosis</p>
                 </div>
               </div>
               <div className="feature-chip">
-                <span className="feature-chip-icon">🏫</span>
                 <div className="feature-chip-text">
                   <strong>Nursery to Grade 10</strong>
                   <p>Structured curriculum growth</p>
@@ -399,7 +413,7 @@ export default function Home() {
       {/* 4. Reviews Section with 3D Cards */}
       <section className="lp-reviews" id="reviews">
         <div className="text-center" style={{ maxWidth: '700px', margin: '0 auto 2.5rem' }}>
-          <div className="lp-badge" style={{ margin: '0 auto 1rem' }}>Testimonials</div>
+          <div className="lp-badge" style={{ margin: '0 auto 1rem', background: '#FAF4EB', color: '#3D2B1F', borderColor: '#C4A369', fontWeight: '800', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>Testimonials</div>
           <h2 className="lp-section-title" style={{ color: 'var(--surface-offwhite)' }}>Trusted by School Leaders</h2>
           <p className="lp-section-subtitle">Discover how VisionX empowers classrooms and transforms student confidence.</p>
         </div>
@@ -495,7 +509,8 @@ export default function Home() {
           <p className="lp-section-subtitle lp-text-center">A comprehensive pedagogical progression engineered for sustainable spoken English fluency.</p>
         </div>
 
-        <div className="journey-pillars-grid">
+        {/* Desktop View: Full 3-Column Stepper Grid (>= 769px) */}
+        <div className="journey-pillars-grid desktop-pillars-grid">
           {[
             {
               num: "01",
@@ -575,6 +590,139 @@ export default function Home() {
               </TiltCard>
             </motion.div>
           ))}
+        </div>
+
+        {/* Mobile View: Interactive Step Card Slider (< 769px) */}
+        <div className="pillars-mobile-slider">
+          <div className="pillar-mobile-step-indicator">
+            <span className="step-count-badge">
+              Pillar <span className="step-count-highlight">0{currentPillarIndex + 1}</span> of 07
+            </span>
+            <div className="step-progress-bar-track">
+              <div 
+                className="step-progress-bar-fill" 
+                style={{ width: `${((currentPillarIndex + 1) / 7) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          <div className="pillar-mobile-card-container">
+            <AnimatePresence mode="wait">
+              {(() => {
+                const mobilePillars = [
+                  {
+                    num: "01",
+                    phase: "Phase 1 • Auditory",
+                    title: "Active Listening",
+                    desc: "Immersive auditory training that develops phonemic recognition, rhythm perception, and natural conversational cadence.",
+                    milestone: "Phonemic Awareness"
+                  },
+                  {
+                    num: "02",
+                    phase: "Phase 2 • Articulation",
+                    title: "Guided Speaking",
+                    desc: "Structured voice prompts engineered to build vocal muscle memory, eliminate hesitation, and foster spontaneous responses.",
+                    milestone: "Speech Confidence"
+                  },
+                  {
+                    num: "03",
+                    phase: "Phase 3 • Lexicon",
+                    title: "Contextual Vocabulary",
+                    desc: "High-frequency academic and everyday terminology introduced in situational and conversational contexts.",
+                    milestone: "Active Recall"
+                  },
+                  {
+                    num: "04",
+                    phase: "Phase 4 • Structure",
+                    title: "Intuitive Grammar",
+                    desc: "Natural sentence construction learned through communicative drills without dry, abstract rule memorization.",
+                    milestone: "Syntax Mastery"
+                  },
+                  {
+                    num: "05",
+                    phase: "Phase 5 • Phonetics",
+                    title: "Accent Precision",
+                    desc: "Targeted acoustic feedback on vowel clarity, consonant articulation, and syllable stress for crisp enunciation.",
+                    milestone: "Diction Clarity"
+                  },
+                  {
+                    num: "06",
+                    phase: "Phase 6 • Application",
+                    title: "Roleplay & Discourse",
+                    desc: "Simulated peer debates, interviews, group discussions, and classroom presentations in real-life contexts.",
+                    milestone: "Pragmatic Fluency"
+                  },
+                  {
+                    num: "07",
+                    phase: "Phase 7 • Capstone",
+                    title: "Confident Public Mastery",
+                    desc: "The culminating milestone where students deliver speeches, converse fluently, and communicate with poised confidence.",
+                    milestone: "CEFR-Aligned Fluency",
+                    isCapstone: true
+                  }
+                ];
+                const pillar = mobilePillars[currentPillarIndex];
+                return (
+                  <motion.div
+                    key={currentPillarIndex}
+                    initial={{ opacity: 0, x: 25 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -25 }}
+                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    className="pillar-mobile-card-motion"
+                  >
+                    <div className={`pillar-card-pro pillar-mobile-active-card ${pillar.isCapstone ? 'pillar-card-capstone' : ''}`}>
+                      <div className="pillar-card-header">
+                        <span className="pillar-num-badge">{pillar.num}</span>
+                        <span className="pillar-phase-tag">{pillar.phase}</span>
+                      </div>
+                      <h4 className="pillar-title">{pillar.title}</h4>
+                      <p className="pillar-desc">{pillar.desc}</p>
+                      <div className="pillar-milestone-footer">
+                        <span className="milestone-label">Key Outcome:</span>
+                        <span className="milestone-value">{pillar.milestone}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Controls */}
+          <div className="pillar-mobile-controls">
+            <button 
+              type="button" 
+              onClick={() => setCurrentPillarIndex((prev) => (prev - 1 + 7) % 7)}
+              className="pillar-nav-btn prev-btn"
+              aria-label="Previous Pillar"
+            >
+              <ChevronLeft size={18} />
+              <span>Prev</span>
+            </button>
+
+            <div className="pillar-dots-indicator">
+              {[0, 1, 2, 3, 4, 5, 6].map((idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setCurrentPillarIndex(idx)}
+                  className={`pillar-dot ${idx === currentPillarIndex ? 'active' : ''}`}
+                  aria-label={`Jump to step ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button 
+              type="button" 
+              onClick={() => setCurrentPillarIndex((prev) => (prev + 1) % 7)}
+              className="pillar-nav-btn next-btn"
+              aria-label="Next Pillar"
+            >
+              <span>Next</span>
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -868,7 +1016,7 @@ export default function Home() {
 
           <div className="lp-footer-bottom-bar">
             <p className="copyright-text">
-              © 2026 <strong>Vision English Platform</strong>. All Rights Reserved.
+              © 2026 <strong>VisionX English Platform</strong>. All Rights Reserved.
             </p>
             <p className="developer-credit">
               DESIGNED AND DEVELOPED BY{' '}
