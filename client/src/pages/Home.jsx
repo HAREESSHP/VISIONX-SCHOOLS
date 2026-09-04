@@ -665,10 +665,20 @@ export default function Home() {
                 return (
                   <motion.div
                     key={currentPillarIndex}
-                    initial={{ opacity: 0, x: 25 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -25 }}
-                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.15}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      if (offset.x < -35 || velocity.x < -400) {
+                        setCurrentPillarIndex((prev) => (prev + 1) % 7);
+                      } else if (offset.x > 35 || velocity.x > 400) {
+                        setCurrentPillarIndex((prev) => (prev - 1 + 7) % 7);
+                      }
+                    }}
                     className="pillar-mobile-card-motion"
                   >
                     <div className={`pillar-card-pro pillar-mobile-active-card ${pillar.isCapstone ? 'pillar-card-capstone' : ''}`}>
@@ -697,7 +707,7 @@ export default function Home() {
               className="pillar-nav-btn prev-btn"
               aria-label="Previous Pillar"
             >
-              <ChevronLeft size={18} />
+              <ChevronLeft size={16} />
               <span>Prev</span>
             </button>
 
@@ -720,7 +730,7 @@ export default function Home() {
               aria-label="Next Pillar"
             >
               <span>Next</span>
-              <ChevronRight size={18} />
+              <ChevronRight size={16} />
             </button>
           </div>
         </div>
