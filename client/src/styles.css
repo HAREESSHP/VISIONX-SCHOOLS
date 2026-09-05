@@ -5634,11 +5634,9 @@ textarea {
   touch-action: pan-y;
   cursor: grab;
 }
-
 .pillar-mobile-card-motion:active {
   cursor: grabbing;
 }
-
 .pillar-mobile-active-card {
   width: 100%;
   background: #FFFFFF !important;
@@ -5649,7 +5647,6 @@ textarea {
   cursor: default !important;
   box-sizing: border-box !important;
 }
-
 .pillar-mobile-controls {
   display: flex;
   align-items: center;
@@ -9294,4 +9291,4 @@ textarea {
   box-shadow: 0 6px 20px rgba(181, 96, 46, 0.6);
 }
 
-
+
