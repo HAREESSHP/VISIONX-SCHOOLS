@@ -28,6 +28,7 @@ import Hero3DScene from '../components/Hero3DScene';
 import About3DVisual from '../components/About3DVisual';
 import ScrollProgressButton from '../components/ScrollProgressButton';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
+import Footer from '../components/Footer';
 
 export default function Home() {
   const { user } = useAuth();
@@ -932,125 +933,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. Colorful 3D Footer */}
-      <footer className="lp-footer" id="contact">
-        <div className="lp-footer-glow-1"></div>
-        <div className="lp-footer-glow-2"></div>
-        <div className="lp-footer-glow-3"></div>
-
-        {/* Floating Top CTA Ribbon Card */}
-        <div className="lp-footer-cta-container">
-          <div className="lp-footer-cta-card">
-            <div className="cta-card-left">
-              <span className="cta-sparkle-pill">✨ Empower Your Classroom</span>
-              <h3 className="cta-card-heading">Ready to revolutionize English speaking at your school?</h3>
-              <p className="cta-card-sub">Join over 100+ partner schools and watch your students speak with confidence.</p>
-            </div>
-            <div className="cta-card-right">
-              <motion.button 
-                type="button"
-                onClick={scrollToDemo} 
-                className="lp-btn lp-btn-vibrant"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-                style={{ border: 'none', cursor: 'pointer' }}
-              >
-                <span>Book a Live Demo →</span>
-              </motion.button>
-            </div>
-          </div>
-        </div>
-
-        <div className="lp-footer-main">
-          <div className="lp-footer-grid">
-            {/* Column 1: Brand & Bio */}
-            <div className="lp-footer-col brand-col">
-              <div className="footer-brand-title">
-                <img src="/visionx-logo.png" alt="VISIONX Logo" className="footer-brand-logo" />
-                <span className="footer-brand-name" style={{ color: '#ffffff' }}>VISIONX</span>
-              </div>
-              <p className="lp-footer-desc">
-                Pioneering joyful, active, and structured spoken English learning for schools across India.
-              </p>
-              <div className="footer-pill-badges">
-                <span className="pill-badge pill-terracotta">🎯 Spoken English</span>
-                <span className="pill-badge pill-gold">⭐ CEFR Aligned</span>
-                <span className="pill-badge pill-sage">🏫 100+ Schools</span>
-              </div>
-            </div>
-
-            {/* Column 2: Navigation Links */}
-            <div className="lp-footer-col">
-              <h4 className="lp-footer-heading">Navigation</h4>
-              <ul className="footer-nav-links">
-                <li><a href="#home" onClick={(e) => scrollToSection('home', e)} className="footer-link"><span className="link-bullet bullet-coral"></span>Home</a></li>
-                <li><a href="#about" onClick={(e) => scrollToSection('about', e)} className="footer-link"><span className="link-bullet bullet-gold"></span>About VisionX</a></li>
-                <li><a href="#reviews" onClick={(e) => scrollToSection('reviews', e)} className="footer-link"><span className="link-bullet bullet-sage"></span>School Reviews</a></li>
-                <li><a href="#clients" onClick={(e) => scrollToSection('clients', e)} className="footer-link"><span className="link-bullet bullet-indigo"></span>Fluency Journey</a></li>
-                <li><a href="#book-demo" onClick={scrollToDemo} className="footer-link"><span className="link-bullet bullet-teal"></span>Request Demo</a></li>
-                <li><Link to="/login" className="footer-link"><span className="link-bullet bullet-amber"></span>Student/Teacher Portal</Link></li>
-                <li><Link to="/admin-login" className="footer-link"><span className="link-bullet bullet-purple"></span>Admin Access</Link></li>
-              </ul>
-            </div>
-
-            {/* Column 3: Contact Channels */}
-            <div className="lp-footer-col contact-col">
-              <h4 className="lp-footer-heading">Get in Touch</h4>
-              <div className="footer-contact-cards">
-                <a href="tel:+919381304491" className="contact-card-chip chip-phone">
-                  <span className="contact-chip-icon">📞</span>
-                  <div>
-                    <small>Call Support</small>
-                    <strong>+91 93813 04491</strong>
-                  </div>
-                </a>
-
-                <a href="mailto:visionx236@gmail.com" className="contact-card-chip chip-email">
-                  <span className="contact-chip-icon">📧</span>
-                  <div>
-                    <small>Email Inquiries</small>
-                    <strong>visionx236@gmail.com</strong>
-                  </div>
-                </a>
-
-                <div className="contact-card-chip chip-location">
-                  <span className="contact-chip-icon">📍</span>
-                  <div>
-                    <small>Headquarters</small>
-                    <strong>Hyderabad, Telangana, India</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="lp-footer-bottom-bar">
-            <p className="copyright-text">
-              © 2026 <strong>VisionX English Platform</strong>. All Rights Reserved.
-            </p>
-            <p className="developer-credit">
-              DESIGNED AND DEVELOPED BY{' '}
-              <a 
-                href="https://www.linkedin.com/in/hareesh-ai-dev?utm_source=share_via&utm_content=profile&utm_medium=member_android" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="dev-white-bold"
-              >
-                HAREESH
-              </a>
-              {' '}AND{' '}
-              <a 
-                href="https://www.linkedin.com/in/rahul-ai-dev" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="dev-white-bold"
-              >
-                RAHUL
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* 7. Figma Modern Dark Minimalist Footer with Three.js */}
+      <Footer onContactClick={scrollToDemo} onNavigate={scrollToSection} />
 
       {/* Sticky Floating WhatsApp Chat Button */}
       <WhatsAppFloatingButton />

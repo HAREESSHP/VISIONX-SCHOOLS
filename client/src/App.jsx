@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useEffect } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout';
@@ -9,8 +9,6 @@ import Global3DBackground from './components/Global3DBackground';
 const Home = lazy(() => import('./pages/Home.jsx'));
 const Login = lazy(() => import('./pages/Login.jsx'));
 const AdminLogin = lazy(() => import('./pages/AdminLogin.jsx'));
-const ClassSelection = lazy(() => import('./pages/ClassSelection.jsx'));
-const Dashboard = lazy(() => import('./pages/Dashboard.jsx'));
 const TeacherDashboard = lazy(() => import('./pages/TeacherDashboard.jsx'));
 const ClassPortal = lazy(() => import('./pages/ClassPortal.jsx'));
 const Lesson = lazy(() => import('./pages/Lesson.jsx'));

@@ -3540,132 +3540,7 @@ textarea {
   border: 1px solid #fecaca;
 }
 
-/* ============================================
-   Landing Page Footer
-   ============================================ */
 
-.lp-footer {
-  background: #000000;
-  color: var(--white);
-  padding: 2.5rem 2rem 1.5rem;
-  margin-top: auto;
-}
-
-.lp-footer-tagline {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--white);
-  max-width: 1400px;
-  margin: 0 auto 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.lp-footer-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.lp-footer-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.lp-footer-logo {
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lp-footer-logo-img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 8px;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-}
-
-.lp-footer-desc {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  text-align: center;
-  max-width: 280px;
-  margin: 0 auto;
-}
-
-.lp-footer-heading {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.lp-footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.lp-footer-links a {
-  color: rgba(255, 255, 255, 0.7);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.lp-footer-links a:hover {
-  color: var(--primary-light);
-  padding-left: 4px;
-}
-
-.lp-footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.lp-footer-contact p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.95rem;
-}
-
-.lp-footer-bottom {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.85rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  text-align: center;
-}
-
-.lp-footer-credit-link {
-  color: var(--white);
-  font-weight: 700;
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.lp-footer-credit-link:hover {
-  color: var(--primary-light);
-  text-decoration: underline;
-}
 
 /* ============================================
    Responsive
@@ -9286,9 +9161,566 @@ textarea {
   box-shadow: 0 4px 14px rgba(181, 96, 46, 0.4);
 }
 
+.teacher-hello-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.teacher-hello-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.02em;
+}
+
+.teacher-name-highlight {
+  color: var(--golden-light, #E5A93C);
+  background: linear-gradient(135deg, #FFE8B8 0%, #E5A93C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(229, 169, 60, 0.3);
+}
+
+.teacher-hello-sub {
+  color: #D6CEC5;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.teacher-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(196, 163, 105, 0.15);
+  border: 1px solid rgba(196, 163, 105, 0.35);
+  color: var(--golden-light);
+  padding: 0.45rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+/* YOUR CLASSES Banner */
+.your-classes-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #271A12 0%, #1A110B 100%);
+  border: 1.5px solid rgba(222, 203, 181, 0.18);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.banner-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: 0.04em;
+}
+
+.banner-subtitle {
+  color: #D6CEC5;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.classes-total-count {
+  background: rgba(245, 237, 224, 0.08);
+  border: 1px solid rgba(222, 203, 181, 0.16);
+  color: var(--golden-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Teacher Classes 3-Column Grid */
+.teacher-classes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.teacher-class-card {
+  background: #241810;
+  border: 1.5px solid rgba(222, 203, 181, 0.14);
+  border-radius: 22px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.teacher-class-card:hover {
+  background: #2E1F15;
+  border-color: var(--terracotta);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(181, 96, 46, 0.35);
+}
+
+.class-card-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.card-class-tag {
+  background: rgba(245, 237, 224, 0.08);
+  border: 1px solid rgba(222, 203, 181, 0.14);
+  color: var(--golden-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-age-badge {
+  color: #A89F95;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.class-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 1.25rem 0 1.75rem 0;
+  flex: 1;
+}
+
+.card-class-name {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.card-class-icon-orb {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(196, 163, 105, 0.1);
+  border: 1.5px solid rgba(196, 163, 105, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card-emoji {
+  font-size: 2.4rem;
+}
+
+.class-card-action-row {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(222, 203, 181, 0.1);
+}
+
+.view-class-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #B5602E 0%, #8A431B 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(181, 96, 46, 0.4);
+}
+
 .teacher-class-card:hover .view-class-link {
   background: linear-gradient(135deg, #D97736 0%, #B5602E 100%);
   box-shadow: 0 6px 20px rgba(181, 96, 46, 0.6);
 }
 
+/* ============================================
+   Figma Minimalist Dark Footer with Three.js
+   ============================================ */
 
+.figma-footer {
+  position: relative;
+  background-color: #16181b;
+  color: #ffffff;
+  overflow: hidden;
+  padding: 6.5rem 5vw 4.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  z-index: 10;
+}
+
+.figma-footer-inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+/* TOP SECTION: Title + Description & Button */
+.figma-footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3.5rem;
+  padding-bottom: 5.5rem;
+}
+
+.figma-footer-top-left {
+  flex: 1 1 50%;
+}
+
+.figma-footer-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+  text-transform: none;
+}
+
+.figma-footer-top-right {
+  flex: 1 1 45%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 0.4rem;
+}
+
+.figma-footer-description {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #cbd5e1;
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  line-height: 1.65;
+  margin: 0 0 1.85rem 0;
+  font-weight: 400;
+}
+
+.figma-footer-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9bb6ff;
+  color: #111827;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 0.9rem 2.35rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(155, 182, 255, 0.25);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.figma-footer-contact-btn:hover {
+  background-color: #b0c6ff;
+  box-shadow: 0 6px 24px rgba(155, 182, 255, 0.4);
+}
+
+/* BOTTOM SECTION: 4 Column Links & Info Grid */
+.figma-footer-bottom {
+  display: grid;
+  grid-template-columns: 1.4fr 1.2fr 1fr 1fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.figma-footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.figma-footer-col-logo {
+  gap: 1.75rem;
+}
+
+/* Brand Logo */
+.figma-footer-brand-wrap {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.figma-footer-white-logo {
+  height: clamp(65px, 6.5vw, 92px);
+  width: auto;
+  max-width: 290px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 14px rgba(255, 255, 255, 0.18));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.figma-footer-brand-wrap:hover .figma-footer-white-logo {
+  transform: scale(1.04);
+  filter: drop-shadow(0 6px 20px rgba(155, 182, 255, 0.4));
+}
+
+.figma-footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.figma-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.figma-social-icon:hover {
+  background: #ffffff;
+  color: #16181b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+}
+
+.figma-footer-col-title {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1rem, 1.15vw, 1.12rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: 0.02em;
+}
+
+.figma-footer-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e2e8f0;
+  font-size: clamp(0.92rem, 1vw, 0.98rem);
+  font-weight: 450;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.figma-footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.figma-footer-nav-list a {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: clamp(0.92rem, 1vw, 0.98rem);
+  font-weight: 450;
+  transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+  display: inline-block;
+}
+
+.figma-footer-nav-list a:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS (Mobile -> 4K/TV)
+   ============================================ */
+
+/* 1. Large TV / 4K Ultra-Wide Screens (>= 1920px & >= 2560px) */
+@media (min-width: 1920px) {
+  .figma-footer {
+    padding: 8rem 8vw 6rem;
+  }
+
+  .figma-footer-inner {
+    max-width: 1600px;
+  }
+
+  .figma-footer-title {
+    font-size: clamp(4.2rem, 4.5vw, 5.6rem);
+  }
+
+  .figma-footer-description {
+    font-size: 1.18rem;
+    max-width: 580px;
+    line-height: 1.75;
+  }
+
+  .figma-footer-contact-btn {
+    font-size: 1.12rem;
+    padding: 1.05rem 2.8rem;
+  }
+
+  .figma-footer-white-logo {
+    height: 110px;
+    max-width: 380px;
+  }
+
+  .figma-social-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .figma-footer-col-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .figma-footer-text,
+  .figma-footer-nav-list a {
+    font-size: 1.08rem;
+  }
+
+  .figma-footer-bottom {
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  .figma-footer-inner {
+    max-width: 2100px;
+  }
+
+  .figma-footer-title {
+    font-size: 6.8rem;
+  }
+
+  .figma-footer-description {
+    font-size: 1.35rem;
+    max-width: 750px;
+  }
+
+  .figma-footer-white-logo {
+    height: 140px;
+    max-width: 460px;
+  }
+
+  .figma-social-icon {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* 2. Tablet & Medium Screens (<= 992px) */
+@media (max-width: 992px) {
+  .figma-footer {
+    padding: 5.5rem 5vw 4rem;
+  }
+
+  .figma-footer-top {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .figma-footer-top-right {
+    max-width: 100%;
+  }
+
+  .figma-footer-white-logo {
+    height: 70px;
+    max-width: 240px;
+  }
+
+  .figma-footer-bottom {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2rem;
+  }
+}
+
+/* 3. Mobile Phones (<= 640px) */
+@media (max-width: 640px) {
+  .figma-footer {
+    padding: 4.5rem 1.5rem 3.5rem;
+  }
+
+  .figma-footer-top {
+    padding-bottom: 3.5rem;
+    gap: 2rem;
+  }
+
+  .figma-footer-title {
+    font-size: clamp(2.4rem, 11vw, 3.4rem);
+    line-height: 1.02;
+  }
+
+  .figma-footer-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .figma-footer-contact-btn {
+    width: 100%;
+    max-width: 260px;
+    padding: 0.85rem 1.75rem;
+  }
+
+  .figma-footer-bottom {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .figma-footer-white-logo {
+    height: 60px;
+    max-width: 220px;
+  }
+}
+
+/* 4. Very Small Screens (<= 380px) */
+@media (max-width: 380px) {
+  .figma-footer {
+    padding: 3.5rem 1.15rem 3rem;
+  }
+
+  .figma-footer-title {
+    font-size: 2.15rem;
+  }
+
+  .figma-footer-white-logo {
+    height: 50px;
+    max-width: 180px;
+  }
+
+  .figma-footer-socials {
+    gap: 0.5rem;
+  }
+
+  .figma-social-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
