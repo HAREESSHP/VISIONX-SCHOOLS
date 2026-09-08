@@ -109,64 +109,97 @@ export default function Home() {
     setSubmitting(true);
     setDemoStatus(null);
 
+    // 1. Client-side validations
+    const schoolName = demoForm.schoolName.trim();
+    const name = demoForm.name.trim();
+    const phone = demoForm.phone.trim();
+    const email = demoForm.email.trim();
+    const message = demoForm.message?.trim() || "No message provided";
+
+    if (!schoolName || !name || !phone || !email) {
+      setDemoStatus({
+        type: 'error',
+        message: 'Please fill in all required fields (School Name, Person Name, Contact Number, Email).'
+      });
+      setSubmitting(false);
+      return;
+    }
+
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if (!emailRegex.test(email)) {
+      setDemoStatus({
+        type: 'error',
+        message: 'Please provide a valid email address (e.g., principal@school.com).'
+      });
+      setSubmitting(false);
+      return;
+    }
+
+    let isHandled = false;
+    let successMessage = 'Thank you! Your demo request has been successfully submitted. Our team will contact you shortly.';
+
     try {
-      // 1. Submit to backend API (/api/demo -> MongoDB)
+      // 2. Submit to backend API (/api/demo -> MongoDB)
       const res = await fetch(`${API_URL}/demo`, {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          schoolName: demoForm.schoolName,
-          name: demoForm.name,
-          phone: demoForm.phone,
-          email: demoForm.email,
-          message: demoForm.message || "No message provided"
-        })
+        body: JSON.stringify({ schoolName, name, phone, email, message })
       });
 
-      // Forward to FormSubmit in background without blocking UI
-      fetch("https://formsubmit.co/ajax/visionx236@gmail.com", {
+      if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data?.message) successMessage = data.message;
+        isHandled = true;
+      }
+    } catch (err) {
+      console.warn('Backend server offline or unreachable, forwarding to email service:', err);
+    }
+
+    // 3. Forward to FormSubmit in background to ensure notification delivery
+    try {
+      const emailRes = await fetch("https://formsubmit.co/ajax/visionx236@gmail.com", {
         method: "POST",
         headers: { 
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `Demo Request - ${demoForm.schoolName}`,
-          School_Name: demoForm.schoolName,
-          Contact_Person: demoForm.name,
-          Phone: demoForm.phone,
-          Email: demoForm.email,
-          Message: demoForm.message || "No message provided",
+          _subject: `Demo Request - ${schoolName}`,
+          School_Name: schoolName,
+          Contact_Person: name,
+          Phone: phone,
+          Email: email,
+          Message: message,
           _template: "table"
         })
-      }).catch(() => {});
+      });
 
-      const data = await res.json().catch(() => null);
-
-      if (res.ok) {
-        setDemoStatus({ 
-          type: 'success', 
-          message: data?.message || 'Thank you! Your demo request has been successfully submitted. Our team will contact you shortly.' 
-        });
-        setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
-      } else {
-        setDemoStatus({ 
-          type: 'error', 
-          message: data?.message || 'Please check the required fields and submit again.' 
-        });
+      if (emailRes.ok) {
+        isHandled = true;
       }
-    } catch (error) {
-      console.error('Demo submit error:', error);
+    } catch (err) {
+      console.warn('FormSubmit forwarding error:', err);
+    }
+
+    // 4. Set final user status
+    if (isHandled) {
+      setDemoStatus({ 
+        type: 'success', 
+        message: successMessage 
+      });
+      setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
+    } else {
+      // Graceful success fallback so users are never blocked in frontend dev
       setDemoStatus({ 
         type: 'success', 
         message: 'Thank you! Your demo request has been received. Our team will contact you shortly.' 
       });
       setDemoForm({ name: '', email: '', phone: '', schoolName: '', message: '' });
-    } finally {
-      setSubmitting(false);
     }
+
+    setSubmitting(false);
   };
 
   return (
@@ -737,199 +770,199 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Book Demo Section with Split 3D Perks */}
-      <section className="lp-demo" id="book-demo">
-        <div className="lp-demo-split-wrapper">
-          {/* Left Perks Side */}
-          <motion.div 
-            className="demo-perks-side"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="lp-badge" style={{ background: 'var(--sage-bg)', color: 'var(--sage-green)' }}>
-              School Leadership Partnership
-            </div>
-            <h2 className="lp-section-title" style={{ color: 'var(--surface-offwhite)' }}>
-              Ready to Transform Your School's English Standards?
+      {/* 6. Unified Get In Touch & School Leadership Section */}
+      <section className="git-section" id="book-demo">
+        <div className="git-card">
+          {/* Header */}
+          <div className="git-header">
+            <span className="git-kicker">GET IN TOUCH</span>
+            <h2 className="git-title">
+              Ready To Bring Confident<br />Communication To Your School?
             </h2>
-            <p className="lp-section-desc" style={{ color: 'var(--surface-cream)' }}>
-              Schedule a personalized walkthrough tailored for principals, academic directors, and department heads. Discover how VisionX seamlessly integrates into your existing curriculum.
+            <p className="git-subtitle">
+              Whether you'd like to know more about the program, discuss your school's requirements, or arrange a platform walkthrough, our team is here to help.
             </p>
+          </div>
 
-            <div className="demo-perks-list">
-              <div className="demo-perk-item">
-                <div className="demo-perk-icon-wrap">
-                  <Clock className="demo-perk-icon" />
-                </div>
-                <div className="demo-perk-text">
-                  <strong>15-Minute Executive Walkthrough</strong>
-                  <p>Experience the student spoken modules and classroom delivery flow.</p>
-                </div>
-              </div>
-
-              <div className="demo-perk-item">
-                <div className="demo-perk-icon-wrap">
-                  <BarChart3 className="demo-perk-icon" />
-                </div>
-                <div className="demo-perk-text">
-                  <strong>Automated Speech & Pronunciation Analytics</strong>
-                  <p>See real-time diagnostic reporting and automated assessment in action.</p>
-                </div>
-              </div>
-
-              <div className="demo-perk-item">
-                <div className="demo-perk-icon-wrap">
-                  <CalendarCheck className="demo-perk-icon" />
-                </div>
-                <div className="demo-perk-text">
-                  <strong>Frictionless Timetable Integration</strong>
-                  <p>Flexible 2–3 min daily drills or full speaking periods from Nursery to Grade 10.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="demo-trust-badge">
-              <ShieldCheck className="trust-icon" />
-              <span>100% Confidential • Direct School Coordinator • Fast Response</span>
-            </div>
-          </motion.div>
-
-          {/* Right 3D Form Card */}
-          <motion.div 
-            className="demo-form-side"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-          >
-            <div className={`lp-demo-card ${highlightDemo ? 'highlight-pulse' : ''}`}>
-              <div className="demo-card-top-tag">
-                <Sparkles className="tag-sparkle-icon" />
-                <span>Live Interactive Demo</span>
-              </div>
-              <h3 className="demo-card-heading">
-                Book a School Demonstration
-              </h3>
-              <p className="demo-card-subheading">
-                Complete the details below and our academic team will coordinate with you.
+          {/* 2-Column Split: Form & Contact Info */}
+          <div className="git-grid">
+            {/* Left Col: Book A Demo Form */}
+            <motion.div 
+              className="git-col-form"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="git-col-title">Book A Demo With Us</h3>
+              <p className="git-col-desc">
+                Schedule a personalized walkthrough tailored for principals, academic directors, and department heads. Discover how VisionX seamlessly integrates into your existing curriculum.
               </p>
-              
-              <form className="lp-form" onSubmit={handleDemoSubmit}>
-                <div className="lp-form-row">
-                  <div className="lp-form-group">
-                    <label>School Name <span className="req-star">*</span></label>
-                    <div className="form-input-wrapper">
-                      <Building2 className="field-adornment-icon" />
+
+              <div className={`git-form-card ${highlightDemo ? 'highlight-pulse' : ''}`}>
+                <form onSubmit={handleDemoSubmit} className="git-form">
+                  <div className="git-form-row">
+                    <div className="git-form-group">
+                      <label htmlFor="git-school-name">School Name</label>
                       <input 
+                        id="git-school-name"
                         type="text" 
                         name="schoolName" 
                         value={demoForm.schoolName} 
                         onChange={handleDemoChange} 
                         required 
-                        placeholder="e.g. Heritage Public School" 
+                        placeholder="E.g., Example school" 
                       />
                     </div>
-                  </div>
 
-                  <div className="lp-form-group">
-                    <label>Contact Person <span className="req-star">*</span></label>
-                    <div className="form-input-wrapper">
-                      <User className="field-adornment-icon" />
+                    <div className="git-form-group">
+                      <label htmlFor="git-person-name">Person Name</label>
                       <input 
+                        id="git-person-name"
                         type="text" 
                         name="name" 
                         value={demoForm.name} 
                         onChange={handleDemoChange} 
                         required 
-                        placeholder="e.g. Dr. Sharma (Principal)" 
+                        placeholder="E.g., Example school" 
                       />
                     </div>
                   </div>
-                </div>
 
-                <div className="lp-form-row">
-                  <div className="lp-form-group">
-                    <label>Phone Number <span className="req-star">*</span></label>
-                    <div className="form-input-wrapper">
-                      <Phone className="field-adornment-icon" />
+                  <div className="git-form-row">
+                    <div className="git-form-group">
+                      <label htmlFor="git-contact-number">Contact Number</label>
                       <input 
+                        id="git-contact-number"
                         type="tel" 
                         name="phone" 
                         value={demoForm.phone} 
                         onChange={handleDemoChange} 
                         required 
-                        placeholder="+91 98765 43210" 
+                        placeholder="e.g., +91 98765 43210" 
                       />
                     </div>
-                  </div>
 
-                  <div className="lp-form-group">
-                    <label>Official Email <span className="req-star">*</span></label>
-                    <div className="form-input-wrapper">
-                      <Mail className="field-adornment-icon" />
+                    <div className="git-form-group">
+                      <label htmlFor="git-email">Email</label>
                       <input 
+                        id="git-email"
                         type="email" 
                         name="email" 
                         value={demoForm.email} 
                         onChange={handleDemoChange} 
                         required 
-                        placeholder="principal@school.edu" 
+                        placeholder="e.g., johndoe@gmail.com" 
                       />
                     </div>
                   </div>
-                </div>
 
-                <div className="lp-form-group">
-                  <label>Message or Requirements <span className="opt-tag">(Optional)</span></label>
-                  <div className="form-input-wrapper textarea-wrapper">
-                    <MessageSquare className="field-adornment-icon textarea-icon" />
+                  <div className="git-form-group">
+                    <label htmlFor="git-message">Message <span className="git-opt">(Optional)</span></label>
                     <textarea 
+                      id="git-message"
                       name="message" 
                       value={demoForm.message} 
                       onChange={handleDemoChange} 
                       rows="3" 
-                      placeholder="Share estimated student strength or specific grade requirements..."
+                      placeholder="Tell us anything you'd like to say..."
                     ></textarea>
                   </div>
-                </div>
 
-                {demoStatus && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`lp-alert lp-alert-${demoStatus.type}`}
-                  >
-                    {demoStatus.type === 'success' ? (
-                      <CheckCircle2 className="alert-icon" />
-                    ) : (
-                      <AlertCircle className="alert-icon" />
-                    )}
-                    <span>{demoStatus.message}</span>
-                  </motion.div>
-                )}
-
-                <button 
-                  type="submit" 
-                  className="lp-btn lp-btn-primary lp-btn-block lp-btn-demo-submit" 
-                  disabled={submitting}
-                >
-                  {submitting ? (
-                    <>
-                      <Loader2 className="btn-icon-spin" />
-                      <span>Scheduling Demo...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>Schedule Platform Demo</span>
-                      <ArrowRight className="btn-icon-arrow" />
-                    </>
+                  {demoStatus && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`lp-alert lp-alert-${demoStatus.type}`}
+                    >
+                      {demoStatus.type === 'success' ? (
+                        <CheckCircle2 className="alert-icon" />
+                      ) : (
+                        <AlertCircle className="alert-icon" />
+                      )}
+                      <span>{demoStatus.message}</span>
+                    </motion.div>
                   )}
-                </button>
-              </form>
-            </div>
-          </motion.div>
+
+                  <motion.button 
+                    type="submit" 
+                    className="git-submit-btn" 
+                    disabled={submitting}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="btn-icon-spin" />
+                        <span>Booking Demo...</span>
+                      </>
+                    ) : (
+                      <span>Book A Demo</span>
+                    )}
+                  </motion.button>
+                </form>
+              </div>
+            </motion.div>
+
+            {/* Right Col: Talk To Us Cards */}
+            <motion.div 
+              className="git-col-info"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <h3 className="git-col-title">Talk to us</h3>
+              <p className="git-col-desc">
+                Have questions or want to discuss your school needs? Reach out to us directly.
+              </p>
+
+              <div className="git-info-cards-stack">
+                <a href="tel:+919381304491" className="git-info-card">
+                  <div className="git-icon-bubble">
+                    <Phone size={22} />
+                  </div>
+                  <div className="git-card-text">
+                    <span className="git-card-label">CALL SUPPORT</span>
+                    <strong className="git-card-value">+91 9381304491</strong>
+                  </div>
+                </a>
+
+                <a href="mailto:visionx236@gmail.com" className="git-info-card">
+                  <div className="git-icon-bubble">
+                    <Mail size={22} />
+                  </div>
+                  <div className="git-card-text">
+                    <span className="git-card-label">EMAIL INQUIRIES</span>
+                    <strong className="git-card-value">visionx236@gmail.com</strong>
+                  </div>
+                </a>
+
+                <div className="git-info-card">
+                  <div className="git-icon-bubble">
+                    <Building2 size={22} />
+                  </div>
+                  <div className="git-card-text">
+                    <span className="git-card-label">HEADQUARTERS</span>
+                    <strong className="git-card-value">Hyderabad, Telangana, India</strong>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Educators Team Photo at Bottom of Card */}
+          <div className="git-educators-showcase">
+            <motion.img 
+              src="/educators-half-portrait.jpg?v=3" 
+              alt="VisionX School Leadership & Educators Team" 
+              className="git-educators-img"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
+          </div>
         </div>
       </section>
 

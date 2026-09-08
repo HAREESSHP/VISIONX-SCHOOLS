@@ -9372,15 +9372,19 @@ textarea {
   background-color: #16181b;
   color: #ffffff;
   overflow: hidden;
-  padding: 6.5rem 5vw 4.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3.5rem 5vw 2.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
   z-index: 10;
 }
 
 .figma-footer-inner {
   position: relative;
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
+  box-sizing: border-box;
   z-index: 2;
 }
 
@@ -9389,40 +9393,45 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 3.5rem;
-  padding-bottom: 5.5rem;
+  gap: 2.5rem;
+  padding-bottom: 2.75rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .figma-footer-top-left {
   flex: 1 1 50%;
+  min-width: 0;
 }
 
 .figma-footer-title {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
   font-weight: 800;
-  line-height: 0.98;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   color: #ffffff;
   margin: 0;
   text-transform: none;
+  word-break: break-word;
 }
 
 .figma-footer-top-right {
   flex: 1 1 45%;
-  max-width: 500px;
+  max-width: 480px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 0.4rem;
+  padding-top: 0.25rem;
 }
 
 .figma-footer-description {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #cbd5e1;
-  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
-  line-height: 1.65;
-  margin: 0 0 1.85rem 0;
+  font-size: clamp(0.9rem, 1vw, 0.98rem);
+  line-height: 1.6;
+  margin: 0 0 1.25rem 0;
   font-weight: 400;
 }
 
@@ -9434,11 +9443,13 @@ textarea {
   color: #111827;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
-  font-size: 0.98rem;
-  padding: 0.9rem 2.35rem;
+  font-size: 0.95rem;
+  padding: 0.75rem 2rem;
+  min-height: 44px;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
+  touch-action: manipulation;
   box-shadow: 0 4px 18px rgba(155, 182, 255, 0.25);
   transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -9452,17 +9463,20 @@ textarea {
 .figma-footer-bottom {
   display: grid;
   grid-template-columns: 1.4fr 1.2fr 1fr 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .figma-footer-col {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .figma-footer-col-logo {
-  gap: 1.75rem;
+  gap: 1.25rem;
 }
 
 /* Brand Logo */
@@ -9470,12 +9484,13 @@ textarea {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+  max-width: 100%;
 }
 
 .figma-footer-white-logo {
-  height: clamp(65px, 6.5vw, 92px);
+  height: clamp(48px, 4.5vw, 75px);
   width: auto;
-  max-width: 290px;
+  max-width: 100%;
   object-fit: contain;
   filter: drop-shadow(0 4px 14px rgba(255, 255, 255, 0.18));
   transition: transform 0.25s ease, filter 0.25s ease;
@@ -9489,7 +9504,8 @@ textarea {
 .figma-footer-socials {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .figma-social-icon {
@@ -9503,6 +9519,7 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
   text-decoration: none;
+  touch-action: manipulation;
   transition: all 0.25s ease;
 }
 
@@ -9515,20 +9532,21 @@ textarea {
 
 .figma-footer-col-title {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: clamp(1rem, 1.15vw, 1.12rem);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 1.25rem 0;
+  margin: 0 0 0.85rem 0;
   letter-spacing: 0.02em;
 }
 
 .figma-footer-text {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #e2e8f0;
-  font-size: clamp(0.92rem, 1vw, 0.98rem);
+  font-size: clamp(0.88rem, 0.95vw, 0.95rem);
   font-weight: 450;
-  line-height: 1.65;
+  line-height: 1.55;
   margin: 0;
+  word-break: break-word;
 }
 
 .figma-footer-nav-list {
@@ -9537,17 +9555,18 @@ textarea {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.55rem;
 }
 
 .figma-footer-nav-list a {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #e2e8f0;
   text-decoration: none;
-  font-size: clamp(0.92rem, 1vw, 0.98rem);
+  font-size: clamp(0.88rem, 0.95vw, 0.95rem);
   font-weight: 450;
   transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
   display: inline-block;
+  padding: 2px 0;
 }
 
 .figma-footer-nav-list a:hover {
@@ -9558,55 +9577,72 @@ textarea {
 
 /* Sub-footer Bottom Bar */
 .figma-footer-bottom-bar {
-  margin-top: 4.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 2.5rem;
+  padding: 1.15rem 1.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.65);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .figma-footer-copyright {
-  color: #94a3b8;
+  color: #e2e8f0;
   font-size: 0.92rem;
   margin: 0;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
 }
 
 .figma-footer-credits {
-  color: #cbd5e1;
-  font-size: 0.92rem;
+  color: #f8fafc;
+  font-size: 0.94rem;
   margin: 0;
-  font-weight: 450;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
 }
 
 .figma-dev-link {
-  color: #9bb6ff;
-  font-weight: 700;
+  color: #93c5fd;
+  font-weight: 600;
   text-decoration: underline;
+  text-decoration-color: #60a5fa;
   text-underline-offset: 4px;
-  transition: all 0.2s ease;
-  display: inline-block;
+  text-decoration-thickness: 1.5px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0.15rem;
+  transition: all 0.25s ease;
+  display: inline;
 }
 
 .figma-dev-link:hover {
   color: #ffffff;
   text-decoration-color: #ffffff;
-  text-shadow: 0 0 12px rgba(155, 182, 255, 0.65);
-  transform: translateY(-1px);
+  text-shadow: 0 0 12px rgba(147, 197, 253, 0.85);
 }
 
 /* ============================================
    RESPONSIVE BREAKPOINTS (Mobile -> 4K/TV)
    ============================================ */
 
-/* 1. Large TV / 4K Ultra-Wide Screens (>= 1920px & >= 2560px) */
+/* 1. Large TV / 4K Ultra-Wide Screens (>= 1920px) */
 @media (min-width: 1920px) {
   .figma-footer {
-    padding: 8rem 8vw 6rem;
+    padding: 5rem 6vw 3.5rem;
   }
 
   .figma-footer-inner {
@@ -9614,155 +9650,193 @@ textarea {
   }
 
   .figma-footer-title {
-    font-size: clamp(4.2rem, 4.5vw, 5.6rem);
+    font-size: clamp(3.2rem, 3.8vw, 4.8rem);
   }
 
   .figma-footer-description {
-    font-size: 1.18rem;
+    font-size: 1.1rem;
     max-width: 580px;
-    line-height: 1.75;
+    line-height: 1.7;
   }
 
   .figma-footer-contact-btn {
-    font-size: 1.12rem;
-    padding: 1.05rem 2.8rem;
+    font-size: 1.05rem;
+    padding: 0.95rem 2.5rem;
   }
 
   .figma-footer-white-logo {
-    height: 110px;
-    max-width: 380px;
+    height: 95px;
+    max-width: 320px;
   }
 
   .figma-social-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
 
   .figma-footer-col-title {
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.18rem;
+    margin-bottom: 1.15rem;
   }
 
   .figma-footer-text,
   .figma-footer-nav-list a {
-    font-size: 1.08rem;
+    font-size: 1.02rem;
   }
 
   .figma-footer-bottom {
-    gap: 4rem;
+    gap: 3rem;
   }
 }
 
-@media (min-width: 2560px) {
-  .figma-footer-inner {
-    max-width: 2100px;
-  }
-
-  .figma-footer-title {
-    font-size: 6.8rem;
-  }
-
-  .figma-footer-description {
-    font-size: 1.35rem;
-    max-width: 750px;
-  }
-
-  .figma-footer-white-logo {
-    height: 140px;
-    max-width: 460px;
-  }
-
-  .figma-social-icon {
-    width: 56px;
-    height: 56px;
-  }
-}
-
-/* 2. Tablet & Medium Screens (<= 992px) */
-@media (max-width: 992px) {
+/* 2. Standard Tablets & Small Desktops (769px - 1024px) */
+@media (max-width: 1024px) {
   .figma-footer {
-    padding: 5.5rem 5vw 4rem;
+    padding: 3.25rem 4vw 2.25rem;
   }
 
   .figma-footer-top {
-    flex-direction: column;
-    gap: 2.5rem;
-    padding-bottom: 4rem;
+    gap: 2rem;
+    padding-bottom: 2.25rem;
   }
 
-  .figma-footer-top-right {
-    max-width: 100%;
-  }
-
-  .figma-footer-white-logo {
-    height: 70px;
-    max-width: 240px;
+  .figma-footer-title {
+    font-size: clamp(2.2rem, 4vw, 3rem);
   }
 
   .figma-footer-bottom {
     grid-template-columns: repeat(2, 1fr);
-    gap: 3rem 2rem;
+    gap: 2rem 2.5rem;
   }
 }
 
-/* 3. Mobile Phones (<= 640px) */
-@media (max-width: 640px) {
+/* 3. Small Tablets & Large Mobiles (481px - 768px) */
+@media (max-width: 768px) {
   .figma-footer {
-    padding: 4.5rem 1.5rem 3.5rem;
+    padding: 2.75rem 4vw 2rem;
   }
 
   .figma-footer-top {
-    padding-bottom: 3.5rem;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .figma-footer-top-right {
+    max-width: 100%;
+    width: 100%;
   }
 
   .figma-footer-title {
-    font-size: clamp(2.4rem, 11vw, 3.4rem);
-    line-height: 1.02;
-  }
-
-  .figma-footer-description {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .figma-footer-contact-btn {
-    width: 100%;
-    max-width: 260px;
-    padding: 0.85rem 1.75rem;
+    font-size: clamp(2rem, 7vw, 2.6rem);
   }
 
   .figma-footer-bottom {
-    grid-template-columns: 1fr;
-    gap: 2.25rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
   }
 
   .figma-footer-white-logo {
-    height: 60px;
-    max-width: 220px;
+    height: 55px;
+    max-width: 210px;
   }
 
   .figma-footer-bottom-bar {
     flex-direction: column;
     text-align: center;
-    gap: 0.85rem;
-    margin-top: 3.5rem;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .figma-footer-copyright,
+  .figma-footer-credits {
+    text-align: center;
+    width: 100%;
   }
 }
 
-/* 4. Very Small Screens (<= 380px) */
-@media (max-width: 380px) {
+/* 4. Standard Mobile Devices (361px - 480px) */
+@media (max-width: 480px) {
   .figma-footer {
-    padding: 3.5rem 1.15rem 3rem;
+    padding: 2.5rem 1.25rem 1.75rem;
+  }
+
+  .figma-footer-top {
+    gap: 1.25rem;
+    padding-bottom: 1.75rem;
   }
 
   .figma-footer-title {
     font-size: 2.15rem;
+    line-height: 1.08;
+  }
+
+  .figma-footer-description {
+    font-size: 0.92rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .figma-footer-contact-btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .figma-footer-bottom {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .figma-footer-col-logo {
+    gap: 1rem;
   }
 
   .figma-footer-white-logo {
-    height: 50px;
-    max-width: 180px;
+    height: 48px;
+    max-width: 190px;
+  }
+
+  .figma-social-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .figma-footer-bottom-bar {
+    margin-top: 1.75rem;
+    padding: 1rem 0.85rem;
+    gap: 0.65rem;
+    border-radius: 10px;
+  }
+
+  .figma-footer-copyright {
+    font-size: 0.86rem;
+  }
+
+  .figma-footer-credits {
+    font-size: 0.88rem;
+  }
+}
+
+/* 5. Extra Small & Foldable Screens (<= 360px) */
+@media (max-width: 360px) {
+  .figma-footer {
+    padding: 2rem 0.85rem 1.5rem;
+  }
+
+  .figma-footer-title {
+    font-size: 1.75rem;
+  }
+
+  .figma-footer-description {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .figma-footer-white-logo {
+    height: 40px;
+    max-width: 160px;
   }
 
   .figma-footer-socials {
@@ -9773,4 +9847,445 @@ textarea {
     width: 36px;
     height: 36px;
   }
+
+  .figma-footer-col-title {
+    font-size: 0.92rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .figma-footer-text,
+  .figma-footer-nav-list a {
+    font-size: 0.84rem;
+  }
+
+  .figma-footer-bottom-bar {
+    padding: 0.85rem 0.65rem;
+    gap: 0.5rem;
+  }
+
+  .figma-footer-copyright {
+    font-size: 0.8rem;
+  }
+
+  .figma-footer-credits {
+    font-size: 0.82rem;
+  }
 }
+
+/* ============================================
+   Get In Touch & School Leadership (Unified Light Section)
+   ============================================ */
+
+.git-section {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 3.5rem 1.5rem 5.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8fafc;
+  z-index: 5;
+}
+
+.git-card {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  background-color: #e7f1fd;
+  border-radius: 36px;
+  border: 1px solid rgba(195, 218, 248, 0.8);
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08), 0 4px 16px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding-top: 4.5rem;
+}
+
+/* 1. Header */
+.git-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 3.25rem auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.git-kicker {
+  display: inline-block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.git-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 850;
+  color: #0a0f1d;
+  line-height: 1.15;
+  margin: 0 0 1.15rem 0;
+  letter-spacing: -0.025em;
+}
+
+.git-subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(0.96rem, 1.1vw, 1.06rem);
+  color: #64748b;
+  line-height: 1.65;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* 2. Grid Split */
+.git-grid {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 3rem;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.git-col-form,
+.git-col-info {
+  position: relative;
+  z-index: 10;
+}
+
+.git-col-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0a0f1d;
+  margin: 0 0 0.55rem 0;
+  letter-spacing: -0.01em;
+}
+
+.git-col-desc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 1.65rem 0;
+}
+
+/* 3. Form Card */
+.git-form-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.25rem 2.5rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.git-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.git-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.git-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.git-form-group label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.git-opt {
+  font-weight: 500;
+  color: #94a3b8;
+  font-size: 0.82rem;
+}
+
+.git-form-group input,
+.git-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.96rem;
+  padding: 0.85rem 1.15rem;
+  background: #ffffff;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.git-form-group input:focus,
+.git-form-group textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.git-form-group input::placeholder,
+.git-form-group textarea::placeholder {
+  color: #9ca3af;
+  font-size: 0.92rem;
+}
+
+.git-form-group textarea {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.git-submit-btn {
+  width: 100%;
+  padding: 0.95rem 2rem;
+  margin-top: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #1d72fe 0%, #155dfc 100%);
+  color: #ffffff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 8px 24px rgba(29, 114, 254, 0.35);
+  transition: all 0.25s ease;
+}
+
+.git-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2b7dff 0%, #1d68ff 100%);
+  box-shadow: 0 10px 28px rgba(29, 114, 254, 0.45);
+}
+
+.git-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* 4. Contact Cards Stack */
+.git-info-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.git-info-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 1.35rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 16px 42px rgba(15, 23, 42, 0.1), 0 4px 10px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.git-info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.14);
+}
+
+.git-icon-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+}
+
+.git-card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.git-card-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 750;
+  color: #64748b;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
+}
+
+.git-card-value {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.3;
+}
+
+/* 5. Educators Image at Bottom (Full Faces Visible & Proportional Size) */
+.git-educators-showcase {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 2;
+  line-height: 0;
+  padding: 0 1.5rem;
+}
+
+.git-educators-img {
+  width: 100%;
+  max-width: 880px;
+  height: auto;
+  max-height: 480px;
+  display: block;
+  object-fit: contain;
+  object-position: bottom center;
+  background-color: #e7f1fd;
+  user-select: none;
+  margin: 0 auto;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS for Get In Touch
+   ============================================ */
+
+@media (max-width: 1100px) {
+  .git-educators-showcase {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .git-section {
+    padding: 2.5rem 1.25rem 4rem 1.25rem;
+  }
+
+  .git-card {
+    border-radius: 28px;
+    padding-top: 3.5rem;
+  }
+
+  .git-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0 1.75rem;
+  }
+
+  .git-educators-showcase {
+    margin-top: 1.5rem;
+  }
+
+  .git-header {
+    margin-bottom: 2.5rem;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .git-section {
+    padding: 1.75rem 0.85rem 3rem 0.85rem;
+  }
+
+  .git-card {
+    border-radius: 20px;
+    padding-top: 2.25rem;
+  }
+
+  .git-header {
+    margin-bottom: 1.85rem;
+    padding: 0 1rem;
+  }
+
+  .git-title {
+    font-size: 2.15rem;
+    line-height: 1.12;
+  }
+
+  .git-subtitle {
+    font-size: 0.94rem;
+  }
+
+  .git-grid {
+    padding: 0 1rem;
+  }
+
+  .git-form-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .git-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .git-info-card {
+    padding: 1.15rem 1.25rem;
+    border-radius: 16px;
+  }
+
+  .git-icon-bubble {
+    width: 44px;
+    height: 44px;
+  }
+
+  .git-card-value {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .git-title {
+    font-size: 1.85rem;
+  }
+
+  .git-form-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .git-info-card {
+    padding: 1rem;
+    gap: 0.85rem;
+  }
+
+  .git-card-value {
+    font-size: 0.95rem;
+  }
+}
+
+
+
