@@ -174,6 +174,33 @@ export default function Footer({ onContactClick, onNavigate }) {
             </ul>
           </div>
         </div>
+
+        {/* Sub-footer Copyright & Developer Credits */}
+        <div className="figma-footer-bottom-bar">
+          <p className="figma-footer-copyright">
+            © 2026 VisionX English Platform. All rights reserved.
+          </p>
+          <p className="figma-footer-credits">
+            Design and Developed by{' '}
+            <a
+              href="https://www.linkedin.com/in/hareesh-ai-dev?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="figma-dev-link"
+            >
+              Hareesh
+            </a>
+            {' '}and{' '}
+            <a
+              href="https://www.linkedin.com/in/rahul-ai-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="figma-dev-link"
+            >
+              Ragul
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
