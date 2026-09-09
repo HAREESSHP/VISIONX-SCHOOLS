@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Oswald:wght@600;700&display=swap');
 
 /* ============================================
    VISIONX English Learning Platform
@@ -2864,7 +2864,7 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: clamp(1rem, 1.4vw, 1.75rem);
   margin-left: auto;
   margin-right: auto;
   padding-right: 0.25rem;
@@ -2873,12 +2873,12 @@ textarea {
 .lp-nav-link {
   color: var(--text);
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.78rem;
   transition: var(--transition);
   position: relative;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-size: 0.78rem;
+  white-space: nowrap;
 }
 
 .lp-nav-right {
@@ -3217,122 +3217,330 @@ textarea {
 }
 
 /* ============================================
-   Landing Page Reviews
+   Landing Page Reviews - Trusted By School Leaders
    ============================================ */
 
-.lp-reviews {
-  padding: 1.5rem 2rem;
-  background: rgba(43, 39, 36, 0.1);
+.trusted-reviews-section {
+  position: relative;
+  background-color: #f0740f;
+  padding: 5.5rem 1.5rem 6.5rem;
+  overflow: hidden;
   width: 100%;
-  margin: 0.5rem 0;
+  box-sizing: border-box;
 }
 
-.lp-text-center {
+.trusted-reviews-doodle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.95;
+  user-select: none;
+}
+
+.trusted-reviews-doodle.doodle-left {
+  top: 18px;
+  left: 20px;
+  width: clamp(80px, 8.5vw, 130px);
+}
+
+.trusted-reviews-doodle.doodle-right {
+  top: 35px;
+  right: 20px;
+  width: clamp(85px, 9.5vw, 140px);
+}
+
+.trusted-reviews-container {
+  position: relative;
+  max-width: 1340px;
+  margin: 0 auto;
+  z-index: 2;
   text-align: center;
 }
 
-.lp-section-subtitle {
-  color: var(--surface-cream);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 1px 4px rgba(43, 39, 36, 0.2);
-}
-
-.lp-carousel-wrapper {
+.trusted-reviews-header {
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  overflow: hidden;
-  padding: 2rem 0;
-  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 1) 6%, rgba(0, 0, 0, 1) 94%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 1) 6%, rgba(0, 0, 0, 1) 94%, transparent 100%);
 }
 
-.lp-carousel-track {
+.trusted-reviews-kicker {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  opacity: 0.95;
+}
+
+.trusted-reviews-title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.trusted-reviews-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.4rem, 4.4vw, 4rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin: 0 0 0.85rem;
+}
+
+.title-leaders-span {
+  position: relative;
+  display: inline-block;
+}
+
+.trusted-reviews-pushpin {
+  position: absolute;
+  top: -30px;
+  right: -26px;
+  width: 44px;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(12deg);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
+}
+
+.trusted-reviews-subtitle {
+  font-size: clamp(1rem, 1.25vw, 1.22rem);
+  color: #ffffff;
+  line-height: 1.5;
+  margin: 0 auto;
+  opacity: 0.96;
+  max-width: 620px;
+}
+
+/* Stepped Cards Carousel Track */
+.trusted-reviews-carousel {
+  position: relative;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.trusted-reviews-cards-track {
   display: flex;
-  gap: 2.25rem;
-  width: max-content;
-  animation: scrollCarousel 28s linear infinite;
-  will-change: transform;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.25rem;
+  position: relative;
+  min-height: 420px;
+  padding-bottom: 2rem;
 }
 
-.lp-carousel-track:hover {
-  animation-play-state: paused;
+/* Stepped Review Card */
+.trusted-review-card {
+  flex: 0 0 clamp(230px, 21vw, 295px);
+  max-width: 295px;
+  border-radius: 22px;
+  padding: 2.2rem 1.65rem 1.85rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  user-select: none;
+  position: relative;
 }
 
-@keyframes scrollCarousel {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+/* 1. Center Active Card */
+.trusted-review-card.is-center {
+  background: #ffffff;
+  color: #1f2937;
+  transform: translateY(-50px) scale(1.05);
+  box-shadow: 0 28px 60px -10px rgba(0, 0, 0, 0.28), 0 12px 26px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+  opacity: 1;
 }
 
-.lp-review-card {
-  flex-shrink: 0;
-  width: 360px;
-  background: var(--surface-cream);
-  border-radius: var(--radius-lg);
-  padding: 2.25rem;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* 2. Immediate Neighbors (Left 1 & Right 1) */
+.trusted-review-card.is-prev-1,
+.trusted-review-card.is-next-1 {
+  background: #fad4b5;
+  color: #374151;
+  transform: translateY(18px) scale(0.96);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  opacity: 0.96;
 }
 
-.lp-review-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-6px);
+.trusted-review-card.is-prev-1:hover,
+.trusted-review-card.is-next-1:hover {
+  transform: translateY(6px) scale(0.98);
+  opacity: 1;
 }
 
-.lp-review-header {
+/* 3. Outer Cards (Left 2 & Right 2) */
+.trusted-review-card.is-prev-2,
+.trusted-review-card.is-next-2 {
+  background: #fad4b5;
+  color: #4b5563;
+  transform: translateY(70px) scale(0.88);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  opacity: 0.82;
+}
+
+.trusted-review-card.is-prev-2:hover,
+.trusted-review-card.is-next-2:hover {
+  transform: translateY(58px) scale(0.91);
+  opacity: 0.95;
+}
+
+/* Card Content Elements */
+.trusted-card-quote-mark {
+  color: #f0740f;
+  margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  justify-content: center;
+  height: 32px;
 }
 
-.lp-review-avatar {
-  width: 46px;
-  height: 46px;
+.trusted-card-quote-mark svg {
+  width: 36px;
+  height: 28px;
+}
+
+.trusted-card-text {
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: #374151;
+  margin: 0 0 1.75rem;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.trusted-card-author {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  text-align: left;
+}
+
+.trusted-author-avatar {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
-  color: var(--surface-offwhite);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(181, 96, 46, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.lp-review-info h4 {
-  font-size: 1.05rem;
-  font-family: var(--font-serif);
-  color: var(--espresso);
-  margin: 0 0 0.25rem;
+.trusted-author-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-.lp-review-info span {
-  color: var(--text-lighter);
-  font-size: 0.85rem;
+.trusted-school-name {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.trusted-author-role {
+  font-size: 0.8rem;
+  color: #6b7280;
   font-weight: 500;
+  margin-top: 2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.lp-stars {
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
+/* Bottom Seamless Fade Mask to White */
+.trusted-reviews-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.65) 55%, #ffffff 100%);
+  pointer-events: none;
+  z-index: 6;
 }
 
-.lp-review-text {
-  color: var(--text);
-  line-height: 1.65;
-  font-style: italic;
+/* Controls (Prev/Next Arrows & Dots) */
+.trusted-reviews-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 8;
+}
+
+.trusted-nav-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.trusted-nav-arrow:hover {
+  background: rgba(255, 255, 255, 0.95);
+  color: #f0740f;
+  transform: scale(1.08);
+}
+
+.trusted-reviews-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trusted-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.trusted-dot.active {
+  width: 28px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Backward compatibility aliases */
+.lp-reviews {
+  display: contents;
 }
 
 /* ============================================
@@ -9417,46 +9625,51 @@ textarea {
 }
 
 .figma-footer-top-right {
-  flex: 1 1 45%;
-  max-width: 480px;
+  flex: 1 1 50%;
+  max-width: 550px;
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: 0.25rem;
+  padding-top: 0.35rem;
 }
 
 .figma-footer-description {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #cbd5e1;
-  font-size: clamp(0.9rem, 1vw, 0.98rem);
-  line-height: 1.6;
-  margin: 0 0 1.25rem 0;
-  font-weight: 400;
+  color: #ffffff;
+  font-size: clamp(1.15rem, 1.4vw, 1.3rem);
+  line-height: 1.62;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.65rem 0;
+  font-weight: 550;
+  opacity: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
 .figma-footer-contact-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #9bb6ff;
-  color: #111827;
+  background-color: #a8c1ff;
+  color: #0b1120;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.75rem 2rem;
-  min-height: 44px;
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
+  padding: 0.85rem 2.25rem;
+  min-height: 48px;
   border-radius: 9999px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   cursor: pointer;
   touch-action: manipulation;
-  box-shadow: 0 4px 18px rgba(155, 182, 255, 0.25);
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(168, 193, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 }
 
 .figma-footer-contact-btn:hover {
-  background-color: #b0c6ff;
-  box-shadow: 0 6px 24px rgba(155, 182, 255, 0.4);
+  background-color: #c4d6ff;
+  color: #000000;
+  box-shadow: 0 6px 28px rgba(168, 193, 255, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* BOTTOM SECTION: 4 Column Links & Info Grid */
@@ -9654,8 +9867,8 @@ textarea {
   }
 
   .figma-footer-description {
-    font-size: 1.1rem;
-    max-width: 580px;
+    font-size: 1.45rem;
+    max-width: 680px;
     line-height: 1.7;
   }
 
@@ -9727,6 +9940,12 @@ textarea {
     width: 100%;
   }
 
+  .figma-footer-description {
+    font-size: 1.12rem;
+    line-height: 1.62;
+    margin-bottom: 1.45rem;
+  }
+
   .figma-footer-title {
     font-size: clamp(2rem, 7vw, 2.6rem);
   }
@@ -9773,15 +9992,19 @@ textarea {
   }
 
   .figma-footer-description {
-    font-size: 0.92rem;
-    margin-bottom: 1.25rem;
+    font-size: 1.06rem;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+    color: #ffffff;
+    font-weight: 550;
   }
 
   .figma-footer-contact-btn {
     width: 100%;
     max-width: 100%;
-    padding: 0.8rem 1.5rem;
-    font-size: 0.95rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
   }
 
   .figma-footer-bottom {
@@ -9873,6 +10096,377 @@ textarea {
 }
 
 /* ============================================
+   Why Choose Us Section
+   ============================================ */
+
+.why-choose-section {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 5.5rem 2rem 5rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 6;
+  perspective: 1200px;
+}
+
+/* Ambient 3D Depth Orbs */
+.why-3d-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(90px);
+  z-index: 1;
+}
+
+.why-3d-glow-orange {
+  width: 420px;
+  height: 420px;
+  left: -80px;
+  top: 25%;
+  background: radial-gradient(circle, rgba(240, 116, 15, 0.08) 0%, rgba(240, 116, 15, 0) 70%);
+}
+
+.why-3d-glow-cyan {
+  width: 460px;
+  height: 460px;
+  right: -80px;
+  top: 10%;
+  background: radial-gradient(circle, rgba(0, 210, 180, 0.08) 0%, rgba(0, 210, 180, 0) 70%);
+}
+
+.why-peeking-students {
+  position: absolute;
+  left: 0;
+  bottom: 1.5rem;
+  width: clamp(55px, 6vw, 90px);
+  height: auto;
+  pointer-events: none;
+  z-index: 5;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.why-peeking-students:hover {
+  transform: scale(1.06) rotate(-1.5deg);
+}
+
+/* 3D Tilted Educators Card Floating */
+@keyframes whyFloat3d {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+}
+
+.why-tilted-card-3d-wrapper {
+  position: absolute;
+  right: clamp(0.5rem, 2.2vw, 2.5rem);
+  top: clamp(6.5rem, 8vw, 10rem);
+  width: clamp(240px, 21.5vw, 325px);
+  z-index: 5;
+  user-select: none;
+  animation: whyFloat3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.why-tilted-card-3d {
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+
+.why-tilted-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 18px 36px rgba(15, 23, 42, 0.14));
+  transform: translateZ(22px);
+}
+
+.why-choose-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.why-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 3.5rem;
+}
+
+.why-kicker {
+  display: inline-block;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 1.15rem;
+  padding: 0.35rem 0.95rem;
+  background: rgba(240, 116, 15, 0.06);
+  border: 1px solid rgba(240, 116, 15, 0.15);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(240, 116, 15, 0.06);
+}
+
+.why-title {
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2rem, 3.1vw, 3.05rem);
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.16;
+  margin: 0;
+  letter-spacing: -0.015em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.why-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.why-highlight {
+  color: #f0740f;
+  text-shadow: 0 2px 14px rgba(240, 116, 15, 0.18);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4.5vw, 4rem);
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+.why-col-header {
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin: 0 0 1.85rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.why-col-header::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 22px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #f0740f 0%, #ff9a3d 100%);
+  box-shadow: 0 2px 8px rgba(240, 116, 15, 0.4);
+}
+
+.why-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 3D Interactive Card Items */
+.why-item-3d-card {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 1.25rem !important;
+  padding: 1.35rem 1.45rem !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  border: 1.5px solid rgba(226, 232, 240, 0.85) !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04), 0 2px 6px rgba(15, 23, 42, 0.02) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: default !important;
+  transform-style: preserve-3d !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+.why-item-3d-card:hover {
+  border-color: rgba(240, 116, 15, 0.35) !important;
+  box-shadow: 0 18px 40px rgba(240, 116, 15, 0.12), 0 6px 16px rgba(15, 23, 42, 0.04) !important;
+}
+
+.why-icon-bubble {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  border: 2px solid #f0740f;
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin-top: 0.1rem;
+  box-shadow: 0 8px 18px rgba(240, 116, 15, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(240, 116, 15, 0.12);
+  transform: translateZ(24px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.why-item-3d-card:hover .why-icon-bubble {
+  transform: translateZ(34px) scale(1.08);
+  box-shadow: 0 12px 24px rgba(240, 116, 15, 0.28), inset 0 2px 4px #ffffff;
+}
+
+.why-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transform: translateZ(16px);
+}
+
+.why-item-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.12rem;
+  font-weight: 750;
+  color: #101c40;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.why-item-desc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.58;
+  margin: 0;
+}
+
+/* Responsive for Why Choose Us */
+@media (max-width: 1240px) {
+  .why-tilted-card-3d-wrapper {
+    top: clamp(6rem, 7vw, 8rem);
+    right: 0.75rem;
+    width: clamp(200px, 19vw, 250px);
+  }
+  .why-grid {
+    gap: 2.25rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .why-choose-section {
+    padding: 4.5rem 1.5rem 4.5rem;
+  }
+  .why-header {
+    margin-bottom: 2.75rem;
+  }
+  .why-tilted-card-3d-wrapper {
+    top: 6.85rem;
+    right: 0.5rem;
+    width: 200px;
+    opacity: 0.95;
+  }
+  .why-grid {
+    gap: 2rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .why-tilted-card-3d-wrapper {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 0 auto 2.75rem;
+    width: clamp(210px, 38vw, 270px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .why-peeking-students {
+    width: clamp(45px, 6vw, 65px);
+    bottom: 1.5rem;
+    opacity: 0.85;
+  }
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .why-col-header {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .why-title-line {
+    white-space: normal;
+    display: inline;
+  }
+  .why-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.35rem);
+    text-align: center;
+    line-height: 1.2;
+    padding: 0 0.5rem;
+  }
+  .why-tilted-card-3d-wrapper {
+    margin-bottom: 2.25rem;
+    width: clamp(190px, 50vw, 240px);
+  }
+  .why-item-3d-card {
+    padding: 1.2rem 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-section {
+    padding: 3.5rem 1rem 5.5rem;
+  }
+  .why-header {
+    margin-bottom: 2rem;
+  }
+  .why-title {
+    font-size: clamp(1.75rem, 6.8vw, 2.15rem);
+  }
+  .why-col-header {
+    font-size: 1.65rem;
+    margin-bottom: 1.25rem;
+    justify-content: flex-start;
+  }
+  .why-list {
+    gap: 1.25rem;
+  }
+  .why-item-3d-card {
+    padding: 1.1rem 1.1rem !important;
+    gap: 1rem !important;
+  }
+  .why-icon-bubble {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+  .why-item-title {
+    font-size: 1.02rem;
+  }
+  .why-item-desc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .why-peeking-students {
+    width: 38px;
+    bottom: 0.5rem;
+    opacity: 0.7;
+  }
+}
+
+/* ============================================
    Get In Touch & School Leadership (Unified Light Section)
    ============================================ */
 
@@ -9884,7 +10478,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8fafc;
+  background-color: #ffffff;
   z-index: 5;
 }
 
@@ -9892,10 +10486,10 @@ textarea {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  background-color: #e7f1fd;
+  background-color: #fef1e7;
   border-radius: 36px;
-  border: 1px solid rgba(195, 218, 248, 0.8);
-  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08), 0 4px 16px rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(234, 198, 175, 0.65);
+  box-shadow: 0 20px 60px rgba(180, 110, 70, 0.07), 0 4px 16px rgba(15, 23, 42, 0.04);
   overflow: hidden;
   position: relative;
   display: flex;
@@ -9908,9 +10502,9 @@ textarea {
 /* 1. Header */
 .git-header {
   text-align: center;
-  max-width: 900px;
+  max-width: 1140px;
   margin: 0 auto 3.25rem auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   position: relative;
   z-index: 10;
   box-sizing: border-box;
@@ -9919,31 +10513,51 @@ textarea {
 .git-kicker {
   display: inline-block;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 0.88rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: #475569;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #334155;
   text-transform: uppercase;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1.15rem;
 }
 
 .git-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 850;
-  color: #0a0f1d;
-  line-height: 1.15;
-  margin: 0 0 1.15rem 0;
-  letter-spacing: -0.025em;
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+  font-weight: 700;
+  color: #0a0a0a;
+  line-height: 1.14;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.015em;
+  text-transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.git-title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .git-subtitle {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: clamp(0.96rem, 1.1vw, 1.06rem);
-  color: #64748b;
-  line-height: 1.65;
-  max-width: 820px;
+  font-size: clamp(0.96rem, 1.05vw, 1.05rem);
+  color: #5b6b82;
+  line-height: 1.62;
+  max-width: 900px;
   margin: 0 auto;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .git-title-line {
+    white-space: normal;
+  }
+
+  .git-sub-br {
+    display: none;
+  }
 }
 
 /* 2. Grid Split */
@@ -9968,19 +10582,22 @@ textarea {
 }
 
 .git-col-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.65rem;
-  font-weight: 800;
-  color: #0a0f1d;
-  margin: 0 0 0.55rem 0;
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #f0740f;
+  margin: 0 0 0.65rem 0;
   letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .git-col-desc {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 0.95rem;
-  color: #475569;
-  line-height: 1.6;
+  font-size: clamp(1.04rem, 1.15vw, 1.15rem);
+  font-weight: 500;
+  color: #0f172a;
+  line-height: 1.62;
+  letter-spacing: -0.01em;
   margin: 0 0 1.65rem 0;
 }
 
@@ -10153,45 +10770,51 @@ textarea {
   line-height: 1.3;
 }
 
-/* 5. Educators Image at Bottom (Full Faces Visible & Proportional Size) */
+/* 5. Educators Image at Bottom (Full Width & Seamlessly Occupying Lower Section) */
 .git-educators-showcase {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 1.5rem;
+  margin-top: -1.75rem;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   line-height: 0;
-  padding: 0 1.5rem;
+  padding: 0;
 }
 
 .git-educators-img {
   width: 100%;
-  max-width: 880px;
+  max-width: 100%;
   height: auto;
-  max-height: 480px;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
   object-position: bottom center;
-  background-color: #e7f1fd;
+  background-color: #fef1e7;
   user-select: none;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* ============================================
    RESPONSIVE BREAKPOINTS for Get In Touch
    ============================================ */
 
-@media (max-width: 1100px) {
-  .git-educators-showcase {
-    margin-top: 1.5rem;
+/* 1. Large Laptops & Desktops (1101px - 1300px) */
+@media (max-width: 1200px) {
+  .git-card {
+    max-width: 1100px;
+  }
+
+  .git-grid {
+    gap: 2.25rem;
+    padding: 0 2rem;
   }
 }
 
+/* 2. Tablets & Small Laptops (769px - 992px) */
 @media (max-width: 992px) {
   .git-section {
-    padding: 2.5rem 1.25rem 4rem 1.25rem;
+    padding: 2.75rem 1.25rem 4.5rem 1.25rem;
   }
 
   .git-card {
@@ -10199,25 +10822,112 @@ textarea {
     padding-top: 3.5rem;
   }
 
-  .git-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 0 1.75rem;
-  }
-
-  .git-educators-showcase {
-    margin-top: 1.5rem;
-  }
-
   .git-header {
     margin-bottom: 2.5rem;
     padding: 0 1.5rem;
   }
+
+  .git-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding: 0 1.75rem;
+    max-width: 720px;
+  }
+
+  .git-educators-showcase {
+    margin-top: 1rem;
+    padding: 0;
+  }
+
+  .git-educators-img {
+    max-width: 100%;
+  }
 }
 
-@media (max-width: 640px) {
+/* 3. Small Tablets & Phablets (481px - 768px) */
+@media (max-width: 768px) {
   .git-section {
-    padding: 1.75rem 0.85rem 3rem 0.85rem;
+    padding: 2.25rem 1rem 3.75rem 1rem;
+  }
+
+  .git-card {
+    border-radius: 24px;
+    padding-top: 2.75rem;
+  }
+
+  .git-header {
+    margin-bottom: 2rem;
+    padding: 0 1.25rem;
+  }
+
+  .git-title-br,
+  .git-sub-br {
+    display: none;
+  }
+
+  .git-title {
+    font-size: clamp(2rem, 5.5vw, 2.6rem);
+    line-height: 1.14;
+  }
+
+  .git-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .git-grid {
+    padding: 0 1.25rem;
+    gap: 1.85rem;
+    max-width: 100%;
+  }
+
+  .git-col-title {
+    font-size: 1.65rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .git-col-desc {
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.58;
+    color: #0f172a;
+    margin-bottom: 1.35rem;
+  }
+
+  .git-form-card {
+    padding: 1.75rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .git-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .git-info-cards-stack {
+    gap: 1rem;
+  }
+
+  .git-info-card {
+    padding: 1.15rem 1.35rem;
+    border-radius: 18px;
+  }
+
+  .git-educators-showcase {
+    margin-top: 1rem;
+    padding: 0;
+  }
+
+  .git-educators-img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* 4. Standard Mobile Phones (361px - 480px) */
+@media (max-width: 480px) {
+  .git-section {
+    padding: 1.75rem 0.75rem 3rem 0.75rem;
   }
 
   .git-card {
@@ -10226,36 +10936,81 @@ textarea {
   }
 
   .git-header {
-    margin-bottom: 1.85rem;
-    padding: 0 1rem;
+    margin-bottom: 1.65rem;
+    padding: 0 0.85rem;
+  }
+
+  .git-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.75rem;
+  }
+
+  .git-title-br,
+  .git-sub-br {
+    display: none;
   }
 
   .git-title {
-    font-size: 2.15rem;
-    line-height: 1.12;
+    font-size: clamp(1.85rem, 6.8vw, 2.25rem);
+    line-height: 1.14;
+    letter-spacing: -0.015em;
   }
 
   .git-subtitle {
-    font-size: 0.94rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .git-grid {
-    padding: 0 1rem;
+    padding: 0 0.85rem;
+    gap: 1.5rem;
+  }
+
+  .git-col-title {
+    font-size: 1.55rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .git-col-desc {
+    font-size: 0.96rem;
+    font-weight: 500;
+    line-height: 1.55;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
   }
 
   .git-form-card {
-    padding: 1.5rem 1.25rem;
+    padding: 1.35rem 1.15rem;
     border-radius: 16px;
   }
 
-  .git-form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
+  .git-form-group {
+    margin-bottom: 1.1rem;
+    gap: 0.35rem;
+  }
+
+  .git-form-group label {
+    font-size: 0.88rem;
+  }
+
+  .git-form-group input,
+  .git-form-group textarea {
+    font-size: 16px;
+    padding: 0.75rem 0.95rem;
+    border-radius: 9px;
+  }
+
+  .git-submit-btn {
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    min-height: 46px;
   }
 
   .git-info-card {
-    padding: 1.15rem 1.25rem;
+    padding: 1.05rem 1.15rem;
     border-radius: 16px;
+    gap: 1rem;
   }
 
   .git-icon-bubble {
@@ -10263,29 +11018,131 @@ textarea {
     height: 44px;
   }
 
+  .git-card-label {
+    font-size: 0.75rem;
+  }
+
   .git-card-value {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
+    word-break: break-word;
+  }
+
+  .git-educators-showcase {
+    margin-top: 1rem;
+    padding: 0;
+  }
+
+  .git-educators-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 380px;
   }
 }
 
-@media (max-width: 380px) {
+/* 5. Extra Small & Foldable Phones (<= 360px) */
+@media (max-width: 360px) {
+  .git-section {
+    padding: 1.25rem 0.45rem 2.5rem 0.45rem;
+  }
+
+  .git-card {
+    border-radius: 16px;
+    padding-top: 1.85rem;
+  }
+
+  .git-header {
+    margin-bottom: 1.35rem;
+    padding: 0 0.5rem;
+  }
+
+  .git-kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
   .git-title {
-    font-size: 1.85rem;
+    font-size: 1.65rem;
+    line-height: 1.14;
+  }
+
+  .git-subtitle {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .git-grid {
+    padding: 0 0.5rem;
+    gap: 1.25rem;
+  }
+
+  .git-col-title {
+    font-size: 1.35rem;
+  }
+
+  .git-col-desc {
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #0f172a;
+    margin-bottom: 1rem;
   }
 
   .git-form-card {
-    padding: 1.25rem 1rem;
+    padding: 1.1rem 0.85rem;
+    border-radius: 14px;
+  }
+
+  .git-form-group {
+    margin-bottom: 0.95rem;
+  }
+
+  .git-form-group label {
+    font-size: 0.82rem;
+  }
+
+  .git-form-group input,
+  .git-form-group textarea {
+    padding: 0.65rem 0.8rem;
+    font-size: 16px;
+  }
+
+  .git-submit-btn {
+    padding: 0.78rem 1.25rem;
+    font-size: 0.95rem;
+    min-height: 44px;
   }
 
   .git-info-card {
-    padding: 1rem;
-    gap: 0.85rem;
+    padding: 0.9rem 0.85rem;
+    gap: 0.75rem;
+    border-radius: 14px;
+  }
+
+  .git-icon-bubble {
+    width: 38px;
+    height: 38px;
+  }
+
+  .git-card-label {
+    font-size: 0.7rem;
   }
 
   .git-card-value {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+  }
+
+  .git-educators-showcase {
+    margin-top: 0.75rem;
+    padding: 0;
+  }
+
+  .git-educators-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 300px;
   }
 }
+
 
 
 

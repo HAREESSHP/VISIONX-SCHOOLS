@@ -2229,3 +2229,107 @@ img, svg, video, canvas {
     overflow-x: auto;
   }
 }
+
+/* --------------------------------------------------------------------------
+   8. TRUSTED REVIEWS SECTION RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .trusted-reviews-cards-track {
+    gap: 0.85rem;
+  }
+  .trusted-review-card {
+    flex: 0 0 clamp(210px, 20vw, 260px);
+    padding: 1.85rem 1.4rem 1.6rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .trusted-reviews-section {
+    padding: 4.5rem 1.25rem 5.5rem;
+  }
+  .trusted-reviews-cards-track {
+    gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 2.5rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .trusted-reviews-cards-track::-webkit-scrollbar {
+    display: none;
+  }
+  .trusted-review-card {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+  }
+  .trusted-review-card.is-center {
+    transform: translateY(-20px) scale(1.02);
+  }
+  .trusted-review-card.is-prev-1,
+  .trusted-review-card.is-next-1 {
+    transform: translateY(0px) scale(0.96);
+  }
+  .trusted-review-card.is-prev-2,
+  .trusted-review-card.is-next-2 {
+    transform: translateY(15px) scale(0.92);
+  }
+}
+
+@media (max-width: 600px) {
+  .trusted-reviews-section {
+    padding: 3rem 1rem 4rem;
+  }
+  .trusted-reviews-title {
+    font-size: clamp(1.85rem, 6.8vw, 2.35rem);
+    line-height: 1.2;
+    margin-bottom: 0.65rem;
+  }
+  .trusted-reviews-subtitle {
+    font-size: 0.95rem;
+  }
+  .trusted-reviews-doodle.doodle-left {
+    width: 48px;
+    top: 10px;
+    left: 8px;
+    opacity: 0.45;
+  }
+  .trusted-reviews-doodle.doodle-right {
+    width: 54px;
+    top: 14px;
+    right: -10px;
+    opacity: 0.35;
+  }
+  .trusted-reviews-pushpin {
+    top: -18px;
+    right: -14px;
+    width: 26px;
+  }
+  .trusted-reviews-cards-track {
+    min-height: 340px;
+    padding-bottom: 1rem;
+  }
+  .trusted-review-card {
+    flex: 0 0 84vw;
+    max-width: 310px;
+    padding: 1.75rem 1.3rem 1.5rem;
+  }
+  .trusted-card-text {
+    font-size: 0.92rem;
+    line-height: 1.48;
+    margin-bottom: 1.25rem;
+  }
+  .trusted-review-card.is-center {
+    transform: translateY(0) scale(1);
+  }
+  .trusted-review-card.is-prev-1,
+  .trusted-review-card.is-next-1,
+  .trusted-review-card.is-prev-2,
+  .trusted-review-card.is-next-2 {
+    transform: translateY(0) scale(0.92);
+    opacity: 0.65;
+  }
+  .trusted-reviews-controls {
+    margin-top: 1.25rem;
+  }
+}
+

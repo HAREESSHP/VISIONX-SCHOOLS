@@ -19,7 +19,13 @@ import {
   Menu,
   X,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Mic,
+  MessagesSquare,
+  TrendingUp,
+  Layers,
+  GraduationCap,
+  Trophy
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { API_URL } from '../services/api';
@@ -47,6 +53,45 @@ export default function Home() {
   const [highlightDemo, setHighlightDemo] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
+  const [activeReviewIndex, setActiveReviewIndex] = useState(2);
+
+  const testimonials = [
+    {
+      school: "Bright Minds International",
+      author: "Sister Mary, Academic Dean",
+      text: "The AI pronunciation feedback and 3D modules boosted student classroom participation by over 80%.",
+      avatar: "B",
+      avatarBg: "#3D5A80"
+    },
+    {
+      school: "Sunshine Public School",
+      author: "Mrs. Sharma, Principal",
+      text: "The improvement in our students' English fluency is remarkable. Our teachers love the structured delivery!",
+      avatar: "S",
+      avatarBg: "#4a6382"
+    },
+    {
+      school: "Royal Heritage School",
+      author: "Dr. Verma, Principal",
+      text: "The improvement in our students' English fluency is remarkable. Our teachers love the structured delivery!",
+      avatar: "R",
+      avatarBg: "#5c6b8c"
+    },
+    {
+      school: "Green Valley Academy",
+      author: "Mr. Patel, Director",
+      text: "Interactive, engaging, and exactly what our curriculum needed to build lifelong speaking confidence.",
+      avatar: "G",
+      avatarBg: "#4A6B3D"
+    },
+    {
+      school: "Delhi Global Convent",
+      author: "Mr. Rajiv Khanna, Chairman",
+      text: "From hesitant whispers to confident public speaking in just 2 terms. Highly recommended for every school!",
+      avatar: "D",
+      avatarBg: "#63587a"
+    }
+  ];
 
   // Smooth scroll and focus to the Book Demo section
   const scrollToDemo = (e) => {
@@ -84,7 +129,9 @@ export default function Home() {
     }
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = -70;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
@@ -218,8 +265,9 @@ export default function Home() {
 
           <div className="lp-nav-center">
             <a href="#about" onClick={(e) => scrollToSection('about', e)} className="lp-nav-link">About</a>
-            <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)} className="lp-nav-link">Reviews</a>
             <a href="#clients" onClick={(e) => scrollToSection('clients', e)} className="lp-nav-link">Student Path</a>
+            <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)} className="lp-nav-link">Reviews</a>
+            <a href="#why-choose-us" onClick={(e) => scrollToSection('why-choose-us', e)} className="lp-nav-link">Why Choose Us</a>
             <a href="#contact" onClick={(e) => scrollToSection('contact', e)} className="lp-nav-link">Contact</a>
           </div>
 
@@ -288,8 +336,9 @@ export default function Home() {
               </div>
 
               <a href="#about" onClick={(e) => scrollToSection('about', e)}>About VisionX</a>
-              <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)}>School Reviews</a>
               <a href="#clients" onClick={(e) => scrollToSection('clients', e)}>Fluency Journey</a>
+              <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)}>School Reviews</a>
+              <a href="#why-choose-us" onClick={(e) => scrollToSection('why-choose-us', e)}>Why Choose Us</a>
               <a href="#contact" onClick={(e) => scrollToSection('contact', e)}>Contact Us</a>
               <div className="lp-mobile-actions">
                 <button 
@@ -444,96 +493,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. Reviews Section with 3D Cards */}
-      <section className="lp-reviews" id="reviews">
-        <div className="text-center" style={{ maxWidth: '700px', margin: '0 auto 2.5rem' }}>
-          <div className="lp-badge" style={{ margin: '0 auto 1rem', background: '#FAF4EB', color: '#3D2B1F', borderColor: '#C4A369', fontWeight: '800', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)' }}>Testimonials</div>
-          <h2 className="lp-section-title" style={{ color: 'var(--surface-offwhite)' }}>Trusted by School Leaders</h2>
-          <p className="lp-section-subtitle">Discover how VisionX empowers classrooms and transforms student confidence.</p>
-        </div>
 
-        <div className="lp-carousel-wrapper">
-          <div className="lp-carousel-track">
-            {[1, 2].map((loop) => (
-              <React.Fragment key={loop}>
-                {[
-                  {
-                    avatar: "S",
-                    avatarBg: "linear-gradient(180deg, var(--terracotta) 0%, var(--terracotta-dark) 100%)",
-                    school: "Sunshine Public School",
-                    author: "Mrs. Sharma, Principal",
-                    text: "The improvement in our students' English fluency is remarkable. Our teachers love the structured delivery!",
-                    floatDistance: -18,
-                    floatDuration: 3.2,
-                    floatDelay: 0
-                  },
-                  {
-                    avatar: "G",
-                    avatarBg: "linear-gradient(180deg, #4A6B3D 0%, #35502A 100%)",
-                    school: "Green Valley Academy",
-                    author: "Mr. Patel, Director",
-                    text: "Interactive, engaging, and exactly what our curriculum needed to build lifelong speaking confidence.",
-                    floatDistance: 16,
-                    floatDuration: 3.6,
-                    floatDelay: 0.6
-                  },
-                  {
-                    avatar: "R",
-                    avatarBg: "linear-gradient(180deg, #C4A369 0%, #9D7E45 100%)",
-                    school: "Royal Heritage School",
-                    author: "Dr. Verma, Principal",
-                    text: "Students genuinely look forward to their Spoken English classes. A complete game changer for our school!",
-                    floatDistance: -15,
-                    floatDuration: 3.0,
-                    floatDelay: 1.2
-                  },
-                  {
-                    avatar: "B",
-                    avatarBg: "linear-gradient(180deg, #3D5A80 0%, #293241 100%)",
-                    school: "Bright Minds International",
-                    author: "Sister Mary, Academic Dean",
-                    text: "The AI pronunciation feedback and 3D modules boosted student classroom participation by over 80%.",
-                    floatDistance: 18,
-                    floatDuration: 3.8,
-                    floatDelay: 0.4
-                  },
-                  {
-                    avatar: "D",
-                    avatarBg: "linear-gradient(180deg, #E07A5F 0%, #B25A38 100%)",
-                    school: "Delhi Global Convent",
-                    author: "Mr. Rajiv Khanna, Chairman",
-                    text: "From hesitant whispers to confident public speaking in just 2 terms. Highly recommended for every school!",
-                    floatDistance: -16,
-                    floatDuration: 3.4,
-                    floatDelay: 1.0
-                  }
-                ].map((item, idx) => (
-                  <motion.div
-                    key={`${loop}-${idx}`}
-                    animate={{ y: [0, item.floatDistance, 0] }}
-                    transition={{ duration: item.floatDuration, repeat: Infinity, ease: "easeInOut", delay: item.floatDelay }}
-                    style={{ flexShrink: 0, display: 'flex' }}
-                  >
-                    <TiltCard maxAngle={10} scale={1.04} borderRadius="24px" className="lp-review-card-3d">
-                      <div className="lp-review-header">
-                        <div className="lp-review-avatar" style={{ background: item.avatarBg }}>
-                          {item.avatar}
-                        </div>
-                        <div className="lp-review-info">
-                          <h4>{item.school}</h4>
-                          <span>{item.author}</span>
-                        </div>
-                      </div>
-                      <div className="lp-stars">⭐⭐⭐⭐⭐</div>
-                      <p className="lp-review-text">"{item.text}"</p>
-                    </TiltCard>
-                  </motion.div>
-                ))}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 5. Student Journey Section with Professional Stepped Pathway */}
       <section className="lp-clients" id="clients">
@@ -770,17 +730,387 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Unified Get In Touch & School Leadership Section */}
+      {/* 5. Reviews Section - Trusted By School Leaders (Placed Directly Above Why Choose Us) */}
+      <section className="trusted-reviews-section" id="reviews">
+        {/* Background Doodles */}
+        <img 
+          src="/reviews-doodle-left.png" 
+          alt="" 
+          className="trusted-reviews-doodle doodle-left" 
+          aria-hidden="true" 
+        />
+        <img 
+          src="/reviews-doodle-right.png" 
+          alt="" 
+          className="trusted-reviews-doodle doodle-right" 
+          aria-hidden="true" 
+        />
+
+        <div className="trusted-reviews-container">
+          {/* Header */}
+          <div className="trusted-reviews-header">
+            <span className="trusted-reviews-kicker">TESTIMONIALS</span>
+            <div className="trusted-reviews-title-wrap">
+              <h2 className="trusted-reviews-title">
+                Trusted By School <span className="title-leaders-span">Leaders<img src="/reviews-pushpin.png" alt="" className="trusted-reviews-pushpin" aria-hidden="true" /></span>
+              </h2>
+            </div>
+            <p className="trusted-reviews-subtitle">
+              Discover how VisionX empowers classrooms and transforms student confidence.
+            </p>
+          </div>
+
+          {/* Stepped 5-Card Layout */}
+          <div className="trusted-reviews-carousel">
+            <div className="trusted-reviews-cards-track">
+              {testimonials.map((item, idx) => {
+                const diff = idx - activeReviewIndex;
+                let cardClass = "trusted-review-card";
+                if (diff === 0) cardClass += " is-center";
+                else if (diff === -1) cardClass += " is-prev-1";
+                else if (diff === 1) cardClass += " is-next-1";
+                else if (diff <= -2) cardClass += " is-prev-2";
+                else if (diff >= 2) cardClass += " is-next-2";
+
+                return (
+                  <div 
+                    key={idx} 
+                    className={cardClass}
+                    onClick={() => setActiveReviewIndex(idx)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveReviewIndex(idx); }}
+                    aria-label={`Testimonial from ${item.school}`}
+                  >
+                    <div className="trusted-card-quote-mark">
+                      <svg width="34" height="26" viewBox="0 0 34 26" fill="currentColor">
+                        <path d="M14.5 0C6.5 0 0 6.5 0 14.5C0 20.85 5.15 26 11.5 26C13.2 26 14.5 24.7 14.5 23C14.5 21.3 13.2 20 11.5 20C8.45 20 6 17.55 6 14.5C6 14.2 6.05 13.9 6.1 13.6C7.5 14.5 9.2 15 11 15C16 15 20 11 20 6C20 2.7 17.3 0 14.5 0ZM28.5 0C20.5 0 14 6.5 14 14.5C14 20.85 19.15 26 25.5 26C27.2 26 28.5 24.7 28.5 23C28.5 21.3 27.2 20 25.5 20C22.45 20 20 17.55 20 14.5C20 14.2 20.05 13.9 20.1 13.6C21.5 14.5 23.2 15 25 15C30 15 34 11 34 6C34 2.7 31.3 0 28.5 0Z" />
+                      </svg>
+                    </div>
+                    
+                    <p className="trusted-card-text">
+                      "{item.text}"
+                    </p>
+
+                    <div className="trusted-card-author">
+                      <div className="trusted-author-avatar" style={{ background: item.avatarBg }}>
+                        {item.avatar}
+                      </div>
+                      <div className="trusted-author-info">
+                        <div className="trusted-school-name">{item.school}</div>
+                        <div className="trusted-author-role">{item.author}</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Carousel Controls (Arrows + Dots) */}
+            <div className="trusted-reviews-controls">
+              <button 
+                type="button" 
+                className="trusted-nav-arrow" 
+                onClick={() => setActiveReviewIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                aria-label="Previous Testimonial"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <div className="trusted-reviews-dots">
+                {testimonials.map((_, dotIdx) => (
+                  <button
+                    key={dotIdx}
+                    type="button"
+                    className={`trusted-dot ${dotIdx === activeReviewIndex ? 'active' : ''}`}
+                    onClick={() => setActiveReviewIndex(dotIdx)}
+                    aria-label={`Go to slide ${dotIdx + 1}`}
+                  />
+                ))}
+              </div>
+              <button 
+                type="button" 
+                className="trusted-nav-arrow" 
+                onClick={() => setActiveReviewIndex((prev) => (prev + 1) % testimonials.length)}
+                aria-label="Next Testimonial"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Seamless Bottom Fade Mask */}
+        <div className="trusted-reviews-bottom-fade" aria-hidden="true" />
+      </section>
+
+      {/* 6. Why Choose Us Section */}
+      <section className="why-choose-section" id="why-choose-us">
+        {/* Ambient 3D Depth Orbs */}
+        <div className="why-3d-glow-orb why-3d-glow-orange" aria-hidden="true" />
+        <div className="why-3d-glow-orb why-3d-glow-cyan" aria-hidden="true" />
+
+        {/* Left Side Students Peeking */}
+        <motion.img 
+          src="/why-students-peeking.png" 
+          alt="Students" 
+          className="why-peeking-students" 
+          aria-hidden="true" 
+          initial={{ opacity: 0, x: -70 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Right Side 3D Interactive Tilted Educators Card */}
+        <motion.div 
+          className="why-tilted-card-3d-wrapper"
+          initial={{ opacity: 0, scale: 0.72, rotateY: -22, rotateX: 16, y: 70 }}
+          whileInView={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <TiltCard
+            maxAngle={12}
+            scale={1.04}
+            borderRadius="28px"
+            glareEnable={true}
+            glareMaxOpacity={0.12}
+            className="why-tilted-card-3d"
+          >
+            <img 
+              src="/why-educators-card.png" 
+              alt="Educators" 
+              className="why-tilted-card-img" 
+              aria-hidden="true" 
+            />
+          </TiltCard>
+        </motion.div>
+
+        <div className="why-choose-inner">
+          {/* Header */}
+          <motion.div 
+            className="why-header"
+            initial={{ opacity: 0, y: 35, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="why-kicker">WHY CHOOSE US</span>
+            <h2 className="why-title">
+              <span className="why-title-line">More Than English Lessons. A Skill</span>
+              <span className="why-title-line">
+                <span className="why-highlight">Students Carry</span> Forward.
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* 2 Columns: For Students & For Schools */}
+          <div className="why-grid">
+            {/* Col 1: For Students */}
+            <div className="why-col">
+              <motion.h3 
+                className="why-col-header"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+              >
+                For Students
+              </motion.h3>
+              <div className="why-list">
+                <motion.div
+                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <TiltCard
+                    maxAngle={6}
+                    scale={1.02}
+                    borderRadius="20px"
+                    glareEnable={true}
+                    glareMaxOpacity={0.06}
+                    className="why-item-3d-card"
+                  >
+                    <div className="why-icon-bubble">
+                      <Mic size={22} color="#f0740f" strokeWidth={2.2} />
+                    </div>
+                    <div className="why-item-content">
+                      <h4 className="why-item-title">Confidence to participate</h4>
+                      <p className="why-item-desc">
+                        Students become more comfortable sharing ideas, answering questions and taking part in conversations.
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <TiltCard
+                    maxAngle={6}
+                    scale={1.02}
+                    borderRadius="20px"
+                    glareEnable={true}
+                    glareMaxOpacity={0.06}
+                    className="why-item-3d-card"
+                  >
+                    <div className="why-icon-bubble">
+                      <MessagesSquare size={22} color="#f0740f" strokeWidth={2.2} />
+                    </div>
+                    <div className="why-item-content">
+                      <h4 className="why-item-title">Communication beyond textbooks</h4>
+                      <p className="why-item-desc">
+                        They learn to use English in conversations, activities and situations that go beyond written exercises.
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <TiltCard
+                    maxAngle={6}
+                    scale={1.02}
+                    borderRadius="20px"
+                    glareEnable={true}
+                    glareMaxOpacity={0.06}
+                    className="why-item-3d-card"
+                  >
+                    <div className="why-icon-bubble">
+                      <TrendingUp size={22} color="#f0740f" strokeWidth={2.2} />
+                    </div>
+                    <div className="why-item-content">
+                      <h4 className="why-item-title">Progress at their own level</h4>
+                      <p className="why-item-desc">
+                        Age- and grade-appropriate learning allows students to build skills progressively from Nursery to Class 10.
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Col 2: For Schools */}
+            <div className="why-col">
+              <motion.h3 
+                className="why-col-header"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+              >
+                For Schools
+              </motion.h3>
+              <div className="why-list">
+                <motion.div
+                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <TiltCard
+                    maxAngle={6}
+                    scale={1.02}
+                    borderRadius="20px"
+                    glareEnable={true}
+                    glareMaxOpacity={0.06}
+                    className="why-item-3d-card"
+                  >
+                    <div className="why-icon-bubble">
+                      <Layers size={22} color="#f0740f" strokeWidth={2.2} />
+                    </div>
+                    <div className="why-item-content">
+                      <h4 className="why-item-title">A structured program, not an add-on</h4>
+                      <p className="why-item-desc">
+                        A planned communication curriculum that can fit into the school's existing academic environment.
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <TiltCard
+                    maxAngle={6}
+                    scale={1.02}
+                    borderRadius="20px"
+                    glareEnable={true}
+                    glareMaxOpacity={0.06}
+                    className="why-item-3d-card"
+                  >
+                    <div className="why-icon-bubble">
+                      <GraduationCap size={22} color="#f0740f" strokeWidth={2.2} />
+                    </div>
+                    <div className="why-item-content">
+                      <h4 className="why-item-title">Support for educators</h4>
+                      <p className="why-item-desc">
+                        Teachers and school teams get visibility into student learning and progress through the program.
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
+                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.6, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <TiltCard
+                    maxAngle={6}
+                    scale={1.02}
+                    borderRadius="20px"
+                    glareEnable={true}
+                    glareMaxOpacity={0.06}
+                    className="why-item-3d-card"
+                  >
+                    <div className="why-icon-bubble">
+                      <Trophy size={22} color="#f0740f" strokeWidth={2.2} />
+                    </div>
+                    <div className="why-item-content">
+                      <h4 className="why-item-title">A skill that strengthens student outcomes</h4>
+                      <p className="why-item-desc">
+                        Students develop communication abilities that can support classroom participation, presentations and future academic growth.
+                      </p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Unified Get In Touch & School Leadership Section */}
       <section className="git-section" id="book-demo">
         <div className="git-card">
           {/* Header */}
           <div className="git-header">
             <span className="git-kicker">GET IN TOUCH</span>
             <h2 className="git-title">
-              Ready To Bring Confident<br />Communication To Your School?
+              <span className="git-title-line">Ready To Bring Confident Communication</span>
+              <span className="git-title-line">To Your School?</span>
             </h2>
             <p className="git-subtitle">
-              Whether you'd like to know more about the program, discuss your school's requirements, or arrange a platform walkthrough, our team is here to help.
+              Whether you'd like to know more about the program, discuss your school's requirements,<br className="git-sub-br" />or arrange a platform walkthrough, our team is here to help.
             </p>
           </div>
 
@@ -954,7 +1284,7 @@ export default function Home() {
           {/* Educators Team Photo at Bottom of Card */}
           <div className="git-educators-showcase">
             <motion.img 
-              src="/educators-half-portrait.jpg?v=3" 
+              src="/educators-half-portrait.png?v=4" 
               alt="VisionX School Leadership & Educators Team" 
               className="git-educators-img"
               initial={{ opacity: 0, y: 20 }}
