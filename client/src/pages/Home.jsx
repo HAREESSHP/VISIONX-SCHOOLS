@@ -734,13 +734,13 @@ export default function Home() {
       <section className="trusted-reviews-section" id="reviews">
         {/* Background Doodles */}
         <img 
-          src="/reviews-doodle-left.png" 
+          src="/reviews-doodle-left-v2.png" 
           alt="" 
           className="trusted-reviews-doodle doodle-left" 
           aria-hidden="true" 
         />
         <img 
-          src="/reviews-doodle-right.png" 
+          src="/reviews-doodle-right-v2.png" 
           alt="" 
           className="trusted-reviews-doodle doodle-right" 
           aria-hidden="true" 
@@ -752,7 +752,7 @@ export default function Home() {
             <span className="trusted-reviews-kicker">TESTIMONIALS</span>
             <div className="trusted-reviews-title-wrap">
               <h2 className="trusted-reviews-title">
-                Trusted By School <span className="title-leaders-span">Leaders<img src="/reviews-pushpin.png" alt="" className="trusted-reviews-pushpin" aria-hidden="true" /></span>
+                Trusted By School <span className="title-leaders-span">Leaders<img src="/reviews-pushpin-v2.png" alt="" className="trusted-reviews-pushpin" aria-hidden="true" /></span>
               </h2>
             </div>
             <p className="trusted-reviews-subtitle">
