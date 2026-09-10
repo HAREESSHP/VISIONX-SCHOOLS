@@ -8,10 +8,10 @@ export default function About3DVisual() {
         {/* Central Image - Large */}
         <motion.div
           className="about-central-image"
-          initial={{ scale: 0.8 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, scale: 0.75, rotateY: 15 }}
+          whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
         >
           <img 
             src="/robo-image.jpeg" 
@@ -24,8 +24,10 @@ export default function About3DVisual() {
       {/* Floating 3D Stat Badges */}
       <motion.div 
         className="about-3d-badge badge-top"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        initial={{ opacity: 0, scale: 0.8, y: -20 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
         whileHover={{ scale: 1.08 }}
       >
         <span className="badge-3d-icon">🎓</span>
@@ -37,8 +39,10 @@ export default function About3DVisual() {
 
       <motion.div 
         className="about-3d-badge badge-bottom"
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}
+        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 1.35, ease: [0.16, 1, 0.3, 1] }}
         whileHover={{ scale: 1.08 }}
       >
         <span className="badge-3d-icon">🏫</span>
