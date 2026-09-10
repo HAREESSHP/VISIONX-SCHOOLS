@@ -127,7 +127,8 @@ export default function Home() {
       scrollToDemo(e);
       return;
     }
-    const section = document.getElementById(id);
+    const targetId = (id === 'clients' || id === 'how-it-works') ? 'how-it-works' : id;
+    const section = document.getElementById(targetId) || document.getElementById(id);
     if (section) {
       const yOffset = -70;
       const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -265,7 +266,7 @@ export default function Home() {
 
           <div className="lp-nav-center">
             <a href="#about" onClick={(e) => scrollToSection('about', e)} className="lp-nav-link">About</a>
-            <a href="#clients" onClick={(e) => scrollToSection('clients', e)} className="lp-nav-link">Student Path</a>
+            <a href="#how-it-works" onClick={(e) => scrollToSection('how-it-works', e)} className="lp-nav-link">How It Works</a>
             <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)} className="lp-nav-link">Reviews</a>
             <a href="#why-choose-us" onClick={(e) => scrollToSection('why-choose-us', e)} className="lp-nav-link">Why Choose Us</a>
             <a href="#contact" onClick={(e) => scrollToSection('contact', e)} className="lp-nav-link">Contact</a>
@@ -336,7 +337,7 @@ export default function Home() {
               </div>
 
               <a href="#about" onClick={(e) => scrollToSection('about', e)}>About VisionX</a>
-              <a href="#clients" onClick={(e) => scrollToSection('clients', e)}>Fluency Journey</a>
+              <a href="#how-it-works" onClick={(e) => scrollToSection('how-it-works', e)}>How It Works</a>
               <a href="#reviews" onClick={(e) => scrollToSection('reviews', e)}>School Reviews</a>
               <a href="#why-choose-us" onClick={(e) => scrollToSection('why-choose-us', e)}>Why Choose Us</a>
               <a href="#contact" onClick={(e) => scrollToSection('contact', e)}>Contact Us</a>
@@ -495,240 +496,326 @@ export default function Home() {
 
 
 
-      {/* 5. Student Journey Section with Professional Stepped Pathway */}
-      <section className="lp-clients" id="clients">
-        <div className="lp-clients-header">
-          <p className="lp-clients-kicker">Structured Step-by-Step Growth</p>
-          <h2 className="lp-section-title lp-text-center">The 7-Pillar Fluency Journey</h2>
-          <p className="lp-section-subtitle lp-text-center">A comprehensive pedagogical progression engineered for sustainable spoken English fluency.</p>
+      {/* 5. How It Works Section */}
+      <section className="lp-how-it-works-section" id="how-it-works">
+        <span id="clients" style={{ position: 'absolute', top: '-80px', pointerEvents: 'none' }} aria-hidden="true" />
+        <div className="hiw-container">
+        
+        {/* Playful Decorative Doodle Arrows */}
+        <div className="hiw-doodle-wrapper" aria-hidden="true">
+          {/* Main Bright Cyan Sweeping Loop */}
+          <svg
+            className="hiw-doodle-cyan"
+            width="120"
+            height="180"
+            viewBox="0 0 120 180"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 28c-14 20-18 52-6 78 11 24 38 32 56 16 16-12 18-34 6-47-13-14-36-14-46 2-10 14-6 35 8 46 17 14 42 19 62 9"
+              stroke="#00c4b4"
+              strokeWidth="4.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M84 126l18 8-8-18"
+              stroke="#00c4b4"
+              strokeWidth="4.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          {/* Top Dark Teal Spring Doodle */}
+          <svg
+            className="hiw-doodle-teal"
+            width="75"
+            height="110"
+            viewBox="0 0 75 110"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M48 8c-9-8-22-2-18 10 3 9 16 9 19 1 3-8-4-16-14-14-11 2-12 16-2 23 8 5 15 3 14-6 0-5-6-8-10-6-5 2-6 8-2 15l2 15"
+              stroke="#006d5b"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M39 68l5 12 5-12"
+              stroke="#006d5b"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </div>
 
-        {/* Desktop View: Full 3-Column Stepper Grid (>= 769px) */}
-        <div className="journey-pillars-grid desktop-pillars-grid">
-          {[
+        <div className="hiw-header">
+          <p className="hiw-kicker">THE PROCESS</p>
+          <h2 className="hiw-title">How It Works</h2>
+        </div>
+
+        {(() => {
+          const howItWorksSteps = [
             {
               num: "01",
-              phase: "Phase 1 • Auditory",
-              title: "Active Listening",
-              desc: "Immersive auditory training that develops phonemic recognition, rhythm perception, and natural conversational cadence.",
-              milestone: "Phonemic Awareness"
+              title: "Listen & Understand",
+              desc: "Students develop the ability to listen carefully, recognize sounds and understand spoken English in different situations.",
+              icon: (
+                <svg width="78" height="78" viewBox="0 0 80 80" fill="none" stroke="#9faef8" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M14 26c-4.5 5-7 11-7 17.5s2.5 12.5 7 17.5" />
+                  <path d="M23 33c-2.8 3-4.2 6.8-4.2 10.5s1.4 7.5 4.2 10.5" />
+                  <path d="M40 20c12 0 22 7 22 18.5 0 8.5-5.5 14-11 19-3.5 3.5-5 7-5 11 0 4.5 3.5 7 7.5 7 4.5 0 7.5-3.5 7.5-8" />
+                  <path d="M40 20c-9 0-16 7-16 16.5 0 9.5 7 16 13 20.5" />
+                  <path d="M42 32c-5.5 0-9.5 4-9.5 9.5 0 4.5 3 7.5 7.5 9" />
+                </svg>
+              )
             },
             {
               num: "02",
-              phase: "Phase 2 • Articulation",
-              title: "Guided Speaking",
-              desc: "Structured voice prompts engineered to build vocal muscle memory, eliminate hesitation, and foster spontaneous responses.",
-              milestone: "Speech Confidence"
+              title: "Respond Naturally",
+              desc: "Students practise responding to questions, prompts and conversations, helping them become more comfortable using English spontaneously.",
+              icon: (
+                <svg width="78" height="78" viewBox="0 0 80 80" fill="none" stroke="#9faef8" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M33 72v-7c-9.5-2-16.5-9-18-19-2-13.5 6-25.5 18-28.5 11-2.5 22.5 2 27.5 11 1.5 2.8 2 6 2 9.5 0 2.2-.6 4-1.8 5.5l4.2 3.5c.8.7.8 2 0 2.7l-3.5 3c.6 1.2.4 2.5-.5 3.3l-2.7 2c-.5 4.5-3.5 8.5-8.2 10.5l-1 4.5" />
+                  <path d="M58 40l6-3" />
+                  <path d="M61 48h7" />
+                  <path d="M58 56l6 3" />
+                </svg>
+              )
             },
             {
               num: "03",
-              phase: "Phase 3 • Lexicon",
-              title: "Contextual Vocabulary",
-              desc: "High-frequency academic and everyday terminology introduced in situational and conversational contexts.",
-              milestone: "Active Recall"
+              title: "Build Vocabulary",
+              desc: "Students learn useful words and phrases in meaningful contexts so they can understand and use them naturally.",
+              icon: (
+                <svg width="78" height="78" viewBox="0 0 80 80" fill="none" stroke="#9faef8" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M26 18v6" />
+                  <path d="M12 28h28" />
+                  <path d="M33 32L14 62" />
+                  <path d="M19 36c4.5 6 11.5 16 19.5 24" />
+                  <path d="M46 62L58 18l12 44" />
+                  <path d="M50 49h16" />
+                </svg>
+              )
             },
             {
               num: "04",
-              phase: "Phase 4 • Structure",
-              title: "Intuitive Grammar",
-              desc: "Natural sentence construction learned through communicative drills without dry, abstract rule memorization.",
-              milestone: "Syntax Mastery"
+              title: "Form Clear Sentences",
+              desc: "Students develop stronger sentence-building skills and learn to communicate ideas clearly without relying on memorized grammar rules.",
+              icon: (
+                <svg width="78" height="78" viewBox="0 0 80 80" fill="#9faef8" aria-hidden="true">
+                  <path d="M18 20c0-3.5 2.8-6.5 6.5-6.5s6.5 2.8 6.5 6.5c0 5-3.5 9-7.5 11l-2 .8c-.8.3-1.5-.4-1.2-1.2l.8-2c-2-1.2-3.1-4.2-3.1-8.6z" />
+                  <path d="M29 20c0-3.5 2.8-6.5 6.5-6.5s6.5 2.8 6.5 6.5c0 5-3.5 9-7.5 11l-2 .8c-.8.3-1.5-.4-1.2-1.2l.8-2c-2-1.2-3.1-4.2-3.1-8.6z" />
+                  <rect x="18" y="32" width="46" height="4.5" rx="2.25" />
+                  <rect x="18" y="40" width="46" height="4.5" rx="2.25" />
+                  <rect x="18" y="48" width="46" height="4.5" rx="2.25" />
+                  <rect x="18" y="56" width="36" height="4.5" rx="2.25" />
+                  <path d="M57 66c0 3.5-2.8 6.5-6.5 6.5s-6.5-2.8-6.5-6.5c0-5 3.5-9 7.5-11l2-.8c.8-.3 1.5.4 1.2 1.2l-.8 2c2 1.2 3.1 4.2 3.1 8.6z" />
+                  <path d="M68 66c0 3.5-2.8 6.5-6.5 6.5s-6.5-2.8-6.5-6.5c0-5 3.5-9 7.5-11l2-.8c.8-.3 1.5.4 1.2 1.2l-.8 2c2 1.2 3.1 4.2 3.1 8.6z" />
+                </svg>
+              )
             },
             {
               num: "05",
-              phase: "Phase 5 • Phonetics",
-              title: "Accent Precision",
-              desc: "Targeted acoustic feedback on vowel clarity, consonant articulation, and syllable stress for crisp enunciation.",
-              milestone: "Diction Clarity"
+              title: "Speak Clearly",
+              desc: "Students work on pronunciation, sounds and clarity so their spoken English becomes easier to understand.",
+              icon: (
+                <svg width="78" height="78" viewBox="0 0 80 80" fill="none" stroke="#9faef8" strokeWidth="4.8" strokeLinecap="round" aria-hidden="true">
+                  <path d="M16 36v10" />
+                  <path d="M24 28v26" />
+                  <path d="M32 20v42" />
+                  <path d="M40 14v54" />
+                  <path d="M48 20v42" />
+                  <path d="M56 28v26" />
+                  <path d="M64 36v10" />
+                </svg>
+              )
             },
             {
               num: "06",
-              phase: "Phase 6 • Application",
-              title: "Roleplay & Discourse",
-              desc: "Simulated peer debates, interviews, group discussions, and classroom presentations in real-life contexts.",
-              milestone: "Pragmatic Fluency"
+              title: "Real-world Scenarios",
+              desc: "Through conversations, roleplays, discussions and classroom activities, students practise applying what they have learned.",
+              icon: (
+                <svg width="78" height="78" viewBox="0 0 80 80" fill="none" stroke="#9faef8" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <rect x="14" y="16" width="52" height="36" rx="6" />
+                  <rect x="22" y="24" width="14" height="12" rx="3" />
+                  <path d="M42 27h16" />
+                  <path d="M42 34h11" />
+                  <path d="M40 52v12" />
+                  <path d="M26 64h28" />
+                </svg>
+              )
             },
             {
               num: "07",
-              phase: "Phase 7 • Capstone",
-              title: "Confident Public Mastery",
-              desc: "The culminating milestone where students deliver speeches, converse fluently, and communicate with poised confidence.",
-              milestone: "CEFR-Aligned Fluency",
-              isCapstone: true
+              title: "Express with Confidence",
+              desc: "Students bring their skills together through presentations, conversations and other speaking activities, building confidence in expressing their ideas.",
+              isCapstone: true,
+              icon: (
+                <svg width="96" height="88" viewBox="0 0 96 88" fill="none" stroke="#9faef8" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="48" cy="20" r="8" />
+                  <path d="M21 16l11 17c4.5 6.5 10 9.5 16 9.5s11.5-3 16-9.5l11-17" />
+                  <path d="M48 42v18" />
+                  <path d="M42 60l-7 17" />
+                  <path d="M54 60l7 17" />
+                  <path d="M10 44l3-6 3.5 3.5 3.5-6 3 8.5H10z" />
+                  <path d="M73 44l3-6 3.5 3.5 3.5-6 3 8.5H73z" />
+                </svg>
+              )
             }
-          ].map((pillar, index) => (
-            <motion.div
-              key={pillar.num}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.07 }}
-              className={pillar.isCapstone ? 'pillar-grid-item capstone-item' : 'pillar-grid-item'}
-            >
-              <TiltCard
-                maxAngle={7}
-                scale={1.02}
-                borderRadius="20px"
-                className={`pillar-card-pro ${pillar.isCapstone ? 'pillar-card-capstone' : ''}`}
-              >
-                <div className="pillar-card-header">
-                  <span className="pillar-num-badge">{pillar.num}</span>
-                  <span className="pillar-phase-tag">{pillar.phase}</span>
-                </div>
-                <h4 className="pillar-title">{pillar.title}</h4>
-                <p className="pillar-desc">{pillar.desc}</p>
-                <div className="pillar-milestone-footer">
-                  <span className="milestone-label">Key Outcome:</span>
-                  <span className="milestone-value">{pillar.milestone}</span>
-                </div>
-              </TiltCard>
-            </motion.div>
-          ))}
-        </div>
+          ];
 
-        {/* Mobile View: Interactive Step Card Slider (< 769px) */}
-        <div className="pillars-mobile-slider">
-          <div className="pillar-mobile-step-indicator">
-            <span className="step-count-badge">
-              Pillar <span className="step-count-highlight">0{currentPillarIndex + 1}</span> of 07
-            </span>
-            <div className="step-progress-bar-track">
-              <div 
-                className="step-progress-bar-fill" 
-                style={{ width: `${((currentPillarIndex + 1) / 7) * 100}%` }}
-              />
-            </div>
-          </div>
-
-          <div className="pillar-mobile-card-container">
-            <AnimatePresence mode="wait">
-              {(() => {
-                const mobilePillars = [
-                  {
-                    num: "01",
-                    phase: "Phase 1 • Auditory",
-                    title: "Active Listening",
-                    desc: "Immersive auditory training that develops phonemic recognition, rhythm perception, and natural conversational cadence.",
-                    milestone: "Phonemic Awareness"
-                  },
-                  {
-                    num: "02",
-                    phase: "Phase 2 • Articulation",
-                    title: "Guided Speaking",
-                    desc: "Structured voice prompts engineered to build vocal muscle memory, eliminate hesitation, and foster spontaneous responses.",
-                    milestone: "Speech Confidence"
-                  },
-                  {
-                    num: "03",
-                    phase: "Phase 3 • Lexicon",
-                    title: "Contextual Vocabulary",
-                    desc: "High-frequency academic and everyday terminology introduced in situational and conversational contexts.",
-                    milestone: "Active Recall"
-                  },
-                  {
-                    num: "04",
-                    phase: "Phase 4 • Structure",
-                    title: "Intuitive Grammar",
-                    desc: "Natural sentence construction learned through communicative drills without dry, abstract rule memorization.",
-                    milestone: "Syntax Mastery"
-                  },
-                  {
-                    num: "05",
-                    phase: "Phase 5 • Phonetics",
-                    title: "Accent Precision",
-                    desc: "Targeted acoustic feedback on vowel clarity, consonant articulation, and syllable stress for crisp enunciation.",
-                    milestone: "Diction Clarity"
-                  },
-                  {
-                    num: "06",
-                    phase: "Phase 6 • Application",
-                    title: "Roleplay & Discourse",
-                    desc: "Simulated peer debates, interviews, group discussions, and classroom presentations in real-life contexts.",
-                    milestone: "Pragmatic Fluency"
-                  },
-                  {
-                    num: "07",
-                    phase: "Phase 7 • Capstone",
-                    title: "Confident Public Mastery",
-                    desc: "The culminating milestone where students deliver speeches, converse fluently, and communicate with poised confidence.",
-                    milestone: "CEFR-Aligned Fluency",
-                    isCapstone: true
-                  }
-                ];
-                const pillar = mobilePillars[currentPillarIndex];
-                return (
+          return (
+            <>
+              {/* Desktop View: 4-Column Grid */}
+              <div className="hiw-grid desktop-hiw-grid">
+                {howItWorksSteps.map((step, index) => (
                   <motion.div
-                    key={currentPillarIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.25, ease: "easeInOut" }}
-                    drag="x"
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.15}
-                    onDragEnd={(e, { offset, velocity }) => {
-                      if (offset.x < -35 || velocity.x < -400) {
-                        setCurrentPillarIndex((prev) => (prev + 1) % 7);
-                      } else if (offset.x > 35 || velocity.x > 400) {
-                        setCurrentPillarIndex((prev) => (prev - 1 + 7) % 7);
-                      }
-                    }}
-                    className="pillar-mobile-card-motion"
+                    key={step.num}
+                    initial={{ opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.06 }}
+                    className={`hiw-grid-item ${step.isCapstone ? 'hiw-capstone-item' : ''}`}
                   >
-                    <div className={`pillar-card-pro pillar-mobile-active-card ${pillar.isCapstone ? 'pillar-card-capstone' : ''}`}>
-                      <div className="pillar-card-header">
-                        <span className="pillar-num-badge">{pillar.num}</span>
-                        <span className="pillar-phase-tag">{pillar.phase}</span>
+                    {step.isCapstone ? (
+                      <div className="hiw-card hiw-capstone-card">
+                        <div className="hiw-capstone-badge">
+                          <span className="hiw-capstone-num-circle">{step.num}</span>
+                          <h3 className="hiw-capstone-title">{step.title}</h3>
+                        </div>
+                        <p className="hiw-capstone-desc">{step.desc}</p>
+                        <div className="hiw-icon-wrap hiw-capstone-icon-wrap">
+                          {step.icon}
+                        </div>
                       </div>
-                      <h4 className="pillar-title">{pillar.title}</h4>
-                      <p className="pillar-desc">{pillar.desc}</p>
-                      <div className="pillar-milestone-footer">
-                        <span className="milestone-label">Key Outcome:</span>
-                        <span className="milestone-value">{pillar.milestone}</span>
+                    ) : (
+                      <div className="hiw-card hiw-step-card">
+                        <div className="hiw-step-header">
+                          <span className="hiw-step-num">{step.num}</span>
+                          <h3 className="hiw-step-title">{step.title}</h3>
+                        </div>
+                        <p className="hiw-step-desc">{step.desc}</p>
+                        <div className="hiw-icon-wrap">
+                          {step.icon}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </motion.div>
-                );
-              })()}
-            </AnimatePresence>
-          </div>
+                ))}
+              </div>
 
-          {/* Navigation Controls */}
-          <div className="pillar-mobile-controls">
-            <button 
-              type="button" 
-              onClick={() => setCurrentPillarIndex((prev) => (prev - 1 + 7) % 7)}
-              className="pillar-nav-btn prev-btn"
-              aria-label="Previous Pillar"
-            >
-              <ChevronLeft size={16} />
-              <span>Prev</span>
-            </button>
+              {/* Mobile View: Interactive Step Card Slider (< 769px) */}
+              <div className="hiw-mobile-slider">
+                <div className="hiw-mobile-step-indicator">
+                  <span className="hiw-step-count-badge">
+                    Step <span className="hiw-step-count-highlight">0{currentPillarIndex + 1}</span> of 07
+                  </span>
+                  <div className="hiw-progress-bar-track">
+                    <div 
+                      className="hiw-progress-bar-fill" 
+                      style={{ width: `${((currentPillarIndex + 1) / 7) * 100}%` }}
+                    />
+                  </div>
+                </div>
 
-            <div className="pillar-dots-indicator">
-              {[0, 1, 2, 3, 4, 5, 6].map((idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setCurrentPillarIndex(idx)}
-                  className={`pillar-dot ${idx === currentPillarIndex ? 'active' : ''}`}
-                  aria-label={`Jump to step ${idx + 1}`}
-                />
-              ))}
-            </div>
+                <div className="hiw-mobile-card-container">
+                  <AnimatePresence mode="wait">
+                    {(() => {
+                      const step = howItWorksSteps[currentPillarIndex];
+                      return (
+                        <motion.div
+                          key={currentPillarIndex}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.25, ease: "easeInOut" }}
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.15}
+                          onDragEnd={(e, { offset, velocity }) => {
+                            if (offset.x < -35 || velocity.x < -400) {
+                              setCurrentPillarIndex((prev) => (prev + 1) % 7);
+                            } else if (offset.x > 35 || velocity.x > 400) {
+                              setCurrentPillarIndex((prev) => (prev - 1 + 7) % 7);
+                            }
+                          }}
+                          className="hiw-mobile-card-motion"
+                        >
+                          {step.isCapstone ? (
+                            <div className="hiw-card hiw-capstone-card hiw-mobile-active-card">
+                              <div className="hiw-capstone-badge">
+                                <span className="hiw-capstone-num-circle">{step.num}</span>
+                                <h3 className="hiw-capstone-title">{step.title}</h3>
+                              </div>
+                              <p className="hiw-capstone-desc">{step.desc}</p>
+                              <div className="hiw-icon-wrap hiw-capstone-icon-wrap">
+                                {step.icon}
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="hiw-card hiw-step-card hiw-mobile-active-card">
+                              <div className="hiw-step-header">
+                                <span className="hiw-step-num">{step.num}</span>
+                                <h3 className="hiw-step-title">{step.title}</h3>
+                              </div>
+                              <p className="hiw-step-desc">{step.desc}</p>
+                              <div className="hiw-icon-wrap">
+                                {step.icon}
+                              </div>
+                            </div>
+                          )}
+                        </motion.div>
+                      );
+                    })()}
+                  </AnimatePresence>
+                </div>
 
-            <button 
-              type="button" 
-              onClick={() => setCurrentPillarIndex((prev) => (prev + 1) % 7)}
-              className="pillar-nav-btn next-btn"
-              aria-label="Next Pillar"
-            >
-              <span>Next</span>
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
-      </section>
+                {/* Navigation Controls */}
+                <div className="hiw-mobile-controls">
+                  <button 
+                    type="button" 
+                    onClick={() => setCurrentPillarIndex((prev) => (prev - 1 + 7) % 7)}
+                    className="hiw-nav-btn prev-btn"
+                    aria-label="Previous Step"
+                  >
+                    <ChevronLeft size={16} />
+                    <span>Prev</span>
+                  </button>
+
+                  <div className="hiw-dots-indicator">
+                    {[0, 1, 2, 3, 4, 5, 6].map((idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setCurrentPillarIndex(idx)}
+                        className={`hiw-dot ${idx === currentPillarIndex ? 'active' : ''}`}
+                        aria-label={`Jump to step ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button 
+                    type="button" 
+                    onClick={() => setCurrentPillarIndex((prev) => (prev + 1) % 7)}
+                    className="hiw-nav-btn next-btn"
+                    aria-label="Next Step"
+                  >
+                    <span>Next</span>
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+            </>
+          );
+        })()}
+      </div>
+    </section>
 
       {/* 5. Reviews Section - Trusted By School Leaders (Placed Directly Above Why Choose Us) */}
       <section className="trusted-reviews-section" id="reviews">

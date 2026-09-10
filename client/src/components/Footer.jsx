@@ -138,7 +138,7 @@ export default function Footer({ onContactClick, onNavigate }) {
                 </a>
               </li>
               <li>
-                <a href="#clients" onClick={(e) => handleLinkClick('clients', e)}>
+                <a href="#how-it-works" onClick={(e) => handleLinkClick('how-it-works', e)}>
                   How It Works
                 </a>
               </li>

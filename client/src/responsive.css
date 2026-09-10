@@ -1552,11 +1552,13 @@ img, svg, video, canvas {
     padding: 2.25rem 1rem !important;
   }
 
-  .desktop-pillars-grid {
+  .desktop-pillars-grid,
+  .desktop-hiw-grid {
     display: none !important;
   }
 
-  .pillars-mobile-slider {
+  .pillars-mobile-slider,
+  .hiw-mobile-slider {
     display: flex !important;
   }
 
