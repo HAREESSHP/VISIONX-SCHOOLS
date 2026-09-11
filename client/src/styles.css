@@ -5302,6 +5302,7 @@ textarea {
   color: #262626;
   margin: 0 0 0.75rem 0;
   letter-spacing: -0.01em;
+  min-height: 3.5em;
 }
 
 .lp-mission-orange {
@@ -5460,6 +5461,7 @@ textarea {
   }
   .lp-mission-title {
     font-size: clamp(1.9rem, 7vw, 2.4rem);
+    min-height: 3.8em;
   }
   .lp-mission-cards {
     gap: 1.15rem;

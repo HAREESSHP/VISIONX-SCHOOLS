@@ -74,18 +74,47 @@ function MissionTypewriterHeading() {
 
   useEffect(() => {
     if (!isStarted) return;
-    const totalChars = 56;
-    let c = 0;
-    const interval = setInterval(() => {
-      c++;
-      setCount(c);
-      if (c >= totalChars) {
-        clearInterval(interval);
-        setTimeout(() => setShowCursor(false), 2500);
-      }
-    }, 38);
 
-    return () => clearInterval(interval);
+    const totalChars = 56;
+    let currentCount = 0;
+    let isDeleting = false;
+    let timerId = null;
+
+    const runTypewriter = () => {
+      if (!isDeleting) {
+        // Typing forward: delay of 65ms per character for readable cadence
+        currentCount++;
+        setCount(currentCount);
+
+        if (currentCount >= totalChars) {
+          // Finished typing all lines: hold for 3 seconds before looping
+          isDeleting = true;
+          timerId = setTimeout(runTypewriter, 3000);
+          return;
+        }
+
+        timerId = setTimeout(runTypewriter, 65);
+      } else {
+        // Backspacing backward: smooth deleting at 28ms per character
+        currentCount--;
+        setCount(currentCount);
+
+        if (currentCount <= 0) {
+          // Finished backspacing: brief pause before starting again
+          isDeleting = false;
+          timerId = setTimeout(runTypewriter, 600);
+          return;
+        }
+
+        timerId = setTimeout(runTypewriter, 28);
+      }
+    };
+
+    timerId = setTimeout(runTypewriter, 300);
+
+    return () => {
+      if (timerId) clearTimeout(timerId);
+    };
   }, [isStarted]);
 
   // Precise line slices:
