@@ -45,12 +45,15 @@ function MissionTypewriterHeading() {
 
   useEffect(() => {
     let observer;
+    let startTimer;
     const el = containerRef.current;
     if (el && window.IntersectionObserver) {
       observer = new IntersectionObserver(
         (entries) => {
           if (entries[0] && entries[0].isIntersecting) {
-            setIsStarted(true);
+            startTimer = setTimeout(() => {
+              setIsStarted(true);
+            }, 1100);
             if (observer) observer.disconnect();
           }
         },
@@ -58,16 +61,19 @@ function MissionTypewriterHeading() {
       );
       observer.observe(el);
     } else {
-      setIsStarted(true);
+      startTimer = setTimeout(() => {
+        setIsStarted(true);
+      }, 1100);
     }
 
-    // Safety fallback: if user navigates directly or observer is delayed, start within 600ms
+    // Safety fallback: start within 1.8s if observer is delayed
     const safetyTimer = setTimeout(() => {
       setIsStarted(true);
-    }, 600);
+    }, 1800);
 
     return () => {
       if (observer) observer.disconnect();
+      if (startTimer) clearTimeout(startTimer);
       clearTimeout(safetyTimer);
     };
   }, []);
@@ -601,7 +607,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="lp-mission-kicker">THE COMMUNICATION GAP</span>
             <MissionTypewriterHeading />
@@ -667,7 +673,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="lp-mission-visual-frame">
               <img
@@ -689,7 +695,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="lp-offer-kicker">HERE'S WHAT WE OFFER</span>
             <h2 className="lp-offer-title">Here’s What We Offer</h2>
@@ -701,7 +707,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 35, scale: 0.96 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.75, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="lp-offer-card">
               {/* Classroom Image Wrap */}
@@ -742,7 +748,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.6, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="lp-offer-mission-text">
               WE STARTED VISIONX WITH A SINGLE MISSION: TO TURN CLASSROOM ENGLISH LEARNING INTO AN ACTIVE, ENJOYABLE SPOKEN EXPERIENCE. OUR PLATFORM BLENDS GUIDED AI SPEECH TRAINING WITH STRUCTURED LESSON DELIVERY THAT SUPPORTS EDUCATORS.
@@ -811,14 +817,14 @@ export default function Home() {
         <span id="clients" style={{ position: 'absolute', top: '-80px', pointerEvents: 'none' }} aria-hidden="true" />
         <div className="hiw-container">
         
-        {/* Playful Decorative Doodle Arrows with 1s Entrance Delay */}
+        {/* Playful Decorative Doodle Arrows with 1.1s Entrance Delay */}
         <motion.div 
           className="hiw-doodle-wrapper" 
           aria-hidden="true"
           initial={{ opacity: 0, scale: 0.85, y: -20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Main Bright Cyan Sweeping Loop */}
           <svg
@@ -854,10 +860,16 @@ export default function Home() {
           </svg>
         </motion.div>
 
-        <div className="hiw-header">
+        <motion.div 
+          className="hiw-header"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           <p className="hiw-kicker">THE PROCESS</p>
           <h2 className="hiw-title">How It Works</h2>
-        </div>
+        </motion.div>
 
         {(() => {
           const howItWorksSteps = [
@@ -975,7 +987,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 35, scale: 0.94, rotateX: 12 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
                     viewport={{ once: true, amount: 0.25 }}
-                    transition={{ duration: 0.7, delay: 1.0 + index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.7, delay: 1.1 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                     className={`hiw-grid-item ${step.isCapstone ? 'hiw-capstone-item' : ''}`}
                     style={{ transformStyle: 'preserve-3d' }}
                   >
@@ -1035,7 +1047,13 @@ export default function Home() {
               </div>
 
               {/* Mobile View: Interactive Step Card Slider (< 769px) */}
-              <div className="hiw-mobile-slider">
+              <motion.div 
+                className="hiw-mobile-slider"
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div className="hiw-mobile-step-indicator">
                   <span className="hiw-step-count-badge">
                     Step <span className="hiw-step-count-highlight">0{currentPillarIndex + 1}</span> of 07
@@ -1162,7 +1180,7 @@ export default function Home() {
                     <ChevronRight size={16} />
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </>
           );
         })()}
@@ -1172,20 +1190,34 @@ export default function Home() {
       {/* 5. Reviews Section - Trusted By School Leaders (Placed Directly Above Why Choose Us) */}
       <section className="trusted-reviews-section" id="reviews">
         {/* Background Doodles */}
-        <img 
+        <motion.img 
           src="/reviews-doodle-left-v2.png" 
           alt="" 
           className="trusted-reviews-doodle doodle-left" 
           aria-hidden="true" 
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
         />
-        <img 
+        <motion.img 
           src="/reviews-doodle-right-v2.png" 
           alt="" 
           className="trusted-reviews-doodle doodle-right" 
           aria-hidden="true" 
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
         />
 
-        <div className="trusted-reviews-container">
+        <motion.div 
+          className="trusted-reviews-container"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Header */}
           <div className="trusted-reviews-header">
             <span className="trusted-reviews-kicker">TESTIMONIALS</span>
@@ -1276,7 +1308,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Seamless Bottom Fade Mask */}
         <div className="trusted-reviews-bottom-fade" aria-hidden="true" />
@@ -1297,7 +1329,7 @@ export default function Home() {
           initial={{ opacity: 0, x: -70 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.85, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
         />
 
         <div className="why-choose-inner">
@@ -1307,7 +1339,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 35, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.75, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="why-kicker">WHY CHOOSE US</span>
             <h2 className="why-title">
@@ -1324,7 +1356,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.72, rotateY: -22, rotateX: 16, y: 70 }}
             whileInView={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.85, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <TiltCard
               maxAngle={12}
@@ -1352,7 +1384,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
               >
                 For Students
               </motion.h3>
@@ -1361,7 +1393,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <TiltCard
@@ -1388,7 +1420,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 1.25, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <TiltCard
@@ -1415,7 +1447,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.30, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 1.40, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <TiltCard
@@ -1447,7 +1479,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
               >
                 For Schools
               </motion.h3>
@@ -1456,7 +1488,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <TiltCard
@@ -1483,7 +1515,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.20, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 1.30, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <TiltCard
@@ -1510,7 +1542,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.35, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.6, delay: 1.45, ease: [0.16, 1, 0.3, 1] }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <TiltCard
@@ -1540,7 +1572,13 @@ export default function Home() {
 
       {/* 7. Unified Get In Touch & School Leadership Section */}
       <section className="git-section" id="book-demo">
-        <div className="git-card">
+        <motion.div 
+          className="git-card"
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Header */}
           <div className="git-header">
             <span className="git-kicker">GET IN TOUCH</span>
@@ -1729,10 +1767,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 1.3, ease: "easeOut" }}
             />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 7. Figma Modern Dark Minimalist Footer with Three.js */}
