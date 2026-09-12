@@ -536,67 +536,48 @@ export default function Home() {
             </div>
           </>
         )}
-      </motion.nav>
+      </motion.nav>      {/* 2. Hero Section - Exact Design */}
+      <section className="lp-hero-figma-section" id="home">
+        <div className="lp-hero-figma-container">
+          <motion.div 
+            className="lp-hero-figma-canvas"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <img 
+              src="/hero_figma_seamless_2x.png" 
+              alt="Empowering Students with Confident English Communication" 
+              className="lp-hero-figma-img"
+              loading="eager"
+            />
+            {/* Interactive Clickable Hotspot over Book A Demo */}
+            <motion.button 
+              type="button" 
+              onClick={scrollToDemo} 
+              className="lp-hero-figma-demo-btn"
+              aria-label="Book A Demo"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book A Demo
+            </motion.button>
+          </motion.div>
 
-      {/* 2. Hero Section with Real WebGL 3D Scene */}
-      <section className="lp-hero" id="home">
-        <motion.div 
-          className="lp-hero-content"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="lp-badge">Spoken English Excellence for Schools</div>
-          <h1 className="lp-hero-title">
-            Empowering Students with <span className="lp-highlight">Confident English Communication</span>
-          </h1>
-          <p className="lp-hero-desc">
-            Deliver structured spoken English programs that improve communication skills, confidence,
-            pronunciation, and classroom participation from Nursery to Grade 10.
-          </p>
-          <div className="lp-hero-bottom-row">
-            <div className="lp-hero-actions">
-              <motion.a 
-                href="#about" 
-                onClick={(e) => scrollToSection('about', e)}
-                className="lp-btn lp-btn-primary lp-btn-lg"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-              >
-                Explore Platform
-              </motion.a>
-              <motion.button 
-                type="button"
-                onClick={scrollToDemo} 
-                className="lp-btn lp-btn-secondary lp-btn-lg"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-              >
-                Book Live Demo
-              </motion.button>
-            </div>
-
-            {/* Quick Mobile Trust Metric Strip */}
-            <div className="lp-hero-trust-strip">
-              <span className="trust-pill"><Sparkles size={14} className="trust-pill-icon" /> 100+ Partner Schools</span>
-              <span className="trust-pill"><ShieldCheck size={14} className="trust-pill-icon" /> CEFR Aligned</span>
-              <span className="trust-pill"><BarChart3 size={14} className="trust-pill-icon" /> AI Speech Scoring</span>
-            </div>
-
-            <div className="lp-scroll-mouse" aria-label="Scroll down">
-              <span className="lp-scroll-wheel"></span>
-            </div>
+          {/* Mobile Text & Action Strip */}
+          <div className="lp-hero-figma-mobile-strip">
+            <p className="lp-hero-figma-mobile-desc">
+              Deliver structured spoken English programs that improve communication skills, confidence, pronunciation, and classroom participation from Nursery to Grade 10.
+            </p>
+            <button 
+              type="button" 
+              onClick={scrollToDemo} 
+              className="lp-btn lp-btn-primary lp-hero-figma-mobile-btn"
+            >
+              Book A Demo
+            </button>
           </div>
-        </motion.div>
-
-        <motion.div 
-          className="lp-hero-visual"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <Hero3DScene />
-        </motion.div>
+        </div>
       </section>
 
       {/* 3. Educational Mission: The Communication Gap */}

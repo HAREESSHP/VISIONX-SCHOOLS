@@ -5252,6 +5252,117 @@ textarea {
 }
 
 /* ============================================
+   Exact Hero Section (Figma Design)
+   ============================================ */
+.lp-hero-figma-section {
+  width: 100%;
+  background: #FFFFFF !important;
+  padding: 5.5rem 1.5rem 2rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.lp-hero-figma-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.lp-hero-figma-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.lp-hero-figma-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Hotspot button positioned right over "Book A Demo" */
+.lp-hero-figma-demo-btn {
+  position: absolute;
+  left: 66.6%;
+  top: 90.7%;
+  width: 9.77%;
+  height: 6.0%;
+  border-radius: 9999px;
+  background: #0088FF;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(0.7rem, 0.95vw, 0.92rem);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 136, 255, 0.45);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.lp-hero-figma-demo-btn:hover {
+  background: #0077E6;
+  box-shadow: 0 6px 20px rgba(0, 136, 255, 0.6);
+}
+
+.lp-hero-figma-mobile-strip {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-top: 1.25rem;
+}
+
+.lp-hero-figma-mobile-desc {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1E293B;
+  font-weight: 550;
+  margin-bottom: 1rem;
+}
+
+.lp-hero-figma-mobile-btn {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  background: #0088FF;
+  border-color: #0088FF;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .lp-hero-figma-section {
+    padding: 4.5rem 1rem 1.5rem;
+  }
+  .lp-hero-figma-canvas {
+    border-radius: 12px;
+  }
+  .lp-hero-figma-mobile-strip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ============================================
    The Communication Gap / Educational Mission
    ============================================ */
 
