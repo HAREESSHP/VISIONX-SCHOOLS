@@ -36,6 +36,95 @@ import ScrollProgressButton from '../components/ScrollProgressButton';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 import Footer from '../components/Footer';
 
+// Typewriter effect component for Hero headline: "Empowering Students with Confident English Communication"
+function HeroTypewriterHeading() {
+  const [charCount, setCharCount] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
+
+  const part1 = "Empowering Students with";
+  const part2 = "Confident ";
+  const part3 = "English Communication";
+  const totalChars = part1.length + 1 + part2.length + part3.length; // 24 + 1(break) + 10 + 21 = 56
+
+  useEffect(() => {
+    let timer = null;
+
+    const tick = () => {
+      setCharCount((prev) => {
+        if (!isDeleting) {
+          if (prev < totalChars) {
+            return prev + 1;
+          } else {
+            // Finished typing, hold complete text for 6 seconds before cycling
+            timer = setTimeout(() => setIsDeleting(true), 6000);
+            return prev;
+          }
+        } else {
+          if (prev > 0) {
+            return prev - 1;
+          } else {
+            timer = setTimeout(() => setIsDeleting(false), 500);
+            return 0;
+          }
+        }
+      });
+    };
+
+    const interval = isDeleting ? 25 : 45;
+    const intervalId = setInterval(tick, interval);
+
+    return () => {
+      clearInterval(intervalId);
+      if (timer) clearTimeout(timer);
+    };
+  }, [isDeleting, totalChars]);
+
+  // Cursor blinking cadence
+  useEffect(() => {
+    const blinkInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500);
+    return () => clearInterval(blinkInterval);
+  }, []);
+
+  // Compute precise slices
+  const line1Len = part1.length; // 24
+  const line2PartA_Len = part2.length; // 10
+  const line2PartB_Len = part3.length; // 21
+
+  const textLine1 = part1.slice(0, Math.min(charCount, line1Len));
+  const countAfterLine1 = Math.max(0, charCount - line1Len - 1);
+  const textLine2A = countAfterLine1 > 0 ? part2.slice(0, Math.min(countAfterLine1, line2PartA_Len)) : "";
+  const countAfterLine2A = Math.max(0, countAfterLine1 - line2PartA_Len);
+  const textLine2B = countAfterLine2A > 0 ? part3.slice(0, Math.min(countAfterLine2A, line2PartB_Len)) : "";
+
+  const isTypingLine1 = charCount <= line1Len;
+  const isTypingLine2A = charCount > line1Len && countAfterLine2A === 0;
+  const isTypingLine2B = countAfterLine2A > 0;
+
+  return (
+    <h1 className="lp-hero-full-title">
+      <span className="lp-hero-title-line1">
+        {textLine1}
+        {isTypingLine1 && showCursor && <span className="lp-hero-typewriter-cursor">|</span>}
+      </span>
+      {charCount > line1Len && (
+        <span className="lp-hero-title-line2">
+          {textLine2A}
+          {isTypingLine2A && showCursor && <span className="lp-hero-typewriter-cursor">|</span>}
+          {countAfterLine2A > 0 && (
+            <span className="lp-hero-title-orange">
+              {textLine2B}
+              {isTypingLine2B && showCursor && <span className="lp-hero-typewriter-cursor">|</span>}
+            </span>
+          )}
+        </span>
+      )}
+    </h1>
+  );
+}
+
 // Typewriter effect component for Educational Mission headline
 function MissionTypewriterHeading() {
   const containerRef = useRef(null);
@@ -536,47 +625,135 @@ export default function Home() {
             </div>
           </>
         )}
-      </motion.nav>      {/* 2. Hero Section - Exact Design */}
-      <section className="lp-hero-figma-section" id="home">
-        <div className="lp-hero-figma-container">
+      </motion.nav>      {/* 2. Hero Section - Fullscreen Interactive Hero */}
+      <section className="lp-hero-fullscreen-section" id="home">
+        {/* Background Overlay */}
+        <div className="lp-hero-fs-bg-overlay" />
+
+        <div className="lp-hero-fs-container">
+          {/* Top Heading Area with Doodles and Typing Effect */}
+          <div className="lp-hero-fs-heading-wrap">
+            {/* Cyan Floating Microphone Doodle (Left) */}
+            <motion.div 
+              className="lp-hero-doodle lp-hero-doodle-mic"
+              animate={{ y: [0, -7, 0], rotate: [-4, 3, -4] }}
+              transition={{ repeat: Infinity, duration: 3.6, ease: "easeInOut" }}
+              aria-hidden="true"
+            >
+              <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="18" y="8" width="12" height="20" rx="6" />
+                <path d="M12 22c0 6.627 5.373 12 12 12s12-5.373 12-12" />
+                <line x1="24" y1="34" x2="24" y2="42" />
+                <line x1="16" y1="42" x2="32" y2="42" />
+                <path d="M7 17c-2 2.5-2 7.5 0 10" />
+                <path d="M41 17c2 2.5 2 7.5 0 10" />
+              </svg>
+            </motion.div>
+
+            {/* Typewriter Heading */}
+            <HeroTypewriterHeading />
+
+            {/* Cyan Floating Speech Bubble Doodle (Right) */}
+            <motion.div 
+              className="lp-hero-doodle lp-hero-doodle-bubble"
+              animate={{ y: [0, 7, 0], rotate: [3, -4, 3] }}
+              transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut", delay: 0.3 }}
+              aria-hidden="true"
+            >
+              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M38 24c0-7.732-6.716-14-15-14S8 16.268 8 24c0 4.582 2.36 8.647 6 11.22V40l6.5-3.25c1.64.42 3.42.65 5.5.65 8.284 0 15-6.268 15-14z" />
+                <circle cx="17" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
+                <circle cx="23" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
+                <circle cx="29" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
+              </svg>
+            </motion.div>
+          </div>
+
+          {/* Interactive Floating Badge 1 (Top-Left): Partnered with 100+ Schools */}
           <motion.div 
-            className="lp-hero-figma-canvas"
+            className="lp-hero-float-pill lp-hero-pill-schools"
+            animate={{ y: [0, -10, 0], x: [0, 4, 0] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05, y: -12 }}
+          >
+            <div className="lp-hero-avatar-stack">
+              <div className="lp-hero-avatar lp-hero-av-1">
+                <img src="/educators-half-portrait.png" alt="Partner school" />
+              </div>
+              <div className="lp-hero-avatar lp-hero-av-2">
+                <img src="/login-character.jpg" alt="Partner school" />
+              </div>
+              <div className="lp-hero-avatar lp-hero-av-3">
+                <img src="/admin-character.jpg" alt="Partner school" />
+              </div>
+              <span className="lp-hero-pill-tag">+50</span>
+            </div>
+            <div className="lp-hero-pill-content">
+              <div className="lp-hero-stars-row">
+                <span className="lp-hero-star">★</span>
+                <span className="lp-hero-star">★</span>
+                <span className="lp-hero-star">★</span>
+                <span className="lp-hero-star">★</span>
+                <span className="lp-hero-star">★</span>
+              </div>
+              <span className="lp-hero-pill-title">Partnered with 100+ Schools</span>
+            </div>
+          </motion.div>
+
+          {/* Interactive Floating Badge 2 (Lower-Left): Nursery to Class 10 */}
+          <motion.div 
+            className="lp-hero-float-pill lp-hero-pill-classes"
+            animate={{ y: [0, 9, 0], x: [0, -3, 0] }}
+            transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.5 }}
+            whileHover={{ scale: 1.05, y: 7 }}
+          >
+            <span className="lp-hero-pill-tag">+50</span>
+            <span className="lp-hero-pill-title">Nursery to Class 10</span>
+          </motion.div>
+
+          {/* Interactive Floating Badge 3 (Mid-Right): AI Powered Training */}
+          <motion.div 
+            className="lp-hero-float-pill lp-hero-pill-ai"
+            animate={{ y: [0, -9, 0], x: [0, 3, 0] }}
+            transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut", delay: 1.0 }}
+            whileHover={{ scale: 1.05, y: -11 }}
+          >
+            <span className="lp-hero-pill-tag">+50</span>
+            <span className="lp-hero-pill-title">AI Powered Training</span>
+          </motion.div>
+
+          {/* Centerpiece Student Girl */}
+          <div className="lp-hero-student-wrapper">
+            <motion.img 
+              src="/student_girl_hero_hd.png" 
+              alt="Confident Student Speaking with Microphone" 
+              className="lp-hero-student-img"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            />
+          </div>
+
+          {/* Bottom-Right Value Proposition & CTA */}
+          <motion.div 
+            className="lp-hero-fs-cta-box"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img 
-              src="/hero_figma_seamless_2x.png" 
-              alt="Empowering Students with Confident English Communication" 
-              className="lp-hero-figma-img"
-              loading="eager"
-            />
-            {/* Interactive Clickable Hotspot over Book A Demo */}
+            <p className="lp-hero-fs-cta-desc">
+              Deliver structured spoken English programs that improve communication skills, confidence, pronunciation, and classroom participation from Nursery to Grade 10.
+            </p>
             <motion.button 
               type="button" 
               onClick={scrollToDemo} 
-              className="lp-hero-figma-demo-btn"
-              aria-label="Book A Demo"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="lp-hero-fs-cta-btn"
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 28px rgba(0, 136, 255, 0.45)" }}
+              whileTap={{ scale: 0.96 }}
             >
               Book A Demo
             </motion.button>
           </motion.div>
-
-          {/* Mobile Text & Action Strip */}
-          <div className="lp-hero-figma-mobile-strip">
-            <p className="lp-hero-figma-mobile-desc">
-              Deliver structured spoken English programs that improve communication skills, confidence, pronunciation, and classroom participation from Nursery to Grade 10.
-            </p>
-            <button 
-              type="button" 
-              onClick={scrollToDemo} 
-              className="lp-btn lp-btn-primary lp-hero-figma-mobile-btn"
-            >
-              Book A Demo
-            </button>
-          </div>
         </div>
       </section>
 

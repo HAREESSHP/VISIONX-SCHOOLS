@@ -5252,113 +5252,400 @@ textarea {
 }
 
 /* ============================================
-   Exact Hero Section (Figma Design)
+/* ============================================
+   Fullscreen Interactive Hero Section
    ============================================ */
-.lp-hero-figma-section {
+.lp-hero-fullscreen-section {
+  position: relative;
   width: 100%;
-  background: #FFFFFF !important;
-  padding: 5.5rem 1.5rem 2rem;
+  min-height: calc(100vh - 72px);
+  height: calc(100vh - 72px);
+  max-height: 980px;
+  background-color: #F8FAFC;
+  background-image: url('/hero_classroom_soft_bg.jpg');
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 72px;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
+  align-items: stretch;
   overflow: hidden;
+  z-index: 10;
 }
 
-.lp-hero-figma-container {
+.lp-hero-fs-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(255, 255, 255, 0.72) 0%, 
+    rgba(255, 255, 255, 0.45) 35%, 
+    rgba(255, 255, 255, 0.20) 70%, 
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lp-hero-fs-container {
+  position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
+  padding: 2.25rem 2.5rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Heading & Doodles Wrapper */
+.lp-hero-fs-heading-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.lp-hero-full-title {
+  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2.1rem, 3.4vw, 3.75rem);
+  font-weight: 850;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+  color: #0F172A;
+  margin: 0;
+  padding: 0 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-.lp-hero-figma-canvas {
-  position: relative;
-  width: 100%;
-  max-width: 1140px;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-}
-
-.lp-hero-figma-img {
-  width: 100%;
-  height: auto;
+.lp-hero-title-line1 {
   display: block;
-  object-fit: contain;
-  user-select: none;
-  pointer-events: none;
+  color: #0F172A;
+  white-space: pre-wrap;
 }
 
-/* Hotspot button positioned right over "Book A Demo" */
-.lp-hero-figma-demo-btn {
+.lp-hero-title-line2 {
+  display: block;
+  color: #0F172A;
+  white-space: pre-wrap;
+}
+
+.lp-hero-title-orange {
+  color: #F0740F;
+  background: linear-gradient(135deg, #F0740F 0%, #FF5500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.lp-hero-typewriter-cursor {
+  display: inline-block;
+  color: #F0740F;
+  -webkit-text-fill-color: #F0740F;
+  font-weight: 300;
+  margin-left: 2px;
+  animation: heroCursorBlink 0.9s infinite;
+  vertical-align: baseline;
+}
+
+@keyframes heroCursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Cyan Doodles */
+.lp-hero-doodle {
   position: absolute;
-  left: 66.6%;
-  top: 90.7%;
-  width: 9.77%;
-  height: 6.0%;
+  pointer-events: none;
+  z-index: 11;
+  filter: drop-shadow(0 2px 8px rgba(0, 196, 180, 0.25));
+}
+
+.lp-hero-doodle-mic {
+  top: -12px;
+  left: 20px;
+}
+
+.lp-hero-doodle-bubble {
+  top: 15px;
+  right: 25px;
+}
+
+/* Centerpiece Student Girl */
+.lp-hero-student-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: clamp(340px, 57vh, 580px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.lp-hero-student-img {
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 32px rgba(15, 23, 42, 0.12));
+  user-select: none;
+}
+
+/* Floating Pills / Badges */
+.lp-hero-float-pill {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.10), 0 4px 12px rgba(0, 0, 0, 0.04);
   border-radius: 9999px;
-  background: #0088FF;
-  color: #FFFFFF;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(0.7rem, 0.95vw, 0.92rem);
-  font-weight: 700;
+  padding: 0.65rem 1.25rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: none;
+  gap: 0.85rem;
+  z-index: 6;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 136, 255, 0.45);
-  transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
-  z-index: 5;
+  user-select: none;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.lp-hero-float-pill:hover {
+  box-shadow: 0 18px 40px -4px rgba(15, 23, 42, 0.16), 0 6px 16px rgba(0, 0, 0, 0.06);
+  border-color: rgba(240, 116, 15, 0.4);
+}
+
+.lp-hero-pill-tag {
+  background: #4A5568;
+  background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 750;
+  padding: 0.32rem 0.65rem;
+  border-radius: 9999px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp-hero-pill-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #1E293B;
   white-space: nowrap;
 }
 
-.lp-hero-figma-demo-btn:hover {
-  background: #0077E6;
-  box-shadow: 0 6px 20px rgba(0, 136, 255, 0.6);
+/* Badge 1: Schools */
+.lp-hero-pill-schools {
+  top: 36%;
+  left: 6%;
+  padding: 0.7rem 1.35rem;
+  border-radius: 20px;
 }
 
-.lp-hero-figma-mobile-strip {
-  display: none;
+.lp-hero-avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.lp-hero-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  margin-right: -10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #E2E8F0;
+}
+
+.lp-hero-avatar img {
   width: 100%;
-  text-align: center;
-  margin-top: 1.25rem;
+  height: 100%;
+  object-fit: cover;
 }
 
-.lp-hero-figma-mobile-desc {
+.lp-hero-avatar-stack .lp-hero-pill-tag {
+  margin-left: 4px;
+}
+
+.lp-hero-pill-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.lp-hero-stars-row {
+  display: flex;
+  gap: 2px;
+}
+
+.lp-hero-star {
+  color: #7C3AED;
+  font-size: 0.82rem;
+  line-height: 1;
+}
+
+/* Badge 2: Nursery to Class 10 */
+.lp-hero-pill-classes {
+  bottom: 24%;
+  left: 14%;
+}
+
+/* Badge 3: AI Powered Training */
+.lp-hero-pill-ai {
+  top: 42%;
+  right: 18%;
+}
+
+/* Bottom-Right Value Proposition CTA */
+.lp-hero-fs-cta-box {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.15rem;
+  z-index: 6;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 1.25rem 1.45rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.lp-hero-fs-cta-desc {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.95rem;
   line-height: 1.55;
-  color: #1E293B;
+  color: #0F172A;
   font-weight: 550;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
-.lp-hero-figma-mobile-btn {
-  width: 100%;
-  max-width: 280px;
-  margin: 0 auto;
+.lp-hero-fs-cta-btn {
   background: #0088FF;
-  border-color: #0088FF;
-  font-weight: 700;
+  background: linear-gradient(135deg, #0088FF 0%, #0066E6 100%);
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.98rem;
+  font-weight: 750;
+  padding: 0.78rem 2.1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 136, 255, 0.4);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 768px) {
-  .lp-hero-figma-section {
-    padding: 4.5rem 1rem 1.5rem;
+.lp-hero-fs-cta-btn:hover {
+  background: linear-gradient(135deg, #0094FF 0%, #0070F3 100%);
+  box-shadow: 0 8px 26px rgba(0, 136, 255, 0.55);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .lp-hero-full-title {
+    font-size: 2.5rem;
   }
-  .lp-hero-figma-canvas {
-    border-radius: 12px;
+  .lp-hero-pill-schools {
+    left: 2%;
+    top: 32%;
   }
-  .lp-hero-figma-mobile-strip {
-    display: flex;
-    flex-direction: column;
+  .lp-hero-pill-classes {
+    left: 4%;
+    bottom: 20%;
+  }
+  .lp-hero-pill-ai {
+    right: 6%;
+    top: 36%;
+  }
+  .lp-hero-fs-cta-box {
+    right: 2%;
+    bottom: 4%;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 900px) {
+  .lp-hero-fullscreen-section {
+    height: auto;
+    min-height: calc(100svh - 68px);
+    padding-bottom: 2rem;
+  }
+  .lp-hero-full-title {
+    font-size: 2.1rem;
+    padding: 0;
+  }
+  .lp-hero-doodle-mic {
+    top: -18px;
+    left: 0;
+  }
+  .lp-hero-doodle-bubble {
+    top: 0;
+    right: 0;
+  }
+  .lp-hero-student-wrapper {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    height: 380px;
+    margin: 1.5rem auto 0;
+  }
+  .lp-hero-float-pill {
+    position: static;
+    margin: 0.5rem 0;
+  }
+  .lp-hero-fs-cta-box {
+    position: static;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 500px;
     align-items: center;
+    text-align: center;
+  }
+  .lp-hero-fs-cta-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 600px) {
+  .lp-hero-full-title {
+    font-size: 1.75rem;
+  }
+  .lp-hero-fs-container {
+    padding: 1.5rem 1rem 1rem;
+  }
+  .lp-hero-student-wrapper {
+    height: 300px;
   }
 }
 
