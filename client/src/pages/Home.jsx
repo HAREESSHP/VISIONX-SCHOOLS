@@ -36,94 +36,7 @@ import ScrollProgressButton from '../components/ScrollProgressButton';
 import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton';
 import Footer from '../components/Footer';
 
-// Typewriter effect component for Hero headline: "Empowering Students with Confident English Communication"
-function HeroTypewriterHeading() {
-  const [charCount, setCharCount] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
 
-  const part1 = "Empowering Students with";
-  const part2 = "Confident ";
-  const part3 = "English Communication";
-  const totalChars = part1.length + 1 + part2.length + part3.length; // 24 + 1(break) + 10 + 21 = 56
-
-  useEffect(() => {
-    let timer = null;
-
-    const tick = () => {
-      setCharCount((prev) => {
-        if (!isDeleting) {
-          if (prev < totalChars) {
-            return prev + 1;
-          } else {
-            // Finished typing, hold complete text for 6 seconds before cycling
-            timer = setTimeout(() => setIsDeleting(true), 6000);
-            return prev;
-          }
-        } else {
-          if (prev > 0) {
-            return prev - 1;
-          } else {
-            timer = setTimeout(() => setIsDeleting(false), 500);
-            return 0;
-          }
-        }
-      });
-    };
-
-    const interval = isDeleting ? 25 : 45;
-    const intervalId = setInterval(tick, interval);
-
-    return () => {
-      clearInterval(intervalId);
-      if (timer) clearTimeout(timer);
-    };
-  }, [isDeleting, totalChars]);
-
-  // Cursor blinking cadence
-  useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 500);
-    return () => clearInterval(blinkInterval);
-  }, []);
-
-  // Compute precise slices
-  const line1Len = part1.length; // 24
-  const line2PartA_Len = part2.length; // 10
-  const line2PartB_Len = part3.length; // 21
-
-  const textLine1 = part1.slice(0, Math.min(charCount, line1Len));
-  const countAfterLine1 = Math.max(0, charCount - line1Len - 1);
-  const textLine2A = countAfterLine1 > 0 ? part2.slice(0, Math.min(countAfterLine1, line2PartA_Len)) : "";
-  const countAfterLine2A = Math.max(0, countAfterLine1 - line2PartA_Len);
-  const textLine2B = countAfterLine2A > 0 ? part3.slice(0, Math.min(countAfterLine2A, line2PartB_Len)) : "";
-
-  const isTypingLine1 = charCount <= line1Len;
-  const isTypingLine2A = charCount > line1Len && countAfterLine2A === 0;
-  const isTypingLine2B = countAfterLine2A > 0;
-
-  return (
-    <h1 className="lp-hero-full-title">
-      <span className="lp-hero-title-line1">
-        {textLine1}
-        {isTypingLine1 && showCursor && <span className="lp-hero-typewriter-cursor">|</span>}
-      </span>
-      {charCount > line1Len && (
-        <span className="lp-hero-title-line2">
-          {textLine2A}
-          {isTypingLine2A && showCursor && <span className="lp-hero-typewriter-cursor">|</span>}
-          {countAfterLine2A > 0 && (
-            <span className="lp-hero-title-orange">
-              {textLine2B}
-              {isTypingLine2B && showCursor && <span className="lp-hero-typewriter-cursor">|</span>}
-            </span>
-          )}
-        </span>
-      )}
-    </h1>
-  );
-}
 
 // Typewriter effect component for Educational Mission headline
 function MissionTypewriterHeading() {
@@ -650,8 +563,13 @@ export default function Home() {
               </svg>
             </motion.div>
 
-            {/* Typewriter Heading */}
-            <HeroTypewriterHeading />
+            {/* Stable Headline */}
+            <h1 className="lp-hero-full-title">
+              <span className="lp-hero-title-line1">Empowering Students with</span>
+              <span className="lp-hero-title-line2">
+                Confident <span className="lp-hero-title-orange">English Communication</span>
+              </span>
+            </h1>
 
             {/* Cyan Floating Speech Bubble Doodle (Right) */}
             <motion.div 
@@ -672,21 +590,15 @@ export default function Home() {
           {/* Interactive Floating Badge 1 (Top-Left): Partnered with 100+ Schools */}
           <motion.div 
             className="lp-hero-float-pill lp-hero-pill-schools"
-            animate={{ y: [0, -10, 0], x: [0, 4, 0] }}
+            animate={{ y: [0, -8, 0], rotate: [-5, -3, -5] }}
             transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            whileHover={{ scale: 1.05, y: -12 }}
+            whileHover={{ scale: 1.05, y: -10 }}
           >
             <div className="lp-hero-avatar-stack">
-              <div className="lp-hero-avatar lp-hero-av-1">
-                <img src="/educators-half-portrait.png" alt="Partner school" />
-              </div>
-              <div className="lp-hero-avatar lp-hero-av-2">
-                <img src="/login-character.jpg" alt="Partner school" />
-              </div>
-              <div className="lp-hero-avatar lp-hero-av-3">
-                <img src="/admin-character.jpg" alt="Partner school" />
-              </div>
-              <span className="lp-hero-pill-tag">+50</span>
+              <span className="lp-hero-avatar-circle av-orange">T</span>
+              <span className="lp-hero-avatar-circle av-salmon">R</span>
+              <span className="lp-hero-avatar-circle av-teal">V</span>
+              <span className="lp-hero-avatar-circle av-navy">+50</span>
             </div>
             <div className="lp-hero-pill-content">
               <div className="lp-hero-stars-row">
@@ -703,34 +615,43 @@ export default function Home() {
           {/* Interactive Floating Badge 2 (Lower-Left): Nursery to Class 10 */}
           <motion.div 
             className="lp-hero-float-pill lp-hero-pill-classes"
-            animate={{ y: [0, 9, 0], x: [0, -3, 0] }}
+            animate={{ y: [0, 7, 0] }}
             transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.5 }}
-            whileHover={{ scale: 1.05, y: 7 }}
+            whileHover={{ scale: 1.05, y: 5 }}
           >
-            <span className="lp-hero-pill-tag">+50</span>
+            <div className="lp-hero-pill-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="8" r="6" />
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+              </svg>
+            </div>
             <span className="lp-hero-pill-title">Nursery to Class 10</span>
           </motion.div>
 
           {/* Interactive Floating Badge 3 (Mid-Right): AI Powered Training */}
           <motion.div 
             className="lp-hero-float-pill lp-hero-pill-ai"
-            animate={{ y: [0, -9, 0], x: [0, 3, 0] }}
+            animate={{ y: [0, -7, 0], rotate: [4, 2, 4] }}
             transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut", delay: 1.0 }}
-            whileHover={{ scale: 1.05, y: -11 }}
+            whileHover={{ scale: 1.05, y: -9 }}
           >
-            <span className="lp-hero-pill-tag">+50</span>
+            <div className="lp-hero-pill-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB" stroke="#2563EB" strokeWidth="1">
+                <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+              </svg>
+            </div>
             <span className="lp-hero-pill-title">AI Powered Training</span>
           </motion.div>
 
           {/* Centerpiece Student Girl */}
           <div className="lp-hero-student-wrapper">
             <motion.img 
-              src="/student_girl_hero_hd.png" 
+              src="/student_girl_hero_speaking.png" 
               alt="Confident Student Speaking with Microphone" 
               className="lp-hero-student-img"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             />
           </div>
 

@@ -2819,12 +2819,12 @@ textarea {
 }
 
 .lp-navbar-inner {
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  gap: clamp(1.8rem, 3.2vw, 3.2rem);
 }
 
 .lp-nav-left {
@@ -2834,12 +2834,13 @@ textarea {
   gap: 0;
   cursor: pointer;
   flex-shrink: 0;
+  padding-left: 0;
 }
 
 .lp-logo-icon {
-  height: 52px;
+  height: 48px;
   width: auto;
-  max-width: 170px;
+  max-width: 155px;
   object-fit: contain;
   margin: 0;
   display: block;
@@ -2864,20 +2865,20 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 1.4vw, 1.75rem);
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 0.25rem;
+  gap: clamp(0.95rem, 1.3vw, 1.6rem);
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
 }
 
 .lp-nav-link {
   color: var(--text);
-  font-weight: 600;
-  font-size: 0.78rem;
+  font-weight: 650;
+  font-size: 0.84rem;
   transition: var(--transition);
   position: relative;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
   white-space: nowrap;
 }
 
@@ -2885,8 +2886,9 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.85rem;
-  margin-left: 0.5rem;
+  gap: 0.75rem;
+  margin-left: 0;
+  flex-shrink: 0;
 }
 
 .lp-nav-link::after {
@@ -5261,10 +5263,10 @@ textarea {
   width: 100%;
   min-height: calc(100vh - 72px);
   height: calc(100vh - 72px);
-  max-height: 980px;
+  max-height: 940px;
   background-color: #F8FAFC;
-  background-image: url('/hero_classroom_soft_bg.jpg');
-  background-position: center bottom;
+  background-image: url('/classroom_hero_soft_bg.jpg');
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   margin-top: 72px;
@@ -5281,10 +5283,10 @@ textarea {
   inset: 0;
   background: linear-gradient(
     180deg, 
-    rgba(255, 255, 255, 0.72) 0%, 
-    rgba(255, 255, 255, 0.45) 35%, 
-    rgba(255, 255, 255, 0.20) 70%, 
-    rgba(255, 255, 255, 0.85) 100%
+    rgba(255, 255, 255, 0.40) 0%, 
+    rgba(255, 255, 255, 0.12) 35%, 
+    rgba(255, 255, 255, 0.05) 65%, 
+    rgba(255, 255, 255, 0.88) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -5294,12 +5296,13 @@ textarea {
   position: relative;
   width: 100%;
   max-width: 1440px;
+  height: 100%;
   margin: 0 auto;
-  padding: 2.25rem 2.5rem 1.5rem;
+  padding: 1.85rem 3rem 1.25rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   z-index: 2;
 }
@@ -5309,7 +5312,8 @@ textarea {
   position: relative;
   width: 100%;
   max-width: 1100px;
-  margin: 0 auto;
+  min-height: 105px;
+  margin: 0.25rem auto 0;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -5318,19 +5322,19 @@ textarea {
 }
 
 .lp-hero-full-title {
-  font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(2.1rem, 3.4vw, 3.75rem);
-  font-weight: 850;
-  line-height: 1.16;
-  letter-spacing: -0.025em;
+  font-family: 'Barlow Semi Condensed', 'Barlow Condensed', 'Oswald', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2.5rem, 4.2vw, 4.35rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: #0F172A;
   margin: 0;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .lp-hero-title-line1 {
@@ -5346,17 +5350,16 @@ textarea {
 }
 
 .lp-hero-title-orange {
-  color: #F0740F;
-  background: linear-gradient(135deg, #F0740F 0%, #FF5500 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 900;
+  color: #FF6B00;
+  -webkit-text-fill-color: #FF6B00;
+  font-weight: 850;
+  text-shadow: none;
 }
 
 .lp-hero-typewriter-cursor {
   display: inline-block;
-  color: #F0740F;
-  -webkit-text-fill-color: #F0740F;
+  color: #FF6B00;
+  -webkit-text-fill-color: #FF6B00;
   font-weight: 300;
   margin-left: 2px;
   animation: heroCursorBlink 0.9s infinite;
@@ -5377,13 +5380,13 @@ textarea {
 }
 
 .lp-hero-doodle-mic {
-  top: -12px;
-  left: 20px;
+  top: -6px;
+  left: clamp(10px, 4vw, 55px);
 }
 
 .lp-hero-doodle-bubble {
-  top: 15px;
-  right: 25px;
+  top: 14px;
+  right: clamp(10px, 4vw, 55px);
 }
 
 /* Centerpiece Student Girl */
@@ -5392,7 +5395,7 @@ textarea {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  height: clamp(340px, 57vh, 580px);
+  height: clamp(380px, 62vh, 610px);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -5405,61 +5408,51 @@ textarea {
   width: auto;
   max-width: none;
   object-fit: contain;
-  filter: drop-shadow(0 14px 32px rgba(15, 23, 42, 0.12));
+  filter: drop-shadow(0 14px 28px rgba(15, 23, 42, 0.10));
   user-select: none;
 }
 
 /* Floating Pills / Badges */
 .lp-hero-float-pill {
   position: absolute;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.10), 0 4px 12px rgba(0, 0, 0, 0.04);
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 28px -4px rgba(15, 23, 42, 0.10), 0 3px 8px rgba(0, 0, 0, 0.04);
   border-radius: 9999px;
-  padding: 0.65rem 1.25rem;
+  padding: 0.55rem 1.2rem;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
   z-index: 6;
   cursor: pointer;
   user-select: none;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .lp-hero-float-pill:hover {
-  box-shadow: 0 18px 40px -4px rgba(15, 23, 42, 0.16), 0 6px 16px rgba(0, 0, 0, 0.06);
-  border-color: rgba(240, 116, 15, 0.4);
+  box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.15), 0 6px 14px rgba(0, 0, 0, 0.06);
 }
 
-.lp-hero-pill-tag {
-  background: #4A5568;
-  background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
-  color: #FFFFFF;
-  font-size: 0.78rem;
-  font-weight: 750;
-  padding: 0.32rem 0.65rem;
-  border-radius: 9999px;
-  line-height: 1;
-  display: inline-flex;
+.lp-hero-pill-icon-wrap {
+  display: flex;
   align-items: center;
   justify-content: center;
+  color: #2563EB;
 }
 
 .lp-hero-pill-title {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.96rem;
+  font-size: 0.94rem;
   font-weight: 700;
-  color: #1E293B;
+  color: #2563EB;
   white-space: nowrap;
 }
 
 /* Badge 1: Schools */
 .lp-hero-pill-schools {
   top: 36%;
-  left: 6%;
-  padding: 0.7rem 1.35rem;
+  left: 8%;
+  padding: 0.65rem 1.25rem;
   border-radius: 20px;
 }
 
@@ -5468,82 +5461,97 @@ textarea {
   align-items: center;
 }
 
-.lp-hero-avatar {
-  width: 32px;
-  height: 32px;
+.lp-hero-avatar-circle {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 750;
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 2px solid #FFFFFF;
-  margin-right: -10px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  background: #E2E8F0;
+  margin-right: -8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
 }
 
-.lp-hero-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.lp-hero-avatar-circle.av-orange {
+  background: #F97316;
 }
 
-.lp-hero-avatar-stack .lp-hero-pill-tag {
-  margin-left: 4px;
+.lp-hero-avatar-circle.av-salmon {
+  background: #FB923C;
+}
+
+.lp-hero-avatar-circle.av-teal {
+  background: #14B8A6;
+}
+
+.lp-hero-avatar-circle.av-navy {
+  background: #1E293B;
+  font-size: 0.68rem;
+  z-index: 1;
 }
 
 .lp-hero-pill-content {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.12rem;
 }
 
 .lp-hero-stars-row {
   display: flex;
   gap: 2px;
+  color: #4F46E5;
 }
 
 .lp-hero-star {
-  color: #7C3AED;
-  font-size: 0.82rem;
+  color: #4F46E5;
+  font-size: 0.85rem;
   line-height: 1;
 }
 
 /* Badge 2: Nursery to Class 10 */
 .lp-hero-pill-classes {
-  bottom: 24%;
-  left: 14%;
+  bottom: 35%;
+  left: 16%;
 }
 
 /* Badge 3: AI Powered Training */
 .lp-hero-pill-ai {
-  top: 42%;
-  right: 18%;
+  top: 36%;
+  right: 21%;
 }
 
 /* Bottom-Right Value Proposition CTA */
 .lp-hero-fs-cta-box {
   position: absolute;
-  bottom: 5%;
-  right: 5%;
-  max-width: 380px;
+  bottom: 8%;
+  right: 7%;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.15rem;
+  gap: 1.25rem;
   z-index: 6;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 1.25rem 1.45rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .lp-hero-fs-cta-desc {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: clamp(1.22rem, 1.45vw, 1.38rem);
+  line-height: 1.46;
   color: #0F172A;
-  font-weight: 550;
+  font-weight: 800;
+  letter-spacing: -0.015em;
   margin: 0;
 }
 
@@ -5554,11 +5562,11 @@ textarea {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.98rem;
   font-weight: 750;
-  padding: 0.78rem 2.1rem;
+  padding: 0.8rem 2.25rem;
   border-radius: 9999px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 136, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 136, 255, 0.4);
   transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
@@ -5567,29 +5575,29 @@ textarea {
 
 .lp-hero-fs-cta-btn:hover {
   background: linear-gradient(135deg, #0094FF 0%, #0070F3 100%);
-  box-shadow: 0 8px 26px rgba(0, 136, 255, 0.55);
+  box-shadow: 0 10px 28px rgba(0, 136, 255, 0.55);
 }
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .lp-hero-full-title {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
   }
   .lp-hero-pill-schools {
-    left: 2%;
+    left: 3%;
     top: 32%;
   }
   .lp-hero-pill-classes {
-    left: 4%;
-    bottom: 20%;
+    left: 5%;
+    bottom: 24%;
   }
   .lp-hero-pill-ai {
-    right: 6%;
-    top: 36%;
+    right: 8%;
+    top: 34%;
   }
   .lp-hero-fs-cta-box {
-    right: 2%;
-    bottom: 4%;
+    right: 4%;
+    bottom: 6%;
     max-width: 320px;
   }
 }
