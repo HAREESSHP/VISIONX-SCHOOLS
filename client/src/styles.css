@@ -2971,15 +2971,16 @@ textarea {
 }
 
 .lp-btn-outline {
-  background: var(--surface-offwhite);
-  color: var(--espresso);
-  border: 2px solid var(--espresso);
-  box-shadow: var(--shadow-sm);
+  background: linear-gradient(135deg, #0088FF 0%, #0066E6 100%);
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 136, 255, 0.35);
 }
 
 .lp-btn-outline:hover {
-  background: rgba(61, 43, 31, 0.06);
-  color: var(--espresso);
+  background: linear-gradient(135deg, #0094FF 0%, #0070F3 100%);
+  box-shadow: 0 6px 20px rgba(0, 136, 255, 0.55);
+  color: #FFFFFF !important;
 }
 
 .lp-btn-ghost {
@@ -6225,8 +6226,9 @@ textarea {
 }
 
 .lp-offer-demo-btn {
-  background: #FFFFFF;
-  color: #0f172a;
+  background: #0088FF;
+  background: linear-gradient(135deg, #0088FF 0%, #0066E6 100%);
+  color: #FFFFFF;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.02rem;
   font-weight: 700;
@@ -6234,7 +6236,7 @@ textarea {
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 26px rgba(0, 136, 255, 0.4), 0 2px 6px rgba(0, 102, 230, 0.2);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
   display: inline-flex;
@@ -6244,9 +6246,10 @@ textarea {
 }
 
 .lp-offer-demo-btn:hover {
-  background: #ffffff;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22), 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #0094FF 0%, #0070F3 100%);
+  box-shadow: 0 14px 34px rgba(0, 136, 255, 0.55), 0 4px 10px rgba(0, 102, 230, 0.3);
   transform: translateY(-2px);
+  color: #FFFFFF;
 }
 
 /* Responsive */
