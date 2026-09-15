@@ -6158,7 +6158,7 @@ textarea {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #334155;
   letter-spacing: -0.01em;
   white-space: nowrap;
 }
@@ -12364,13 +12364,13 @@ textarea {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #f9730d, #ea580c);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
   flex-shrink: 0;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 6px 18px rgba(240, 116, 15, 0.35);
 }
 
 .git-card-text {
@@ -12381,8 +12381,8 @@ textarea {
 .git-card-label {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 0.8rem;
-  font-weight: 750;
-  color: #64748b;
+  font-weight: 650;
+  color: #c2410c;
   letter-spacing: 0.06em;
   margin-bottom: 0.2rem;
 }
@@ -12390,7 +12390,7 @@ textarea {
 .git-card-value {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 1.18rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #0f172a;
   line-height: 1.3;
 }
