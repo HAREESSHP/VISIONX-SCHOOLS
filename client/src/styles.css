@@ -6029,7 +6029,7 @@ textarea {
 .lp-offer-section {
   position: relative;
   width: 100%;
-  background: #F0740F !important;
+  background: #F9730D !important;
   padding: 5rem 2rem 2.25rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -6199,11 +6199,15 @@ textarea {
   line-height: 1.55;
   color: #FFFFFF;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: none;
   margin: 0;
-  max-width: 740px;
+  max-width: 860px;
   flex: 1 1 auto;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.lp-offer-line-break {
+  display: inline;
 }
 
 .lp-offer-action-wrap {
@@ -6223,8 +6227,8 @@ textarea {
 
 .lp-offer-crown-doodle {
   position: absolute;
-  right: -56px;
-  top: -6px;
+  right: -88px;
+  top: -18px;
   pointer-events: none;
   animation: offerCrownWiggle 4s ease-in-out infinite alternate;
 }
@@ -6299,11 +6303,11 @@ textarea {
   .lp-offer-action-wrap {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .lp-offer-demo-btn {
-    width: 100%;
-    max-width: 320px;
+    width: auto;
+    max-width: none;
   }
   .lp-offer-crown-doodle {
     right: 15px;
@@ -6350,17 +6354,22 @@ textarea {
     text-align: center;
   }
   .lp-offer-action-wrap {
-    justify-content: center;
+    justify-content: flex-start;
   }
   .lp-offer-demo-btn {
-    width: 100%;
-    max-width: 280px;
+    width: auto;
+    max-width: none;
     font-size: 0.98rem;
     padding: 0.85rem 1.75rem;
   }
-  .lp-offer-star-doodle,
-  .lp-offer-crown-doodle {
+  .lp-offer-star-doodle {
     display: none;
+  }
+  .lp-offer-crown-doodle {
+    display: block;
+    right: 8px;
+    top: -1.5rem;
+    transform: scale(0.72);
   }
   .lp-offer-btn-star {
     right: 18%;

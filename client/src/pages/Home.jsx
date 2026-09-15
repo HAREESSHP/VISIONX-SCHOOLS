@@ -830,7 +830,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="lp-offer-mission-text">
-              WE STARTED VISIONX WITH A SINGLE MISSION: TO TURN CLASSROOM ENGLISH LEARNING INTO AN ACTIVE, ENJOYABLE SPOKEN EXPERIENCE. OUR PLATFORM BLENDS GUIDED AI SPEECH TRAINING WITH STRUCTURED LESSON DELIVERY THAT SUPPORTS EDUCATORS.
+              We started VisionX with a single mission: to turn classroom English learning into an active,<br className="lp-offer-line-break" /> enjoyable spoken experience. Our platform blends guided AI speech training with structured<br className="lp-offer-line-break" /> lesson delivery that supports educators.
             </p>
 
             <div className="lp-offer-action-wrap">
@@ -857,7 +857,7 @@ export default function Home() {
 
               {/* Hand-Drawn Crown/Burst Doodle on right */}
               <div className="lp-offer-crown-doodle" aria-hidden="true">
-                <svg width="48" height="42" viewBox="0 0 50 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="76" height="70" viewBox="0 0 50 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <line x1="12" y1="7" x2="8" y2="2" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
                   <line x1="25" y1="5" x2="25" y2="0" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
                   <line x1="38" y1="7" x2="42" y2="2" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
