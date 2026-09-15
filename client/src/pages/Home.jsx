@@ -640,7 +640,7 @@ export default function Home() {
                 <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
               </svg>
             </div>
-            <span className="lp-hero-pill-title">AI Powered Training</span>
+            <span className="lp-hero-pill-title">AI-Powered Training</span>
           </motion.div>
 
           {/* Centerpiece Student Girl */}
