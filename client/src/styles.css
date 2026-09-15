@@ -11644,9 +11644,9 @@ textarea {
 
 .why-tilted-card-3d-wrapper {
   position: absolute;
-  right: clamp(-35px, -1vw, 15px);
-  top: 0.5rem;
-  width: clamp(230px, 20vw, 305px);
+  right: clamp(-55px, -2.5vw, -15px);
+  top: -1.25rem;
+  width: clamp(220px, 17vw, 270px);
   z-index: 15;
   user-select: none;
   animation: whyFloat3d 6s ease-in-out infinite;
@@ -11829,9 +11829,9 @@ textarea {
 /* Responsive for Why Choose Us */
 @media (max-width: 1240px) and (min-width: 961px) {
   .why-tilted-card-3d-wrapper {
-    top: 0.5rem;
-    right: clamp(-15px, 0vw, 5px);
-    width: clamp(210px, 19vw, 250px);
+    top: -0.85rem;
+    right: clamp(-30px, -1.5vw, -5px);
+    width: clamp(200px, 16vw, 235px);
   }
   .why-grid {
     gap: 2rem;
