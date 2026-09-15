@@ -553,7 +553,7 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 3.6, ease: "easeInOut" }}
               aria-hidden="true"
             >
-              <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="58" height="58" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="18" y="8" width="12" height="20" rx="6" />
                 <path d="M12 22c0 6.627 5.373 12 12 12s12-5.373 12-12" />
                 <line x1="24" y1="34" x2="24" y2="42" />
@@ -578,7 +578,7 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut", delay: 0.3 }}
               aria-hidden="true"
             >
-              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="58" height="58" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M38 24c0-7.732-6.716-14-15-14S8 16.268 8 24c0 4.582 2.36 8.647 6 11.22V40l6.5-3.25c1.64.42 3.42.65 5.5.65 8.284 0 15-6.268 15-14z" />
                 <circle cx="17" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
                 <circle cx="23" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
