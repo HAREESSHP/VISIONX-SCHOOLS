@@ -1460,7 +1460,7 @@ export default function Home() {
           {/* 2 Columns: For Students & For Schools */}
           <div className="why-grid">
             {/* Col 1: For Students */}
-            <div className="why-col">
+            <div className="why-col why-students-col">
               <motion.h3 
                 className="why-col-header"
                 initial={{ opacity: 0, x: -20 }}
@@ -1487,7 +1487,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Mic size={22} color="#f0740f" strokeWidth={2.2} />
+                      <Mic size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Confidence to participate</h4>
@@ -1514,7 +1514,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <MessagesSquare size={22} color="#f0740f" strokeWidth={2.2} />
+                      <MessagesSquare size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Communication beyond textbooks</h4>
@@ -1541,7 +1541,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <TrendingUp size={22} color="#f0740f" strokeWidth={2.2} />
+                      <TrendingUp size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Progress at their own level</h4>
@@ -1582,7 +1582,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Layers size={22} color="#f0740f" strokeWidth={2.2} />
+                      <Layers size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">A structured program, not an add-on</h4>
@@ -1609,7 +1609,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <GraduationCap size={22} color="#f0740f" strokeWidth={2.2} />
+                      <GraduationCap size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Support for educators</h4>
@@ -1636,7 +1636,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Trophy size={22} color="#f0740f" strokeWidth={2.2} />
+                      <Trophy size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">A skill that strengthens student outcomes</h4>
