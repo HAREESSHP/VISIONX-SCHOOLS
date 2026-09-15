@@ -2311,9 +2311,11 @@ img, svg, video, canvas {
     opacity: 0.35;
   }
   .trusted-reviews-pushpin {
-    top: -18px;
-    right: -14px;
-    width: 26px;
+    top: -52px;
+    left: -30px;
+    right: auto;
+    width: 44px;
+    height: 44px;
   }
   .trusted-reviews-cards-track {
     min-height: 340px;

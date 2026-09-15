@@ -25,7 +25,8 @@ import {
   TrendingUp,
   Layers,
   GraduationCap,
-  Trophy
+  Trophy,
+  Pin as PinIcon
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { API_URL } from '../services/api';
@@ -1302,7 +1303,9 @@ export default function Home() {
             <span className="trusted-reviews-kicker">TESTIMONIALS</span>
             <div className="trusted-reviews-title-wrap">
               <h2 className="trusted-reviews-title">
-                Trusted By School <span className="title-leaders-span">Leaders<img src="/reviews-pushpin-v2.png" alt="" className="trusted-reviews-pushpin" aria-hidden="true" /></span>
+                Trusted By School <span className="title-leaders-span">Leaders
+                  <PinIcon className="trusted-reviews-pushpin" size={68} strokeWidth={1.5} aria-hidden="true" />
+                </span>
               </h2>
             </div>
             <p className="trusted-reviews-subtitle">
