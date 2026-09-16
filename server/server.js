@@ -321,7 +321,13 @@ async function seedDatabase() {
     }
 
     // Seed admin
-    const adminExists = await User.findOne({ loginId: 'rohan' });
+    let adminExists = await User.findOne({ 
+      $or: [
+        { loginId: 'rohan' },
+        { loginId: 'ROHAN' },
+        { role: 'ADMIN' }
+      ]
+    });
     if (!adminExists) {
       const hashedPassword = await bcrypt.hash('rohan123', 10);
       await User.create({
@@ -329,9 +335,30 @@ async function seedDatabase() {
         loginId: 'rohan',
         password: hashedPassword,
         role: 'ADMIN',
-        className: 'Administrator'
+        className: 'Administrator',
+        isActive: true
       });
       console.log('✅ Seeded admin account');
+    } else {
+      // Ensure existing admin credentials match rohan123 and isActive is true
+      const isCorrect = await bcrypt.compare('rohan123', adminExists.password);
+      let needsSave = false;
+      if (!isCorrect) {
+        adminExists.password = await bcrypt.hash('rohan123', 10);
+        needsSave = true;
+      }
+      if (adminExists.role !== 'ADMIN') {
+        adminExists.role = 'ADMIN';
+        needsSave = true;
+      }
+      if (!adminExists.isActive) {
+        adminExists.isActive = true;
+        needsSave = true;
+      }
+      if (needsSave) {
+        await adminExists.save();
+        console.log('✅ Verified & synchronized admin credentials');
+      }
     }
 
     // Lessons are intentionally kept empty as requested (clean slate without dummy content)
