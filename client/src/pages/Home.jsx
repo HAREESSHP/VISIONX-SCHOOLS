@@ -1100,6 +1100,9 @@ export default function Home() {
                               <path
                                 d="M 13,6 L 11,8 L 11,14 L 12,16 L 19,22 L 23,29 L 19,33 L 15,32 L 13,34 L 12,37 L 7,39 L 6,45 L 14,47 L 31,54 L 32,52 L 33,47 L 31,45 L 31,38 L 30,38 L 28,36 L 27,33 L 28,30 L 31,30 L 36,27 L 44,27 L 49,23 L 50,21 L 50,18 L 48,16 L 46,16 L 42,11 L 26,5 L 22,5 L 20,7 L 16,5 Z M 7,41 L 11,40 L 22,43 L 30,46 L 31,51 L 28,52 L 25,50 L 9,45 L 7,43 Z M 15,34 L 18,34 L 28,38 L 29,43 L 26,44 L 15,40 Z M 27,30 L 24,35 L 21,33 L 23,31 L 23,30 Z M 47,17 L 48,21 L 45,24 L 39,25 L 39,23 L 41,21 L 43,16 L 45,16 Z M 14,7 L 20,8 L 20,11 L 18,18 L 16,18 L 12,13 L 12,9 Z M 22,7 L 27,6 L 40,11 L 42,13 L 42,16 L 39,22 L 33,28 L 26,28 L 24,27 L 21,24 L 20,22 L 20,12 Z"
                                 fill="#d9650d"
+                                stroke="#d9650d"
+                                strokeWidth="2.6"
+                                strokeLinejoin="round"
                                 fillRule="evenodd"
                               />
                             </svg>
@@ -1196,9 +1199,12 @@ export default function Home() {
                                 <div className="hiw-trophy-doodle" aria-hidden="true">
                                   <svg width="54" height="58" viewBox="0 0 54 58" fill="none">
                                     <path
-                                      d="M 13,6 L 11,8 L 11,14 L 12,16 L 19,22 L 23,29 L 19,33 L 15,32 L 13,34 L 12,37 L 7,39 L 6,45 L 14,47 L 31,54 L 32,52 L 33,47 L 31,45 L 31,38 L 30,38 L 28,36 L 27,33 L 28,30 L 31,30 L 36,27 L 44,27 L 49,23 L 50,21 L 50,18 L 48,16 L 46,16 L 42,11 L 26,5 L 22,5 L 20,7 L 16,5 Z M 7,41 L 11,40 L 22,43 L 30,46 L 31,51 L 28,52 L 25,50 L 9,45 L 7,43 Z M 15,34 L 18,34 L 28,38 L 29,43 L 26,44 L 15,40 Z M 27,30 L 24,35 L 21,33 L 23,31 L 23,30 Z M 47,17 L 48,21 L 45,24 L 39,25 L 39,23 L 41,21 L 43,16 L 45,16 Z M 14,7 L 20,8 L 20,11 L 18,18 L 16,18 L 12,13 L 12,9 Z M 22,7 L 27,6 L 40,11 L 42,13 L 42,16 L 39,22 L 33,28 L 26,28 L 24,27 L 21,24 L 20,22 L 20,12 Z"
-                                      fill="#d9650d"
-                                      fillRule="evenodd"
+                                d="M 13,6 L 11,8 L 11,14 L 12,16 L 19,22 L 23,29 L 19,33 L 15,32 L 13,34 L 12,37 L 7,39 L 6,45 L 14,47 L 31,54 L 32,52 L 33,47 L 31,45 L 31,38 L 30,38 L 28,36 L 27,33 L 28,30 L 31,30 L 36,27 L 44,27 L 49,23 L 50,21 L 50,18 L 48,16 L 46,16 L 42,11 L 26,5 L 22,5 L 20,7 L 16,5 Z M 7,41 L 11,40 L 22,43 L 30,46 L 31,51 L 28,52 L 25,50 L 9,45 L 7,43 Z M 15,34 L 18,34 L 28,38 L 29,43 L 26,44 L 15,40 Z M 27,30 L 24,35 L 21,33 L 23,31 L 23,30 Z M 47,17 L 48,21 L 45,24 L 39,25 L 39,23 L 41,21 L 43,16 L 45,16 Z M 14,7 L 20,8 L 20,11 L 18,18 L 16,18 L 12,13 L 12,9 Z M 22,7 L 27,6 L 40,11 L 42,13 L 42,16 L 39,22 L 33,28 L 26,28 L 24,27 L 21,24 L 20,22 L 20,12 Z"
+                                fill="#d9650d"
+                                stroke="#d9650d"
+                                strokeWidth="2.6"
+                                strokeLinejoin="round"
+                                fillRule="evenodd"
                                     />
                                   </svg>
                                 </div>
@@ -1828,7 +1834,7 @@ export default function Home() {
                     <Mail size={24} strokeWidth={3} />
                   </div>
                   <div className="git-card-text">
-                    <span className="git-card-label">EMAIL INQUIRIES</span>
+                    <span className="git-card-label">EMAIL ENQUIRES</span>
                     <strong className="git-card-value">visionx236@gmail.com</strong>
                   </div>
                 </a>
