@@ -41,7 +41,7 @@ export default function Footer({ onContactClick, onNavigate }) {
             <h2 className="figma-footer-title">
               Let’s Work
               <br />
-              Together
+              <span className="figma-footer-title-together">Together</span>
             </h2>
           </div>
 

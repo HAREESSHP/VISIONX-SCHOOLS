@@ -11407,6 +11407,11 @@ textarea {
   word-break: break-word;
 }
 
+.figma-footer-title-together {
+  display: block;
+  text-indent: 2.35em;
+}
+
 .figma-footer-top-right {
   flex: 1 1 50%;
   max-width: 550px;
