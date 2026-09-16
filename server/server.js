@@ -321,7 +321,12 @@ async function seedDatabase() {
     }
 
     // Seed admin
-    const adminExists = await User.findOne({ loginId: 'rohan' });
+    const adminExists = await User.findOne({ 
+      $or: [
+        { loginId: 'rohan' },
+        { loginId: 'ROHAN' }
+      ]
+    });
     if (!adminExists) {
       const hashedPassword = await bcrypt.hash('rohan123', 10);
       await User.create({

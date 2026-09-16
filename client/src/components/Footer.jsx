@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ShieldCheck } from 'lucide-react';
 import Footer3DCanvas from './Footer3DCanvas';
 
 export default function Footer({ onContactClick, onNavigate }) {
@@ -152,6 +154,12 @@ export default function Footer({ onContactClick, onNavigate }) {
                   Testimonials
                 </a>
               </li>
+              <li className="figma-admin-nav-item">
+                <Link to="/admin-login" className="figma-admin-nav-link">
+                  <span className="nav-admin-dot"></span>
+                  Admin Access
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -178,6 +186,16 @@ export default function Footer({ onContactClick, onNavigate }) {
           <p className="figma-footer-copyright">
             © 2026 VisionX English Platform. All rights reserved.
           </p>
+
+          <Link
+            to="/admin-login"
+            className="figma-footer-admin-btn"
+            title="Admin Portal - Authorized Personnel Only"
+          >
+            <ShieldCheck size={15} className="figma-admin-icon" />
+            <span>Admin Access</span>
+          </Link>
+
           <p className="figma-footer-credits">
             Design and Developed by{' '}
             <a
