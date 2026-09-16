@@ -406,10 +406,19 @@ img, svg, video, canvas {
   }
 
   .lp-nav-left {
-    margin-left: calc(clamp(0.5rem, 1vw, 1.5rem) + 23px) !important;
+    margin-left: calc(clamp(0.5rem, 1vw, 1.5rem) + 180px) !important;
     padding-left: 0 !important;
     display: flex !important;
     align-items: center !important;
+  }
+
+  .lp-nav-right {
+    margin-right: calc(clamp(0.5rem, 1vw, 1.5rem) + 180px) !important;
+  }
+
+  .lp-nav-center {
+    margin-left: clamp(1.5rem, 8vw, 9rem) !important;
+    margin-right: clamp(1.5rem, 8vw, 9rem) !important;
   }
 
   .lp-navbar-inner {
@@ -2302,9 +2311,11 @@ img, svg, video, canvas {
     opacity: 0.35;
   }
   .trusted-reviews-pushpin {
-    top: -18px;
-    right: -14px;
-    width: 26px;
+    top: -52px;
+    left: -30px;
+    right: auto;
+    width: 44px;
+    height: 44px;
   }
   .trusted-reviews-cards-track {
     min-height: 340px;

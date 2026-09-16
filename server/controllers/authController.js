@@ -124,13 +124,7 @@ const loginAdmin = async (req, res) => {
     password = password.toString().trim();
 
     const upperId = loginId.toUpperCase();
-    const user = await User.findOne({ 
-      $or: [
-        { loginId: upperId },
-        { loginId: loginId.toLowerCase() },
-        { loginId: loginId }
-      ]
-    });
+    const user = await User.findOne({ loginId: upperId });
 
     if (!user) {
       return res.status(401).json({ message: 'Invalid admin credentials' });

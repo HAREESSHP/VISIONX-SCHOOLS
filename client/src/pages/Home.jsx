@@ -25,7 +25,8 @@ import {
   TrendingUp,
   Layers,
   GraduationCap,
-  Trophy
+  Trophy,
+  Pin as PinIcon
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { API_URL } from '../services/api';
@@ -553,7 +554,7 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 3.6, ease: "easeInOut" }}
               aria-hidden="true"
             >
-              <svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="58" height="58" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="18" y="8" width="12" height="20" rx="6" />
                 <path d="M12 22c0 6.627 5.373 12 12 12s12-5.373 12-12" />
                 <line x1="24" y1="34" x2="24" y2="42" />
@@ -578,7 +579,7 @@ export default function Home() {
               transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut", delay: 0.3 }}
               aria-hidden="true"
             >
-              <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="58" height="58" viewBox="0 0 48 48" fill="none" stroke="#00C4B4" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M38 24c0-7.732-6.716-14-15-14S8 16.268 8 24c0 4.582 2.36 8.647 6 11.22V40l6.5-3.25c1.64.42 3.42.65 5.5.65 8.284 0 15-6.268 15-14z" />
                 <circle cx="17" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
                 <circle cx="23" cy="24" r="1.6" fill="#00C4B4" stroke="none" />
@@ -640,7 +641,7 @@ export default function Home() {
                 <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
               </svg>
             </div>
-            <span className="lp-hero-pill-title">AI Powered Training</span>
+            <span className="lp-hero-pill-title">AI-Powered Training</span>
           </motion.div>
 
           {/* Centerpiece Student Girl */}
@@ -830,7 +831,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="lp-offer-mission-text">
-              WE STARTED VISIONX WITH A SINGLE MISSION: TO TURN CLASSROOM ENGLISH LEARNING INTO AN ACTIVE, ENJOYABLE SPOKEN EXPERIENCE. OUR PLATFORM BLENDS GUIDED AI SPEECH TRAINING WITH STRUCTURED LESSON DELIVERY THAT SUPPORTS EDUCATORS.
+              We started VisionX with a single mission: to turn classroom English learning into an active,<br className="lp-offer-line-break" /> enjoyable spoken experience. Our platform blends guided AI speech training with structured<br className="lp-offer-line-break" /> lesson delivery that supports educators.
             </p>
 
             <div className="lp-offer-action-wrap">
@@ -857,7 +858,7 @@ export default function Home() {
 
               {/* Hand-Drawn Crown/Burst Doodle on right */}
               <div className="lp-offer-crown-doodle" aria-hidden="true">
-                <svg width="48" height="42" viewBox="0 0 50 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="76" height="70" viewBox="0 0 50 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <line x1="12" y1="7" x2="8" y2="2" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
                   <line x1="25" y1="5" x2="25" y2="0" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
                   <line x1="38" y1="7" x2="42" y2="2" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
@@ -1302,7 +1303,9 @@ export default function Home() {
             <span className="trusted-reviews-kicker">TESTIMONIALS</span>
             <div className="trusted-reviews-title-wrap">
               <h2 className="trusted-reviews-title">
-                Trusted By School <span className="title-leaders-span">Leaders<img src="/reviews-pushpin-v2.png" alt="" className="trusted-reviews-pushpin" aria-hidden="true" /></span>
+                Trusted By School <span className="title-leaders-span">Leaders
+                  <PinIcon className="trusted-reviews-pushpin" size={68} strokeWidth={1.5} aria-hidden="true" />
+                </span>
               </h2>
             </div>
             <p className="trusted-reviews-subtitle">
@@ -1457,7 +1460,7 @@ export default function Home() {
           {/* 2 Columns: For Students & For Schools */}
           <div className="why-grid">
             {/* Col 1: For Students */}
-            <div className="why-col">
+            <div className="why-col why-students-col">
               <motion.h3 
                 className="why-col-header"
                 initial={{ opacity: 0, x: -20 }}
@@ -1484,7 +1487,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Mic size={22} color="#f0740f" strokeWidth={2.2} />
+                      <Mic size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Confidence to participate</h4>
@@ -1511,7 +1514,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <MessagesSquare size={22} color="#f0740f" strokeWidth={2.2} />
+                      <MessagesSquare size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Communication beyond textbooks</h4>
@@ -1538,7 +1541,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <TrendingUp size={22} color="#f0740f" strokeWidth={2.2} />
+                      <TrendingUp size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Progress at their own level</h4>
@@ -1579,7 +1582,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Layers size={22} color="#f0740f" strokeWidth={2.2} />
+                      <Layers size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">A structured program, not an add-on</h4>
@@ -1606,7 +1609,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <GraduationCap size={22} color="#f0740f" strokeWidth={2.2} />
+                      <GraduationCap size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Support for educators</h4>
@@ -1633,7 +1636,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Trophy size={22} color="#f0740f" strokeWidth={2.2} />
+                      <Trophy size={22} color="#f0740f" strokeWidth={3.6} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">A skill that strengthens student outcomes</h4>
