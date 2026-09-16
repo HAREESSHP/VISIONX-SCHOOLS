@@ -49,9 +49,9 @@ export default function Footer({ onContactClick, onNavigate }) {
             <p className="figma-footer-description">
               The purpose of a FAQ is generally to provide information on
               <br className="figma-footer-description-break" />
-              frequent questions or concerns. The purpose of a FAQ is
+              frequent questions or concerns. The purpose of a FAQ is generally
               <br className="figma-footer-description-break" />
-              generally to provide information on frequent questions or concerns.
+              to provide information on frequent questions or concerns.
             </p>
 
             <motion.button
