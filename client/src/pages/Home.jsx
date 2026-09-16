@@ -1812,7 +1812,7 @@ export default function Home() {
               <div className="git-info-cards-stack">
                 <a href="tel:+919381304491" className="git-info-card">
                   <div className="git-icon-bubble">
-                    <Phone size={22} />
+                    <Phone size={24} strokeWidth={3} />
                   </div>
                   <div className="git-card-text">
                     <span className="git-card-label">CALL SUPPORT</span>
@@ -1822,7 +1822,7 @@ export default function Home() {
 
                 <a href="mailto:visionx236@gmail.com" className="git-info-card">
                   <div className="git-icon-bubble">
-                    <Mail size={22} />
+                    <Mail size={24} strokeWidth={3} />
                   </div>
                   <div className="git-card-text">
                     <span className="git-card-label">EMAIL INQUIRIES</span>
@@ -1832,7 +1832,7 @@ export default function Home() {
 
                 <div className="git-info-card">
                   <div className="git-icon-bubble">
-                    <Building2 size={22} />
+                    <Building2 size={24} strokeWidth={3} />
                   </div>
                   <div className="git-card-text">
                     <span className="git-card-label">HEADQUARTERS</span>
