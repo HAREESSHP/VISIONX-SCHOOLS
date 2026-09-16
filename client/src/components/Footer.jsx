@@ -47,9 +47,11 @@ export default function Footer({ onContactClick, onNavigate }) {
 
           <div className="figma-footer-top-right">
             <p className="figma-footer-description">
-              Partner with VisionX to transform English fluency and communication
-              skills in your classrooms. Join leading schools empowering the next
-              generation of confident speakers.
+              The purpose of a FAQ is generally to provide information on
+              <br className="figma-footer-description-break" />
+              frequent questions or concerns. The purpose of a FAQ is
+              <br className="figma-footer-description-break" />
+              generally to provide information on frequent questions or concerns.
             </p>
 
             <motion.button
@@ -249,26 +251,34 @@ export default function Footer({ onContactClick, onNavigate }) {
             <span>Admin Access</span>
           </Link>
 
-          <p className="figma-footer-credits">
-            Design and Developed by{' '}
-            <a
-              href="https://www.linkedin.com/in/hareesh-ai-dev?utm_source=share_via&utm_content=profile&utm_medium=member_android"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="figma-dev-link"
-            >
-              Hareesh
-            </a>{' '}
-            and{' '}
-            <a
-              href="https://www.linkedin.com/in/rahul-ai-dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="figma-dev-link"
-            >
-              Rahul
-            </a>
-          </p>
+          <div className="figma-footer-credits-wrap">
+            <span className="figma-credits-intro">Designed &amp; Developed by</span>
+            <div className="figma-dev-group">
+              <a
+                href="https://www.linkedin.com/in/hareesh-ai-dev?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="figma-dev-chip figma-dev-hareesh"
+                title="Hareesh - LinkedIn Profile"
+              >
+                <span className="dev-chip-dot dev-dot-cyan" />
+                <span className="dev-chip-name">Hareesh</span>
+                <span className="dev-chip-linkedin" aria-hidden="true">in</span>
+              </a>
+              <span className="figma-credits-amp">&amp;</span>
+              <a
+                href="https://www.linkedin.com/in/rahul-ai-dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="figma-dev-chip figma-dev-rahul"
+                title="Rahul - LinkedIn Profile"
+              >
+                <span className="dev-chip-dot dev-dot-orange" />
+                <span className="dev-chip-name">Rahul</span>
+                <span className="dev-chip-linkedin" aria-hidden="true">in</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

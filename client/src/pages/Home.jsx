@@ -1493,7 +1493,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Mic size={22} color="#f0740f" strokeWidth={3.6} />
+                      <Mic size={22} color="#f0740f" strokeWidth={4.2} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Confidence to participate</h4>
@@ -1520,7 +1520,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <MessagesSquare size={22} color="#f0740f" strokeWidth={3.6} />
+                      <MessagesSquare size={22} color="#f0740f" strokeWidth={4.2} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Communication beyond textbooks</h4>
@@ -1547,7 +1547,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <TrendingUp size={22} color="#f0740f" strokeWidth={3.6} />
+                      <TrendingUp size={22} color="#f0740f" strokeWidth={4.2} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Progress at their own level</h4>
@@ -1588,7 +1588,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Layers size={22} color="#f0740f" strokeWidth={3.6} />
+                      <Layers size={22} color="#f0740f" strokeWidth={4.2} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">A structured program, not an add-on</h4>
@@ -1615,7 +1615,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <GraduationCap size={22} color="#f0740f" strokeWidth={3.6} />
+                      <GraduationCap size={22} color="#f0740f" strokeWidth={4.2} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">Support for educators</h4>
@@ -1642,7 +1642,7 @@ export default function Home() {
                     className="why-item-3d-card"
                   >
                     <div className="why-icon-bubble">
-                      <Trophy size={22} color="#f0740f" strokeWidth={3.6} />
+                      <Trophy size={22} color="#f0740f" strokeWidth={4.2} />
                     </div>
                     <div className="why-item-content">
                       <h4 className="why-item-title">A skill that strengthens student outcomes</h4>
