@@ -198,7 +198,7 @@ export default function Home() {
       title: "Active Speaking Drills",
       desc: "Daily classroom voice practice with engaging student prompts.",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="9 10 4 15 9 20" />
           <path d="M20 4v7a4 4 0 0 1-4 4H4" />
         </svg>
@@ -207,13 +207,13 @@ export default function Home() {
     {
       title: "AI Speech & Pronunciation",
       desc: "Real-time phonetic feedback and accurate voice analysis.",
-      icon: <Sparkles size={22} color="#4f46e5" strokeWidth={2.5} />
+      icon: <Sparkles size={22} color="#4f46e5" strokeWidth={3.2} />
     },
     {
       title: "Teacher Analytics Hub",
       desc: "Automated classroom diagnosis, tracking and reports.",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14 2 14 8 20 8" />
           <line x1="16" y1="13" x2="8" y2="13" />
@@ -704,18 +704,18 @@ export default function Home() {
                 <div className="lp-mission-icon-circle">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     {/* Wrist Cuff */}
-                    <line x1="11.5" y1="20" x2="11.5" y2="24.5" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="16.5" y1="20" x2="16.5" y2="24.5" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="10" y1="22.2" x2="18" y2="22.2" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="11.5" y1="20" x2="11.5" y2="24.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="16.5" y1="20" x2="16.5" y2="24.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="10" y1="22.2" x2="18" y2="22.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                     {/* Hand Outline */}
-                    <path d="M11.5 20V11.5C11.5 10.7 12.1 10.1 12.8 10.1C13.5 10.1 14.1 10.7 14.1 11.5V7C14.1 6.2 14.7 5.6 15.4 5.6C16.1 5.6 16.7 6.2 16.7 7V11M16.7 8.5C16.7 7.7 17.3 7.1 18 7.1C18.7 7.1 19.3 7.7 19.3 8.5V12.5M19.3 10.5C19.3 9.7 19.9 9.1 20.6 9.1C21.3 9.1 21.9 9.7 21.9 10.5V15C21.9 17.8 19.5 20 16.5 20H11.5Z" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" transform="translate(-2.5, 0)" />
+                    <path d="M11.5 20V11.5C11.5 10.7 12.1 10.1 12.8 10.1C13.5 10.1 14.1 10.7 14.1 11.5V7C14.1 6.2 14.7 5.6 15.4 5.6C16.1 5.6 16.7 6.2 16.7 7V11M16.7 8.5C16.7 7.7 17.3 7.1 18 7.1C18.7 7.1 19.3 7.7 19.3 8.5V12.5M19.3 10.5C19.3 9.7 19.9 9.1 20.6 9.1C21.3 9.1 21.9 9.7 21.9 10.5V15C21.9 17.8 19.5 20 16.5 20H11.5Z" stroke="#172BEE" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" transform="translate(-2.5, 0)" />
                     {/* Radiating Rays */}
-                    <line x1="3.5" y1="9" x2="6" y2="10.2" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="2.5" y1="14" x2="5.5" y2="14" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="3.5" y1="19" x2="6" y2="17.8" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="24.5" y1="9" x2="22" y2="10.2" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="25.5" y1="14" x2="22.5" y2="14" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="24.5" y1="19" x2="22" y2="17.8" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="3.5" y1="9" x2="6" y2="10.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="2.5" y1="14" x2="5.5" y2="14" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="3.5" y1="19" x2="6" y2="17.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="24.5" y1="9" x2="22" y2="10.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="25.5" y1="14" x2="22.5" y2="14" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="24.5" y1="19" x2="22" y2="17.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                   </svg>
                 </div>
                 <span className="lp-mission-card-label">Knowing what to say,<br />but holding back</span>
@@ -724,11 +724,11 @@ export default function Home() {
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.5 13.2C21.5 17.6 17.8 21.2 13.5 21.2C12.4 21.2 11.3 21 10.3 20.5L6.5 21.8L7.6 18.1C6.9 16.8 6.5 15 6.5 13.2C6.5 8.8 9.8 5.2 14 5.2C18.2 5.2 21.5 8.8 21.5 13.2Z" stroke="#FFFFFF" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="12" cy="12" r="1.5" fill="#FFFFFF" />
-                    <path d="M12.3 12.8C12.3 14 11.4 14.8 10.5 15" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" />
-                    <circle cx="16" cy="12" r="1.5" fill="#FFFFFF" />
-                    <path d="M16.3 12.8C16.3 14 15.4 14.8 14.5 15" stroke="#FFFFFF" strokeWidth="1.2" strokeLinecap="round" />
+                    <path d="M21.5 13.2C21.5 17.6 17.8 21.2 13.5 21.2C12.4 21.2 11.3 21 10.3 20.5L6.5 21.8L7.6 18.1C6.9 16.8 6.5 15 6.5 13.2C6.5 8.8 9.8 5.2 14 5.2C18.2 5.2 21.5 8.8 21.5 13.2Z" stroke="#172BEE" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                    <circle cx="12" cy="12" r="1.5" fill="#172BEE" />
+                    <path d="M12.3 12.8C12.3 14 11.4 14.8 10.5 15" stroke="#172BEE" strokeWidth="1.2" strokeLinecap="round" />
+                    <circle cx="16" cy="12" r="1.5" fill="#172BEE" />
+                    <path d="M16.3 12.8C16.3 14 15.4 14.8 14.5 15" stroke="#172BEE" strokeWidth="1.2" strokeLinecap="round" />
                   </svg>
                 </div>
                 <span className="lp-mission-card-label">Struggling to put<br />thoughts into words</span>
@@ -738,12 +738,12 @@ export default function Home() {
                 <div className="lp-mission-icon-circle">
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     {/* Head Profile Facing Right */}
-                    <path d="M10 21.5V13C10 9 12.5 6.5 16 6.5C19 6.5 20.5 8.5 20.5 10.5C20.5 11.2 20.2 11.8 21.4 13C21.8 13.4 21.8 14 21.2 14.5L19.8 15C19.4 15.2 19.3 15.6 19.5 16C19.9 16.6 19.7 17.3 19 17.6L17.2 18C16.8 18.1 16.5 18.5 16.5 19V21.5" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    <line x1="10" y1="21.5" x2="16.5" y2="21.5" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
+                    <path d="M10 21.5V13C10 9 12.5 6.5 16 6.5C19 6.5 20.5 8.5 20.5 10.5C20.5 11.2 20.2 11.8 21.4 13C21.8 13.4 21.8 14 21.2 14.5L19.8 15C19.4 15.2 19.3 15.6 19.5 16C19.9 16.6 19.7 17.3 19 17.6L17.2 18C16.8 18.1 16.5 18.5 16.5 19V21.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <line x1="10" y1="21.5" x2="16.5" y2="21.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                     {/* Voice burst dashes in front of mouth */}
-                    <line x1="22.5" y1="13.2" x2="25" y2="12.2" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="23" y1="15.5" x2="26" y2="15.5" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="22.5" y1="17.8" x2="25" y2="18.8" stroke="#FFFFFF" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="22.5" y1="13.2" x2="25" y2="12.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="23" y1="15.5" x2="26" y2="15.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
+                    <line x1="22.5" y1="17.8" x2="25" y2="18.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                   </svg>
                 </div>
                 <span className="lp-mission-card-label">Staying quiet when its<br />time to speak</span>
@@ -878,19 +878,19 @@ export default function Home() {
                   <line x1="7" y1="36" x2="44" y2="36" stroke="#FFFFFF" strokeWidth="3.2" strokeLinecap="round" />
                 </svg>
               </div>
+
+              {/* Small star below the crown, positioned beside the button */}
+              <div className="lp-offer-star-doodle" aria-hidden="true">
+                <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M 23,4 L 27.2,14.5 L 38.5,17.2 L 29.8,24.6 L 32.5,35.8 L 23,29.8 L 13.5,35.8 L 16.2,24.6 L 7.5,17.2 L 18.8,14.5 Z"
+                    fill="#FFFFFF"
+                  />
+                  <circle cx="23" cy="22" r="4.5" fill="#F0740F" />
+                </svg>
+              </div>
             </div>
           </motion.div>
-        </div>
-
-        {/* Hand-Drawn White Star Doodle on bottom right */}
-        <div className="lp-offer-star-doodle" aria-hidden="true">
-          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M 23,4 L 27.2,14.5 L 38.5,17.2 L 29.8,24.6 L 32.5,35.8 L 23,29.8 L 13.5,35.8 L 16.2,24.6 L 7.5,17.2 L 18.8,14.5 Z"
-              fill="#FFFFFF"
-            />
-            <circle cx="23" cy="22" r="4.5" fill="#F0740F" />
-          </svg>
         </div>
       </section>
 

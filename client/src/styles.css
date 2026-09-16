@@ -6065,19 +6065,28 @@ textarea {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: #3B52F6;
+  background: #E8E9FF;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 24px rgba(59, 82, 246, 0.45);
+  box-shadow: 0 14px 25px rgba(15, 23, 42, 0.28);
   margin-bottom: 0.55rem;
   flex-shrink: 0;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.lp-mission-icon-circle svg {
+  width: 36px;
+  height: 36px;
+}
+
+.lp-mission-icon-circle svg [stroke] {
+  stroke-width: 2px;
+}
+
 .lp-mission-icon-circle:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(59, 82, 246, 0.55);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.34);
 }
 
 .lp-mission-card-label {
@@ -6474,12 +6483,17 @@ textarea {
 /* Star Doodle */
 .lp-offer-star-doodle {
   position: absolute;
-  bottom: 1rem;
-  right: clamp(1.25rem, 3.5vw, 3.5rem);
+  top: 1.5rem;
+  right: -9.25rem;
   pointer-events: none;
   z-index: 3;
   animation: offerStarFloat 4s ease-in-out infinite alternate;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+.lp-offer-star-doodle svg {
+  width: 28px;
+  height: 28px;
 }
 
 @keyframes offerStarFloat {
@@ -6523,23 +6537,23 @@ textarea {
 
 .lp-offer-btn-star {
   position: absolute;
-  top: -1.75rem;
-  right: 1.5rem;
+  top: -6.5rem;
+  right: -11.5rem;
   pointer-events: none;
   animation: offerStarFloat 3.5s ease-in-out infinite alternate;
 }
 
 .lp-offer-crown-doodle {
   position: absolute;
-  right: -78px;
-  top: -6px;
+  right: -12.5rem;
+  top: -3.35rem;
   pointer-events: none;
   animation: offerCrownWiggle 4s ease-in-out infinite alternate;
 }
 
 @keyframes offerCrownWiggle {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-4px) rotate(4deg); }
+  0% { transform: translateY(0) rotate(-28deg); }
+  100% { transform: translateY(-4px) rotate(-34deg); }
 }
 
 .lp-offer-demo-btn {
