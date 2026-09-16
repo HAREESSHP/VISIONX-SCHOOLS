@@ -588,72 +588,75 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Interactive Floating Badge 1 (Top-Left): Partnered with 100+ Schools */}
-          <motion.div 
-            className="lp-hero-float-pill lp-hero-pill-schools"
-            animate={{ y: [0, -8, 0], rotate: [-5, -3, -5] }}
-            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-            whileHover={{ scale: 1.05, y: -10 }}
-          >
-            <div className="lp-hero-avatar-stack">
-              <span className="lp-hero-avatar-circle av-orange">T</span>
-              <span className="lp-hero-avatar-circle av-salmon">R</span>
-              <span className="lp-hero-avatar-circle av-teal">V</span>
-              <span className="lp-hero-avatar-circle av-navy">+50</span>
-            </div>
-            <div className="lp-hero-pill-content">
-              <div className="lp-hero-stars-row">
-                <span className="lp-hero-star">★</span>
-                <span className="lp-hero-star">★</span>
-                <span className="lp-hero-star">★</span>
-                <span className="lp-hero-star">★</span>
-                <span className="lp-hero-star">★</span>
+          {/* Central Visual Stage (Student Girl & Floating Badges) */}
+          <div className="lp-hero-visual-stage">
+            {/* Interactive Floating Badge 1 (Top-Left): Partnered with 100+ Schools */}
+            <motion.div 
+              className="lp-hero-float-pill lp-hero-pill-schools"
+              animate={{ y: [0, -8, 0], rotate: [-5, -3, -5] }}
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+              whileHover={{ scale: 1.05, y: -10 }}
+            >
+              <div className="lp-hero-avatar-stack">
+                <span className="lp-hero-avatar-circle av-orange">T</span>
+                <span className="lp-hero-avatar-circle av-salmon">R</span>
+                <span className="lp-hero-avatar-circle av-teal">V</span>
+                <span className="lp-hero-avatar-circle av-navy">+50</span>
               </div>
-              <span className="lp-hero-pill-title">Partnered with 100+ Schools</span>
-            </div>
-          </motion.div>
+              <div className="lp-hero-pill-content">
+                <div className="lp-hero-stars-row">
+                  <span className="lp-hero-star">★</span>
+                  <span className="lp-hero-star">★</span>
+                  <span className="lp-hero-star">★</span>
+                  <span className="lp-hero-star">★</span>
+                  <span className="lp-hero-star">★</span>
+                </div>
+                <span className="lp-hero-pill-title">Partnered with 100+ Schools</span>
+              </div>
+            </motion.div>
 
-          {/* Interactive Floating Badge 2 (Lower-Left): Nursery to Class 10 */}
-          <motion.div 
-            className="lp-hero-float-pill lp-hero-pill-classes"
-            animate={{ y: [0, 7, 0] }}
-            transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.5 }}
-            whileHover={{ scale: 1.05, y: 5 }}
-          >
-            <div className="lp-hero-pill-icon-wrap">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="8" r="6" />
-                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-              </svg>
-            </div>
-            <span className="lp-hero-pill-title">Nursery to Class 10</span>
-          </motion.div>
+            {/* Interactive Floating Badge 2 (Lower-Left): Nursery to Class 10 */}
+            <motion.div 
+              className="lp-hero-float-pill lp-hero-pill-classes"
+              animate={{ y: [0, 7, 0] }}
+              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.5 }}
+              whileHover={{ scale: 1.05, y: 5 }}
+            >
+              <div className="lp-hero-pill-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="6" />
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+                </svg>
+              </div>
+              <span className="lp-hero-pill-title">Nursery to Class 10</span>
+            </motion.div>
 
-          {/* Interactive Floating Badge 3 (Mid-Right): AI Powered Training */}
-          <motion.div 
-            className="lp-hero-float-pill lp-hero-pill-ai"
-            animate={{ y: [0, -7, 0], rotate: [4, 2, 4] }}
-            transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut", delay: 1.0 }}
-            whileHover={{ scale: 1.05, y: -9 }}
-          >
-            <div className="lp-hero-pill-icon-wrap">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB" stroke="#2563EB" strokeWidth="1">
-                <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
-              </svg>
-            </div>
-            <span className="lp-hero-pill-title">AI-Powered Training</span>
-          </motion.div>
+            {/* Interactive Floating Badge 3 (Mid-Right): AI Powered Training */}
+            <motion.div 
+              className="lp-hero-float-pill lp-hero-pill-ai"
+              animate={{ y: [0, -7, 0], rotate: [4, 2, 4] }}
+              transition={{ repeat: Infinity, duration: 4.2, ease: "easeInOut", delay: 1.0 }}
+              whileHover={{ scale: 1.05, y: -9 }}
+            >
+              <div className="lp-hero-pill-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#2563EB" stroke="#2563EB" strokeWidth="1">
+                  <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                </svg>
+              </div>
+              <span className="lp-hero-pill-title">AI-Powered Training</span>
+            </motion.div>
 
-          {/* Centerpiece Student Girl */}
-          <div className="lp-hero-student-wrapper">
-            <motion.img 
-              src="/student_girl_hero_speaking.png" 
-              alt="Confident Student Speaking with Microphone" 
-              className="lp-hero-student-img"
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            />
+            {/* Centerpiece Student Girl */}
+            <div className="lp-hero-student-wrapper">
+              <motion.img 
+                src="/student_girl_hero_speaking.png" 
+                alt="Confident Student Speaking with Microphone" 
+                className="lp-hero-student-img"
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
           </div>
 
           {/* Bottom-Right Value Proposition & CTA */}

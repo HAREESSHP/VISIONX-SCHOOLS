@@ -5389,6 +5389,18 @@ textarea {
   right: clamp(10px, 4vw, 55px);
 }
 
+/* Centerpiece Visual Stage (Desktop: full overlay pass-through) */
+.lp-hero-visual-stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.lp-hero-visual-stage .lp-hero-float-pill {
+  pointer-events: auto;
+}
+
 /* Centerpiece Student Girl */
 .lp-hero-student-wrapper {
   position: absolute;
@@ -5578,83 +5590,373 @@ textarea {
   box-shadow: 0 10px 28px rgba(0, 136, 255, 0.55);
 }
 
-/* Responsive adjustments */
+/* ============================================
+   HERO FULLSCREEN RESPONSIVE SYSTEM
+   ============================================ */
+
+/* 1. Large Tablets & Small Laptops (961px - 1200px) */
 @media (max-width: 1200px) {
   .lp-hero-full-title {
-    font-size: 2.6rem;
+    font-size: clamp(2.35rem, 3.8vw, 3.2rem);
   }
   .lp-hero-pill-schools {
-    left: 3%;
-    top: 32%;
+    left: 2%;
+    top: 34%;
+    transform: scale(0.92);
   }
   .lp-hero-pill-classes {
-    left: 5%;
-    bottom: 24%;
+    left: 4%;
+    bottom: 25%;
+    transform: scale(0.92);
   }
   .lp-hero-pill-ai {
-    right: 8%;
-    top: 34%;
+    right: 3%;
+    top: 35%;
+    transform: scale(0.92);
   }
   .lp-hero-fs-cta-box {
-    right: 4%;
+    right: 2%;
     bottom: 6%;
-    max-width: 320px;
+    max-width: 330px;
+  }
+  .lp-hero-fs-cta-desc {
+    font-size: 1.12rem;
   }
 }
 
-@media (max-width: 900px) {
+/* 2. Tablets & Mobile Vertical Layouts (<= 960px) */
+@media (max-width: 960px) {
   .lp-hero-fullscreen-section {
     height: auto;
-    min-height: calc(100svh - 68px);
-    padding-bottom: 2rem;
+    min-height: auto;
+    max-height: none;
+    padding-bottom: 3.5rem;
+    overflow-x: hidden;
   }
+
+  .lp-hero-fs-container {
+    height: auto;
+    min-height: auto;
+    padding: 1.5rem 1.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .lp-hero-fs-heading-wrap {
+    min-height: auto;
+    margin: 0 auto 0.75rem;
+    max-width: 720px;
+    padding: 0 1rem;
+  }
+
   .lp-hero-full-title {
-    font-size: 2.1rem;
+    font-size: clamp(2rem, 4.5vw, 2.75rem);
+    line-height: 1.15;
     padding: 0;
   }
+
+  .lp-hero-doodle svg {
+    width: 42px;
+    height: 42px;
+  }
+
   .lp-hero-doodle-mic {
-    top: -18px;
-    left: 0;
+    top: -12px;
+    left: clamp(0px, 2vw, 15px);
   }
+
   .lp-hero-doodle-bubble {
-    top: 0;
-    right: 0;
+    top: -8px;
+    right: clamp(0px, 2vw, 15px);
   }
+
+  /* Central Visual Stage: Student & Orbiting Badges */
+  .lp-hero-visual-stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: 480px;
+    height: clamp(340px, 46vh, 420px);
+    margin: 1.25rem auto 1.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    pointer-events: auto;
+  }
+
   .lp-hero-student-wrapper {
     position: relative;
     bottom: auto;
     left: auto;
     transform: none;
-    height: 380px;
-    margin: 1.5rem auto 0;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 3;
+    margin: 0 auto;
+    pointer-events: none;
   }
+
+  .lp-hero-student-img {
+    height: 100%;
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Floating badges orbit the student on mobile/tablet */
   .lp-hero-float-pill {
-    position: static;
-    margin: 0.5rem 0;
+    position: absolute;
+    z-index: 6;
+    pointer-events: auto;
+    box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(0, 0, 0, 0.06);
   }
+
+  .lp-hero-pill-schools {
+    top: 6%;
+    left: 0;
+    transform: scale(0.86);
+    transform-origin: left top;
+  }
+
+  .lp-hero-pill-ai {
+    top: 10%;
+    right: 0;
+    transform: scale(0.86);
+    transform-origin: right top;
+  }
+
+  .lp-hero-pill-classes {
+    bottom: 12%;
+    left: 2%;
+    top: auto;
+    transform: scale(0.86);
+    transform-origin: left bottom;
+  }
+
+  /* Bottom Value Proposition & CTA */
   .lp-hero-fs-cta-box {
-    position: static;
-    margin-top: 1.5rem;
+    position: relative;
+    right: auto;
+    bottom: auto;
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
+    margin: 0.5rem auto 0;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 1.25rem;
+    z-index: 10;
   }
+
+  .lp-hero-fs-cta-desc {
+    font-size: clamp(1.08rem, 2.4vw, 1.22rem);
+    line-height: 1.55;
+    color: #1E293B;
+    font-weight: 700;
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
   .lp-hero-fs-cta-btn {
-    width: 100%;
-    max-width: 280px;
+    width: auto;
+    min-width: 220px;
+    padding: 0.85rem 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 750;
+    border-radius: 9999px;
+    box-shadow: 0 8px 24px rgba(0, 136, 255, 0.42);
+    min-height: 48px;
   }
 }
 
-@media (max-width: 600px) {
-  .lp-hero-full-title {
-    font-size: 1.75rem;
-  }
+/* 3. Small Tablets & Phablets (481px - 768px) */
+@media (max-width: 768px) {
   .lp-hero-fs-container {
-    padding: 1.5rem 1rem 1rem;
+    padding: 1.25rem 1rem 2rem;
   }
-  .lp-hero-student-wrapper {
-    height: 300px;
+
+  .lp-hero-full-title {
+    font-size: clamp(1.75rem, 5.2vw, 2.2rem);
+    line-height: 1.16;
+  }
+
+  .lp-hero-visual-stage {
+    max-width: 420px;
+    height: clamp(310px, 42vh, 370px);
+    margin: 1rem auto 1.25rem;
+  }
+
+  .lp-hero-pill-schools {
+    top: 5%;
+    left: -6px;
+    transform: scale(0.80);
+    transform-origin: left top;
+  }
+
+  .lp-hero-pill-ai {
+    top: 10%;
+    right: -6px;
+    transform: scale(0.80);
+    transform-origin: right top;
+  }
+
+  .lp-hero-pill-classes {
+    bottom: 10%;
+    left: -2px;
+    transform: scale(0.80);
+    transform-origin: left bottom;
+  }
+
+  .lp-hero-fs-cta-desc {
+    font-size: 1.04rem;
+    line-height: 1.52;
+  }
+}
+
+/* 4. Standard Mobile Phones (361px - 480px, e.g. iPhone, Galaxy) */
+@media (max-width: 480px) {
+  .lp-hero-fullscreen-section {
+    margin-top: 68px;
+    padding-bottom: 2.75rem;
+  }
+
+  .lp-hero-fs-container {
+    padding: 1rem 0.75rem 1.75rem;
+  }
+
+  .lp-hero-fs-heading-wrap {
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lp-hero-full-title {
+    font-size: clamp(1.52rem, 6.8vw, 1.88rem);
+    line-height: 1.18;
+  }
+
+  .lp-hero-doodle svg {
+    width: 32px;
+    height: 32px;
+    stroke-width: 2.8;
+  }
+
+  .lp-hero-doodle-mic {
+    top: -14px;
+    left: -2px;
+  }
+
+  .lp-hero-doodle-bubble {
+    top: -10px;
+    right: -2px;
+  }
+
+  .lp-hero-visual-stage {
+    max-width: 360px;
+    height: clamp(280px, 40vh, 330px);
+    margin: 0.75rem auto 1.25rem;
+  }
+
+  .lp-hero-pill-schools {
+    top: 4%;
+    left: -8px;
+    padding: 0.45rem 0.85rem;
+    transform: scale(0.74);
+    transform-origin: left top;
+  }
+
+  .lp-hero-pill-schools .lp-hero-pill-title {
+    font-size: 0.85rem;
+  }
+
+  .lp-hero-avatar-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    margin-right: -6px;
+  }
+
+  .lp-hero-pill-ai {
+    top: 10%;
+    right: -8px;
+    padding: 0.45rem 0.9rem;
+    transform: scale(0.74);
+    transform-origin: right top;
+  }
+
+  .lp-hero-pill-ai .lp-hero-pill-title {
+    font-size: 0.85rem;
+  }
+
+  .lp-hero-pill-classes {
+    bottom: 8%;
+    left: -4px;
+    padding: 0.45rem 0.85rem;
+    transform: scale(0.74);
+    transform-origin: left bottom;
+  }
+
+  .lp-hero-pill-classes .lp-hero-pill-title {
+    font-size: 0.85rem;
+  }
+
+  .lp-hero-fs-cta-desc {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #334155;
+    font-weight: 650;
+    padding: 0 0.25rem;
+  }
+
+  .lp-hero-fs-cta-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+  }
+}
+
+/* 5. Ultra-Small & Foldable Phones (<= 360px) */
+@media (max-width: 360px) {
+  .lp-hero-full-title {
+    font-size: 1.42rem;
+  }
+
+  .lp-hero-doodle svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .lp-hero-visual-stage {
+    max-width: 310px;
+    height: 260px;
+    margin: 0.5rem auto 1rem;
+  }
+
+  .lp-hero-pill-schools {
+    transform: scale(0.66);
+    left: -12px;
+  }
+
+  .lp-hero-pill-ai {
+    transform: scale(0.66);
+    right: -12px;
+  }
+
+  .lp-hero-pill-classes {
+    transform: scale(0.66);
+    left: -10px;
+  }
+
+  .lp-hero-fs-cta-desc {
+    font-size: 0.92rem;
   }
 }
 
