@@ -1286,7 +1286,7 @@ export default function Home() {
           transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
         />
         <motion.img 
-          src="/reviews-doodle-right-v2.png" 
+          src="/reviews-doodle-right-v2.png?v=orange-bar" 
           alt="" 
           className="trusted-reviews-doodle doodle-right" 
           aria-hidden="true" 
@@ -1305,12 +1305,13 @@ export default function Home() {
         >
           {/* Header */}
           <div className="trusted-reviews-header">
-            <span className="trusted-reviews-kicker">TESTIMONIALS</span>
+            <span className="trusted-reviews-kicker">
+              TESTIMONIALS
+              <PinIcon className="trusted-reviews-pushpin" size={96} strokeWidth={1.2} aria-hidden="true" />
+            </span>
             <div className="trusted-reviews-title-wrap">
               <h2 className="trusted-reviews-title">
-                Trusted By School <span className="title-leaders-span">Leaders
-                  <PinIcon className="trusted-reviews-pushpin" size={68} strokeWidth={1.5} aria-hidden="true" />
-                </span>
+                Trusted By School <span className="title-leaders-span">Leaders</span>
               </h2>
             </div>
             <p className="trusted-reviews-subtitle">

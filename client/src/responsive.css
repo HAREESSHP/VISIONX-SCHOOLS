@@ -2312,10 +2312,11 @@ img, svg, video, canvas {
   }
   .trusted-reviews-pushpin {
     top: -52px;
-    left: -30px;
-    right: auto;
-    width: 44px;
-    height: 44px;
+    left: auto;
+    right: -78px;
+    width: 82px;
+    height: auto;
+    transform: rotate(30deg);
   }
   .trusted-reviews-cards-track {
     min-height: 340px;
