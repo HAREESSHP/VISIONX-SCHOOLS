@@ -6497,15 +6497,16 @@ textarea {
 
 .lp-offer-mission-text {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(0.92rem, 1.12vw, 1.05rem);
+  font-size: clamp(0.96rem, 1.18vw, 1.1rem);
   font-weight: 800;
   line-height: 1.55;
   color: #FFFFFF;
   letter-spacing: 0.02em;
-  text-transform: uppercase;
+  text-transform: none;
   margin: 0;
-  max-width: 740px;
+  max-width: none;
   flex: 1 1 auto;
+  white-space: nowrap;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
@@ -6526,7 +6527,7 @@ textarea {
 
 .lp-offer-crown-doodle {
   position: absolute;
-  right: -56px;
+  right: -78px;
   top: -6px;
   pointer-events: none;
   animation: offerCrownWiggle 4s ease-in-out infinite alternate;
@@ -6567,7 +6568,7 @@ textarea {
 /* Responsive */
 @media (max-width: 1080px) {
   .lp-offer-crown-doodle {
-    right: -42px;
+    right: -62px;
     transform: scale(0.85);
   }
 }
@@ -6598,6 +6599,7 @@ textarea {
     font-size: 0.92rem;
     line-height: 1.55;
     max-width: 100%;
+    white-space: normal;
   }
   .lp-offer-action-wrap {
     width: 100%;
@@ -6609,7 +6611,7 @@ textarea {
     max-width: 320px;
   }
   .lp-offer-crown-doodle {
-    right: 15px;
+    right: 45px;
     top: -12px;
     transform: scale(0.8);
   }

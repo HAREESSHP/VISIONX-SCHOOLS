@@ -834,7 +834,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="lp-offer-mission-text">
-              We started VisionX with a single mission: to turn classroom English learning into an active,<br className="lp-offer-line-break" /> enjoyable spoken experience. Our platform blends guided AI speech training with structured<br className="lp-offer-line-break" /> lesson delivery that supports educators.
+              We started VisionX with a single mission: to turn classroom English learning into an active,
+              <br className="lp-offer-line-break" />enjoyable spoken experience. Our platform blends guided AI speech training with structured
+              <br className="lp-offer-line-break" />lesson delivery that supports educators.
             </p>
 
             <div className="lp-offer-action-wrap">
