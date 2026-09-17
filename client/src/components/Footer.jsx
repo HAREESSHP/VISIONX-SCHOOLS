@@ -46,13 +46,17 @@ export default function Footer({ onContactClick, onNavigate }) {
           </div>
 
           <div className="figma-footer-top-right">
-            <p className="figma-footer-description">
-              The purpose of a FAQ is generally to provide information on
-              <br className="figma-footer-description-break" />
-              frequent questions or concerns. The purpose of a FAQ is generally
-              <br className="figma-footer-description-break" />
-              to provide information on frequent questions or concerns.
-            </p>
+            <div className="figma-footer-description">
+              <p className="figma-footer-desc-item figma-footer-desc-highlight">
+                Build Confident English Speakers for Tomorrow.
+              </p>
+              <p className="figma-footer-desc-item">
+                Partner with VisionX to make English speaking a regular part of classroom learning.
+              </p>
+              <p className="figma-footer-desc-item">
+                Give students a simple and engaging way to learn, practice, speak, and grow in confidence — every day.
+              </p>
+            </div>
 
             <motion.button
               type="button"
