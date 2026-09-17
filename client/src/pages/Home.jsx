@@ -196,26 +196,6 @@ export default function Home() {
   const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(2);
   const [activeOfferIndex, setActiveOfferIndex] = useState(0);
-  const fanTouchStartX = useRef(0);
-
-  const handleFanTouchStart = (e) => {
-    if (e.touches && e.touches.length > 0) {
-      fanTouchStartX.current = e.touches[0].clientX;
-    }
-  };
-
-  const handleFanTouchEnd = (e) => {
-    if (e.changedTouches && e.changedTouches.length > 0) {
-      const diff = fanTouchStartX.current - e.changedTouches[0].clientX;
-      if (diff > 45) {
-        // Swipe Left -> Next
-        setActiveReviewIndex((prev) => (prev + 1) % testimonials.length);
-      } else if (diff < -45) {
-        // Swipe Right -> Prev
-        setActiveReviewIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-      }
-    }
-  };
 
   const offerFeatures = [
     {
@@ -286,11 +266,37 @@ export default function Home() {
     }
   ];
 
-  const prevReviewIndex = (activeReviewIndex - 1 + testimonials.length) % testimonials.length;
-  const nextReviewIndex = (activeReviewIndex + 1) % testimonials.length;
-  const prevTestimonial = testimonials[prevReviewIndex];
-  const currentTestimonial = testimonials[activeReviewIndex];
-  const nextTestimonial = testimonials[nextReviewIndex];
+  const prevActiveRef = useRef(activeReviewIndex);
+  useEffect(() => {
+    prevActiveRef.current = activeReviewIndex;
+  }, [activeReviewIndex]);
+
+  const getCardDiff = (index, activeIdx, total) => {
+    let diff = index - activeIdx;
+    while (diff > Math.floor(total / 2)) diff -= total;
+    while (diff < -Math.floor(total / 2)) diff += total;
+    return diff;
+  };
+
+  const fanTouchStartX = useRef(0);
+  const handleFanTouchStart = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      fanTouchStartX.current = e.touches[0].clientX;
+    }
+  };
+  const handleFanTouchEnd = (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      const diff = fanTouchStartX.current - e.changedTouches[0].clientX;
+      if (diff > 45) {
+        // Swipe Left -> Next
+        setActiveReviewIndex((prev) => (prev + 1) % testimonials.length);
+      } else if (diff < -45) {
+        // Swipe Right -> Prev
+        setActiveReviewIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+      }
+    }
+  };
+
 
   // Smooth scroll and focus to the Book Demo section
   const scrollToDemo = (e) => {
@@ -732,61 +738,21 @@ export default function Home() {
             <div className="lp-mission-cards">
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
-<<<<<<< Updated upstream
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {/* Wrist Cuff */}
-                    <line x1="11.5" y1="20" x2="11.5" y2="24.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="16.5" y1="20" x2="16.5" y2="24.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="10" y1="22.2" x2="18" y2="22.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    {/* Hand Outline */}
-                    <path d="M11.5 20V11.5C11.5 10.7 12.1 10.1 12.8 10.1C13.5 10.1 14.1 10.7 14.1 11.5V7C14.1 6.2 14.7 5.6 15.4 5.6C16.1 5.6 16.7 6.2 16.7 7V11M16.7 8.5C16.7 7.7 17.3 7.1 18 7.1C18.7 7.1 19.3 7.7 19.3 8.5V12.5M19.3 10.5C19.3 9.7 19.9 9.1 20.6 9.1C21.3 9.1 21.9 9.7 21.9 10.5V15C21.9 17.8 19.5 20 16.5 20H11.5Z" stroke="#172BEE" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" transform="translate(-2.5, 0)" />
-                    {/* Radiating Rays */}
-                    <line x1="3.5" y1="9" x2="6" y2="10.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="2.5" y1="14" x2="5.5" y2="14" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="3.5" y1="19" x2="6" y2="17.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="24.5" y1="9" x2="22" y2="10.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="25.5" y1="14" x2="22.5" y2="14" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="24.5" y1="19" x2="22" y2="17.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                  </svg>
-=======
                   <Brain size={26} strokeWidth={2.2} color="#FFFFFF" />
->>>>>>> Stashed changes
                 </div>
                 <span className="lp-mission-card-label">Knowing what to say,<br />but holding back</span>
               </div>
 
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
-<<<<<<< Updated upstream
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21.5 13.2C21.5 17.6 17.8 21.2 13.5 21.2C12.4 21.2 11.3 21 10.3 20.5L6.5 21.8L7.6 18.1C6.9 16.8 6.5 15 6.5 13.2C6.5 8.8 9.8 5.2 14 5.2C18.2 5.2 21.5 8.8 21.5 13.2Z" stroke="#172BEE" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle cx="12" cy="12" r="1.5" fill="#172BEE" />
-                    <path d="M12.3 12.8C12.3 14 11.4 14.8 10.5 15" stroke="#172BEE" strokeWidth="1.2" strokeLinecap="round" />
-                    <circle cx="16" cy="12" r="1.5" fill="#172BEE" />
-                    <path d="M16.3 12.8C16.3 14 15.4 14.8 14.5 15" stroke="#172BEE" strokeWidth="1.2" strokeLinecap="round" />
-                  </svg>
-=======
                   <Puzzle size={26} strokeWidth={2.2} color="#FFFFFF" />
->>>>>>> Stashed changes
                 </div>
                 <span className="lp-mission-card-label">Struggling to put<br />thoughts into words</span>
               </div>
 
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
-<<<<<<< Updated upstream
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {/* Head Profile Facing Right */}
-                    <path d="M10 21.5V13C10 9 12.5 6.5 16 6.5C19 6.5 20.5 8.5 20.5 10.5C20.5 11.2 20.2 11.8 21.4 13C21.8 13.4 21.8 14 21.2 14.5L19.8 15C19.4 15.2 19.3 15.6 19.5 16C19.9 16.6 19.7 17.3 19 17.6L17.2 18C16.8 18.1 16.5 18.5 16.5 19V21.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    <line x1="10" y1="21.5" x2="16.5" y2="21.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    {/* Voice burst dashes in front of mouth */}
-                    <line x1="22.5" y1="13.2" x2="25" y2="12.2" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="23" y1="15.5" x2="26" y2="15.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                    <line x1="22.5" y1="17.8" x2="25" y2="18.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
-                  </svg>
-=======
                   <MicOff size={26} strokeWidth={2.2} color="#FFFFFF" />
->>>>>>> Stashed changes
                 </div>
                 <span className="lp-mission-card-label">Staying quiet when<br />it's time to speak</span>
               </div>
@@ -1365,88 +1331,110 @@ export default function Home() {
             <p className="trusted-reviews-subtitle">
               Discover how VisionX empowers classrooms and transforms student confidence.
             </p>
-          </div>
 
-          {/* Stepped 5-Card Layout */}
-          <div className="trusted-reviews-carousel">
-            <div 
-              className="trusted-reviews-cards-track"
-              ref={reviewsTrackRef}
-              onScroll={handleReviewsScroll}
-            >
-              {testimonials.map((item, idx) => {
-                const diff = idx - activeReviewIndex;
-                let cardClass = "trusted-review-card";
-                if (diff === 0) cardClass += " is-center";
-                else if (diff === -1) cardClass += " is-prev-1";
-                else if (diff === 1) cardClass += " is-next-1";
-                else if (diff <= -2) cardClass += " is-prev-2";
-                else if (diff >= 2) cardClass += " is-next-2";
-
-                return (
-                  <div 
-                    key={idx} 
-                    className={cardClass}
-                    onClick={() => setActiveReviewIndex(idx)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveReviewIndex(idx); }}
-                    aria-label={`Testimonial from ${item.school}`}
-                  >
-                    <div className="trusted-card-quote-mark">
-                      <svg width="34" height="26" viewBox="0 0 34 26" fill="currentColor">
-                        <path d="M14.5 0C6.5 0 0 6.5 0 14.5C0 20.85 5.15 26 11.5 26C13.2 26 14.5 24.7 14.5 23C14.5 21.3 13.2 20 11.5 20C8.45 20 6 17.55 6 14.5C6 14.2 6.05 13.9 6.1 13.6C7.5 14.5 9.2 15 11 15C16 15 20 11 20 6C20 2.7 17.3 0 14.5 0ZM28.5 0C20.5 0 14 6.5 14 14.5C14 20.85 19.15 26 25.5 26C27.2 26 28.5 24.7 28.5 23C28.5 21.3 27.2 20 25.5 20C22.45 20 20 17.55 20 14.5C20 14.2 20.05 13.9 20.1 13.6C21.5 14.5 23.2 15 25 15C30 15 34 11 34 6C34 2.7 31.3 0 28.5 0Z" />
-                      </svg>
-                    </div>
-                    
-                    <p className="trusted-card-text">
-                      "{item.text}"
-                    </p>
-
-                    <div className="trusted-card-author">
-                      <div className="trusted-author-avatar" style={{ background: item.avatarBg }}>
-                        {item.avatar}
-                      </div>
-                      <div className="trusted-author-info">
-                        <div className="trusted-school-name">{item.school}</div>
-                        <div className="trusted-author-role">{item.author}</div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Carousel Controls (Arrows + Dots) */}
-            <div className="trusted-reviews-controls">
+            {/* Centered Prev / Next Arrow Buttons directly beneath subtitle */}
+            <div className="trusted-reviews-top-controls">
               <button 
                 type="button" 
-                className="trusted-nav-arrow" 
+                className="trusted-top-nav-btn" 
                 onClick={() => setActiveReviewIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
                 aria-label="Previous Testimonial"
               >
-                <ChevronLeft size={20} />
+                <ArrowLeft size={22} strokeWidth={2.4} />
               </button>
-              <div className="trusted-reviews-dots">
-                {testimonials.map((_, dotIdx) => (
-                  <button
-                    key={dotIdx}
-                    type="button"
-                    className={`trusted-dot ${dotIdx === activeReviewIndex ? 'active' : ''}`}
-                    onClick={() => setActiveReviewIndex(dotIdx)}
-                    aria-label={`Go to slide ${dotIdx + 1}`}
-                  />
-                ))}
-              </div>
               <button 
                 type="button" 
-                className="trusted-nav-arrow" 
+                className="trusted-top-nav-btn" 
                 onClick={() => setActiveReviewIndex((prev) => (prev + 1) % testimonials.length)}
                 aria-label="Next Testimonial"
               >
-                <ChevronRight size={20} />
+                <ArrowRight size={22} strokeWidth={2.4} />
               </button>
             </div>
+          </div>
+
+          {/* 3-Card Fan Stage */}
+          <div 
+            className="trusted-fan-stage"
+            onTouchStart={handleFanTouchStart}
+            onTouchEnd={handleFanTouchEnd}
+          >
+            {testimonials.map((testimonial, index) => {
+              const currDiff = getCardDiff(index, activeReviewIndex, testimonials.length);
+              const prevDiff = getCardDiff(index, prevActiveRef.current, testimonials.length);
+              
+              // Skip transition if switching between offscreen positions to prevent gliding across screen while hidden
+              const isHiddenSwap = Math.abs(currDiff) > 1 && Math.abs(prevDiff) > 1 && currDiff !== prevDiff;
+
+              let posClass = 'is-hidden';
+              let isClickable = false;
+              let ariaLabel = '';
+
+              if (currDiff === 0) {
+                posClass = 'is-center';
+                ariaLabel = `Current testimonial: ${testimonial.school}`;
+              } else if (currDiff === -1) {
+                posClass = 'is-left';
+                isClickable = true;
+                ariaLabel = `Previous testimonial: ${testimonial.school}`;
+              } else if (currDiff === 1) {
+                posClass = 'is-right';
+                isClickable = true;
+                ariaLabel = `Next testimonial: ${testimonial.school}`;
+              } else if (currDiff < -1) {
+                posClass = 'is-hidden-left';
+              } else if (currDiff > 1) {
+                posClass = 'is-hidden-right';
+              }
+
+              return (
+                <div 
+                  key={testimonial.school}
+                  className={`trusted-fan-card ${posClass} ${isHiddenSwap ? 'no-transition' : ''}`}
+                  onClick={isClickable ? () => setActiveReviewIndex(index) : undefined}
+                  role={isClickable ? "button" : undefined}
+                  tabIndex={isClickable ? 0 : undefined}
+                  onKeyDown={isClickable ? (e) => { 
+                    if (e.key === 'Enter' || e.key === ' ') setActiveReviewIndex(index); 
+                  } : undefined}
+                  aria-label={ariaLabel || undefined}
+                  aria-hidden={Math.abs(currDiff) > 1 ? "true" : undefined}
+                >
+                  <div className="trusted-card-quote-mark">
+                    <svg width="34" height="26" viewBox="0 0 34 26" fill="currentColor">
+                      <path d="M14.5 0C6.5 0 0 6.5 0 14.5C0 20.85 5.15 26 11.5 26C13.2 26 14.5 24.7 14.5 23C14.5 21.3 13.2 20 11.5 20C8.45 20 6 17.55 6 14.5C6 14.2 6.05 13.9 6.1 13.6C7.5 14.5 9.2 15 11 15C16 15 20 11 20 6C20 2.7 17.3 0 14.5 0ZM28.5 0C20.5 0 14 6.5 14 14.5C14 20.85 19.15 26 25.5 26C27.2 26 28.5 24.7 28.5 23C28.5 21.3 27.2 20 25.5 20C22.45 20 20 17.55 20 14.5C20 14.2 20.05 13.9 20.1 13.6C21.5 14.5 23.2 15 25 15C30 15 34 11 34 6C34 2.7 31.3 0 28.5 0Z" />
+                    </svg>
+                  </div>
+                  
+                  <p className="trusted-card-text">
+                    "{testimonial.text}"
+                  </p>
+
+                  <div className="trusted-card-author">
+                    <div className="trusted-author-avatar" style={{ background: testimonial.avatarBg }}>
+                      {testimonial.avatar}
+                    </div>
+                    <div className="trusted-author-info">
+                      <div className="trusted-school-name">{testimonial.school}</div>
+                      <div className="trusted-author-role">{testimonial.author}</div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Testimonials Pagination Dots */}
+          <div className="trusted-reviews-dots" aria-label="Testimonial pagination">
+            {testimonials.map((t, idx) => (
+              <button
+                key={t.school}
+                type="button"
+                className={`trusted-reviews-dot ${idx === activeReviewIndex ? 'is-active' : ''}`}
+                onClick={() => setActiveReviewIndex(idx)}
+                aria-label={`Go to testimonial ${idx + 1}: ${t.school}`}
+              />
+            ))}
           </div>
         </motion.div>
 

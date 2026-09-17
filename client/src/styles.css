@@ -3226,7 +3226,7 @@ textarea {
 .trusted-reviews-section {
   position: relative;
   background-color: #f0740f;
-  padding: 4.25rem 1.5rem 4.5rem;
+  padding: 4.25rem 1.5rem 2rem;
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
@@ -3321,29 +3321,62 @@ textarea {
   max-width: 620px;
 }
 
-/* Stepped Cards Carousel Track */
-.trusted-reviews-carousel {
+/* Top Controls (Prev/Next Arrows under Subtitle) */
+.trusted-reviews-top-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 1.6rem;
+  position: relative;
+  z-index: 10;
+}
+
+.trusted-top-nav-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trusted-top-nav-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  color: #0369a1;
+}
+
+.trusted-top-nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* 3-Card Fan Stage Layout */
+.trusted-fan-stage {
   position: relative;
   width: 100%;
-  margin-top: 0;
-}
-
-.trusted-reviews-cards-track {
+  max-width: 1100px;
+  height: 390px;
+  margin: 2.2rem auto 0;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
-  gap: 1.25rem;
-  position: relative;
-  min-height: 420px;
-  padding-bottom: 2rem;
+  user-select: none;
 }
 
-/* Stepped Review Card */
-.trusted-review-card {
-  flex: 0 0 clamp(230px, 21vw, 295px);
-  max-width: 295px;
-  border-radius: 22px;
-  padding: 2.2rem 1.65rem 1.85rem;
+/* Fan Cards */
+.trusted-fan-card {
+  position: absolute;
+  width: clamp(285px, 28vw, 360px);
+  min-height: 290px;
+  border-radius: 24px;
+  padding: 2.2rem 1.85rem 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -3352,52 +3385,124 @@ textarea {
   cursor: pointer;
   transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
-  user-select: none;
-  position: relative;
+  transform-origin: center bottom;
 }
 
-/* 1. Center Active Card */
-.trusted-review-card.is-center {
+/* 1. Center Active Card (Upright, Solid White, Elevated) */
+.trusted-fan-card.is-center {
   background: #ffffff;
   color: #1f2937;
-  transform: translateY(-50px) scale(1.05);
-  box-shadow: 0 28px 60px -10px rgba(0, 0, 0, 0.28), 0 12px 26px rgba(0, 0, 0, 0.12);
+  transform: translateX(0) translateY(0) rotate(0deg);
+  box-shadow: 0 24px 50px -6px rgba(0, 0, 0, 0.22), 0 10px 20px rgba(0, 0, 0, 0.08);
   z-index: 5;
-  opacity: 1;
+  cursor: default;
 }
 
-/* 2. Immediate Neighbors (Left 1 & Right 1) */
-.trusted-review-card.is-prev-1,
-.trusted-review-card.is-next-1 {
-  background: #fad4b5;
+.trusted-fan-card.is-center .trusted-card-text {
   color: #374151;
-  transform: translateY(18px) scale(0.96);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1);
-  z-index: 3;
-  opacity: 0.96;
 }
 
-.trusted-review-card.is-prev-1:hover,
-.trusted-review-card.is-next-1:hover {
-  transform: translateY(6px) scale(0.98);
-  opacity: 1;
-}
-
-/* 3. Outer Cards (Left 2 & Right 2) */
-.trusted-review-card.is-prev-2,
-.trusted-review-card.is-next-2 {
+/* 2. Left Tilted Card (Peach, Tilted -11deg) */
+.trusted-fan-card.is-left {
   background: #fad4b5;
-  color: #4b5563;
-  transform: translateY(70px) scale(0.88);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  color: #7c2d12;
+  transform: translateX(-56%) translateY(28px) rotate(-11deg) scale(0.95);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
   z-index: 2;
-  opacity: 0.82;
+  opacity: 0.98;
 }
 
-.trusted-review-card.is-prev-2:hover,
-.trusted-review-card.is-next-2:hover {
-  transform: translateY(58px) scale(0.91);
-  opacity: 0.95;
+.trusted-fan-card.is-left .trusted-card-text {
+  color: #9a3412;
+}
+
+.trusted-fan-card.is-left:hover {
+  transform: translateX(-56%) translateY(18px) rotate(-8deg) scale(0.97);
+}
+
+/* 3. Right Tilted Card (Peach, Tilted +11deg) */
+.trusted-fan-card.is-right {
+  background: #fad4b5;
+  color: #7c2d12;
+  transform: translateX(56%) translateY(28px) rotate(11deg) scale(0.95);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  z-index: 2;
+  opacity: 0.98;
+}
+
+.trusted-fan-card.is-right .trusted-card-text {
+  color: #9a3412;
+}
+
+.trusted-fan-card.is-right:hover {
+  transform: translateX(56%) translateY(18px) rotate(8deg) scale(0.97);
+}
+
+/* 4. Hidden Left Card (Tilted further left, scaled down, faded) */
+.trusted-fan-card.is-hidden-left {
+  background: #fad4b5;
+  color: #7c2d12;
+  transform: translateX(-120%) translateY(45px) rotate(-18deg) scale(0.85);
+  box-shadow: none;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trusted-fan-card.is-hidden-left .trusted-card-text {
+  color: #9a3412;
+}
+
+/* 5. Hidden Right Card (Tilted further right, scaled down, faded) */
+.trusted-fan-card.is-hidden-right {
+  background: #fad4b5;
+  color: #7c2d12;
+  transform: translateX(120%) translateY(45px) rotate(18deg) scale(0.85);
+  box-shadow: none;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.trusted-fan-card.is-hidden-right .trusted-card-text {
+  color: #9a3412;
+}
+
+/* Instant reposition when swapping hidden sides offscreen */
+.trusted-fan-card.no-transition {
+  transition: none !important;
+}
+
+/* Testimonials Dots Pagination */
+.trusted-reviews-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 7;
+}
+
+.trusted-reviews-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.trusted-reviews-dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.trusted-reviews-dot.is-active {
+  width: 28px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
 /* Card Content Elements */
@@ -3419,7 +3524,6 @@ textarea {
   font-size: clamp(0.92rem, 1.05vw, 1.02rem);
   font-style: italic;
   line-height: 1.55;
-  color: #374151;
   margin: 0 0 1.75rem;
   font-weight: 500;
   display: -webkit-box;
@@ -3483,67 +3587,240 @@ textarea {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 140px;
-  background: linear-gradient(to bottom, rgba(240, 116, 15, 0) 0%, rgba(240, 116, 15, 0.65) 55%, #f0740f 100%);
+  height: 85px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.35) 45%, rgba(255, 255, 255, 0.82) 75%, #ffffff 100%);
   pointer-events: none;
   z-index: 6;
 }
 
-/* Controls (Prev/Next Arrows & Dots) */
-.trusted-reviews-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  margin-top: 2rem;
-  position: relative;
-  z-index: 8;
+/* =======================================================
+   Responsive Breakpoints for Testimonials / Trusted Reviews
+   ======================================================= */
+
+/* 1. Tablets / Small Laptops (max-width: 900px) */
+@media (max-width: 900px) {
+  .trusted-reviews-section {
+    padding: 3.75rem 1.25rem 2.5rem;
+  }
+
+  .trusted-reviews-title {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+  }
+
+  .trusted-reviews-pushpin {
+    width: 68px;
+    top: -36px;
+    right: -70px;
+  }
+
+  .trusted-fan-stage {
+    height: 370px;
+    margin-top: 1.75rem;
+  }
+
+  .trusted-fan-card {
+    width: clamp(270px, 34vw, 340px);
+    min-height: 275px;
+    padding: 1.85rem 1.5rem 1.6rem;
+  }
+
+  .trusted-fan-card.is-left {
+    transform: translateX(-48%) translateY(24px) rotate(-8deg) scale(0.93);
+  }
+
+  .trusted-fan-card.is-right {
+    transform: translateX(48%) translateY(24px) rotate(8deg) scale(0.93);
+  }
+
+  .trusted-fan-card.is-hidden-left {
+    transform: translateX(-105%) translateY(38px) rotate(-14deg) scale(0.8);
+    opacity: 0;
+  }
+
+  .trusted-fan-card.is-hidden-right {
+    transform: translateX(105%) translateY(38px) rotate(14deg) scale(0.8);
+    opacity: 0;
+  }
 }
 
-.trusted-nav-arrow {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
+/* 2. Mobile Screens & Phablets (max-width: 640px) */
+@media (max-width: 640px) {
+  .trusted-reviews-section {
+    padding: 3rem 0.85rem 3.5rem;
+  }
+
+  .trusted-reviews-kicker {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+
+  .trusted-reviews-pushpin {
+    width: 44px;
+    height: 44px;
+    top: -22px;
+    right: -38px;
+    opacity: 0.9;
+  }
+
+  .trusted-reviews-title {
+    font-size: 1.95rem;
+    line-height: 1.18;
+    margin-bottom: 0.6rem;
+  }
+
+  .trusted-reviews-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    padding: 0 0.5rem;
+    max-width: 440px;
+  }
+
+  .trusted-reviews-top-controls {
+    margin-top: 1.15rem;
+    gap: 12px;
+  }
+
+  .trusted-top-nav-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .trusted-top-nav-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .trusted-fan-stage {
+    height: 330px;
+    margin-top: 1.25rem;
+  }
+
+  .trusted-fan-card {
+    width: min(315px, 86vw);
+    min-height: 255px;
+    padding: 1.5rem 1.25rem 1.35rem;
+    border-radius: 20px;
+  }
+
+  /* Center Active Card: Hero focus */
+  .trusted-fan-card.is-center {
+    transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+    box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Layered Card Deck Peek - Tucked cleanly behind without viewport overflow */
+  .trusted-fan-card.is-left {
+    transform: translateX(-24px) translateY(12px) rotate(-4.5deg) scale(0.94);
+    opacity: 0.85;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .trusted-fan-card.is-right {
+    transform: translateX(24px) translateY(12px) rotate(4.5deg) scale(0.94);
+    opacity: 0.85;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Hide inner text on side cards in stacked view to eliminate clipped/chopped words */
+  .trusted-fan-card.is-left .trusted-card-text,
+  .trusted-fan-card.is-right .trusted-card-text,
+  .trusted-fan-card.is-left .trusted-card-author,
+  .trusted-fan-card.is-right .trusted-card-author {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .trusted-fan-card.is-center .trusted-card-text,
+  .trusted-fan-card.is-center .trusted-card-author {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.35s ease;
+  }
+
+  .trusted-fan-card.is-hidden-left {
+    transform: translateX(-80px) translateY(24px) rotate(-8deg) scale(0.85);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .trusted-fan-card.is-hidden-right {
+    transform: translateX(80px) translateY(24px) rotate(8deg) scale(0.85);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .trusted-card-quote-mark {
+    margin-bottom: 0.75rem;
+    height: 26px;
+  }
+
+  .trusted-card-quote-mark svg {
+    width: 28px;
+    height: 22px;
+  }
+
+  .trusted-card-text {
+    font-size: 0.9rem;
+    line-height: 1.48;
+    margin-bottom: 1.15rem;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+
+  .trusted-author-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .trusted-school-name {
+    font-size: 0.88rem;
+  }
+
+  .trusted-author-role {
+    font-size: 0.76rem;
+  }
+
+  .trusted-reviews-dots {
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    z-index: 10;
+  }
+
+  .trusted-reviews-bottom-fade {
+    height: 45px;
+    opacity: 0.6;
+  }
 }
 
-.trusted-nav-arrow:hover {
-  background: rgba(255, 255, 255, 0.95);
-  color: #f0740f;
-  transform: scale(1.08);
-}
+/* 3. Small Screen Phones (max-width: 380px) */
+@media (max-width: 380px) {
+  .trusted-reviews-title {
+    font-size: 1.75rem;
+  }
 
-.trusted-reviews-dots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+  .trusted-fan-card {
+    width: min(295px, 90vw);
+    min-height: 245px;
+    padding: 1.35rem 1.1rem 1.2rem;
+  }
 
-.trusted-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.45);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.25s ease;
-}
+  .trusted-card-text {
+    font-size: 0.85rem;
+    line-height: 1.42;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
 
-.trusted-dot.active {
-  width: 28px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  .trusted-fan-card.is-left {
+    transform: translateX(-18px) translateY(10px) rotate(-3.5deg) scale(0.94);
+  }
+
+  .trusted-fan-card.is-right {
+    transform: translateX(18px) translateY(10px) rotate(3.5deg) scale(0.94);
+  }
 }
 
 /* Backward compatibility aliases */
@@ -6063,14 +6340,6 @@ textarea {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-<<<<<<< Updated upstream
-  background: #E8E9FF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 14px 25px rgba(15, 23, 42, 0.28);
-  margin-bottom: 0.55rem;
-=======
   background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
   display: flex;
   align-items: center;
@@ -6078,7 +6347,6 @@ textarea {
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28), 0 2px 6px rgba(15, 23, 42, 0.08), inset 0 1px 1.5px rgba(255, 255, 255, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.2);
   margin-bottom: 0.65rem;
->>>>>>> Stashed changes
   flex-shrink: 0;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
@@ -6093,13 +6361,8 @@ textarea {
 }
 
 .lp-mission-icon-circle:hover {
-<<<<<<< Updated upstream
-  transform: translateY(-2px);
-  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.34);
-=======
   transform: translateY(-3px) scale(1.04);
   box-shadow: 0 12px 26px rgba(37, 99, 235, 0.38), 0 4px 10px rgba(15, 23, 42, 0.1), inset 0 1px 1.5px rgba(255, 255, 255, 0.5);
->>>>>>> Stashed changes
 }
 
 .lp-mission-card-label {

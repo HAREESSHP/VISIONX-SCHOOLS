@@ -1,15 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-/**
- * Footer3DCanvas - Option 4: Neural Synapse Network
- * 
- * Generates an organic 3D neural constellation with:
- * - Glowing synaptic junction nodes drifting dynamically
- * - Laser-thin synaptic axon filaments linking neighboring nodes
- * - Interactive magnetic attraction towards cursor
- * - Subtle energetic neural signal pulses
- */
 export default function Footer3DCanvas() {
   const mountRef = useRef(null);
 
