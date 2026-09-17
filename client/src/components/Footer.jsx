@@ -59,8 +59,8 @@ export default function Footer({ onContactClick, onNavigate }) {
               onClick={handleContact}
               className="figma-footer-contact-btn"
               whileHover={{
-                scale: 1.05,
-                boxShadow: '0 8px 25px rgba(155, 182, 255, 0.4)',
+                scale: 1.04,
+                boxShadow: '0 6px 20px rgba(36, 84, 164, 0.4)',
               }}
               whileTap={{ scale: 0.96 }}
             >

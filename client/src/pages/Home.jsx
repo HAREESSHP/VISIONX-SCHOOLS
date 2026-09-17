@@ -9,6 +9,7 @@ import {
   MessageSquare, 
   CheckCircle2, 
   ArrowRight, 
+  ArrowLeft,
   ShieldCheck, 
   Sparkles, 
   Clock, 
@@ -26,7 +27,10 @@ import {
   Layers,
   GraduationCap,
   Trophy,
-  Pin as PinIcon
+  Pin as PinIcon,
+  Brain,
+  Puzzle,
+  MicOff
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { API_URL } from '../services/api';
@@ -192,6 +196,26 @@ export default function Home() {
   const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(2);
   const [activeOfferIndex, setActiveOfferIndex] = useState(0);
+  const fanTouchStartX = useRef(0);
+
+  const handleFanTouchStart = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      fanTouchStartX.current = e.touches[0].clientX;
+    }
+  };
+
+  const handleFanTouchEnd = (e) => {
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      const diff = fanTouchStartX.current - e.changedTouches[0].clientX;
+      if (diff > 45) {
+        // Swipe Left -> Next
+        setActiveReviewIndex((prev) => (prev + 1) % testimonials.length);
+      } else if (diff < -45) {
+        // Swipe Right -> Prev
+        setActiveReviewIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+      }
+    }
+  };
 
   const offerFeatures = [
     {
@@ -261,6 +285,12 @@ export default function Home() {
       avatarBg: "#63587a"
     }
   ];
+
+  const prevReviewIndex = (activeReviewIndex - 1 + testimonials.length) % testimonials.length;
+  const nextReviewIndex = (activeReviewIndex + 1) % testimonials.length;
+  const prevTestimonial = testimonials[prevReviewIndex];
+  const currentTestimonial = testimonials[activeReviewIndex];
+  const nextTestimonial = testimonials[nextReviewIndex];
 
   // Smooth scroll and focus to the Book Demo section
   const scrollToDemo = (e) => {
@@ -690,7 +720,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="lp-mission-kicker">THE COMMUNICATION GAP</span>
             <MissionTypewriterHeading />
@@ -702,6 +732,7 @@ export default function Home() {
             <div className="lp-mission-cards">
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
+<<<<<<< Updated upstream
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     {/* Wrist Cuff */}
                     <line x1="11.5" y1="20" x2="11.5" y2="24.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
@@ -717,12 +748,16 @@ export default function Home() {
                     <line x1="25.5" y1="14" x2="22.5" y2="14" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                     <line x1="24.5" y1="19" x2="22" y2="17.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                   </svg>
+=======
+                  <Brain size={26} strokeWidth={2.2} color="#FFFFFF" />
+>>>>>>> Stashed changes
                 </div>
                 <span className="lp-mission-card-label">Knowing what to say,<br />but holding back</span>
               </div>
 
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
+<<<<<<< Updated upstream
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.5 13.2C21.5 17.6 17.8 21.2 13.5 21.2C12.4 21.2 11.3 21 10.3 20.5L6.5 21.8L7.6 18.1C6.9 16.8 6.5 15 6.5 13.2C6.5 8.8 9.8 5.2 14 5.2C18.2 5.2 21.5 8.8 21.5 13.2Z" stroke="#172BEE" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
                     <circle cx="12" cy="12" r="1.5" fill="#172BEE" />
@@ -730,12 +765,16 @@ export default function Home() {
                     <circle cx="16" cy="12" r="1.5" fill="#172BEE" />
                     <path d="M16.3 12.8C16.3 14 15.4 14.8 14.5 15" stroke="#172BEE" strokeWidth="1.2" strokeLinecap="round" />
                   </svg>
+=======
+                  <Puzzle size={26} strokeWidth={2.2} color="#FFFFFF" />
+>>>>>>> Stashed changes
                 </div>
                 <span className="lp-mission-card-label">Struggling to put<br />thoughts into words</span>
               </div>
 
               <div className="lp-mission-card">
                 <div className="lp-mission-icon-circle">
+<<<<<<< Updated upstream
                   <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     {/* Head Profile Facing Right */}
                     <path d="M10 21.5V13C10 9 12.5 6.5 16 6.5C19 6.5 20.5 8.5 20.5 10.5C20.5 11.2 20.2 11.8 21.4 13C21.8 13.4 21.8 14 21.2 14.5L19.8 15C19.4 15.2 19.3 15.6 19.5 16C19.9 16.6 19.7 17.3 19 17.6L17.2 18C16.8 18.1 16.5 18.5 16.5 19V21.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
@@ -745,8 +784,11 @@ export default function Home() {
                     <line x1="23" y1="15.5" x2="26" y2="15.5" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                     <line x1="22.5" y1="17.8" x2="25" y2="18.8" stroke="#172BEE" strokeWidth="1.6" strokeLinecap="round" />
                   </svg>
+=======
+                  <MicOff size={26} strokeWidth={2.2} color="#FFFFFF" />
+>>>>>>> Stashed changes
                 </div>
-                <span className="lp-mission-card-label">Staying quiet when its<br />time to speak</span>
+                <span className="lp-mission-card-label">Staying quiet when<br />it's time to speak</span>
               </div>
             </div>
           </motion.div>
@@ -756,7 +798,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="lp-mission-visual-frame">
               <img
@@ -1327,7 +1369,11 @@ export default function Home() {
 
           {/* Stepped 5-Card Layout */}
           <div className="trusted-reviews-carousel">
-            <div className="trusted-reviews-cards-track">
+            <div 
+              className="trusted-reviews-cards-track"
+              ref={reviewsTrackRef}
+              onScroll={handleReviewsScroll}
+            >
               {testimonials.map((item, idx) => {
                 const diff = idx - activeReviewIndex;
                 let cardClass = "trusted-review-card";
