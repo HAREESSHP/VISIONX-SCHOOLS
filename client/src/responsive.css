@@ -402,43 +402,120 @@ img, svg, video, canvas {
     -webkit-backdrop-filter: blur(20px) !important;
     border-bottom: 1.5px solid rgba(196, 163, 105, 0.35) !important;
     box-shadow: 0 4px 20px rgba(43, 39, 36, 0.08) !important;
-    padding: 0.85rem clamp(1.25rem, 2.2vw, 2.75rem) !important;
-  }
-
-  .lp-nav-left {
-    margin-left: calc(clamp(0.5rem, 1vw, 1.5rem) + 180px) !important;
-    padding-left: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-
-  .lp-nav-right {
-    margin-right: calc(clamp(0.5rem, 1vw, 1.5rem) + 180px) !important;
-  }
-
-  .lp-nav-center {
-    margin-left: clamp(1.5rem, 8vw, 9rem) !important;
-    margin-right: clamp(1.5rem, 8vw, 9rem) !important;
+    padding: 0.75rem clamp(1.25rem, 2.5vw, 2.75rem) !important;
   }
 
   .lp-navbar-inner {
-    max-width: 100% !important;
+    max-width: 1440px !important;
     width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    box-sizing: border-box !important;
+    gap: clamp(0.75rem, 1.5vw, 2rem) !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .lp-nav-left {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  .lp-logo-icon {
+    height: clamp(38px, 3.2vw, 46px) !important;
+    width: auto !important;
+    max-width: 145px !important;
+    object-fit: contain !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .lp-nav-center {
     margin: 0 !important;
     padding: 0 !important;
-    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(0.85rem, 1.4vw, 1.85rem) !important;
+    flex-shrink: 1 !important;
+    flex-wrap: nowrap !important;
   }
 
   .lp-nav-link {
     color: #2B2724 !important;
     font-weight: 700 !important;
-    font-size: 1rem !important;
+    font-size: clamp(0.84rem, 0.92vw, 0.98rem) !important;
     text-transform: capitalize !important;
     letter-spacing: 0.01em !important;
+    white-space: nowrap !important;
+    padding: 0.25rem 0.1rem !important;
+    transition: color 0.2s ease !important;
   }
 
   .lp-nav-link:hover {
     color: #B5602E !important;
+  }
+
+  .lp-nav-right {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .lp-desktop-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: clamp(0.5rem, 0.75vw, 0.85rem) !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .lp-desktop-actions .lp-btn-sm {
+    padding: clamp(0.46rem, 0.65vw, 0.62rem) clamp(0.8rem, 1.1vw, 1.35rem) !important;
+    font-size: clamp(0.78rem, 0.85vw, 0.88rem) !important;
+    white-space: nowrap !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Specific polish for 1024px screens (Tablets landscape & small laptops 992px - 1180px) */
+  @media screen and (min-width: 992px) and (max-width: 1180px) {
+    .lp-navbar {
+      padding: 0.65rem 1.25rem !important;
+    }
+
+    .lp-navbar-inner {
+      max-width: 100% !important;
+      gap: 0.75rem !important;
+    }
+
+    .lp-logo-icon {
+      height: 38px !important;
+      max-width: 125px !important;
+    }
+
+    .lp-nav-center {
+      gap: 0.85rem !important;
+    }
+
+    .lp-nav-link {
+      font-size: 0.83rem !important;
+      font-weight: 650 !important;
+    }
+
+    .lp-desktop-actions {
+      gap: 0.45rem !important;
+    }
+
+    .lp-desktop-actions .lp-btn-sm {
+      padding: 0.44rem 0.82rem !important;
+      font-size: 0.78rem !important;
+    }
   }
 
   /* 1. Hero Section: 100% Full Width 2-Column Split */
