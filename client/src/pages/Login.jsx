@@ -2,13 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { Eye, EyeOff, GraduationCap, Users, User, Lock, ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
-import TiltCard from '../components/TiltCard';
+import { 
+  Eye, 
+  EyeOff, 
+  GraduationCap, 
+  User, 
+  Lock, 
+  Sparkles, 
+  Mic, 
+  Flame, 
+  Volume2, 
+  ArrowRight,
+  School,
+  CheckCircle2
+} from 'lucide-react';
+import InteractiveTeddy from '../components/InteractiveTeddy';
 
 export default function Login() {
   const { login, user } = useAuth();
   const navigate = useNavigate();
   
+  const [role, setRole] = useState('STUDENT'); // 'STUDENT' or 'TEACHER'
   const [formData, setFormData] = useState({
     loginId: '',
     password: ''
@@ -16,6 +30,8 @@ export default function Login() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [isLoginIdFocused, setIsLoginIdFocused] = useState(false);
 
   // If already logged in, redirect
   useEffect(() => {
@@ -55,101 +71,143 @@ export default function Login() {
         navigate('/class/class-1');
       }
     } catch (err) {
-      setError(err.message || 'Login failed. Please verify your credentials.');
+      setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }
   };
 
+  const isTyping = formData.loginId.length > 0 || formData.password.length > 0;
+
   return (
     <div className="login-portal-wrapper">
       <div className="login-portal-container">
         
-        {/* Left Presentation Side with 3D Visual & Feature Cards */}
+        {/* Section 1 (Left Half): Gamified Speaking Lab & Interactive Teddy */}
         <motion.div 
           className="login-presentation-side"
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
+          {/* Logo Header */}
           <Link to="/" className="presentation-brand-header">
-            <img src="/secound logo.png" alt="VisionX Logo" className="presentation-brand-logo" />
+            <img src="/secound%20logo.png" alt="VisionX Logo" className="presentation-brand-logo" />
           </Link>
 
-          <h1 className="presentation-headline">
-            Where English<br />Learning Comes to<br />
-            <span className="highlight-caramel">Life.</span>
-          </h1>
-
-          <p className="presentation-subtext">
-            Experience our joyful, structured spoken English curriculum crafted for young learners, educators, and schools.
-          </p>
-
-          <div className="presentation-visual-row">
-            {/* Floating Glassmorphic Feature Cards */}
-            <div className="presentation-feature-list">
-              <motion.div 
-                className="presentation-feature-item"
-                whileHover={{ x: 6, scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="feature-icon-clay purple-clay">
-                  <MessageCircle size={22} className="clay-svg-icon" />
-                </div>
-                <div className="feature-item-text">
-                  <strong>Spoken Fluency First</strong>
-                  <p>Guided pronunciation and real-time interactive practice.</p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                className="presentation-feature-item"
-                whileHover={{ x: 6, scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="feature-icon-clay gold-clay">
-                  <Sparkles size={22} className="clay-svg-icon" />
-                </div>
-                <div className="feature-item-text">
-                  <strong>Gamified Milestones</strong>
-                  <p>Track streaks, collect XP rewards, and master skills step-by-step.</p>
-                </div>
-              </motion.div>
+          <div className="presentation-matter-wrap">
+            {/* Live Lab Indicator Badge */}
+            <div className="lab-indicator-badge">
+              <span className="status-pulse-dot"></span>
+              <Mic size={15} />
+              <span>VisionX Speaking Lab • Grade 1 to 10</span>
             </div>
 
-            {/* 3D Character Illustration Backdrop */}
-            <div className="login-character-showcase">
-              <div className="character-arch-glow"></div>
-              <img 
-                src="/login-character.jpg" 
-                alt="3D Boy Reading English" 
-                className="login-character-img" 
-              />
+            <h1 className="presentation-headline">
+              Speak Loud. Speak Proud.<br />
+              <span className="text-orange-glow">Every Single Day.</span>
+            </h1>
+
+            <p className="presentation-subtext">
+              Enter your classroom portal to record speech exercises, practice native accent phonics, and earn daily fluency badges with instant AI feedback.
+            </p>
+
+            {/* Interactive Live Voice Soundwave Frequency Monitor */}
+            <div className={`speech-frequency-widget ${isTyping ? 'active' : ''}`}>
+              <div className="frequency-info">
+                <div className="frequency-title">
+                  <Volume2 size={16} className="freq-icon" />
+                  <span>Speech Frequency Monitor</span>
+                </div>
+                <p className="frequency-desc">
+                  {isTyping ? 'Active Student Input Detected • Ready to Speak!' : 'Voice diagnostic engine initialized'}
+                </p>
+              </div>
+
+              {/* Animated Equalizer Soundwave Bars */}
+              <div className={`soundwave-bars ${isTyping ? 'active' : ''}`}>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+                <span className="soundwave-bar"></span>
+              </div>
             </div>
+          </div>
+
+          {/* Interactive Teddy Companion Stage with Gamified Badges */}
+          <div className="login-teddy-stage-container">
+            {/* Floating Daily Streak Chip */}
+            <motion.div 
+              className="teddy-streak-tag"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Flame size={18} className="streak-fire-icon" />
+              <span className="streak-text-bold">5-Day Streak!</span>
+              <span className="streak-xp-chip">+120 XP</span>
+            </motion.div>
+
+            {/* Interactive Cursor-Tracking Teddy */}
+            <InteractiveTeddy
+              isPasswordFocused={isPasswordFocused}
+              isLoginIdFocused={isLoginIdFocused}
+              showPassword={showPassword}
+              isSubmitting={loading}
+            />
           </div>
         </motion.div>
 
-        {/* Right Form Card Side with 3D Claymorphism Tablet */}
+        {/* Section 2 (Right Half): Sleek Student/Teacher Login Card */}
         <motion.div 
           className="login-card-side"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="auth-tablet-card">
             <div className="auth-card-inner">
+              
+              {/* Role Switcher Tabs (Student vs Teacher) */}
+              <div className="auth-role-tabs">
+                <button
+                  type="button"
+                  className={`auth-role-tab ${role === 'STUDENT' ? 'active' : ''}`}
+                  onClick={() => setRole('STUDENT')}
+                >
+                  <GraduationCap size={17} />
+                  <span>Student Portal</span>
+                </button>
+                <button
+                  type="button"
+                  className={`auth-role-tab ${role === 'TEACHER' ? 'active' : ''}`}
+                  onClick={() => setRole('TEACHER')}
+                >
+                  <School size={17} />
+                  <span>Teacher Portal</span>
+                </button>
+              </div>
+
               <div className="auth-card-header">
                 <h2 className="auth-card-title">
-                  Learning Portal
+                  {role === 'STUDENT' ? 'Welcome Back, Explorer! 🚀' : 'Educator Dashboard 📚'}
                 </h2>
                 <p className="auth-card-subtitle">
-                  Enter your credentials to enter your learning journey.
+                  {role === 'STUDENT' 
+                    ? 'Enter your school student credentials to access today’s lessons.' 
+                    : 'Sign in with your faculty ID to monitor classroom speech progress.'}
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="auth-form">
                 <div className="form-group">
-                  <label htmlFor="loginId">User Identifier / Login ID</label>
+                  <label htmlFor="loginId">
+                    {role === 'STUDENT' ? 'Student ID / Learner Identifier' : 'Teacher ID / Faculty Username'}
+                  </label>
                   <div className="input-icon-wrapper">
                     <User size={18} className="input-lead-icon" />
                     <input
@@ -158,7 +216,9 @@ export default function Login() {
                       name="loginId"
                       value={formData.loginId}
                       onChange={handleChange}
-                      placeholder="Enter ID given by VISIONX"
+                      onFocus={() => setIsLoginIdFocused(true)}
+                      onBlur={() => setIsLoginIdFocused(false)}
+                      placeholder={role === 'STUDENT' ? 'e.g. STU-CLASS-04' : 'e.g. TEACHER-ENG-12'}
                       autoComplete="username"
                       required
                     />
@@ -175,13 +235,16 @@ export default function Login() {
                       name="password"
                       value={formData.password}
                       onChange={handleChange}
-                      placeholder="Enter your password"
+                      onFocus={() => setIsPasswordFocused(true)}
+                      onBlur={() => setIsPasswordFocused(false)}
+                      placeholder="Enter your confidential password"
                       autoComplete="current-password"
                       required
                     />
                     <button 
                       type="button" 
                       className="input-eye-btn" 
+                      onMouseDown={(e) => e.preventDefault()}
                       onClick={() => setShowPassword(!showPassword)}
                       aria-label={showPassword ? "Hide password" : "Show password"}
                     >
@@ -205,12 +268,22 @@ export default function Login() {
                   className="auth-submit-btn-pro"
                   disabled={loading}
                 >
-                  {loading ? 'Authenticating...' : 'Sign In Now →'}
+                  {loading ? (
+                    'Connecting to Lab...'
+                  ) : (
+                    <>
+                      <span>{role === 'STUDENT' ? 'Enter Speaking Lab' : 'Access Teacher Portal'}</span>
+                      <ArrowRight size={18} />
+                    </>
+                  )}
                 </button>
               </form>
 
               <div className="auth-card-footer">
-                <Link to="/" className="auth-back-link">← Return to Homepage</Link>
+                <p className="auth-help-note">
+                  Need help finding your credentials? Ask your school English coordinator.
+                </p>
+                <Link to="/" className="auth-back-link">← Return to VisionX Homepage</Link>
               </div>
             </div>
           </div>
