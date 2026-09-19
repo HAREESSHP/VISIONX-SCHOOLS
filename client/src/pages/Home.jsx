@@ -842,9 +842,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="lp-offer-mission-text">
-              We started VisionX with a single mission: to turn classroom English learning into an active,
-              <br className="lp-offer-line-break" />enjoyable spoken experience. Our platform blends guided AI speech training with structured
-              <br className="lp-offer-line-break" />lesson delivery that supports educators.
+              We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators.
             </p>
 
             <div className="lp-offer-action-wrap">
@@ -971,13 +969,11 @@ export default function Home() {
               title: "Listen & Understand",
               desc: "Students develop the ability to listen carefully, recognize sounds and understand spoken English in different situations.",
               icon: (
-                <svg width="68" height="68" viewBox="0 0 62 68" fill="none" aria-hidden="true">
-                  <path
-                    d="M 41,17 L 37,17 L 34,18 L 31,20 L 28,25 L 27,28 L 27,31 L 29,36 L 34,41 L 36,41 L 37,39 L 36,37 L 32,34 L 31,32 L 31,27 L 32,25 L 35,22 L 37,21 L 42,21 L 44,22 L 46,24 L 46,25 L 50,26 L 50,23 L 46,19 Z M 37,9 L 33,10 L 29,12 L 25,15 L 22,19 L 20,24 L 20,35 L 22,40 L 25,43 L 29,51 L 30,56 L 31,58 L 34,61 L 39,63 L 41,63 L 42,62 L 45,62 L 50,57 L 51,55 L 51,48 L 48,48 L 48,53 L 47,55 L 44,58 L 42,59 L 38,59 L 36,58 L 34,56 L 33,54 L 32,49 L 28,41 L 24,36 L 23,32 L 23,26 L 24,23 L 26,20 L 31,15 L 36,13 L 43,13 L 46,14 L 49,16 L 52,19 L 54,23 L 56,24 L 57,20 L 56,18 L 50,12 L 42,9 Z M 22,9 L 16,14 L 13,21 L 12,25 L 12,34 L 14,38 L 16,38 L 15,31 L 15,28 L 16,27 L 16,23 L 18,18 L 23,12 Z M 17,4 L 15,4 L 10,9 L 6,17 L 4,26 L 4,33 L 5,38 L 6,40 L 9,39 L 8,23 L 10,17 L 12,13 L 17,7 Z"
-                    fill="#9daef8"
-                    fillRule="evenodd"
-                  />
-                </svg>
+                <img 
+                  src="/Listen.png" 
+                  alt="Listen & Understand" 
+                  className="hiw-step-icon-img"
+                />
               )
             },
             {
@@ -985,12 +981,11 @@ export default function Home() {
               title: "Respond Naturally",
               desc: "Students practise responding to questions, prompts and conversations, helping them become more comfortable using English spontaneously.",
               icon: (
-                <svg width="68" height="68" viewBox="0 0 68 68" fill="none" aria-hidden="true">
-                  <path
-                    d="M 53,48 L 55,51 L 55,52 L 58,52 L 56,48 Z M 57,43 L 57,45 L 61,46 L 64,45 L 61,43 Z M 56,40 L 59,39 L 60,35 L 56,38 Z M 22,5 L 18,6 L 14,8 L 7,15 L 5,20 L 5,30 L 7,35 L 9,37 L 11,42 L 11,51 L 9,55 L 10,58 L 11,58 L 13,60 L 20,63 L 30,64 L 35,63 L 37,55 L 42,56 L 48,54 L 49,44 L 46,43 L 47,40 L 51,39 L 52,34 L 53,34 L 54,33 L 55,30 L 54,28 L 51,27 L 49,25 L 48,23 L 48,18 L 47,15 L 45,11 L 42,8 L 35,5 Z M 23,7 L 34,7 L 39,9 L 44,14 L 45,17 L 45,21 L 47,26 L 51,29 L 52,31 L 50,33 L 49,33 L 47,38 L 43,38 L 41,39 L 41,42 L 44,45 L 45,45 L 47,47 L 47,51 L 45,53 L 34,53 L 29,51 L 25,48 L 25,51 L 28,53 L 33,55 L 32,61 L 22,61 L 13,57 L 12,54 L 13,53 L 14,49 L 14,44 L 12,37 L 9,33 L 7,27 L 7,22 L 8,19 L 11,14 L 14,11 L 17,9 Z"
-                    fill="#9daef8"
-                    fillRule="evenodd"
-                  />
+                <svg width="86" height="86" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                  <circle cx="32" cy="27" r="11" stroke="#9daef8" strokeWidth="5" />
+                  <path d="M15 61c0-10 8-17.5 17-17.5s17 7.5 17 17.5" stroke="#9daef8" strokeWidth="5" strokeLinecap="round" />
+                  <path d="M52 22c3.5 4 3.5 9.5 0 13.5" stroke="#9daef8" strokeWidth="5" strokeLinecap="round" />
+                  <path d="M60 15c7 7.5 7 20 0 27.5" stroke="#9daef8" strokeWidth="5" strokeLinecap="round" />
                 </svg>
               )
             },
@@ -999,12 +994,13 @@ export default function Home() {
               title: "Build Vocabulary",
               desc: "Students learn useful words and phrases in meaningful contexts so they can understand and use them naturally.",
               icon: (
-                <svg width="68" height="68" viewBox="0 0 68 68" fill="none" aria-hidden="true">
-                  <path
-                    d="M 47,31 L 46,36 L 35,64 L 39,64 L 42,56 L 56,55 L 58,57 L 60,63 L 64,64 L 59,49 L 55,41 L 54,36 L 52,33 L 51,30 Z M 51,39 L 53,43 L 55,49 L 54,52 L 45,49 L 46,44 L 48,41 Z M 43,9 L 26,8 L 26,5 L 22,5 L 21,9 L 5,9 L 5,12 L 29,12 L 31,14 L 31,16 L 29,22 L 26,27 L 20,30 L 17,26 L 13,17 L 11,20 L 11,22 L 14,28 L 17,31 L 19,35 L 15,39 L 9,43 L 7,45 L 9,48 L 16,43 L 21,38 L 23,38 L 28,43 L 30,43 L 31,41 L 25,34 L 31,26 L 33,22 L 34,18 L 34,14 L 36,12 L 43,12 Z"
-                    fill="#9daef8"
-                    fillRule="evenodd"
-                  />
+                <svg width="86" height="86" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                  <path d="M30 15v5" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" />
+                  <path d="M17 24h26" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" />
+                  <path d="M34 26c-4 10.5-11 20-18 26" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" />
+                  <path d="M23 31c5 6.5 12 14.5 21 21" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" />
+                  <path d="M47 58l11-31 11 31" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M51 47.5h14" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" />
                 </svg>
               )
             },
@@ -1013,12 +1009,15 @@ export default function Home() {
               title: "Form Clear Sentences",
               desc: "Students develop stronger sentence-building skills and learn to communicate ideas clearly without relying on memorized grammar rules.",
               icon: (
-                <svg width="86" height="68" viewBox="0 0 87 68" fill="none" aria-hidden="true">
-                  <path
-                    d="M 83,49 L 72,49 L 73,53 L 78,54 L 78,56 L 73,61 L 73,63 L 75,64 L 77,63 L 80,60 L 82,57 L 83,54 Z M 67,49 L 56,49 L 57,53 L 62,54 L 62,56 L 57,62 L 59,64 L 61,63 L 65,59 L 67,55 Z M 5,49 L 5,52 L 7,53 L 48,52 L 48,49 Z M 5,38 L 5,41 L 7,42 L 81,42 L 83,41 L 83,38 Z M 5,27 L 5,30 L 7,31 L 81,31 L 83,30 L 83,27 Z M 40,16 L 41,20 L 81,20 L 83,19 L 83,16 Z M 30,5 L 28,5 L 26,6 L 24,8 L 21,14 L 22,20 L 31,20 L 32,16 L 26,15 L 26,13 L 27,11 L 31,8 Z M 15,5 L 12,5 L 9,7 L 9,8 L 7,10 L 5,14 L 5,19 L 7,20 L 15,20 L 16,16 L 10,15 L 10,13 L 12,11 L 12,10 L 13,9 L 14,9 Z"
-                    fill="#9daef8"
-                    fillRule="evenodd"
-                  />
+                <svg width="86" height="86" viewBox="0 0 80 80" fill="#9daef8" aria-hidden="true">
+                  <path d="M15 14h6.5v7.5h-3.8l-2.7 4.8h-3l3-5.3H15V14z" />
+                  <path d="M25 14h6.5v7.5h-3.8l-2.7 4.8h-3l3-5.3H25V14z" />
+                  <rect x="35" y="16.5" width="31" height="5" rx="2.5" />
+                  <rect x="15" y="28" width="51" height="5" rx="2.5" />
+                  <rect x="15" y="39.5" width="51" height="5" rx="2.5" />
+                  <rect x="15" y="51" width="31" height="5" rx="2.5" />
+                  <path d="M52 50.5h6.5v7.5h-2.7l2.7 5h-3l-2.7-4.5H52v-8z" />
+                  <path d="M61 50.5h6.5v7.5h-2.7l2.7 5h-3l-2.7-4.5H61v-8z" />
                 </svg>
               )
             },
@@ -1027,15 +1026,14 @@ export default function Home() {
               title: "Speak Clearly",
               desc: "Students work on pronunciation, sounds and clarity so their spoken English becomes easier to understand.",
               icon: (
-                <svg width="86" height="64" viewBox="0 0 96 64" fill="#9daef8" aria-hidden="true">
-                  <rect x="5" y="22" width="4.5" height="20" rx="2.25" />
-                  <rect x="17" y="14.5" width="4.5" height="35" rx="2.25" />
-                  <rect x="29" y="3" width="4.5" height="58" rx="2.25" />
-                  <rect x="41" y="14.5" width="4.5" height="35" rx="2.25" />
-                  <rect x="53" y="21.5" width="4.5" height="21" rx="2.25" />
-                  <rect x="65" y="14.5" width="4.5" height="35" rx="2.25" />
-                  <rect x="77" y="3" width="4.5" height="58" rx="2.25" />
-                  <rect x="89" y="22" width="4.5" height="20" rx="2.25" />
+                <svg width="86" height="86" viewBox="0 0 80 80" fill="#9daef8" aria-hidden="true">
+                  <rect x="10" y="30" width="5.5" height="20" rx="2.75" />
+                  <rect x="19.5" y="21" width="5.5" height="38" rx="2.75" />
+                  <rect x="29" y="12" width="5.5" height="56" rx="2.75" />
+                  <rect x="38.5" y="7" width="5.5" height="66" rx="2.75" />
+                  <rect x="48" y="12" width="5.5" height="56" rx="2.75" />
+                  <rect x="57.5" y="21" width="5.5" height="38" rx="2.75" />
+                  <rect x="67" y="30" width="5.5" height="20" rx="2.75" />
                 </svg>
               )
             },
@@ -1044,12 +1042,11 @@ export default function Home() {
               title: "Real-world Scenarios",
               desc: "Through conversations, roleplays, discussions and classroom activities, students practise applying what they have learned.",
               icon: (
-                <svg width="68" height="68" viewBox="0 0 60 59" fill="none" aria-hidden="true">
-                  <path
-                    d="M 12,23 L 26,23 L 26,21 Z M 12,15 L 33,13 L 12,13 Z M 4,1 L 1,4 L 1,40 L 3,42 L 8,42 L 11,40 L 18,37 L 18,48 L 20,50 L 44,50 L 52,57 L 56,57 L 58,55 L 58,22 L 57,20 L 54,18 L 47,17 L 47,4 L 46,2 L 44,1 Z M 56,23 L 55,55 L 53,55 L 49,51 L 46,49 L 23,49 L 21,48 L 21,36 L 42,36 L 46,34 L 47,32 L 48,20 L 53,20 Z M 3,5 L 5,3 L 43,3 L 45,5 L 45,31 L 43,33 L 19,33 L 15,34 L 7,40 L 3,39 Z"
-                    fill="#9daef8"
-                    fillRule="evenodd"
-                  />
+                <svg width="86" height="86" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                  <path d="M47 22c9.5 0 17 6.5 17 14.5 0 3.8-1.7 7.4-4.5 10l1.2 6.8-7.2-3.1c-2.1.7-4.4 1-6.5 1-1.5 0-3-.1-4.5-.4" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M18 37c0-9 8-16 18-16s18 7 18 16-8 16-18 16c-2.6 0-5-.5-7.2-1.3L20 54.5l1.6-6.9C19.4 45.2 18 41.3 18 37z" stroke="#9daef8" strokeWidth="4.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <line x1="26" y1="33.5" x2="44" y2="33.5" stroke="#9daef8" strokeWidth="4" strokeLinecap="round" />
+                  <line x1="26" y1="41" x2="38" y2="41" stroke="#9daef8" strokeWidth="4" strokeLinecap="round" />
                 </svg>
               )
             },
@@ -1059,13 +1056,11 @@ export default function Home() {
               desc: "Students bring their skills together through presentations, conversations and other speaking activities, building confidence in expressing their ideas.",
               isCapstone: true,
               icon: (
-                <svg width="100%" height="110" viewBox="0 0 330 130" fill="none" aria-hidden="true" style={{ maxWidth: '330px', margin: '0 auto' }}>
-                  <path
-                    d="M 272,96 L 268,98 L 262,93 L 260,102 L 257,101 L 259,104 L 259,105 L 262,107 L 265,105 L 267,105 L 271,103 Z M 272,100 L 271,103 L 269,103 L 264,106 L 261,106 L 260,102 L 263,102 L 263,100 L 262,99 L 264,95 L 268,99 Z M 85,96 L 86,103 L 96,107 L 98,105 L 100,101 L 95,101 L 95,93 L 89,98 L 87,98 Z M 98,104 L 96,106 L 93,106 L 86,103 L 86,99 L 95,96 L 95,99 L 94,100 L 94,102 Z M 312,92 L 308,92 L 306,87 L 302,92 L 299,90 L 299,94 L 300,96 L 303,96 L 304,97 L 310,97 Z M 304,90 L 306,89 L 308,91 L 309,97 L 305,97 L 301,96 L 303,93 Z M 45,92 L 47,97 L 53,97 L 54,96 L 57,96 L 58,94 L 58,90 L 53,91 L 51,87 L 49,92 Z M 56,96 L 52,97 L 47,95 L 49,93 L 49,91 L 53,90 L 54,93 Z M 202,89 L 209,95 L 209,100 L 208,101 L 208,106 L 211,106 L 217,102 L 219,102 L 225,106 L 228,105 L 228,103 L 227,102 L 227,99 L 226,98 L 226,96 L 233,90 L 233,87 L 229,87 L 228,86 L 222,85 L 222,83 L 219,77 L 216,78 L 214,84 L 212,86 L 207,86 Z M 218,86 L 220,88 L 220,89 L 224,92 L 222,94 L 221,98 L 218,97 L 213,98 L 214,95 L 212,90 L 214,90 L 216,88 L 216,87 Z M 141,77 L 139,81 L 139,83 L 138,85 L 132,86 L 127,89 L 133,94 L 134,99 L 132,103 L 133,106 L 135,106 L 141,102 L 144,102 L 150,106 L 153,104 L 151,99 L 152,94 L 157,87 L 147,85 L 144,77 Z M 141,87 L 144,87 L 144,88 L 149,92 L 147,94 L 145,99 L 138,98 L 138,94 L 137,90 L 139,90 L 141,88 Z M 283,75 L 284,77 L 286,77 L 285,75 Z M 244,51 L 244,53 L 243,54 L 244,62 L 249,63 L 255,66 L 259,66 L 261,64 L 261,63 L 264,59 L 258,59 L 257,54 L 257,48 L 253,51 L 253,52 L 250,55 L 248,55 L 246,52 Z M 261,63 L 256,65 L 254,65 L 245,61 L 247,55 L 248,58 L 257,52 L 257,58 L 258,59 L 258,61 Z M 93,59 L 95,63 L 98,66 L 102,66 L 108,63 L 110,63 L 114,61 L 114,54 L 113,53 L 113,51 L 111,52 L 109,55 L 107,55 L 103,50 L 100,48 L 100,53 L 98,60 Z M 113,55 L 112,61 L 103,65 L 101,65 L 99,66 L 97,61 L 99,61 L 99,58 L 100,57 L 102,51 L 107,57 L 109,58 L 110,55 Z M 146,23 L 143,26 L 142,28 L 142,33 L 147,41 L 154,48 L 157,50 L 162,52 L 165,55 L 164,69 L 158,69 L 157,70 L 150,72 L 155,77 L 156,77 L 165,85 L 165,90 L 162,102 L 161,103 L 162,106 L 164,106 L 178,97 L 182,97 L 196,106 L 199,105 L 199,102 L 195,89 L 196,84 L 204,78 L 209,70 L 203,70 L 196,68 L 197,53 L 202,51 L 206,48 L 214,40 L 218,33 L 218,27 L 214,23 L 209,23 L 205,27 L 204,30 L 201,34 L 196,39 L 193,41 L 187,43 L 184,40 L 187,39 L 191,33 L 191,24 L 187,18 L 183,16 L 177,16 L 175,17 L 170,22 L 169,25 L 169,32 L 170,35 L 176,40 L 176,43 L 173,43 L 170,42 L 163,38 L 157,31 L 155,27 L 151,23 Z M 160,73 L 166,73 L 173,72 L 175,70 L 178,61 L 182,60 L 182,62 L 186,71 L 193,72 L 194,73 L 201,75 L 191,84 L 191,88 L 193,93 L 192,99 L 181,92 L 179,92 L 170,98 L 167,97 L 167,94 L 169,89 L 168,82 L 161,77 Z M 210,38 L 208,41 L 201,47 L 192,51 L 190,69 L 188,67 L 184,55 L 182,51 L 178,51 L 172,67 L 168,68 L 168,51 L 161,48 L 158,46 L 150,37 L 152,35 L 155,35 L 162,42 L 165,44 L 174,47 L 186,47 L 193,45 L 197,43 L 207,34 Z M 210,27 L 214,28 L 215,31 L 210,32 Z M 147,27 L 150,27 L 152,30 L 149,33 L 146,32 Z M 177,20 L 183,20 L 187,24 L 188,27 L 188,30 L 187,33 L 183,37 L 177,37 L 174,34 L 173,32 L 173,25 L 174,23 Z"
-                    fill="#9daef8"
-                    fillRule="evenodd"
-                  />
-                </svg>
+                <img 
+                  src="/Group%208.png" 
+                  alt="Express with Confidence" 
+                  className="hiw-capstone-icon-img"
+                />
               )
             }
           ];
