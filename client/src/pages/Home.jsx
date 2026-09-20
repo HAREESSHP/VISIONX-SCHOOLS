@@ -1439,30 +1439,26 @@ export default function Home() {
 
       {/* 6. Why Choose Us Section */}
       <section className="why-choose-section" id="why-choose-us">
-        {/* Ambient 3D Depth Orbs */}
-        <div className="why-3d-glow-orb why-3d-glow-orange" aria-hidden="true" />
-        <div className="why-3d-glow-orb why-3d-glow-cyan" aria-hidden="true" />
-
         {/* Left Side Students Peeking */}
         <motion.img 
           src="/why-students-peeking.png" 
           alt="Students" 
           className="why-peeking-students" 
           aria-hidden="true" 
-          initial={{ opacity: 0, x: -70 }}
+          initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         />
 
         <div className="why-choose-inner">
           {/* Header */}
           <motion.div 
             className="why-header"
-            initial={{ opacity: 0, y: 35, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.75, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="why-kicker">WHY CHOOSE US</span>
             <h2 className="why-title">
@@ -1473,29 +1469,20 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          {/* Right Side 3D Interactive Tilted Educators Card */}
+          {/* Educators Card - floats on top-right on desktop, flows between header & grid on mobile */}
           <motion.div 
             className="why-tilted-card-3d-wrapper"
-            initial={{ opacity: 0, scale: 0.72, rotateY: -22, rotateX: 16, y: 70 }}
-            whileInView={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <TiltCard
-              maxAngle={12}
-              scale={1.04}
-              borderRadius="28px"
-              glareEnable={true}
-              glareMaxOpacity={0.12}
-              className="why-tilted-card-3d"
-            >
-              <img 
-                src="/why-educators-card.png" 
-                alt="Educators" 
-                className="why-tilted-card-img" 
-                aria-hidden="true" 
-              />
-            </TiltCard>
+            <img 
+              src="/why-educators-card.png" 
+              alt="Educators" 
+              className="why-tilted-card-img" 
+              aria-hidden="true" 
+            />
           </motion.div>
 
           {/* 2 Columns: For Students & For Schools */}
@@ -1504,93 +1491,76 @@ export default function Home() {
             <div className="why-col why-students-col">
               <motion.h3 
                 className="why-col-header"
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.6, delay: 1.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
               >
                 For Students
               </motion.h3>
               <div className="why-list">
                 <motion.div
-                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  className="why-item-3d-card"
                 >
-                  <TiltCard
-                    maxAngle={6}
-                    scale={1.02}
-                    borderRadius="20px"
-                    glareEnable={true}
-                    glareMaxOpacity={0.06}
-                    className="why-item-3d-card"
-                  >
-                    <div className="why-icon-bubble">
-                      <Mic size={22} color="#f0740f" strokeWidth={2.5} />
-                    </div>
-                    <div className="why-item-content">
-                      <h4 className="why-item-title">Confidence to participate</h4>
-                      <p className="why-item-desc">
-                        Students become more comfortable sharing ideas, answering questions and taking part in conversations.
-                      </p>
-                    </div>
-                  </TiltCard>
+                  <div className="why-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0740f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  </div>
+                  <div className="why-item-content">
+                    <h4 className="why-item-title">Confidence to participate</h4>
+                    <p className="why-item-desc">
+                      Students become more comfortable sharing ideas, answering questions and taking part in conversations.
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.25, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                  className="why-item-3d-card"
                 >
-                  <TiltCard
-                    maxAngle={6}
-                    scale={1.02}
-                    borderRadius="20px"
-                    glareEnable={true}
-                    glareMaxOpacity={0.06}
-                    className="why-item-3d-card"
-                  >
-                    <div className="why-icon-bubble">
-                      <MessagesSquare size={22} color="#f0740f" strokeWidth={2.5} />
-                    </div>
-                    <div className="why-item-content">
-                      <h4 className="why-item-title">Communication beyond textbooks</h4>
-                      <p className="why-item-desc">
-                        They learn to use English in conversations, activities and situations that go beyond written exercises.
-                      </p>
-                    </div>
-                  </TiltCard>
+                  <div className="why-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0740f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                  </div>
+                  <div className="why-item-content">
+                    <h4 className="why-item-title">Communication beyond textbooks</h4>
+                    <p className="why-item-desc">
+                      They learn to use English in conversations, activities and situations that go beyond written exercises.
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.40, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="why-item-3d-card"
                 >
-                  <TiltCard
-                    maxAngle={6}
-                    scale={1.02}
-                    borderRadius="20px"
-                    glareEnable={true}
-                    glareMaxOpacity={0.06}
-                    className="why-item-3d-card"
-                  >
-                    <div className="why-icon-bubble">
-                      <TrendingUp size={22} color="#f0740f" strokeWidth={2.5} />
-                    </div>
-                    <div className="why-item-content">
-                      <h4 className="why-item-title">Progress at their own level</h4>
-                      <p className="why-item-desc">
-                        Age- and grade-appropriate learning allows students to build skills progressively from Nursery to Class 10.
-                      </p>
-                    </div>
-                  </TiltCard>
+                  <div className="why-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0740f" strokeWidth="2.2" strokeLinecap="round">
+                      <path d="M12 3a9 9 0 0 1 7.8 4.5" />
+                      <path d="M21 12a9 9 0 0 1-4.5 7.8" />
+                      <path d="M12 21a9 9 0 0 1-7.8-4.5" />
+                      <path d="M3 12a9 9 0 0 1 4.5-7.8" />
+                      <circle cx="12" cy="12" r="1.6" fill="#f0740f" stroke="none" />
+                    </svg>
+                  </div>
+                  <div className="why-item-content">
+                    <h4 className="why-item-title">Progress at their own level</h4>
+                    <p className="why-item-desc">
+                      Age- and grade-appropriate learning allows students to build skills progressively from Nursery to Class 10.
+                    </p>
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -1599,93 +1569,76 @@ export default function Home() {
             <div className="why-col">
               <motion.h3 
                 className="why-col-header"
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -15 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.6, delay: 1.1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
               >
                 For Schools
               </motion.h3>
               <div className="why-list">
                 <motion.div
-                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="why-item-3d-card"
                 >
-                  <TiltCard
-                    maxAngle={6}
-                    scale={1.02}
-                    borderRadius="20px"
-                    glareEnable={true}
-                    glareMaxOpacity={0.06}
-                    className="why-item-3d-card"
-                  >
-                    <div className="why-icon-bubble">
-                      <Layers size={22} color="#f0740f" strokeWidth={2.5} />
-                    </div>
-                    <div className="why-item-content">
-                      <h4 className="why-item-title">A structured program, not an add-on</h4>
-                      <p className="why-item-desc">
-                        A planned communication curriculum that can fit into the school's existing academic environment.
-                      </p>
-                    </div>
-                  </TiltCard>
+                  <div className="why-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0740f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="6" r="3" />
+                      <circle cx="6" cy="18" r="3" />
+                      <circle cx="18" cy="18" r="3" />
+                      <path d="M12 9v3m0 0l-4 3m4-3l4 3" />
+                    </svg>
+                  </div>
+                  <div className="why-item-content">
+                    <h4 className="why-item-title">A structured program, not an add-on</h4>
+                    <p className="why-item-desc">
+                      A planned communication curriculum that can fit into the school's existing academic environment.
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.30, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
+                  className="why-item-3d-card"
                 >
-                  <TiltCard
-                    maxAngle={6}
-                    scale={1.02}
-                    borderRadius="20px"
-                    glareEnable={true}
-                    glareMaxOpacity={0.06}
-                    className="why-item-3d-card"
-                  >
-                    <div className="why-icon-bubble">
-                      <GraduationCap size={22} color="#f0740f" strokeWidth={2.5} />
-                    </div>
-                    <div className="why-item-content">
-                      <h4 className="why-item-title">Support for educators</h4>
-                      <p className="why-item-desc">
-                        Teachers and school teams get visibility into student learning and progress through the program.
-                      </p>
-                    </div>
-                  </TiltCard>
+                  <div className="why-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0740f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                    </svg>
+                  </div>
+                  <div className="why-item-content">
+                    <h4 className="why-item-title">Support for educators</h4>
+                    <p className="why-item-desc">
+                      Teachers and school teams get visibility into student learning and progress through the program.
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 45, rotateX: 22, scale: 0.92 }}
-                  whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.6, delay: 1.45, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.55, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  className="why-item-3d-card"
                 >
-                  <TiltCard
-                    maxAngle={6}
-                    scale={1.02}
-                    borderRadius="20px"
-                    glareEnable={true}
-                    glareMaxOpacity={0.06}
-                    className="why-item-3d-card"
-                  >
-                    <div className="why-icon-bubble">
-                      <Trophy size={22} color="#f0740f" strokeWidth={2.5} />
-                    </div>
-                    <div className="why-item-content">
-                      <h4 className="why-item-title">A skill that strengthens student outcomes</h4>
-                      <p className="why-item-desc">
-                        Students develop communication abilities that can support classroom participation, presentations and future academic growth.
-                      </p>
-                    </div>
-                  </TiltCard>
+                  <div className="why-icon-bubble">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0740f" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                    </svg>
+                  </div>
+                  <div className="why-item-content">
+                    <h4 className="why-item-title">A skill that strengthens student outcomes</h4>
+                    <p className="why-item-desc">
+                      Students develop communication abilities that can support classroom participation, presentations and future academic growth.
+                    </p>
+                  </div>
                 </motion.div>
               </div>
             </div>
