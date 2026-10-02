@@ -12668,24 +12668,24 @@ textarea {
 
 .why-header {
   text-align: center;
-  max-width: 660px;
+  max-width: 780px;
   margin: 0 auto 3.5rem;
 }
 
 .why-kicker {
   display: inline-block;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  font-weight: 800;
   letter-spacing: 0.22em;
   color: #475569;
   text-transform: uppercase;
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .why-title {
   font-family: 'Oswald', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(1.85rem, 2.5vw, 2.65rem);
+  font-size: clamp(2.1rem, 3.2vw, 3.1rem);
   font-weight: 700;
   color: #111827;
   line-height: 1.18;
@@ -12811,11 +12811,15 @@ textarea {
     padding: 0 1rem 0 2.5rem;
   }
   .why-header {
-    max-width: 580px;
+    max-width: 680px;
     margin-bottom: 3rem;
   }
+  .why-kicker {
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    margin-bottom: 0.85rem;
+  }
   .why-title {
-    font-size: clamp(1.75rem, 2.3vw, 2.35rem);
+    font-size: clamp(1.95rem, 2.7vw, 2.65rem);
   }
   .why-tilted-card-3d-wrapper {
     right: -10px;
@@ -12845,12 +12849,17 @@ textarea {
     max-width: 100%;
     margin-bottom: 2rem;
   }
+  .why-kicker {
+    font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+  }
   .why-title-line {
     white-space: normal;
     display: inline;
   }
   .why-title {
-    font-size: clamp(1.75rem, 5vw, 2.3rem);
+    font-size: clamp(1.85rem, 5vw, 2.45rem);
     text-align: center;
   }
   .why-tilted-card-3d-wrapper {
@@ -12892,12 +12901,12 @@ textarea {
     margin-bottom: 1.75rem;
   }
   .why-kicker {
-    font-size: 0.78rem;
+    font-size: 1.05rem;
     letter-spacing: 0.18em;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.75rem;
   }
   .why-title {
-    font-size: clamp(1.55rem, 6.2vw, 1.95rem);
+    font-size: clamp(1.65rem, 6.2vw, 2.1rem);
     line-height: 1.22;
   }
   .why-tilted-card-3d-wrapper {
@@ -12945,12 +12954,12 @@ textarea {
     margin-bottom: 1.35rem;
   }
   .why-kicker {
-    font-size: 0.74rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.6rem;
   }
   .why-title {
-    font-size: clamp(1.38rem, 6.6vw, 1.65rem);
+    font-size: clamp(1.48rem, 6.6vw, 1.8rem);
     line-height: 1.22;
   }
   .why-tilted-card-3d-wrapper {
