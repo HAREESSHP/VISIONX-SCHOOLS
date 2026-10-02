@@ -6920,68 +6920,77 @@ textarea {
   object-position: center 25%;
   display: block;
   user-select: none;
+  filter: saturate(0.58) brightness(0.9) contrast(0.95);
+  opacity: 0.94;
   transform: none !important;
-  transition: none !important;
+  transition: filter 0.3s ease, opacity 0.3s ease !important;
 }
 
-.lp-offer-tabs-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 1.25rem 2rem;
+.lp-offer-image-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.32) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lp-offer-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 2.25rem 2.5rem;
   background: #FFFFFF;
   border-top: 1px solid rgba(226, 232, 240, 0.85);
-  gap: 1rem;
+  box-sizing: border-box;
 }
 
-.lp-offer-tab {
+.lp-offer-service-item {
   display: flex;
-  align-items: center;
-  gap: 0.95rem;
-  padding: 0.65rem 1.25rem;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  background: transparent;
-  border: 1.5px solid transparent;
-  user-select: none;
+  align-items: flex-start;
+  gap: 1.15rem;
+  cursor: default;
+  user-select: text;
 }
 
-.lp-offer-tab:hover {
-  background: #f8fafc;
-}
-
-.lp-offer-tab.active {
-  background: #f5f7ff;
-  border-color: rgba(99, 102, 241, 0.25);
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.08);
-}
-
-.lp-offer-tab-icon-wrap {
-  width: 44px;
-  height: 44px;
+.lp-offer-service-icon-wrap {
+  width: 48px;
+  height: 48px;
   border-radius: 12px;
-  background: #eef2ff;
+  background: #FFF3EB;
+  border: 1px solid rgba(240, 116, 15, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #4f46e5;
+  color: #F0740F;
   flex-shrink: 0;
-  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(240, 116, 15, 0.12);
 }
 
-.lp-offer-tab.active .lp-offer-tab-icon-wrap {
-  background: #e0e7ff;
-  transform: scale(1.05);
+.lp-offer-service-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 0;
 }
 
-.lp-offer-tab-title {
+.lp-offer-service-title {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #0f172a;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
+  letter-spacing: -0.015em;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lp-offer-service-desc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #64748b;
+  margin: 0;
+  font-weight: 450;
 }
 
 /* Star Doodle */
@@ -7097,20 +7106,27 @@ textarea {
 }
 
 @media (max-width: 900px) {
-  .lp-offer-tabs-bar {
-    display: grid;
+  .lp-offer-services-grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    padding: 1.75rem 1.25rem;
+  }
+  .lp-offer-service-item {
+    flex-direction: column;
     gap: 0.75rem;
-    padding: 1.15rem 1rem;
   }
-  .lp-offer-tab {
-    justify-content: center;
-    padding: 0.5rem 0.5rem;
+  .lp-offer-service-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
   }
-  .lp-offer-tab-title {
-    font-size: 0.92rem;
-    white-space: normal;
-    text-align: left;
+  .lp-offer-service-title {
+    font-size: 0.98rem;
+    line-height: 1.3;
+  }
+  .lp-offer-service-desc {
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
   .lp-offer-bottom-row {
     flex-direction: column;
@@ -7160,17 +7176,21 @@ textarea {
   .lp-offer-title {
     font-size: clamp(2.1rem, 7vw, 2.75rem);
   }
-  .lp-offer-tabs-bar {
+  .lp-offer-services-grid {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
-    padding: 1rem 0.85rem;
+    gap: 1.35rem;
+    padding: 1.5rem 1.25rem;
   }
-  .lp-offer-tab {
-    justify-content: flex-start;
-    padding: 0.65rem 0.85rem;
+  .lp-offer-service-item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
   }
-  .lp-offer-tab-title {
-    font-size: 0.98rem;
+  .lp-offer-service-title {
+    font-size: 1.02rem;
+  }
+  .lp-offer-service-desc {
+    font-size: 0.86rem;
   }
   .lp-offer-mission-text {
     font-size: 0.88rem;

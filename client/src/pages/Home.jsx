@@ -195,14 +195,13 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentPillarIndex, setCurrentPillarIndex] = useState(0);
   const [activeReviewIndex, setActiveReviewIndex] = useState(2);
-  const [activeOfferIndex, setActiveOfferIndex] = useState(0);
 
   const offerFeatures = [
     {
       title: "Active Speaking Drills",
       desc: "Daily classroom voice practice with engaging student prompts.",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="9 10 4 15 9 20" />
           <path d="M20 4v7a4 4 0 0 1-4 4H4" />
         </svg>
@@ -211,13 +210,13 @@ export default function Home() {
     {
       title: "AI Speech & Pronunciation",
       desc: "Real-time phonetic feedback and accurate voice analysis.",
-      icon: <Sparkles size={22} color="#4f46e5" strokeWidth={3.2} />
+      icon: <Sparkles size={22} color="currentColor" strokeWidth={2.8} />
     },
     {
       title: "Teacher Analytics Hub",
       desc: "Automated classroom diagnosis, tracking and reports.",
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
           <polyline points="14 2 14 8 20 8" />
           <line x1="16" y1="13" x2="8" y2="13" />
@@ -786,9 +785,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="lp-offer-kicker">HERE'S WHAT WE OFFER</span>
             <h2 className="lp-offer-title">Here’s What We Offer</h2>
           </motion.div>
 
@@ -798,7 +796,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 35, scale: 0.96 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.85, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="lp-offer-card">
               {/* Classroom Image Wrap */}
@@ -808,24 +806,19 @@ export default function Home() {
                   alt="Energetic teacher and engaged students in a modern spoken English classroom" 
                   className="lp-offer-image" 
                 />
+                <div className="lp-offer-image-scrim" />
               </div>
 
-              {/* Bottom Feature Tabs */}
-              <div className="lp-offer-tabs-bar">
-                {offerFeatures.map((feat, idx) => (
-                  <div
-                    key={feat.title}
-                    className={`lp-offer-tab ${activeOfferIndex === idx ? 'active' : ''}`}
-                    onClick={() => setActiveOfferIndex(idx)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveOfferIndex(idx); }}
-                  >
-                    <div className="lp-offer-tab-icon-wrap">
+              {/* Services Informational Grid (Not Buttons) */}
+              <div className="lp-offer-services-grid">
+                {offerFeatures.map((feat) => (
+                  <div key={feat.title} className="lp-offer-service-item">
+                    <div className="lp-offer-service-icon-wrap">
                       {feat.icon}
                     </div>
-                    <div className="lp-offer-tab-content">
-                      <span className="lp-offer-tab-title">{feat.title}</span>
+                    <div className="lp-offer-service-content">
+                      <h3 className="lp-offer-service-title">{feat.title}</h3>
+                      <p className="lp-offer-service-desc">{feat.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -839,7 +832,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="lp-offer-mission-text">
               We started VisionX with a single mission: to turn classroom English learning into an active, enjoyable spoken experience. Our platform blends guided AI speech training with structured lesson delivery that supports educators.
